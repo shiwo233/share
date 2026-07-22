@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AI算力基建深度分析报告</title>
+<style>
+/* ========== RESET + BASE (mobile-first) ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f8f9fc; --card: #fff; --text: #1a1a2e; --sub: #5a6175;
+  --accent: #1a56db; --accent2: #e8364f; --gold: #c7920f; --green: #059669;
+  --border: #e5e7eb; --radius: 8px;
+  --fs-h1: 1.5rem; --fs-h2: 1.2rem; --fs-body: .875rem; --fs-sm: .75rem; --fs-xs: .6875rem;
+}
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.75;
+  font-size: var(--fs-body); -webkit-font-smoothing: antialiased;
+}
+
+/* ========== LAYOUT ========== */
+.container { max-width: 680px; margin: 0 auto; padding: 0 16px 32px; }
+
+/* ========== HERO ========== */
+.hero {
+  text-align: center; padding: 32px 20px 28px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a56db 100%);
+  color: #fff; margin-bottom: 32px;
+}
+.hero h1 { font-size: var(--fs-h1); font-weight: 800; letter-spacing: .6px; margin-bottom: 8px; line-height: 1.35; }
+.hero .subtitle { font-size: var(--fs-sm); opacity: .82; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+.hero .subtitle br { display: none; }
+.hero .badge {
+  display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  padding: 3px 12px; border-radius: 20px; font-size: var(--fs-xs); margin-top: 12px;
+}
+
+/* ========== NAV ========== */
+.nav-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 28px;
+  padding: 10px 12px; background: var(--card); border-radius: var(--radius);
+  border: 1px solid var(--border); font-size: var(--fs-xs);
+}
+.nav-line .nl-title { font-weight: 700; color: var(--sub); margin-right: 4px; white-space: nowrap; }
+.nav-line .nl-step { color: var(--text); background: #f0f4ff; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.nav-line .nl-arrow { color: var(--sub); font-size: 10px; }
+.nav-line .nl-step.hl { background: #fef2f2; color: var(--accent2); font-weight: 700; }
+
+/* ========== SECTIONS ========== */
+.section { margin-bottom: 40px; }
+.section-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  padding-bottom: 12px; border-bottom: 2px solid var(--border);
+}
+.section-num {
+  width: 30px; height: 30px; border-radius: 8px; background: var(--accent);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .875rem; flex-shrink: 0;
+}
+.section-header h2 { font-size: var(--fs-h2); font-weight: 700; }
+.section-header h2 span { color: var(--accent); }
+
+/* ========== CARDS ========== */
+.card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04); padding: 16px; margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+.card h3 { font-size: 1rem; }
+.card h4 { font-size: .9375rem; }
+
+.layer-card {
+  background: var(--card); border-radius: var(--radius);
+  border: 1px solid var(--border); padding: 14px 16px; margin-bottom: 10px;
+  border-left: 4px solid transparent;
+}
+.layer-card .layer-label {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: var(--fs-xs); font-weight: 700; margin-bottom: 6px;
+}
+.layer-card h3 { font-size: .9375rem; font-weight: 700; margin-bottom: 4px; }
+.layer-card .layer-desc { color: var(--sub); font-size: var(--fs-sm); margin-bottom: 8px; line-height: 1.6; }
+
+.company-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.company-tag {
+  padding: 3px 8px; border-radius: 4px; font-size: var(--fs-xs); font-weight: 600;
+  background: #f0f4ff; color: var(--accent); border: 1px solid #dbe4ff; white-space: nowrap;
+}
+.company-tag.key { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.company-tag.dominant { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-weight: 700; }
+
+/* ========== SHORTAGE METER ========== */
+.shortage-meter { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.shortage-meter > span:first-child { width: 100px; font-size: var(--fs-xs); font-weight: 600; flex-shrink: 0; }
+.shortage-bar { flex: 1; height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
+.shortage-fill { height: 100%; border-radius: 3px; }
+.shortage-label { font-size: var(--fs-xs); font-weight: 700; min-width: 36px; text-align: right; }
+.shortage-label.critical { color: var(--accent2); }
+.shortage-label.severe { color: #ea580c; }
+.shortage-label.moderate { color: var(--gold); }
+.shortage-label.mild { color: var(--green); }
+.fill-critical { background: var(--accent2); }
+.fill-severe { background: #ea580c; }
+.fill-moderate { background: var(--gold); }
+.fill-mild { background: var(--green); }
+
+/* ========== HIGHLIGHT / CALLOUT ========== */
+.highlight {
+  background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius);
+  padding: 14px 16px; margin: 16px 0;
+}
+.highlight h4 { font-size: .875rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.callout {
+  background: #fef2f2; border-left: 4px solid var(--accent2); border-radius: var(--radius);
+  padding: 14px 16px; margin: 16px 0;
+}
+.callout h4 { color: var(--accent2); font-size: .875rem; font-weight: 700; margin-bottom: 4px; }
+
+/* ========== STATS ========== */
+.stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.stat-card {
+  background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+  padding: 12px 14px; text-align: center;
+}
+.stat-card .stat-value { font-size: 1.125rem; font-weight: 800; color: var(--accent); }
+.stat-card .stat-label { font-size: var(--fs-xs); color: var(--sub); margin-top: 2px; }
+.summary-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.summary-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
+}
+.summary-item .si-label { font-size: var(--fs-xs); color: var(--sub); font-weight: 600; }
+.summary-item .si-value { font-size: .9375rem; font-weight: 700; }
+.summary-item .si-note { font-size: var(--fs-xs); color: var(--sub); margin-top: 1px; }
+
+/* ========== TABLE ========== */
+.data-table { width: 100%; border-collapse: collapse; font-size: var(--fs-xs); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table th {
+  text-align: left; padding: 8px 10px; background: #f9fafb; font-weight: 700;
+  font-size: var(--fs-xs); color: var(--sub); border-bottom: 2px solid var(--border); white-space: nowrap;
+}
+.data-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+
+/* ========== STEPS / CONV ========== */
+.conv-step {
+  display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+  background: #f9fafb; border-radius: var(--radius); margin-bottom: 8px; border: 1px solid var(--border);
+}
+.conv-step-num {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: var(--fs-xs); flex-shrink: 0; margin-top: 2px;
+}
+.conv-step strong { color: var(--accent2); }
+.conv-step p, .conv-step div { font-size: var(--fs-sm); line-height: 1.6; }
+
+/* ========== PRODUCT CARD ========== */
+.product-card {
+  background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+  padding: 14px 16px; margin-bottom: 10px;
+}
+.product-card h4 { font-size: .9375rem; font-weight: 700; }
+.product-card .product-tag {
+  display: inline-block; background: #fef2f2; color: var(--accent2); font-size: var(--fs-xs);
+  font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-bottom: 6px;
+}
+
+/* ========== PRICE CARD ========== */
+.price-card {
+  text-align: center; padding: 14px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: #fafffe;
+}
+.price-card .ticker { font-size: var(--fs-xs); color: var(--sub); }
+.price-card .price { font-size: 1.375rem; font-weight: 800; color: var(--green); }
+.price-card .pct { font-size: var(--fs-xs); color: var(--green); font-weight: 600; }
+
+/* ========== RISK ========== */
+.risk-item { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.risk-item:last-child { border-bottom: none; }
+.risk-icon {
+  width: 24px; height: 24px; border-radius: 5px; background: #fef2f2; color: var(--accent2);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: var(--fs-xs); flex-shrink: 0;
+}
+
+/* ========== CHART BOX ========== */
+.chart-box { width: 100%; margin: 0 auto 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart-box svg { width: 100%; height: auto; min-width: 340px; display: block; }
+
+/* ========== DIVIDER / FOOTER ========== */
+.divider { height: 1px; background: linear-gradient(to right, transparent, var(--accent), transparent); margin: 28px 0; opacity: .2; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid var(--border); text-align: center; color: var(--sub); font-size: var(--fs-xs); }
+
+/* ========== UTILITY ========== */
+.mb-sm { margin-bottom: 12px; }
+.mb-md { margin-bottom: 20px; }
+
+/* ========== RESPONSIVE: tablet (480px+) ========== */
+@media (min-width: 480px) {
+  .container { padding: 0 24px 40px; }
+  .hero { padding: 40px 24px 36px; }
+  :root { --fs-h1: 1.625rem; --fs-h2: 1.25rem; }
+  .hero .subtitle br { display: inline; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-num { width: 34px; height: 34px; font-size: 1rem; }
+  .shortage-meter > span:first-child { width: 130px; font-size: var(--fs-sm); }
+  .card { padding: 20px; }
+  .layer-card { padding: 16px 20px; }
+  .data-table { display: table; }
+}
+
+/* ========== RESPONSIVE: desktop (768px+) ========== */
+@media (min-width: 768px) {
+  :root { --fs-h1: 1.875rem; --fs-h2: 1.375rem; --fs-body: .9375rem; --fs-sm: .8125rem; --fs-xs: .75rem; }
+  .container { max-width: 900px; padding: 0 32px 48px; }
+  .hero { padding: 56px 32px 40px; }
+  .section { margin-bottom: 52px; }
+  .section-header { margin-bottom: 28px; padding-bottom: 16px; }
+  .section-num { width: 38px; height: 38px; }
+  .stat-row { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .nav-line { gap: 6px; font-size: var(--fs-xs); padding: 10px 16px; }
+  .layer-card h3 { font-size: 1.0625rem; }
+  .layer-card .layer-desc { font-size: var(--fs-sm); }
+  .card h3 { font-size: 1.0625rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <h1>AI 算力基建深度分析报告</h1>
+  <p class="subtitle">从算力基建金字塔出发，逐层拆解 AI 服务器的构成、角色与瓶颈，<br>层层收敛后揭示产业链中不可撼动的关键节点</p>
+  <div class="badge">2026 年 7 月 · 深度研究</div>
+</div>
+
+<div class="container">
+
+<!-- ========== NAV ========== -->
+<div class="nav-line">
+  <span class="nl-title">叙事线：</span>
+  <span class="nl-step">金字塔</span><span class="nl-arrow">→</span>
+  <span class="nl-step">逐层拆解</span><span class="nl-arrow">→</span>
+  <span class="nl-step">短缺分析</span><span class="nl-arrow">→</span>
+  <span class="nl-step hl">聚焦 CoWoS</span><span class="nl-arrow">→</span>
+  <span class="nl-step">产品拆解</span><span class="nl-arrow">→</span>
+  <span class="nl-step">增长引擎</span><span class="nl-arrow">→</span>
+  <span class="nl-step">股价分析</span>
+</div>
+
+<!-- ================================================================== -->
+<!-- 第一章 -->
+<!-- ================================================================== -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>AI 算力基建金字塔：<span>一张地图看懂全局</span></h2>
+  </div>
+
+  <p style="color:var(--sub);margin-bottom:16px;">
+    从用户手中的 ChatGPT，到地下深处的硅晶圆，AI 算力是一个从上到下、环环相扣的七层体系。理解全景，是理解一切瓶颈的前提。
+  </p>
+
+  <div class="chart-box">
+    <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0e7ff"/><stop offset="100%" stop-color="#c7d2fe"/></linearGradient>
+        <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fef3c7"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+        <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fee2e2"/><stop offset="100%" stop-color="#fecaca"/></linearGradient>
+        <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f3e8ff"/><stop offset="100%" stop-color="#e9d5ff"/></linearGradient>
+        <linearGradient id="g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d1fae5"/><stop offset="100%" stop-color="#a7f3d0"/></linearGradient>
+        <linearGradient id="g7" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e5e7eb"/><stop offset="100%" stop-color="#d1d5db"/></linearGradient>
+      </defs>
+
+      <rect x="320" y="12" width="260" height="50" rx="10" fill="url(#g1)" stroke="#93c5fd" stroke-width="2"/>
+      <text x="450" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">应用层</text>
+      <text x="450" y="54" text-anchor="middle" font-size="10" fill="#3b82f6">ChatGPT · Copilot · 自动驾驶</text>
+
+      <rect x="290" y="72" width="320" height="50" rx="10" fill="url(#g2)" stroke="#a5b4fc" stroke-width="2"/>
+      <text x="450" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#3730a3">云平台 / CSP 层</text>
+      <text x="450" y="114" text-anchor="middle" font-size="10" fill="#6366f1">AWS · Azure · GCP · 阿里云 · 华为云</text>
+
+      <rect x="265" y="132" width="370" height="50" rx="10" fill="url(#g3)" stroke="#fcd34d" stroke-width="2"/>
+      <text x="450" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">服务器 ODM 组装层</text>
+      <text x="450" y="174" text-anchor="middle" font-size="10" fill="#d97706">鸿海 · 广达 · 纬创 · 英业达 · 超微</text>
+
+      <rect x="240" y="212" width="420" height="56" rx="10" fill="url(#g4)" stroke="#fca5a5" stroke-width="2"/>
+      <text x="450" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#991b1b">芯片设计 / Fabless 层</text>
+      <text x="450" y="255" text-anchor="middle" font-size="10" fill="#ef4444">NVIDIA · AMD · Intel · Broadcom · Marvell · Cloud ASIC</text>
+
+      <rect x="195" y="278" width="510" height="62" rx="10" fill="url(#g5)" stroke="#7c3aed" stroke-width="2.5"/>
+      <text x="450" y="305" text-anchor="middle" font-size="15" font-weight="800" fill="#6b21a8">制造代工层 ⭐</text>
+      <text x="450" y="323" text-anchor="middle" font-size="10" fill="#7c3aed">台积电垄断 90%+ 先进制程 · 独占 CoWoS 先进封装</text>
+
+      <rect x="170" y="350" width="560" height="50" rx="10" fill="url(#g6)" stroke="#6ee7b7" stroke-width="2"/>
+      <text x="450" y="376" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">先进封装层</text>
+      <text x="450" y="392" text-anchor="middle" font-size="10" fill="#059669">CoWoS · HBM 集成 · 日月光</text>
+
+      <rect x="100" y="410" width="700" height="56" rx="10" fill="url(#g7)" stroke="#9ca3af" stroke-width="2"/>
+      <text x="450" y="436" text-anchor="middle" font-size="14" font-weight="700" fill="#374151">上游资源 / 设备 / 材料层</text>
+      <text x="450" y="453" text-anchor="middle" font-size="10" fill="#6b7280">ASML EUV · 信越硅晶圆 · 应材/科磊 · 电力 · 水</text>
+
+      <rect x="15" y="278" width="150" height="62" rx="8" fill="#1a56db" opacity="0.92"/>
+      <text x="90" y="300" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">不可替代性</text>
+      <text x="90" y="318" text-anchor="middle" font-size="9" fill="#bfdbfe">⬆ 逐层上升</text>
+    </svg>
+  </div>
+
+  <p style="font-size:var(--fs-xs);color:var(--sub);text-align:center;margin-top:-12px;">
+    核心规律：<strong style="color:var(--accent2);">越靠近底层，垄断越高、替代越难、供给弹性越差。</strong>
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第二章 -->
+<!-- ================================================================== -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>逐层拆解：<span>算力到底怎么"长"出来的？</span></h2>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#3b82f6;">
+    <span class="layer-label" style="background:#dbeafe;color:#1e40af;">第 1 层 · 应用</span>
+    <h3>应用层：需求的"源头"</h3>
+    <p class="layer-desc">所有算力建设最终都为了运行大模型——从 ChatGPT 的万亿参数推理到自动驾驶的传感器融合。2026年全球生成式AI支出预计突破 $3000亿，token 消耗量季度环比增长 80-120%。</p>
+    <div class="company-tags">
+      <span class="company-tag dominant">OpenAI</span><span class="company-tag">Anthropic</span><span class="company-tag">Google DeepMind</span><span class="company-tag">Meta AI</span><span class="company-tag">xAI</span><span class="company-tag">DeepSeek</span>
+    </div>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#6366f1;">
+    <span class="layer-label" style="background:#e0e7ff;color:#3730a3;">第 2 层 · 云平台</span>
+    <h3>CSP 云平台层：算力的"批发商"</h3>
+    <p class="layer-desc">CSP 是 AI 算力最大买家，采购整机后按 token 或 GPU 小时计费出租。2026年四大 CSP 资本支出合计预计超 $2500亿（同比+30%+），微软一家超 $800亿。</p>
+    <div class="company-tags">
+      <span class="company-tag dominant">Azure</span><span class="company-tag dominant">AWS</span><span class="company-tag dominant">Google Cloud</span><span class="company-tag">阿里云</span><span class="company-tag">华为云</span>
+    </div>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#d97706;">
+    <span class="layer-label" style="background:#fef3c7;color:#92400e;">第 3 层 · 组装</span>
+    <h3>服务器 ODM 层：算力的"集成商"</h3>
+    <p class="layer-desc">ODM 把 GPU、CPU、HBM、主板、散热组装成完整 AI 服务器。利润率极低（2-5%），核心价值不在组装而在能否拿到稀缺组件。而"能否拿到货"，最终取决于晶圆厂的产能分配。</p>
+    <div class="company-tags">
+      <span class="company-tag">鸿海</span><span class="company-tag">广达</span><span class="company-tag">纬创</span><span class="company-tag">英业达</span><span class="company-tag">超微 SMCI</span><span class="company-tag">浪潮</span>
+    </div>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#ef4444;">
+    <span class="layer-label" style="background:#fee2e2;color:#991b1b;">第 4 层 · 设计</span>
+    <h3>芯片设计 / Fabless 层：算力的"图纸"</h3>
+    <p class="layer-desc">NVIDIA 定义 AI 训练/推理架构，AMD 提供替代方案，Broadcom/Marvell 为云厂商设计定制 ASIC。但本质上所有 Fabless 公司都是"画图纸"的——没有晶圆厂，再精妙的设计也只是 RTL 代码。</p>
+    <div class="company-tags">
+      <span class="company-tag dominant">NVIDIA</span><span class="company-tag">AMD</span><span class="company-tag">Intel</span><span class="company-tag">Broadcom</span><span class="company-tag">Google TPU</span><span class="company-tag key">ASML</span>
+    </div>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#7c3aed;background:#fafaff;">
+    <span class="layer-label" style="background:#f3e8ff;color:#6b21a8;">第 5+6 层 · 制造 + 封装</span>
+    <h3>制造代工 + 先进封装层：算力的"物理实体" ⭐</h3>
+    <p class="layer-desc">
+      AI 产业链中<strong>最重资产、最高壁垒、最高集中度</strong>的两层，且高度绑定在同一家公司身上。<br>
+      <strong>制造代工：</strong>把设计变成物理硅片上的晶体管。一片 3nm 晶圆售价超 $20,000，经历上千道工艺。7nm 以下全球市占率超 90%。<br>
+      <strong>先进封装：</strong>GPU 裸片必须通过 CoWoS 与 HBM 合封，才能变成可用的 AI 加速器。而 CoWoS，全球仅一家能做。
+    </p>
+    <div class="company-tags">
+      <span class="company-tag dominant" style="background:#eff6ff;color:#1e40af;border-color:#bfdbfe;">台积电 TSMC</span>
+      <span class="company-tag">三星</span><span class="company-tag">Intel Foundry</span><span class="company-tag">日月光</span>
+    </div>
+  </div>
+
+  <div class="layer-card" style="border-left-color:#6b7280;">
+    <span class="layer-label" style="background:#e5e7eb;color:#374151;">第 7 层 · 资源</span>
+    <h3>上游资源 / 设备 / 材料层：算力的"燃料"</h3>
+    <p class="layer-desc">EUV 光刻机（ASML 垄断）、高纯硅晶圆（信越/SUMCO）、超纯水、电力——3nm 工厂年耗电超 50万户家庭总量。台湾电价已涨 25%。</p>
+    <div class="company-tags">
+      <span class="company-tag key">ASML</span><span class="company-tag">应用材料</span><span class="company-tag">科磊</span><span class="company-tag">信越</span>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <h4>关键洞察：需求传导机制</h4>
+    <p style="font-size:var(--fs-sm);color:var(--sub);">
+      OpenAI 发布更强模型 → CSP 追加 GPU 订单 → ODM 向 NVIDIA 抢 GPU → <strong>NVIDIA 向晶圆厂抢 CoWoS 产能</strong> → 晶圆厂决定扩产节奏。整条链的<strong>所有增量需求最终都在同一个节点上"排队"</strong>。
+    </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第三章 -->
+<!-- ================================================================== -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>木桶效应：<span>最短的板在哪里？</span></h2>
+  </div>
+
+  <p style="color:var(--sub);margin-bottom:16px;">
+    AI 服务器的产能由<strong>最短缺的环节</strong>决定。以下从"极缺"到"充裕"依次拆解。
+  </p>
+
+  <div class="card" style="overflow-x:auto;">
+    <h3 style="margin-bottom:12px;">各层短缺热力图</h3>
+    <table class="data-table">
+      <thead><tr><th>环节</th><th>供给方</th><th>短缺</th><th>核心原因</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CoWoS 封装</strong></td><td>台积电（独占）</td><td><span class="shortage-label critical">★★★★★</span></td><td>唯一方案，独家供应，扩产追不上 AI 爆发</td></tr>
+        <tr><td><strong>HBM 存储</strong></td><td>SK 海力士/三星</td><td><span class="shortage-label critical">★★★★★</span></td><td>良率仅 50-60%，单卡容量年增 30%+</td></tr>
+        <tr><td><strong>先进制程晶圆</strong></td><td>台积电（90%+）</td><td><span class="shortage-label severe">★★★★☆</span></td><td>3nm 被苹果/NVIDIA 锁定至 2026 底</td></tr>
+        <tr><td><strong>EUV 光刻机</strong></td><td>ASML（垄断）</td><td><span class="shortage-label severe">★★★★☆</span></td><td>年产仅 ~50 台，交付周期 18-24 月</td></tr>
+        <tr><td><strong>数据中心电力</strong></td><td>电网</td><td><span class="shortage-label moderate">★★★☆☆</span></td><td>单一 DC 功耗 100MW-1GW</td></tr>
+        <tr><td><strong>GPU 设计</strong></td><td>NVIDIA</td><td><span class="shortage-label mild">★★☆☆☆</span></td><td>迭代快，制约不在设计</td></tr>
+        <tr><td><strong>服务器组装</strong></td><td>ODM</td><td><span class="shortage-label mild">★☆☆☆☆</span></td><td>弹性大，瓶颈在上游</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <h3 style="margin-bottom:12px;">瓶颈深度可视化</h3>
+    <div class="shortage-meter"><span>CoWoS 封装</span><div class="shortage-bar"><div class="shortage-fill fill-critical" style="width:95%;"></div></div><span class="shortage-label critical">极缺</span></div>
+    <div class="shortage-meter"><span>HBM 存储</span><div class="shortage-bar"><div class="shortage-fill fill-critical" style="width:92%;"></div></div><span class="shortage-label critical">极缺</span></div>
+    <div class="shortage-meter"><span>先进制程晶圆</span><div class="shortage-bar"><div class="shortage-fill fill-severe" style="width:78%;"></div></div><span class="shortage-label severe">紧缺</span></div>
+    <div class="shortage-meter"><span>EUV 光刻机</span><div class="shortage-bar"><div class="shortage-fill fill-severe" style="width:70%;"></div></div><span class="shortage-label severe">紧缺</span></div>
+    <div class="shortage-meter"><span>数据中心电力</span><div class="shortage-bar"><div class="shortage-fill fill-moderate" style="width:55%;"></div></div><span class="shortage-label moderate">紧张</span></div>
+    <div class="shortage-meter"><span>GPU 设计</span><div class="shortage-bar"><div class="shortage-fill fill-mild" style="width:30%;"></div></div><span class="shortage-label mild">充裕</span></div>
+    <div class="shortage-meter"><span>服务器组装</span><div class="shortage-bar"><div class="shortage-fill fill-mild" style="width:18%;"></div></div><span class="shortage-label mild">充裕</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第四章：聚焦 CoWoS -->
+<!-- ================================================================== -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>汇聚点：<span>CoWoS —— 整条产业链的"单点瓶颈"</span></h2>
+  </div>
+
+  <p style="color:var(--sub);margin-bottom:12px;">
+    多个短缺中有一个<strong>最大公约数</strong>——它不仅自身极度短缺，还<strong>卡住了其他所有环节</strong>：CoWoS 先进封装。
+  </p>
+
+  <div class="callout">
+    <h4>为什么 CoWoS 是唯一核心瓶颈？</h4>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;">
+      HBM 短缺？生产出来后<strong>必须经 CoWoS 与 GPU 合封</strong>。先进制程短缺？GPU 裸片造完<strong>必须经 CoWoS 才能变成可用加速器</strong>。不管上游产了多少 GPU 裸片、多少 HBM 颗粒，最终都要在 CoWoS 产线上"排队过关"。CoWoS 是 AI 芯片从零件变成品的最后一道门——而这扇门，只有一家有钥匙。
+    </p>
+  </div>
+
+  <!-- CoWoS 技术详解 -->
+  <div class="card" style="margin-top:16px;">
+    <h3 style="margin-bottom:4px;">CoWoS 是什么？——"三层夹心"结构</h3>
+    <p style="font-size:var(--fs-sm);color:var(--sub);margin-bottom:12px;">Chip on Wafer on Substrate，2012 年起持续迭代的 2.5D/3D 先进封装平台。</p>
+
+    <div class="chart-box">
+      <svg viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="280" width="740" height="50" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+        <text x="430" y="308" text-anchor="middle" font-size="14" font-weight="700" fill="#94a3b8">Substrate 封装基板</text>
+        <text x="430" y="324" text-anchor="middle" font-size="10" fill="#64748b">有机基板 · ABF 材料</text>
+
+        <circle cx="120" cy="272" r="3" fill="#64748b"/><circle cx="200" cy="272" r="3" fill="#64748b"/>
+        <circle cx="300" cy="272" r="3" fill="#64748b"/><circle cx="430" cy="272" r="3" fill="#64748b"/>
+        <circle cx="560" cy="272" r="3" fill="#64748b"/><circle cx="660" cy="272" r="3" fill="#64748b"/>
+        <circle cx="740" cy="272" r="3" fill="#64748b"/>
+        <text x="430" y="264" text-anchor="middle" font-size="9" fill="#94a3b8">C4 Bumps（间距 ~40μm）</text>
+
+        <rect x="100" y="160" width="660" height="100" rx="8" fill="#7c3aed" opacity="0.12" stroke="#7c3aed" stroke-width="2.5"/>
+        <text x="430" y="198" text-anchor="middle" font-size="14" font-weight="800" fill="#6b21a8">Silicon Interposer 硅中介层</text>
+        <text x="430" y="214" text-anchor="middle" font-size="9" fill="#7c3aed">整片硅晶圆做"桥梁" · 数万条微米级铜互连 · TSV 硅通孔</text>
+        <text x="430" y="228" text-anchor="middle" font-size="9" fill="#7c3aed">硅片面积 = 整颗芯片的 2-3 倍 → 对晶圆产能消耗极大</text>
+        <text x="430" y="242" text-anchor="middle" font-size="9" fill="#7c3aed">台积电自制，无外部替代</text>
+
+        <circle cx="200" cy="152" r="3" fill="#a78bfa"/><circle cx="350" cy="152" r="3" fill="#a78bfa"/>
+        <circle cx="508" cy="152" r="3" fill="#a78bfa"/><circle cx="660" cy="152" r="3" fill="#a78bfa"/>
+        <text x="430" y="144" text-anchor="middle" font-size="9" fill="#c4b5fd">μBumps（间距 ~20μm）</text>
+
+        <rect x="400" y="40" width="220" height="100" rx="10" fill="#1a56db" opacity="0.9"/>
+        <text x="510" y="73" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">GPU 计算芯片</text>
+        <text x="510" y="92" text-anchor="middle" font-size="9" fill="#bfdbfe">NVIDIA B200 · 3nm · ~800mm²</text>
+
+        <rect x="140" y="50" width="120" height="80" rx="8" fill="#ea580c" opacity="0.85"/>
+        <text x="200" y="73" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">HBM3E</text>
+        <text x="200" y="88" text-anchor="middle" font-size="8" fill="#fed7aa">12层 · 36GB</text>
+        <text x="200" y="102" text-anchor="middle" font-size="8" fill="#fed7aa">SK 海力士/三星</text>
+
+        <rect x="640" y="50" width="120" height="80" rx="8" fill="#ea580c" opacity="0.85"/>
+        <text x="700" y="73" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">HBM3E</text>
+        <text x="700" y="88" text-anchor="middle" font-size="8" fill="#fed7aa">12层 · 36GB</text>
+        <text x="700" y="102" text-anchor="middle" font-size="8" fill="#fed7aa">SK 海力士/三星</text>
+
+        <line x1="400" y1="85" x2="260" y2="85" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <line x1="400" y1="98" x2="260" y2="98" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <line x1="620" y1="85" x2="760" y2="85" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <line x1="620" y1="98" x2="760" y2="98" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <text x="510" y="135" text-anchor="middle" font-size="9" fill="#fbbf24">⚡ 硅中介层 2.5D 铜互连，带宽 >2TB/s</text>
+
+        <rect x="10" y="10" width="150" height="24" rx="5" fill="#fef2f2"/>
+        <text x="85" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="#991b1b">🔴 全部由台积电完成</text>
+
+        <text x="510" y="370" text-anchor="middle" font-size="11" font-weight="700" fill="#1a56db">GPU 裸片制造 + 硅中介层自制 + 全流程封装 = 一整套独家能力</text>
+      </svg>
+    </div>
+
+    <p style="font-size:var(--fs-sm);color:var(--sub);margin-top:-8px;line-height:1.7;">
+      关键理解：CoWoS 不是"把芯片粘在一起"。核心是<strong>硅中介层</strong>——一片精密硅晶圆，内含微米级铜互连和 TSV 通孔，作 GPU 与 HBM 间的超高速数据通道。这块中介层本身就是"晶圆级"精密制品，<strong>技术难度不亚于先进制程芯片</strong>。
+    </p>
+  </div>
+
+  <!-- 为什么垄断 -->
+  <div class="card" style="margin-top:12px;">
+    <h3 style="margin-bottom:12px;">为什么 CoWoS 被独家垄断？——四道壁垒</h3>
+
+    <div class="conv-step">
+      <div class="conv-step-num">1</div>
+      <div>
+        <strong>硅中介层需要晶圆厂能力</strong>
+        <p style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">硅中介层需要光刻、刻蚀、沉积、CMP——一道不少。纯封装厂（日月光、安靠）没有晶圆厂，根本做不了。全球同时拥有先进晶圆厂 + 先进封装的，仅此一家。</p>
+      </div>
+    </div>
+
+    <div class="conv-step">
+      <div class="conv-step-num">2</div>
+      <div>
+        <strong>与芯片设计深度绑定，切换成本极大</strong>
+        <p style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">CoWoS 不是"先造再封"的两步流程——NVIDIA 设计 GPU 物理布局、信号接口、功耗预算全部围绕 CoWoS 协同优化（耗时 12-18 月验证）。换封装方案 ≈ 重做芯片设计。</p>
+      </div>
+    </div>
+
+    <div class="conv-step">
+      <div class="conv-step-num">3</div>
+      <div>
+        <strong>μBump 微凸块良率壁垒</strong>
+        <p style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">GPU 与硅中介层的连接使用间距 <strong>~20μm</strong> 的微凸块，单颗芯片数万个焊点——一个失效则整颗报废。10 年+ 工艺积累做到 99.9%+ 良率，后来者需要数年才能追到商业可行水平。</p>
+      </div>
+    </div>
+
+    <div class="conv-step">
+      <div class="conv-step-num">4</div>
+      <div>
+        <strong>资本密度 + 产业链标准锁定</strong>
+        <p style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">先进 CoWoS 工厂投资超 $100 亿，设备为供应商联合定制，不对外出售。HBM 厂商的颗粒规格也围绕 CoWoS 接口定制——整个生态已成事实标准，替换需要推倒重建。</p>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:14px;background:linear-gradient(135deg,#fef2f2,#fefce8);border-color:#fca5a5;">
+      <h4 style="color:var(--accent2);">一句话总结</h4>
+      <p style="font-size:var(--fs-sm);color:var(--text);line-height:1.6;">
+        CoWoS 垄断靠<strong>四道叠加壁垒</strong>：晶圆厂能力 + 设计深度绑定 + 微米级良率 + 产业链标准锁定。在可预见的 5-8 年内几乎无法挑战。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第五章 -->
+<!-- ================================================================== -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>产品矩阵：<span>为什么"无可替代"？</span></h2>
+  </div>
+
+  <p style="color:var(--sub);margin-bottom:16px;">
+    先进制程 + 先进封装 + 特殊制程，三者形成"栅栏"把对手挡在外面。
+  </p>
+
+  <div class="product-card">
+    <h4>产品一：先进制程晶圆代工</h4>
+    <span class="product-tag">第一道护城河</span>
+    <div class="summary-grid" style="margin-top:8px;">
+      <div class="summary-item"><div class="si-label">3nm (N3/N3E/N3P)</div><div class="si-value">营收占比 ~25%</div><div class="si-note">苹果 A18 · NVIDIA Blackwell</div></div>
+      <div class="summary-item"><div class="si-label">5nm/4nm (N5/N4)</div><div class="si-value">营收占比 ~35%</div><div class="si-note">NVIDIA H100/H200 · AMD MI300</div></div>
+      <div class="summary-item"><div class="si-label">2nm (N2)</div><div class="si-value">2025试产 2026量产</div><div class="si-note">GAA 架构，性能+10-15%</div></div>
+      <div class="summary-item"><div class="si-label">7nm 以下市占率</div><div class="si-value" style="color:var(--accent2);">> 90%</div><div class="si-note">唯一对手三星，良率差 30pp+</div></div>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <h4>产品二：CoWoS 先进封装</h4>
+    <span class="product-tag">最硬的护城河</span>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;margin-top:6px;">
+      将计算芯片、HBM、硅中介层在微米级精度下集成的系统工程。NVIDIA H100/B200、AMD MI300X/MI400、Google TPU v5、Intel Gaudi 3，无一例外都需要 CoWoS。
+    </p>
+    <div class="summary-grid" style="margin-top:8px;">
+      <div class="summary-item"><div class="si-label">CoWoS 产能 (2023)</div><div class="si-value">~1.5 万片/月</div></div>
+      <div class="summary-item"><div class="si-label">CoWoS 产能 (2025E)</div><div class="si-value">~5 万片/月</div></div>
+      <div class="summary-item"><div class="si-label">3年扩产</div><div class="si-value" style="color:var(--accent2);">3.3x</div></div>
+      <div class="summary-item"><div class="si-label">供需缺口</div><div class="si-value" style="color:var(--accent2);">~30-40%</div></div>
+    </div>
+  </div>
+
+  <div class="highlight" style="background:linear-gradient(135deg, #fef2f2, #fff7ed); border-color: #fca5a5;">
+    <h4 style="color:var(--accent2);">不可替代三角</h4>
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px;">
+      <div style="text-align:center;padding:10px 6px;background:#fff;border-radius:6px;">
+        <div style="font-weight:700;font-size:var(--fs-sm);color:var(--accent2);">🔬 技术壁垒</div>
+        <div style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">良率 90%+<br>三星仅 ~60%</div>
+      </div>
+      <div style="text-align:center;padding:10px 6px;background:#fff;border-radius:6px;">
+        <div style="font-weight:700;font-size:var(--fs-sm);color:#ea580c;">🏗️ 资本壁垒</div>
+        <div style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">年支出 $520-560亿<br>对手无法匹敌</div>
+      </div>
+      <div style="text-align:center;padding:10px 6px;background:#fff;border-radius:6px;">
+        <div style="font-weight:700;font-size:var(--fs-sm);color:var(--gold);">🔒 生态锁定</div>
+        <div style="font-size:var(--fs-xs);color:var(--sub);margin-top:2px;">OIP 10+ 年<br>85% 产能已锁至 2027</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第六章 -->
+<!-- ================================================================== -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>增长引擎：<span>凭什么继续涨？</span></h2>
+  </div>
+
+  <div class="stat-row mb-md">
+    <div class="stat-card"><div class="stat-value">$974亿</div><div class="stat-label">2025 年营收</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--green);">+35%</div><div class="stat-label">2025 营收增速</div></div>
+    <div class="stat-card"><div class="stat-value">55%</div><div class="stat-label">HPC 营收占比</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--green);">42%</div><div class="stat-label">毛利率</div></div>
+  </div>
+
+  <div class="card">
+    <h4 style="color:var(--accent);">增长引擎 ①：AI 芯片出货量指数级增长</h4>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;margin-top:6px;">
+      每颗 AI GPU 的"晶圆厂含量"持续上升：B200 需 2 倍于 H100 的 CoWoS 面积，且采用更贵的 3nm。2023→2025 年 AI 相关营收从 ~$100亿 增至 $400亿+。
+    </p>
+  </div>
+
+  <div class="card">
+    <h4 style="color:var(--accent);">增长引擎 ②：结构性涨价能力</h4>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;margin-top:6px;">
+      3nm 晶圆 2025 年涨价 5-10%，CoWoS 封装涨幅更高。客户别无选择——NVIDIA 不可能转单三星 4nm（良率太低），Intel 18A 至少到 2027 才可能竞争。教科书级的定价权。
+    </p>
+  </div>
+
+  <div class="card">
+    <h4 style="color:var(--accent);">增长引擎 ③：全球扩产 + 补贴</h4>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;margin-top:6px;">
+      日本熊本（2027 扩至 6nm）、美国亚利桑那（4nm→3nm/2nm）、德国德累斯顿（车用）。政府补贴：美国 $66亿 + 日本 $36亿 + 德国 $55亿——别人出钱帮忙扩产。
+    </p>
+  </div>
+
+  <div class="card" style="margin-top:12px;overflow-x:auto;">
+    <h3 style="margin-bottom:12px;">财务预测</h3>
+    <table class="data-table">
+      <thead><tr><th>指标</th><th>2024</th><th>2025</th><th>2026E</th><th>2027E</th></tr></thead>
+      <tbody>
+        <tr><td>营收（亿新台币）</td><td>28,943</td><td>31,600</td><td>37,500-40,000</td><td>44,000-48,000</td></tr>
+        <tr><td>营收（亿美元）</td><td>~900</td><td>~974</td><td>~1,150-1,250</td><td>~1,350-1,480</td></tr>
+        <tr><td>毛利率</td><td>56.1%</td><td>58.4%</td><td>59-61%</td><td>60-63%</td></tr>
+        <tr><td>EPS（新台币）</td><td>~45</td><td>~50</td><td>~60-65</td><td>~72-80</td></tr>
+        <tr><td>资本支出（亿美元）</td><td>~300</td><td>~380</td><td>~420-450</td><td>~480-520</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ================================================================== -->
+<!-- 第七章 -->
+<!-- ================================================================== -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>股价潜力：<span>还能涨多少？</span></h2>
+  </div>
+
+  <div class="stat-row mb-md">
+    <div class="price-card">
+      <div class="ticker">TSMC (NYSE: TSM)</div>
+      <div class="price">~$190</div>
+      <div class="pct">PE 30.7x (TTM)</div>
+    </div>
+    <div class="price-card">
+      <div class="ticker">预期 PE (2027E)</div>
+      <div class="price">~16x</div>
+      <div class="pct">盈利增速远压估值</div>
+    </div>
+    <div class="price-card" style="background:#f0fdf4;border-color:#86efac;">
+      <div class="ticker">机构目标价</div>
+      <div class="price">$524</div>
+      <div class="pct">35+ 机构共识 +23%</div>
+    </div>
+    <div class="price-card">
+      <div class="ticker">分析师评级</div>
+      <div class="price" style="color:var(--green);">98%</div>
+      <div class="pct">买入 / 增持</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>估值逻辑</h3>
+    <p style="font-size:var(--fs-sm);color:var(--sub);line-height:1.7;margin-top:8px;">
+      横向：NVIDIA PE 45x vs 台积电 30.7x，但台积电增长确定性更高（客户分散，苹果+NVIDIA+AMD+Intel+高通+博通 vs NVIDIA 几乎只靠 AI GPU）。<br>
+      纵向：2027E PE 仅 16x，20%+ EPS CAGR 对应 PEG < 1.0，在科技成长股中极为罕见。<br>
+      催化剂：2nm 量产（2026H2）、CoWoS 扩至 7-8 万片/月、全球补贴到账、大客户持续锁定产能。
+    </p>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <h3 style="margin-bottom:12px;">风险清单</h3>
+    <div class="risk-item"><div class="risk-icon">地</div><div><strong>地缘政治</strong><br><span style="font-size:var(--fs-xs);color:var(--sub);">台海局势是最大估值折价来源，但全球扩产（亚利桑那/熊本/德累斯顿）正在分散风险。</span></div></div>
+    <div class="risk-item"><div class="risk-icon">竞</div><div><strong>三星 / Intel 追赶</strong><br><span style="font-size:var(--fs-xs);color:var(--sub);">三星 2nm 良率 < 40% vs > 80%；Intel 18A 至少 2-3 年才能竞争高端订单。</span></div></div>
+    <div class="risk-item"><div class="risk-icon">需</div><div><strong>AI 投资 ROI</strong><br><span style="font-size:var(--fs-xs);color:var(--sub);">若 CSP 投资不能产生回报，capex 可能在 2027-2028 放缓。但当前信号指向继续加大投入。</span></div></div>
+    <div class="risk-item"><div class="risk-icon">电</div><div><strong>电力成本</strong><br><span style="font-size:var(--fs-xs);color:var(--sub);">台湾电价涨 25%，但定价权足以转嫁成本。</span></div></div>
+  </div>
+
+  <div class="highlight" style="background:linear-gradient(135deg, #1a56db, #1e40af); color:#fff; border:none; margin-top:20px;">
+    <h4 style="color:#fff;font-size:1rem;">核心判断</h4>
+    <p style="font-size:var(--fs-sm);line-height:1.8;opacity:.95;margin-top:6px;">
+      不需要赌"哪家 AI 公司会赢"，不需要赌"哪个云厂商支出更大"，甚至不需要赌"NVIDIA 还是 AMD 更成功"——<strong>不管谁赢，芯片都得找这一家造</strong>。<br>
+      你只需要赌一件事：AI 算力需求会不会继续增长。只要答案是"会"，增长就是必然。
+    </p>
+  </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<div class="footer">
+  <p>本报告仅供研究参考，不构成投资建议。</p>
+  <p>数据来源：台积电财报、Bloomberg、IDC、TrendForce、SemiAnalysis · 2026 年 7 月</p>
+</div>
+
+</div>
+</body>
+</html>
