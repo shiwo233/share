@@ -98,9 +98,14 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 #preview.show{opacity:1;transform:none}
 .pv-banner{height:74px;background:var(--grad);position:relative;overflow:hidden}
 .pv-banner::after{content:attr(data-icon);position:absolute;right:14px;bottom:-12px;font-size:52px;opacity:.35}
-.pv-body{padding:16px 18px 18px}
-.pv-body h4{font-size:15.5px;margin-bottom:6px}
+.pv-body{padding:14px 18px 16px}
+.pv-body h4{font-size:15.5px;margin-bottom:8px}
 .pv-body p{font-size:12.5px;color:var(--sub);line-height:1.7}
+.pv-toc-label{font-size:10.5px;letter-spacing:.25em;color:var(--acc);font-weight:700;margin-bottom:6px}
+.pv-toc{list-style:none;max-height:172px;overflow:hidden;margin-bottom:10px}
+.pv-toc li{font-size:12.5px;color:var(--sub);padding:3px 0 3px 26px;position:relative;border-bottom:1px dashed color-mix(in srgb,var(--line) 60%,transparent)}
+.pv-toc li:last-child{border-bottom:none}
+.pv-toc li::before{content:attr(data-n);position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:6px;background:color-mix(in srgb,var(--c,var(--acc)) 16%,transparent);color:var(--c,var(--acc));font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .pv-meta{margin-top:12px;font-size:11.5px;color:var(--sub);display:grid;gap:4px}
 .pv-meta b{color:var(--txt)}
 .pv-open{margin-top:12px;display:inline-block;font-size:12px;font-weight:700;color:var(--acc)}
@@ -121,8 +126,34 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 #seen{font-size:11px;color:var(--sub);text-align:center;margin-bottom:10px}
 
 footer{border-top:1px solid var(--line);padding:30px 20px 56px;text-align:center;color:var(--sub);font-size:12px;margin-top:10px}
-.rv{opacity:0;transform:translateY(22px);transition:.6s ease}
+.rv{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
+/* navbar shadow on scroll */
+nav{transition:box-shadow .35s,border-color .35s}
+nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.18);border-color:transparent}
+/* animated gradient text */
+.logo .grad,h1 em{background-size:220% 220%;animation:gradShift 7s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* 3D tilt cards */
+.card{transform-style:preserve-3d;will-change:transform}
+.card .card-ico{transition:transform .3s}
+.card:hover .card-ico{transform:translateZ(24px) scale(1.06)}
+/* glow follows mouse on hero */
+.glow{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+/* category tabs entrance */
+.cat{animation:popIn .5s cubic-bezier(.22,1,.36,1) backwards}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
+/* feed item slide */
+.u-item{animation:slideL .5s ease backwards}
+@keyframes slideL{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+/* preview toc item stagger */
+.pv-toc li{animation:tocIn .3s ease backwards}
+@keyframes tocIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+/* custom scrollbar */
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+::-webkit-scrollbar-thumb:hover{background:var(--acc)}
 </style>
 </head>
 <body>
@@ -168,7 +199,9 @@ footer{border-top:1px solid var(--line);padding:30px 20px 56px;text-align:center
 
 <div id="toast"></div>
 <div id="preview"><div class="pv-banner" id="pvBanner" data-icon=""></div><div class="pv-body">
-  <h4 id="pvTitle"></h4><p id="pvDesc"></p>
+  <h4 id="pvTitle"></h4>
+  <div class="pv-toc-label" data-i18n="pvToc">目录</div>
+  <ol class="pv-toc" id="pvToc"></ol>
   <div class="pv-meta">
     <div><span data-i18n="pvWatch">监测项</span>：<b id="pvWatch"></b></div>
     <div><span data-i18n="pvDate">上线日期</span>：<b id="pvDate"></b></div>
@@ -188,24 +221,36 @@ const CATS=[
 ];
 const TOPICS=[
  {cat:'hobby',url:'../six-tigers-report/',date:'2026-07-24',hot:true,icon:'🐯',
-  zh:{title:'中国大模型六小虎深度研究',desc:'智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦、能力横评与 2026–2028 推演',watch:'六小虎模型发布、榜单名次、融资上市动态',tags:['AI','大模型','公司研究']},
-  en:{title:'China\'s Six LLM Tigers',desc:'Zhipu, Moonshot, MiniMax, Baichuan, StepFun, 01.AI — landscape, founding stories, rivalries, benchmarks & 2026–2028 outlook',watch:'Model releases, benchmark shifts, funding & IPOs',tags:['AI','LLM','Company Study']}},
+  zh:{title:'中国大模型六小虎深度研究',desc:'智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦、能力横评与 2026–2028 推演',watch:'六小虎模型发布、榜单名次、融资上市动态',tags:['AI','大模型','公司研究'],
+      toc:['执行摘要','三层格局：大厂系 / 独立派 / 六小虎','六小虎逐一点将','资本体量对比','发家史时间线','关系图谱与江湖八卦','能力横评','2026–2028 未来推演']},
+  en:{title:'China\'s Six LLM Tigers',desc:'Zhipu, Moonshot, MiniMax, Baichuan, StepFun, 01.AI — landscape, founding stories, rivalries, benchmarks & 2026–2028 outlook',watch:'Model releases, benchmark shifts, funding & IPOs',tags:['AI','LLM','Company Study'],
+      toc:['Executive Summary','Three-tier Landscape','Meet the Six Tigers','Capital Comparison','Founding Timeline','Web of Relationships','Benchmarks','2026–2028 Outlook']}},
  // ===== 以下为示例占位内容，正式报告上线后由自动化任务替换 =====
  {cat:'work',url:'#',demo:true,icon:'📊',date:'2026-08-01',
-  zh:{title:'2026 年 Q2 行业竞品分析（示例）',desc:'占位示例：核心竞品动态追踪、功能矩阵对比、差异化机会点与下季度行动建议',watch:'竞品版本发布、定价调整、市场份额变化',tags:['竞品分析','季度报告']},
-  en:{title:'Q2 2026 Competitive Analysis (Demo)',desc:'Placeholder: competitor tracking, feature matrix, differentiation opportunities and action items',watch:'Releases, pricing, market share',tags:['Competition','Quarterly']}},
+  zh:{title:'2026 年 Q2 行业竞品分析（示例）',desc:'占位示例：核心竞品动态追踪、功能矩阵对比、差异化机会点与下季度行动建议',watch:'竞品版本发布、定价调整、市场份额变化',tags:['竞品分析','季度报告'],
+      toc:['季度核心结论','竞品动态一览','功能矩阵对比','差异化机会点','下季度行动建议']},
+  en:{title:'Q2 2026 Competitive Analysis (Demo)',desc:'Placeholder: competitor tracking, feature matrix, differentiation opportunities and action items',watch:'Releases, pricing, market share',tags:['Competition','Quarterly'],
+      toc:['Key Takeaways','Competitor Moves','Feature Matrix','Opportunities','Action Items']}},
  {cat:'work',url:'#',demo:true,icon:'🗂️',date:'2026-08-10',
-  zh:{title:'年度项目复盘与方法论沉淀（示例）',desc:'占位示例：关键项目全周期复盘、踩坑记录、可复用流程模板与团队协作改进项',watch:'新项目立项、流程迭代',tags:['复盘','方法论']},
-  en:{title:'Annual Project Retrospective (Demo)',desc:'Placeholder: full-cycle retrospectives, pitfalls, reusable templates and team improvements',watch:'New projects, process updates',tags:['Retro','Methodology']}},
+  zh:{title:'年度项目复盘与方法论沉淀（示例）',desc:'占位示例：关键项目全周期复盘、踩坑记录、可复用流程模板与团队协作改进项',watch:'新项目立项、流程迭代',tags:['复盘','方法论'],
+      toc:['年度项目全景','关键战役复盘','踩坑与教训','方法论模板','协作改进清单']},
+  en:{title:'Annual Project Retrospective (Demo)',desc:'Placeholder: full-cycle retrospectives, pitfalls, reusable templates and team improvements',watch:'New projects, process updates',tags:['Retro','Methodology'],
+      toc:['Year in Review','Key Battles','Lessons Learned','Templates','Action List']}},
  {cat:'hobby',url:'#',demo:true,icon:'☕',date:'2026-08-05',
-  zh:{title:'全球咖啡产区风味图谱（示例）',desc:'占位示例：三大产区豆种、处理法与风味轮对照，家庭冲煮参数实验记录',watch:'新产季豆单、冲煮实验',tags:['咖啡','生活方式']},
-  en:{title:'Global Coffee Flavor Atlas (Demo)',desc:'Placeholder: origins, processing methods, flavor wheel mapping and home-brew experiments',watch:'New season beans, brew tests',tags:['Coffee','Lifestyle']}},
+  zh:{title:'全球咖啡产区风味图谱（示例）',desc:'占位示例：三大产区豆种、处理法与风味轮对照，家庭冲煮参数实验记录',watch:'新产季豆单、冲煮实验',tags:['咖啡','生活方式'],
+      toc:['三大产区概览','豆种与处理法','风味轮对照表','冲煮参数实验','私藏豆单']},
+  en:{title:'Global Coffee Flavor Atlas (Demo)',desc:'Placeholder: origins, processing methods, flavor wheel mapping and home-brew experiments',watch:'New season beans, brew tests',tags:['Coffee','Lifestyle'],
+      toc:['Origins Overview','Beans & Processing','Flavor Wheel','Brew Experiments','Top Picks']}},
  {cat:'game',url:'#',demo:true,icon:'🎮',date:'2026-08-08',
-  zh:{title:'开放世界网游经济系统设计研究（示例）',desc:'占位示例：货币流通、产出消耗模型、交易行机制对玩家留存的影响分析',watch:'版本更新、经济系统调整',tags:['游戏策划','系统设计']},
-  en:{title:'MMO Economy System Design (Demo)',desc:'Placeholder: currency flow, faucet-sink models, auction house impact on retention',watch:'Patches, economy tweaks',tags:['Game Design','Systems']}},
+  zh:{title:'开放世界网游经济系统设计研究（示例）',desc:'占位示例：货币流通、产出消耗模型、交易行机制对玩家留存的影响分析',watch:'版本更新、经济系统调整',tags:['游戏策划','系统设计'],
+      toc:['经济系统框架','货币产出与消耗','交易行机制','对留存的影响','设计建议']},
+  en:{title:'MMO Economy System Design (Demo)',desc:'Placeholder: currency flow, faucet-sink models, auction house impact on retention',watch:'Patches, economy tweaks',tags:['Game Design','Systems'],
+      toc:['Economy Framework','Faucets & Sinks','Auction House','Retention Impact','Design Tips']}},
  {cat:'video',url:'#',demo:true,icon:'🎬',date:'2026-08-12',
-  zh:{title:'AI 视频生成工具横向测评（示例）',desc:'占位示例：主流工具在画质、可控性、成本三维度实测对比与选型建议',watch:'新模型发布、价格调整',tags:['AI视频','工具测评']},
-  en:{title:'AI Video Tools Comparison (Demo)',desc:'Placeholder: quality, controllability and cost benchmarks with recommendations',watch:'New models, pricing',tags:['AI Video','Review']}}
+  zh:{title:'AI 视频生成工具横向测评（示例）',desc:'占位示例：主流工具在画质、可控性、成本三维度实测对比与选型建议',watch:'新模型发布、价格调整',tags:['AI视频','工具测评'],
+      toc:['测评方法与样本','画质实测对比','可控性对比','成本分析','选型建议']},
+  en:{title:'AI Video Tools Comparison (Demo)',desc:'Placeholder: quality, controllability and cost benchmarks with recommendations',watch:'New models, pricing',tags:['AI Video','Review'],
+      toc:['Methodology','Quality Tests','Controllability','Cost Analysis','Verdict']}}
 ];
 
 /* ================= i18n ================= */
@@ -266,7 +311,7 @@ function bindCards(){
       pvTimer=setTimeout(()=>{
         const t=TOPICS[+card.dataset.idx],L=t[lang],c=CATS.find(x=>x.id===t.cat);
         document.getElementById('pvTitle').textContent=L.title;
-        document.getElementById('pvDesc').textContent=L.desc;
+        document.getElementById('pvToc').innerHTML=(L.toc||[]).map((s,i)=>`<li data-n="${String(i+1).padStart(2,'0')}" style="animation-delay:${i*0.04}s">${s}</li>`).join('');
         document.getElementById('pvWatch').textContent=L.watch;
         document.getElementById('pvDate').textContent=t.date;
         const b=document.getElementById('pvBanner');b.dataset.icon=t.icon;b.style.background=`linear-gradient(120deg,${c.color},${c.color}cc)`;
@@ -279,7 +324,7 @@ function bindCards(){
   });
 }
 function movePv(e){
-  const w=340,h=260,m=14;
+  const w=340,h=430,m=14;
   let x=e.clientX+m,y=e.clientY+m;
   if(x+w>innerWidth-m)x=e.clientX-w-m;
   if(y+h>innerHeight-m)y=innerHeight-h-m;
@@ -290,13 +335,13 @@ function movePv(e){
 const fallback={updates:[{date:'2026-07-24',title:'知识图谱 Wiki 上线',title_en:'Wiki launched',topic:'系统',body:'首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。',body_en:'First topic "Six LLM Tigers" archived; update tracking activated.'}]};
 function renderUpdates(list){
   const seen=localStorage.getItem('wiki_seen')||'',now=Date.now();
-  document.getElementById('updates').innerHTML=list.map(u=>{
+  document.getElementById('updates').innerHTML=list.map((u,i)=>{
     const isNew=(now-new Date(u.date).getTime())<7*864e5&&u.date>seen;
     const title=lang==='en'&&u.title_en?u.title_en:u.title, body=lang==='en'&&u.body_en?u.body_en:u.body;
-    return `<div class="u-item"><div class="u-date">${u.date}</div><h4>${title}${isNew?'<span class="u-new">NEW</span>':''}</h4><p>[${u.topic}] ${body}</p></div>`;
+    return `<div class="u-item" style="animation-delay:${i*0.08}s"><div class="u-date">${u.date}</div><h4>${title}${isNew?'<span class="u-new">NEW</span>':''}</h4><p>[${u.topic}] ${body}</p></div>`;
   }).join('');
   document.getElementById('seen').textContent=T('seen');
-  document.getElementById('stUpdates').textContent=list.length;
+  rollNum(document.getElementById('stUpdates'),list.length);
 }
 function loadUpdates(){fetch('updates.json').then(r=>r.json()).then(d=>{renderUpdates(d.updates);localStorage.setItem('wiki_seen',d.updates[0]?d.updates[0].date:'')}).catch(()=>renderUpdates(fallback.updates))}
 
@@ -304,7 +349,44 @@ function loadUpdates(){fetch('updates.json').then(r=>r.json()).then(d=>{renderUp
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.1});
 
 /* ================= init ================= */
-function renderAll(){applyI18n();renderCats();renderBlocks();document.getElementById('stTopics').textContent=TOPICS.length;document.getElementById('stCats').textContent=CATS.length;loadUpdates()}
+/* rolling number (跑马灯) */
+function rollNum(el,target){
+  const t0=performance.now(),dur=1300;
+  (function tick(t){const p=Math.min((t-t0)/dur,1);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0);
+}
+function renderAll(){applyI18n();renderCats();renderBlocks();rollNum(document.getElementById('stTopics'),TOPICS.length);rollNum(document.getElementById('stCats'),CATS.length);loadUpdates()}
+
+/* navbar shadow on scroll */
+addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',scrollY>10)},{passive:true});
+
+/* hero glow mouse parallax */
+if(matchMedia('(hover:hover)').matches){
+  addEventListener('mousemove',e=>{
+    const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+    document.querySelector('.g1').style.transform=`translate(${x*40}px,${y*30}px)`;
+    document.querySelector('.g2').style.transform=`translate(${-x*30}px,${-y*24}px)`;
+  },{passive:true});
+}
+
+/* 3D tilt on cards (delegated after render) */
+function bindTilt(){
+  if(matchMedia('(hover:none)').matches)return;
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`translateY(-4px) perspective(800px) rotateY(${x*7}deg) rotateX(${-y*7}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform=''});
+  });
+}
+
+/* stagger reveal delays + toc stagger */
+function stagger(){
+  document.querySelectorAll('.grid').forEach(g=>[...g.children].forEach((c,i)=>c.style.transitionDelay=(i*0.07)+'s'));
+  document.querySelectorAll('.pv-toc li').forEach((li,i)=>li.style.animationDelay=(i*0.04)+'s');
+}
+
+const _bind=bindCards;bindCards=function(){_bind();bindTilt();stagger()};
 applyTheme();renderAll();
 </script>
 </body>
