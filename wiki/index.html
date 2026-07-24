@@ -1,90 +1,287 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>知识图谱 Wiki · shiwo233</title>
+<title>Research Wiki · shiwo233</title>
 <style>
-:root{--bg:#0a0e15;--card:#141c2b;--line:#22304a;--txt:#e8edf5;--sub:#8fa0b8;--acc:#5b8cff;--acc2:#f0b45b;--grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b)}
+:root{
+  --r:16px;
+  --grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);
+}
+[data-theme="dark"]{
+  --bg:#0a0e15;--bg2:#0d1220;--card:#141c2b;--card2:#182238;--line:#22304a;
+  --txt:#e8edf5;--sub:#8fa0b8;--acc:#5b8cff;--acc2:#f0b45b;
+  --nav:rgba(10,14,21,.8);--shadow:0 18px 50px rgba(0,0,0,.5);
+}
+[data-theme="light"]{
+  --bg:#f6f7fb;--bg2:#eef0f6;--card:#ffffff;--card2:#f2f4fa;--line:#dde3ee;
+  --txt:#1a2332;--sub:#5b6b84;--acc:#3b6fe0;--acc2:#c98a2d;
+  --nav:rgba(246,247,251,.82);--shadow:0 18px 50px rgba(30,50,90,.14);
+}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Noto Sans SC",sans-serif;line-height:1.75}
-header{padding:56px 22px 30px;text-align:center;position:relative;overflow:hidden}
-header::before{content:"";position:absolute;width:60vw;height:60vw;max-width:500px;max-height:500px;border-radius:50%;background:radial-gradient(circle,rgba(91,140,255,.2),transparent 65%);top:-30%;left:-10%}
-.kicker{font-size:12px;letter-spacing:.4em;color:var(--acc);position:relative}
-h1{font-size:clamp(26px,7vw,40px);font-weight:900;margin-top:10px;position:relative}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Noto Sans SC","Segoe UI",sans-serif;line-height:1.75;transition:background .4s,color .4s}
+::selection{background:var(--acc);color:#fff}
+a{color:inherit;text-decoration:none}
+
+/* ===== nav ===== */
+nav{position:sticky;top:0;z-index:100;background:var(--nav);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:0 18px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;margin-right:auto;white-space:nowrap}
+.logo .mark{width:30px;height:30px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:900}
+.logo .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2px}
+.nav-links a{padding:8px 14px;border-radius:10px;font-size:14px;color:var(--sub);transition:.25s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.on{color:var(--txt);background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.ctl{display:flex;align-items:center;gap:8px;margin-left:10px}
+.icon-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:.25s}
+.icon-btn:hover{border-color:var(--acc);transform:translateY(-1px)}
+.lang-btn{height:36px;padding:0 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;font-size:12.5px;font-weight:700;transition:.25s;letter-spacing:.03em}
+.lang-btn:hover{border-color:var(--acc)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ===== hero ===== */
+header{position:relative;overflow:hidden;padding:72px 22px 44px;text-align:center}
+.glow{position:absolute;border-radius:50%;filter:blur(10px);pointer-events:none}
+.g1{width:480px;height:480px;top:-220px;left:-120px;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 22%,transparent),transparent 65%)}
+.g2{width:420px;height:420px;bottom:-200px;right:-100px;background:radial-gradient(circle,color-mix(in srgb,var(--acc2) 16%,transparent),transparent 65%)}
+.kicker{font-size:12px;letter-spacing:.42em;color:var(--acc);text-transform:uppercase;position:relative}
+h1{font-size:clamp(28px,7vw,46px);font-weight:900;margin-top:12px;position:relative;letter-spacing:-.01em}
 h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.sub{color:var(--sub);font-size:14px;margin-top:10px;position:relative}
-.layout{max-width:1080px;margin:0 auto;padding:20px;display:grid;gap:26px}
-@media(min-width:860px){.layout{grid-template-columns:1fr 330px;align-items:start}}
-h2{font-size:20px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-h2::before{content:"";width:4px;height:20px;background:var(--grad);border-radius:2px}
-.topic{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;transition:.3s;display:block;text-decoration:none;color:inherit}
-.topic:hover{border-color:var(--acc);transform:translateY(-2px)}
-.topic h3{font-size:16.5px;margin-bottom:6px}
-.topic p{color:var(--sub);font-size:13.5px}
-.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hero-sub{color:var(--sub);font-size:15px;margin-top:12px;position:relative}
+.hstats{display:flex;gap:26px;justify-content:center;margin-top:26px;position:relative;flex-wrap:wrap}
+.hstat{text-align:center}
+.hstat b{display:block;font-size:24px;font-weight:800}
+.hstat span{font-size:12px;color:var(--sub)}
+
+/* ===== layout ===== */
+.wrap{max-width:1160px;margin:0 auto;padding:10px 20px 40px;display:grid;gap:30px}
+@media(min-width:900px){.wrap{grid-template-columns:1fr 320px;align-items:start}}
+
+/* category tabs */
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.cat{padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:13.5px;cursor:pointer;transition:.28s;user-select:none;display:flex;align-items:center;gap:7px}
+.cat .dot{width:7px;height:7px;border-radius:50%}
+.cat.on{background:var(--grad);color:#fff;font-weight:700;border-color:transparent;box-shadow:0 6px 18px color-mix(in srgb,var(--acc) 30%,transparent)}
+.cat.on .dot{background:#fff!important}
+
+/* section block */
+.blk{margin-bottom:30px}
+.blk-head{display:flex;align-items:baseline;gap:12px;margin:6px 0 14px}
+.blk-head h2{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
+.blk-head h2::before{content:"";width:4px;height:20px;border-radius:2px;background:var(--c,var(--acc))}
+.blk-head span{font-size:12.5px;color:var(--sub)}
+.blk.empty{display:none}
+
+/* topic grid + cards */
+.grid{display:grid;gap:14px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer}
+.card:hover{transform:translateY(-4px);border-color:var(--c,var(--acc));box-shadow:var(--shadow)}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.card-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;background:var(--c,var(--acc));flex-shrink:0}
+.card h3{font-size:16px;line-height:1.4;flex:1}
+.card p{color:var(--sub);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 .tag{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
 .tag.hot{border-color:var(--acc2);color:var(--acc2)}
-.meta{font-size:12px;color:var(--sub);margin-top:10px}
-.meta b{color:var(--acc)}
-.feed{position:sticky;top:20px}
-.u-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;max-height:70vh;overflow-y:auto}
-.u-item{border-left:2px solid var(--acc);padding:4px 0 4px 12px;margin-bottom:16px}
+.card .meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--sub);margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+
+/* ===== hover preview ===== */
+#preview{position:fixed;z-index:200;width:340px;background:var(--card);border:1px solid var(--c,var(--acc));border-radius:18px;box-shadow:var(--shadow);padding:0;opacity:0;pointer-events:none;transform:translateY(8px) scale(.97);transition:opacity .22s,transform .22s;overflow:hidden}
+#preview.show{opacity:1;transform:none}
+.pv-banner{height:74px;background:var(--grad);position:relative;overflow:hidden}
+.pv-banner::after{content:attr(data-icon);position:absolute;right:14px;bottom:-12px;font-size:52px;opacity:.35}
+.pv-body{padding:16px 18px 18px}
+.pv-body h4{font-size:15.5px;margin-bottom:6px}
+.pv-body p{font-size:12.5px;color:var(--sub);line-height:1.7}
+.pv-meta{margin-top:12px;font-size:11.5px;color:var(--sub);display:grid;gap:4px}
+.pv-meta b{color:var(--txt)}
+.pv-open{margin-top:12px;display:inline-block;font-size:12px;font-weight:700;color:var(--acc)}
+@media(hover:none){#preview{display:none}}
+
+/* ===== updates feed ===== */
+.side{position:sticky;top:80px}
+.side h2{font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.side h2::before{content:"";width:4px;height:18px;border-radius:2px;background:var(--grad)}
+.u-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;max-height:66vh;overflow-y:auto}
+.u-card::-webkit-scrollbar{width:5px}.u-card::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.u-item{border-left:2px solid var(--acc);padding:4px 0 4px 12px;margin-bottom:15px}
 .u-item:last-child{margin-bottom:0}
-.u-date{font-size:11.5px;color:var(--acc2);font-weight:700}
-.u-item h4{font-size:13.5px;margin:3px 0}
-.u-item p{font-size:12.5px;color:var(--sub)}
-.u-new{display:inline-block;font-size:10px;background:var(--grad);color:#0a0e15;font-weight:700;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:2px}
-.empty{color:var(--sub);font-size:13px;text-align:center;padding:20px 0}
-footer{text-align:center;color:var(--sub);font-size:12px;padding:30px 20px 50px;border-top:1px solid var(--line);margin-top:20px}
-#lastSeen{font-size:11.5px;color:var(--sub);text-align:center;margin-bottom:14px}
+.u-date{font-size:11px;color:var(--acc2);font-weight:700}
+.u-item h4{font-size:13px;margin:2px 0}
+.u-item p{font-size:12px;color:var(--sub)}
+.u-new{display:inline-block;font-size:9.5px;background:var(--grad);color:#fff;font-weight:700;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+#seen{font-size:11px;color:var(--sub);text-align:center;margin-bottom:10px}
+
+footer{border-top:1px solid var(--line);padding:30px 20px 56px;text-align:center;color:var(--sub);font-size:12px;margin-top:10px}
+.rv{opacity:0;transform:translateY(22px);transition:.6s ease}
+.rv.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#"><span class="mark">W</span><span><span class="grad">Research Wiki</span></span></a>
+    <div class="nav-links">
+      <a href="#library" class="on" data-i18n="navLib">议题库</a>
+      <a href="#updatesSec" data-i18n="navUpd">更新动态</a>
+      <a href="../six-tigers-report/" data-i18n="navLatest">最新报告</a>
+    </div>
+    <div class="ctl">
+      <button class="lang-btn" id="langBtn">EN</button>
+      <button class="icon-btn" id="themeBtn" title="Theme">☾</button>
+    </div>
+  </div>
+</nav>
+
 <header>
-  <div class="kicker">KNOWLEDGE WIKI</div>
-  <h1>研究议题<em>知识图谱</em></h1>
-  <p class="sub">所有研究报告的永久索引 · 自动追踪议题更新</p>
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="kicker" data-i18n="kicker">PERSONAL KNOWLEDGE GRAPH</div>
+  <h1><span data-i18n="title1">研究议题</span><em data-i18n="title2">知识图谱</em></h1>
+  <p class="hero-sub" data-i18n="sub">所有研究报告的永久索引 · 自动追踪更新 · 分类归档</p>
+  <div class="hstats">
+    <div class="hstat"><b id="stTopics">0</b><span data-i18n="sTopics">收录议题</span></div>
+    <div class="hstat"><b id="stCats">0</b><span data-i18n="sCats">分类板块</span></div>
+    <div class="hstat"><b id="stUpdates">0</b><span data-i18n="sUpd">累计动态</span></div>
+  </div>
 </header>
-<div class="layout">
-  <main>
-    <h2>议题库</h2>
-    <div id="topics"></div>
+
+<div class="wrap">
+  <main id="library">
+    <div class="cats" id="cats"></div>
+    <div id="blocks"></div>
   </main>
-  <aside class="feed">
-    <h2>更新动态</h2>
-    <div id="lastSeen"></div>
-    <div class="u-card" id="updates"><div class="empty">加载中…</div></div>
+  <aside class="side" id="updatesSec">
+    <h2 data-i18n="updTitle">更新动态</h2>
+    <div id="seen"></div>
+    <div class="u-card" id="updates"><div style="color:var(--sub);font-size:13px;text-align:center;padding:20px 0">Loading…</div></div>
   </aside>
 </div>
-<footer>由 Kimi 自动化维护 · 数据文件：wiki/updates.json · 规范：AGENTS.md</footer>
-<script>
-// 议题索引（新报告上线时由自动化任务追加）
-const topics=[
- {title:'中国大模型六小虎深度研究',desc:'智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦、能力横评与 2026–2028 推演',url:'../six-tigers-report/',tags:['AI','大模型','公司研究'],hot:true,date:'2026-07-24',watch:'六小虎模型发布、榜单名次、融资上市动态'}
-];
-document.getElementById('topics').innerHTML=topics.map(t=>`
- <a class="topic" href="${t.url}">
-   <h3>${t.title}</h3><p>${t.desc}</p>
-   <div class="tags">${t.tags.map(x=>`<span class="tag">${x}</span>`).join('')}${t.hot?'<span class="tag hot">追踪中</span>':''}</div>
-   <div class="meta">上线 <b>${t.date}</b> · 监测项：${t.watch}</div>
- </a>`).join('');
 
-// 更新动态：fetch updates.json，失败则用内嵌兜底
-const fallback={updates:[{date:'2026-07-24',title:'知识图谱 Wiki 上线',topic:'系统',body:'首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。'}]};
-const NEW_DAYS=7;
-function render(list){
-  const seen=localStorage.getItem('wiki_seen')||'';
-  const now=Date.now();
-  document.getElementById('updates').innerHTML=list.map(u=>{
-    const isNew=(now-new Date(u.date).getTime())<NEW_DAYS*864e5 && u.date>seen;
-    return `<div class="u-item"><div class="u-date">${u.date}</div><h4>${u.title}${isNew?'<span class="u-new">NEW</span>':''}</h4><p>[${u.topic}] ${u.body}</p></div>`;
-  }).join('')||'<div class="empty">暂无更新</div>';
-  localStorage.setItem('wiki_seen',list[0]?list[0].date:'');
-  document.getElementById('lastSeen').textContent='上次访问已记录，新更新将标注 NEW';
+<div id="preview"><div class="pv-banner" id="pvBanner" data-icon=""></div><div class="pv-body">
+  <h4 id="pvTitle"></h4><p id="pvDesc"></p>
+  <div class="pv-meta">
+    <div><span data-i18n="pvWatch">监测项</span>：<b id="pvWatch"></b></div>
+    <div><span data-i18n="pvDate">上线日期</span>：<b id="pvDate"></b></div>
+  </div>
+  <span class="pv-open" data-i18n="pvOpen">点击卡片打开报告 →</span>
+</div></div>
+
+<footer data-i18n="foot">由 Kimi 自动化维护 · 数据：wiki/updates.json · 规范：AGENTS.md</footer>
+
+<script>
+/* ================= 数据 ================= */
+const CATS=[
+ {id:'work',   icon:'💼',color:'#5b8cff',zh:'工作相关报告',en:'Work Reports'},
+ {id:'hobby',  icon:'🎯',color:'#9d6bff',zh:'个人兴趣研究',en:'Personal Interests'},
+ {id:'game',   icon:'🎮',color:'#5bb98c',zh:'网游研究',en:'Game Research'},
+ {id:'video',  icon:'🎬',color:'#f0b45b',zh:'视频分类总结',en:'Video Summaries'}
+];
+const TOPICS=[
+ {cat:'hobby',url:'../six-tigers-report/',date:'2026-07-24',hot:true,icon:'🐯',
+  zh:{title:'中国大模型六小虎深度研究',desc:'智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦、能力横评与 2026–2028 推演',watch:'六小虎模型发布、榜单名次、融资上市动态',tags:['AI','大模型','公司研究']},
+  en:{title:'China\'s Six LLM Tigers',desc:'Zhipu, Moonshot, MiniMax, Baichuan, StepFun, 01.AI — landscape, founding stories, rivalries, benchmarks & 2026–2028 outlook',watch:'Model releases, benchmark shifts, funding & IPOs',tags:['AI','LLM','Company Study']}}
+];
+
+/* ================= i18n ================= */
+const I18N={
+ zh:{navLib:'议题库',navUpd:'更新动态',navLatest:'最新报告',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'研究议题',title2:'知识图谱',sub:'所有研究报告的永久索引 · 自动追踪更新 · 分类归档',sTopics:'收录议题',sCats:'分类板块',sUpd:'累计动态',updTitle:'更新动态',all:'全部',pvWatch:'监测项',pvDate:'上线日期',pvOpen:'点击卡片打开报告 →',foot:'由 Kimi 自动化维护 · 数据：wiki/updates.json · 规范：AGENTS.md',tracking:'追踪中',online:'上线',empty:'该板块暂无内容，敬请期待',seen:'新动态将标注 NEW'},
+ en:{navLib:'Library',navUpd:'Updates',navLatest:'Latest Report',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'Research',title2:'Knowledge Graph',sub:'Permanent index of all reports · Auto-tracked updates · Categorized',sTopics:'Topics',sCats:'Categories',sUpd:'Updates',updTitle:'Recent Updates',all:'All',pvWatch:'Watching',pvDate:'Published',pvOpen:'Click card to open →',foot:'Maintained by Kimi automation · Data: wiki/updates.json · Spec: AGENTS.md',tracking:'Tracking',online:'Published',empty:'Nothing here yet — stay tuned',seen:'New entries marked NEW'}
+};
+let lang=localStorage.getItem('wiki_lang')||'zh';
+function T(k){return I18N[lang][k]||k}
+
+/* ================= theme ================= */
+let theme=localStorage.getItem('wiki_theme')||'dark';
+function applyTheme(){document.documentElement.dataset.theme=theme;document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀'}
+document.getElementById('themeBtn').onclick=()=>{theme=theme==='dark'?'light':'dark';localStorage.setItem('wiki_theme',theme);applyTheme()};
+
+/* ================= lang ================= */
+document.getElementById('langBtn').onclick=()=>{lang=lang==='zh'?'en':'zh';localStorage.setItem('wiki_lang',lang);renderAll()};
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=T(el.dataset.i18n));document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中文';document.documentElement.lang=lang==='zh'?'zh-CN':'en'}
+
+/* ================= library ================= */
+let activeCat='all';
+function renderCats(){
+  const box=document.getElementById('cats');
+  box.innerHTML=`<div class="cat ${activeCat==='all'?'on':''}" data-c="all"><span class="dot" style="background:var(--acc)"></span>${T('all')}</div>`+
+   CATS.map(c=>`<div class="cat ${activeCat===c.id?'on':''}" data-c="${c.id}"><span class="dot" style="background:${c.color}"></span>${lang==='zh'?c.zh:c.en}</div>`).join('');
+  box.querySelectorAll('.cat').forEach(el=>el.onclick=()=>{activeCat=el.dataset.c;renderCats();renderBlocks()});
 }
-fetch('updates.json').then(r=>r.json()).then(d=>render(d.updates)).catch(()=>render(fallback.updates));
+function renderBlocks(){
+  const box=document.getElementById('blocks');
+  box.innerHTML=CATS.filter(c=>activeCat==='all'||activeCat===c.id).map(c=>{
+    const items=TOPICS.filter(t=>t.cat===c.id);
+    const cards=items.map((t,i)=>{const L=t[lang];return `
+     <div class="card rv" style="--c:${c.color}" data-url="${t.url}" data-cat="${c.id}" data-idx="${TOPICS.indexOf(t)}">
+       <div class="card-top"><div class="card-ico" style="background:${c.color}">${t.icon}</div><h3>${L.title}</h3></div>
+       <p>${L.desc}</p>
+       <div class="tags">${L.tags.map(x=>`<span class="tag">${x}</span>`).join('')}${t.hot?`<span class="tag hot">${T('tracking')}</span>`:''}</div>
+       <div class="meta"><span>${T('online')} ${t.date}</span><span>${lang==='zh'?c.zh:c.en}</span></div>
+     </div>`}).join('');
+    return `<div class="blk ${items.length?'':'empty'}" style="--c:${c.color}">
+      <div class="blk-head"><h2>${lang==='zh'?c.zh:c.en}</h2><span>${items.length?items.length+' '+(lang==='zh'?'篇':'items'):T('empty')}</span></div>
+      <div class="grid">${cards}</div></div>`;
+  }).join('');
+  bindCards();
+  document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
+}
+
+/* ================= hover preview ================= */
+const pv=document.getElementById('preview');
+let pvTimer;
+function bindCards(){
+  document.querySelectorAll('.card').forEach(card=>{
+    card.onclick=()=>location.href=card.dataset.url;
+    if(matchMedia('(hover:none)').matches)return;
+    card.onmouseenter=e=>{
+      clearTimeout(pvTimer);
+      pvTimer=setTimeout(()=>{
+        const t=TOPICS[+card.dataset.idx],L=t[lang],c=CATS.find(x=>x.id===t.cat);
+        document.getElementById('pvTitle').textContent=L.title;
+        document.getElementById('pvDesc').textContent=L.desc;
+        document.getElementById('pvWatch').textContent=L.watch;
+        document.getElementById('pvDate').textContent=t.date;
+        const b=document.getElementById('pvBanner');b.dataset.icon=t.icon;b.style.background=`linear-gradient(120deg,${c.color},${c.color}cc)`;
+        pv.style.setProperty('--c',c.color);
+        pv.classList.add('show');movePv(e);
+      },180);
+    };
+    card.onmousemove=movePv;
+    card.onmouseleave=()=>{clearTimeout(pvTimer);pv.classList.remove('show')};
+  });
+}
+function movePv(e){
+  const w=340,h=260,m=14;
+  let x=e.clientX+m,y=e.clientY+m;
+  if(x+w>innerWidth-m)x=e.clientX-w-m;
+  if(y+h>innerHeight-m)y=innerHeight-h-m;
+  pv.style.left=x+'px';pv.style.top=y+'px';
+}
+
+/* ================= updates ================= */
+const fallback={updates:[{date:'2026-07-24',title:'知识图谱 Wiki 上线',title_en:'Wiki launched',topic:'系统',body:'首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。',body_en:'First topic "Six LLM Tigers" archived; update tracking activated.'}]};
+function renderUpdates(list){
+  const seen=localStorage.getItem('wiki_seen')||'',now=Date.now();
+  document.getElementById('updates').innerHTML=list.map(u=>{
+    const isNew=(now-new Date(u.date).getTime())<7*864e5&&u.date>seen;
+    const title=lang==='en'&&u.title_en?u.title_en:u.title, body=lang==='en'&&u.body_en?u.body_en:u.body;
+    return `<div class="u-item"><div class="u-date">${u.date}</div><h4>${title}${isNew?'<span class="u-new">NEW</span>':''}</h4><p>[${u.topic}] ${body}</p></div>`;
+  }).join('');
+  document.getElementById('seen').textContent=T('seen');
+  document.getElementById('stUpdates').textContent=list.length;
+}
+function loadUpdates(){fetch('updates.json').then(r=>r.json()).then(d=>{renderUpdates(d.updates);localStorage.setItem('wiki_seen',d.updates[0]?d.updates[0].date:'')}).catch(()=>renderUpdates(fallback.updates))}
+
+/* ================= reveal ================= */
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.1});
+
+/* ================= init ================= */
+function renderAll(){applyI18n();renderCats();renderBlocks();document.getElementById('stTopics').textContent=TOPICS.length;document.getElementById('stCats').textContent=CATS.length;loadUpdates()}
+applyTheme();renderAll();
 </script>
 </body>
 </html>

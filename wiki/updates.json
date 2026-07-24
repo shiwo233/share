@@ -2,9 +2,19 @@
   "updates": [
     {
       "date": "2026-07-24",
-      "title": "知识图谱 Wiki 上线",
+      "title": "Wiki 升级：深色/浅色、中英双语、分类板块、悬停预览",
+      "title_en": "Wiki upgraded: dark/light theme, CN-EN, categories, hover preview",
       "topic": "系统",
-      "body": "首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。"
+      "body": "新增四大分类（工作/个人兴趣/网游/视频总结）、主题与语言切换、导航栏及报告悬停预览。",
+      "body_en": "Added 4 categories, theme & language toggles, navbar, and hover previews for reports."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "知识图谱 Wiki 上线",
+      "title_en": "Wiki launched",
+      "topic": "系统",
+      "body": "首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。",
+      "body_en": "First topic \"Six LLM Tigers\" archived; update tracking activated."
     }
   ]
 }
