@@ -86,6 +86,11 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .card .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 .tag{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
 .tag.hot{border-color:var(--acc2);color:var(--acc2)}
+.tag.demo{border-style:dashed;color:var(--sub)}
+#toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);background:var(--card);border:1px solid var(--acc);color:var(--txt);font-size:13.5px;padding:11px 22px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;z-index:300;max-width:86vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.card.demo{opacity:.82}
+.card.demo .card-ico{filter:grayscale(.35)}
 .card .meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--sub);margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
 
 /* ===== hover preview ===== */
@@ -161,6 +166,7 @@ footer{border-top:1px solid var(--line);padding:30px 20px 56px;text-align:center
   </aside>
 </div>
 
+<div id="toast"></div>
 <div id="preview"><div class="pv-banner" id="pvBanner" data-icon=""></div><div class="pv-body">
   <h4 id="pvTitle"></h4><p id="pvDesc"></p>
   <div class="pv-meta">
@@ -183,13 +189,29 @@ const CATS=[
 const TOPICS=[
  {cat:'hobby',url:'../six-tigers-report/',date:'2026-07-24',hot:true,icon:'🐯',
   zh:{title:'中国大模型六小虎深度研究',desc:'智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦、能力横评与 2026–2028 推演',watch:'六小虎模型发布、榜单名次、融资上市动态',tags:['AI','大模型','公司研究']},
-  en:{title:'China\'s Six LLM Tigers',desc:'Zhipu, Moonshot, MiniMax, Baichuan, StepFun, 01.AI — landscape, founding stories, rivalries, benchmarks & 2026–2028 outlook',watch:'Model releases, benchmark shifts, funding & IPOs',tags:['AI','LLM','Company Study']}}
+  en:{title:'China\'s Six LLM Tigers',desc:'Zhipu, Moonshot, MiniMax, Baichuan, StepFun, 01.AI — landscape, founding stories, rivalries, benchmarks & 2026–2028 outlook',watch:'Model releases, benchmark shifts, funding & IPOs',tags:['AI','LLM','Company Study']}},
+ // ===== 以下为示例占位内容，正式报告上线后由自动化任务替换 =====
+ {cat:'work',url:'#',demo:true,icon:'📊',date:'2026-08-01',
+  zh:{title:'2026 年 Q2 行业竞品分析（示例）',desc:'占位示例：核心竞品动态追踪、功能矩阵对比、差异化机会点与下季度行动建议',watch:'竞品版本发布、定价调整、市场份额变化',tags:['竞品分析','季度报告']},
+  en:{title:'Q2 2026 Competitive Analysis (Demo)',desc:'Placeholder: competitor tracking, feature matrix, differentiation opportunities and action items',watch:'Releases, pricing, market share',tags:['Competition','Quarterly']}},
+ {cat:'work',url:'#',demo:true,icon:'🗂️',date:'2026-08-10',
+  zh:{title:'年度项目复盘与方法论沉淀（示例）',desc:'占位示例：关键项目全周期复盘、踩坑记录、可复用流程模板与团队协作改进项',watch:'新项目立项、流程迭代',tags:['复盘','方法论']},
+  en:{title:'Annual Project Retrospective (Demo)',desc:'Placeholder: full-cycle retrospectives, pitfalls, reusable templates and team improvements',watch:'New projects, process updates',tags:['Retro','Methodology']}},
+ {cat:'hobby',url:'#',demo:true,icon:'☕',date:'2026-08-05',
+  zh:{title:'全球咖啡产区风味图谱（示例）',desc:'占位示例：三大产区豆种、处理法与风味轮对照，家庭冲煮参数实验记录',watch:'新产季豆单、冲煮实验',tags:['咖啡','生活方式']},
+  en:{title:'Global Coffee Flavor Atlas (Demo)',desc:'Placeholder: origins, processing methods, flavor wheel mapping and home-brew experiments',watch:'New season beans, brew tests',tags:['Coffee','Lifestyle']}},
+ {cat:'game',url:'#',demo:true,icon:'🎮',date:'2026-08-08',
+  zh:{title:'开放世界网游经济系统设计研究（示例）',desc:'占位示例：货币流通、产出消耗模型、交易行机制对玩家留存的影响分析',watch:'版本更新、经济系统调整',tags:['游戏策划','系统设计']},
+  en:{title:'MMO Economy System Design (Demo)',desc:'Placeholder: currency flow, faucet-sink models, auction house impact on retention',watch:'Patches, economy tweaks',tags:['Game Design','Systems']}},
+ {cat:'video',url:'#',demo:true,icon:'🎬',date:'2026-08-12',
+  zh:{title:'AI 视频生成工具横向测评（示例）',desc:'占位示例：主流工具在画质、可控性、成本三维度实测对比与选型建议',watch:'新模型发布、价格调整',tags:['AI视频','工具测评']},
+  en:{title:'AI Video Tools Comparison (Demo)',desc:'Placeholder: quality, controllability and cost benchmarks with recommendations',watch:'New models, pricing',tags:['AI Video','Review']}}
 ];
 
 /* ================= i18n ================= */
 const I18N={
- zh:{navLib:'议题库',navUpd:'更新动态',navLatest:'最新报告',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'研究议题',title2:'知识图谱',sub:'所有研究报告的永久索引 · 自动追踪更新 · 分类归档',sTopics:'收录议题',sCats:'分类板块',sUpd:'累计动态',updTitle:'更新动态',all:'全部',pvWatch:'监测项',pvDate:'上线日期',pvOpen:'点击卡片打开报告 →',foot:'由 Kimi 自动化维护 · 数据：wiki/updates.json · 规范：AGENTS.md',tracking:'追踪中',online:'上线',empty:'该板块暂无内容，敬请期待',seen:'新动态将标注 NEW'},
- en:{navLib:'Library',navUpd:'Updates',navLatest:'Latest Report',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'Research',title2:'Knowledge Graph',sub:'Permanent index of all reports · Auto-tracked updates · Categorized',sTopics:'Topics',sCats:'Categories',sUpd:'Updates',updTitle:'Recent Updates',all:'All',pvWatch:'Watching',pvDate:'Published',pvOpen:'Click card to open →',foot:'Maintained by Kimi automation · Data: wiki/updates.json · Spec: AGENTS.md',tracking:'Tracking',online:'Published',empty:'Nothing here yet — stay tuned',seen:'New entries marked NEW'}
+ zh:{navLib:'议题库',navUpd:'更新动态',navLatest:'最新报告',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'研究议题',title2:'知识图谱',sub:'所有研究报告的永久索引 · 自动追踪更新 · 分类归档',sTopics:'收录议题',sCats:'分类板块',sUpd:'累计动态',updTitle:'更新动态',all:'全部',pvWatch:'监测项',pvDate:'上线日期',pvOpen:'点击卡片打开报告 →',foot:'由 Kimi 自动化维护 · 数据：wiki/updates.json · 规范：AGENTS.md',tracking:'追踪中',online:'上线',empty:'该板块暂无内容，敬请期待',seen:'新动态将标注 NEW',demoTag:'示例',toastMsg:'这是示例占位内容，正式报告上线后将自动替换'},
+ en:{navLib:'Library',navUpd:'Updates',navLatest:'Latest Report',kicker:'PERSONAL KNOWLEDGE GRAPH',title1:'Research',title2:'Knowledge Graph',sub:'Permanent index of all reports · Auto-tracked updates · Categorized',sTopics:'Topics',sCats:'Categories',sUpd:'Updates',updTitle:'Recent Updates',all:'All',pvWatch:'Watching',pvDate:'Published',pvOpen:'Click card to open →',foot:'Maintained by Kimi automation · Data: wiki/updates.json · Spec: AGENTS.md',tracking:'Tracking',online:'Published',empty:'Nothing here yet — stay tuned',seen:'New entries marked NEW',demoTag:'Demo',toastMsg:'Demo placeholder — will be replaced when the real report ships'}
 };
 let lang=localStorage.getItem('wiki_lang')||'zh';
 function T(k){return I18N[lang][k]||k}
@@ -216,10 +238,10 @@ function renderBlocks(){
   box.innerHTML=CATS.filter(c=>activeCat==='all'||activeCat===c.id).map(c=>{
     const items=TOPICS.filter(t=>t.cat===c.id);
     const cards=items.map((t,i)=>{const L=t[lang];return `
-     <div class="card rv" style="--c:${c.color}" data-url="${t.url}" data-cat="${c.id}" data-idx="${TOPICS.indexOf(t)}">
+     <div class="card rv ${t.demo?'demo':''}" style="--c:${c.color}" data-url="${t.url}" data-demo="${t.demo?1:0}" data-cat="${c.id}" data-idx="${TOPICS.indexOf(t)}">
        <div class="card-top"><div class="card-ico" style="background:${c.color}">${t.icon}</div><h3>${L.title}</h3></div>
        <p>${L.desc}</p>
-       <div class="tags">${L.tags.map(x=>`<span class="tag">${x}</span>`).join('')}${t.hot?`<span class="tag hot">${T('tracking')}</span>`:''}</div>
+       <div class="tags">${t.demo?`<span class="tag demo">${T('demoTag')}</span>`:''}${L.tags.map(x=>`<span class="tag">${x}</span>`).join('')}${t.hot?`<span class="tag hot">${T('tracking')}</span>`:''}</div>
        <div class="meta"><span>${T('online')} ${t.date}</span><span>${lang==='zh'?c.zh:c.en}</span></div>
      </div>`}).join('');
     return `<div class="blk ${items.length?'':'empty'}" style="--c:${c.color}">
@@ -233,9 +255,11 @@ function renderBlocks(){
 /* ================= hover preview ================= */
 const pv=document.getElementById('preview');
 let pvTimer;
+let toastTimer;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2400)}
 function bindCards(){
   document.querySelectorAll('.card').forEach(card=>{
-    card.onclick=()=>location.href=card.dataset.url;
+    card.onclick=()=>{if(card.dataset.demo==='1'){toast(T('toastMsg'))}else{location.href=card.dataset.url}};
     if(matchMedia('(hover:none)').matches)return;
     card.onmouseenter=e=>{
       clearTimeout(pvTimer);
