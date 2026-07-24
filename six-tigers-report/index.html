@@ -21,7 +21,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(10,14,21,.8);
 nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.35)}
 nav .inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:0 18px;height:60px;overflow-x:auto;scrollbar-width:none}
 nav .inner::-webkit-scrollbar{display:none}
-nav .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap;margin-right:auto;text-decoration:none;color:var(--txt)}
+nav .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap;text-decoration:none;color:var(--txt)}
+nav .spacer{flex:1;min-width:8px}
 nav .logo .mark{width:28px;height:28px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
 nav .logo .grad{background:var(--grad);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 7s ease infinite}
 @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -161,10 +162,11 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <body>
 <div id="progress"></div>
 <nav><div class="inner">
-  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
-  <a class="nl home" href="../wiki/">主页</a>
-  <span class="sep"></span>
   <a class="nl" href="#landscape">格局</a><a class="nl" href="#tigers">六小虎</a><a class="nl" href="#capital">资本</a><a class="nl" href="#history">发家史</a><a class="nl" href="#gossip">江湖</a><a class="nl" href="#bench">横评</a><a class="nl" href="#outlook">展望</a>
+  <span class="spacer"></span>
+  <span class="sep"></span>
+  <a class="nl home" href="../wiki/">主页</a>
+  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
 </div></nav>
 
 <header>

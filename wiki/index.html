@@ -40,6 +40,15 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav);backdrop-filter:blur
 .lang-btn{height:36px;padding:0 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;font-size:12.5px;font-weight:700;transition:.25s;letter-spacing:.03em}
 .lang-btn:hover{border-color:var(--acc)}
 @media(max-width:640px){.nav-links{display:none}}
+/* docked category chips inside navbar */
+#navCats{display:none;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 4px;min-width:0;flex-shrink:1}
+#navCats::-webkit-scrollbar{display:none}
+#navCats.dock{display:flex;animation:catsIn .3s ease}
+@keyframes catsIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.nchip{flex-shrink:0;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:12px;cursor:pointer;transition:.25s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.nchip .dot{width:6px;height:6px;border-radius:50%}
+.nchip.on{background:var(--grad);color:#fff;font-weight:700;border-color:transparent}
+.nchip.on .dot{background:#fff!important}
 
 /* ===== hero ===== */
 header{position:relative;overflow:hidden;padding:72px 22px 44px;text-align:center}
@@ -166,6 +175,7 @@ nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.18);border-color:transparent}
       <a href="#updatesSec" data-i18n="navUpd">更新动态</a>
       <a href="../six-tigers-report/" data-i18n="navLatest">最新报告</a>
     </div>
+    <div id="navCats"></div>
     <div class="ctl">
       <button class="lang-btn" id="langBtn">EN</button>
       <button class="icon-btn" id="themeBtn" title="Theme">☾</button>
@@ -272,12 +282,20 @@ function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(el=>el.tex
 
 /* ================= library ================= */
 let activeCat='all';
+function pickCat(id,scroll){activeCat=id;renderCats();renderBlocks();if(scroll)document.getElementById('library').scrollIntoView({behavior:'smooth'})}
 function renderCats(){
-  const box=document.getElementById('cats');
-  box.innerHTML=`<div class="cat ${activeCat==='all'?'on':''}" data-c="all"><span class="dot" style="background:var(--acc)"></span>${T('all')}</div>`+
-   CATS.map(c=>`<div class="cat ${activeCat===c.id?'on':''}" data-c="${c.id}"><span class="dot" style="background:${c.color}"></span>${lang==='zh'?c.zh:c.en}</div>`).join('');
-  box.querySelectorAll('.cat').forEach(el=>el.onclick=()=>{activeCat=el.dataset.c;renderCats();renderBlocks()});
+  const mk=(cls)=>`<div class="${cls} ${activeCat==='all'?'on':''}" data-c="all"><span class="dot" style="background:var(--acc)"></span>${T('all')}</div>`+
+   CATS.map(c=>`<div class="${cls} ${activeCat===c.id?'on':''}" data-c="${c.id}"><span class="dot" style="background:${c.color}"></span>${lang==='zh'?c.zh:c.en}</div>`).join('');
+  const box=document.getElementById('cats');box.innerHTML=mk('cat');
+  box.querySelectorAll('.cat').forEach(el=>el.onclick=()=>pickCat(el.dataset.c,false));
+  const nb=document.getElementById('navCats');nb.innerHTML=mk('nchip');
+  nb.querySelectorAll('.nchip').forEach(el=>el.onclick=()=>pickCat(el.dataset.c,true));
 }
+/* dock category chips into navbar once the tabs bar scrolls past */
+addEventListener('scroll',()=>{
+  const cats=document.getElementById('cats');
+  document.getElementById('navCats').classList.toggle('dock',cats.getBoundingClientRect().bottom<64);
+},{passive:true});
 function renderBlocks(){
   const box=document.getElementById('blocks');
   box.innerHTML=CATS.filter(c=>activeCat==='all'||activeCat===c.id).map(c=>{
