@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-26",
+      "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
+      "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
+      "topic": "凡人修仙传全脉络Wiki",
+      "body": "凡人流开山之作全考据：主线三书45篇章时间线、三界15境界与韩立14次破境年表、86件宝物图鉴、81人物七类群像与111条关系边图谱；227条目统一ID、交叉引用一一对应，存疑49处皆标印章。",
+      "body_en": "Complete compendium of the genre-founding xianxia novel: 45-arc timeline across 3 books, 15 realms with Han Li's 14 breakthroughs, 86 treasures, 81 characters and a 111-edge relationship graph; 227 entries with unified IDs and full cross-referencing, 49 doubtful points explicitly marked."
+    },
+    {
+      "date": "2026-07-26",
       "title": "新议题入库：《桶联 BinBot 全链路智能垃圾处理系统 PRD》",
       "title_en": "New topic: BinBot fully-automated trash pipeline PRD",
       "topic": "桶联 BinBot 智能垃圾系统",
