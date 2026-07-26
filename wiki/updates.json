@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-26",
+      "title": "凡人修仙传 Wiki 升级 v2：四张交互总表 + 图谱缩放控件",
+      "title_en": "Mortal's Journey Wiki v2: interactive tables + zoomable graph",
+      "topic": "凡人修仙传全脉络Wiki",
+      "body": "新增「总表速览」板块：篇章/破境/宝物/人物四表支持排序、筛选、行展开收起；全局展开收起按钮；人物关系图谱升级缩放控件、边类型筛选、搜索定位与详情面板。",
+      "body_en": "New tables section: arcs/breakthroughs/treasures/characters tables with sorting, filtering, expandable rows; global expand/collapse; relationship graph upgraded with zoom controls, edge-type filters, search-locate and detail panel."
+    },
+    {
+      "date": "2026-07-26",
       "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
       "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
       "topic": "锅气计划外卖模式评估",
