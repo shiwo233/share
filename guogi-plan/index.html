@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>锅气计划 · 标准化现炒外卖模式评估与成本定价分析 | Research Wiki</title>
+<meta name="description" content="「锅气计划」标准化现炒外卖模式评估：五层模式架构、18,394亿元市场、保本点日均310单、净利率5.5%、回本9.6个月——交互式议题报告。">
+<style>
+:root{
+  --bg:#0a0e15; --bg2:#101623; --card:#141c2b; --line:#22304a;
+  --txt:#e8edf5; --sub:#8fa0b8; --acc:#5b8cff; --acc2:#f0b45b;
+  --grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);
+  --navh:52px; --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  font-size:16px;line-height:1.85;padding-top:var(--navh)}
+::selection{background:rgba(91,140,255,.35)}
+a{color:var(--acc)}
+h1,h2,h3,h4{line-height:1.5}
+section[id],div[id]{scroll-margin-top:calc(var(--navh) + 14px)}
+
+/* ---------- progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:1100;border-radius:0 3px 3px 0}
+
+/* ---------- nav ---------- */
+.topnav{position:fixed;top:0;left:0;right:0;height:var(--navh);z-index:1050;
+  display:flex;align-items:center;gap:4px;padding:0 12px;
+  background:rgba(10,14,21,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
+.topnav .links{flex:1;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.topnav .links::-webkit-scrollbar{display:none}
+.nl{color:var(--sub);text-decoration:none;font-size:.82rem;padding:6px 9px;border-radius:9px;white-space:nowrap;transition:.2s}
+.nl:hover{color:var(--txt);background:var(--bg2)}
+.nl.home{border:1px solid var(--line);color:var(--txt);margin:0 6px;flex:none}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;flex:none}
+.logo .mark{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border-radius:8px;background:var(--grad);color:#0a0e15;font-weight:900;font-size:.9rem}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- hero ---------- */
+.hero{position:relative;text-align:center;padding:74px 18px 30px;max-width:920px;margin:0 auto;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:640px;height:420px;
+  background:radial-gradient(closest-side,rgba(91,140,255,.20),transparent 70%);pointer-events:none}
+.kicker{color:var(--acc2);letter-spacing:.32em;font-size:.72rem;font-weight:700;text-transform:uppercase}
+.hero h1{font-size:clamp(2.1rem,7.5vw,3.4rem);font-weight:900;margin:10px 0 6px}
+.hero .subtitle{color:var(--sub);font-size:clamp(.95rem,3.4vw,1.15rem);max-width:640px;margin:0 auto}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:26px auto 0;max-width:760px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px}
+.stat b{display:block;font-size:clamp(1.25rem,5vw,1.65rem);font-weight:900;font-variant-numeric:tabular-nums;line-height:1.25}
+.stat span{display:block;color:var(--sub);font-size:.72rem;margin-top:4px;line-height:1.4}
+.hero .actions{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;background:var(--grad);
+  color:#0a0e15;font-weight:800;text-decoration:none;font-size:.95rem;box-shadow:0 6px 22px rgba(91,140,255,.30);transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(157,107,255,.38)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--acc)}
+@media(min-width:720px){.stats{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+section.ch{padding:30px 0 8px}
+.ch-head{margin-bottom:6px}
+.ch-no{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.18em;color:var(--acc2);
+  border:1px solid rgba(240,180,91,.4);border-radius:999px;padding:3px 12px;margin-bottom:8px}
+.ch-head h2{font-size:clamp(1.35rem,5vw,1.8rem);font-weight:900}
+.ch-sum{color:var(--sub);font-size:.95rem;margin-top:6px}
+.ch-sum b{color:var(--txt)}
+
+/* ---------- section cards ---------- */
+.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+.sec .tag{font-size:.7rem;color:var(--acc);font-weight:800;letter-spacing:.08em}
+.sec .hl{font-size:1.02rem;font-weight:800;line-height:1.65;margin:4px 0 0}
+.sec details{margin-top:12px}
+.sec summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:7px;
+  color:var(--acc);font-weight:700;font-size:.86rem;user-select:none;padding:6px 12px 6px 0;border-radius:8px}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary .arrow{display:inline-block;transition:transform .25s}
+.sec details[open] summary .arrow{transform:rotate(90deg)}
+.sec summary:hover{color:#8fb0ff}
+.sec .body{border-top:1px dashed var(--line);margin-top:10px;padding-top:12px;font-size:.9rem;color:#c6d1e2}
+.sec .body p{margin:.7em 0}
+.sec .body ul{padding-left:1.2em;margin:.6em 0}
+.sec .body li{margin:.35em 0}
+.sec .body b,.sec .body strong{color:var(--txt)}
+.minihead{color:var(--acc2);font-weight:800;font-size:.84rem;margin:14px 0 4px;letter-spacing:.04em}
+
+/* ---------- tables ---------- */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.8rem}
+th{background:#1a2540;color:var(--acc);font-weight:800;white-space:nowrap;text-align:left}
+th,td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even){background:rgba(91,140,255,.045)}
+tbody tr:last-child td{border-bottom:none}
+td b{color:var(--txt)}
+.tcap{font-size:.74rem;color:var(--sub);margin:2px 2px 10px}
+
+/* ---------- figures ---------- */
+.figscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0 6px;border:1px solid var(--line);
+  border-radius:12px;background:var(--bg2);padding:14px}
+.figscroll svg{display:block;margin:0 auto}
+.figcap{font-size:.78rem;color:var(--sub);line-height:1.6;margin:8px 2px 4px}
+.figcap b{color:var(--acc2)}
+
+/* ---------- exec summary verdict ---------- */
+.verdict{display:grid;gap:14px;margin-top:16px}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.vcard h3{font-size:.95rem;margin-bottom:8px}
+.vcard.ok h3{color:#6fd6a0}
+.vcard.warn h3{color:var(--acc2)}
+.vcard ul{padding-left:1.2em;font-size:.86rem;color:#c6d1e2}
+.vcard li{margin:.5em 0}
+.vcard li b{color:var(--txt)}
+@media(min-width:720px){.verdict{grid-template-columns:1fr 1fr}}
+.oneline{background:linear-gradient(120deg,rgba(91,140,255,.12),rgba(157,107,255,.10),rgba(240,180,91,.10));
+  border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-top:18px;font-size:1.02rem;line-height:1.8}
+.oneline b{font-weight:900}
+
+/* ---------- references ---------- */
+.refs-block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+.refs-block summary{cursor:pointer;list-style:none;font-weight:800;color:var(--acc);display:flex;align-items:center;gap:8px}
+.refs-block summary::-webkit-details-marker{display:none}
+.refs-block summary .arrow{transition:transform .25s}
+.refs-block[open] summary .arrow,.refs-block details[open] summary .arrow{transform:rotate(90deg)}
+ol.refs{margin-top:14px;padding-left:0;list-style:none;font-size:.76rem;color:var(--sub)}
+ol.refs li{padding:7px 4px;border-bottom:1px dashed var(--line);line-height:1.65;word-break:break-all}
+ol.refs li .rn{color:var(--acc2);font-weight:800;margin-right:6px}
+ol.refs a{color:var(--acc);text-decoration:none;word-break:break-all}
+ol.refs a:hover{text-decoration:underline}
+
+/* ---------- nextup ---------- */
+.nextup{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:26px 16px;
+  box-shadow:0 10px 34px rgba(0,0,0,.45);max-width:920px}
+.nu-kicker{font-size:.66rem;letter-spacing:.26em;color:var(--acc2);font-weight:800}
+.nextup h4{font-size:1.02rem;margin:8px 0 6px;font-weight:900}
+.nextup p{font-size:.82rem;color:var(--sub);line-height:1.7}
+.nu-meta{margin:10px 0}
+.nu-tag{display:inline-block;font-size:.7rem;border:1px solid rgba(91,140,255,.45);color:var(--acc);border-radius:999px;padding:3px 10px}
+.nu-all{display:inline-flex;align-items:center;gap:6px;color:var(--acc);font-weight:800;text-decoration:none;font-size:.88rem}
+.nu-all:hover{text-decoration:underline}
+@media(min-width:760px){.nextup{margin:26px auto}}
+@media(min-width:1200px){
+  body{padding-right:300px}
+  .nextup{position:fixed;top:78px;right:16px;width:264px;margin:0;z-index:1040}
+}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);margin-top:44px;padding:34px 18px 46px;text-align:center;color:var(--sub);font-size:.78rem;line-height:2}
+footer .disclaim{max-width:640px;margin:8px auto 0}
+footer a{color:var(--acc);text-decoration:none}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav class="topnav">
+  <div class="links">
+    <a class="nl" href="#summary">总览</a>
+    <a class="nl" href="#ch1">模式</a>
+    <a class="nl" href="#ch2">市场</a>
+    <a class="nl" href="#ch3">竞品</a>
+    <a class="nl" href="#ch4">体系</a>
+    <a class="nl" href="#ch8">成本</a>
+    <a class="nl" href="#ch9">风险</a>
+    <a class="nl" href="#ch10">路线</a>
+    <a class="nl" href="#refs">文献</a>
+  </div>
+  <a class="nl home" href="../wiki/">主页</a>
+  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
+</nav>
+
+<header class="hero">
+  <div class="kicker">RESEARCH REPORT · 议题交互版</div>
+  <h1><span class="grad">「锅气计划」</span></h1>
+  <p class="subtitle">标准化现炒外卖模式评估与成本定价分析<br>——海选师傅现炒 × 仪式感开箱 × 透明供应链，五个被巨头分别验证的模块首次组装成一台整机</p>
+  <div class="stats">
+    <div class="stat"><b class="grad">18,394亿元</b><span>2025年在线餐饮外卖市场规模（国家信息中心口径）</span></div>
+    <div class="stat"><b class="grad">日均310单</b><span>基准档盈亏平衡点（400单×31.5元模型）</span></div>
+    <div class="stat"><b class="grad">5.5%</b><span>基准档净利率（落于玉子屋5%、老乡鸡6-7%已验证区间）</span></div>
+    <div class="stat"><b class="grad">9.6个月</b><span>单店投资20万元的回本周期（卫星店基准8-10个月内）</span></div>
+    <div class="stat"><b class="grad">+2元/单</b><span>仪式感包装四层升级的单均增量成本（≤售价5%）</span></div>
+    <div class="stat"><b class="grad">&lt;3%</b><span>报废率红线（行业基准5%-20%，玉子屋极限0.1%）</span></div>
+  </div>
+  <div class="actions">
+    <a class="btn" href="锅气计划_商业计划书.docx" download>⬇ 下载完整商业计划书（DOCX）</a>
+    <a class="btn ghost" href="#summary">开始阅读 ↓</a>
+  </div>
+</header>
+
+<aside class="nextup" id="nextup">
+  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+  <h4>桶联 BinBot：全链路智能垃圾处理系统 PRD</h4>
+  <p>自动检测打包 → 喷雾除味 → 套新袋 → 扫地机器人运送：产品设计方案 v1.0</p>
+  <div class="nu-meta"><span class="nu-tag">💼 工作相关报告</span></div>
+  <a class="nu-all" href="../smart-bin-design/">阅读该议题 →</a>
+</aside>
+
+<div class="wrap">
+<!-- ============ 执行摘要 ============ -->
+<section class="ch reveal" id="summary">
+  <div class="ch-head">
+    <span class="ch-no">EXECUTIVE SUMMARY</span>
+    <h2>执行摘要</h2>
+  </div>
+  <div class="oneline"><b>一句话定位：</b>「锅气计划」用"海选师傅现炒+仪式感开箱+透明供应链"重做品质外卖——<b>不是单点创新，而是把五个已被巨头分别付费验证的模块首次组装成一台整机的系统级组合创新。</b>窗口约18-24个月：需求端预制菜信任危机、供给端巨头卡位未竟、监管端2026年新规清场，三重力量同时撕开缺口。</div>
+  <div class="verdict">
+    <div class="vcard ok">
+      <h3>✅ 经得起验证的点</h3>
+      <ul>
+        <li><b>每个模块都有量产样本：</b>七鲜小厨首周日均超1,000单、3日复购率高出行业均值220%；美团卫星店验证8-10个月回本；瑞幸私域使用户月消费频次提升30%。</li>
+        <li><b>市场基本盘无需教育：</b>2025年在线餐饮外卖18,394亿元、渗透率29.7%，预计2030年达29,440亿元。</li>
+        <li><b>财务落在已验证区间：</b>基准档（日均400单×31.5元）月净利+2.08万元、净利率5.5%，落于玉子屋5%与老乡鸡6-7%之间；单店20万元、回本约9.6个月。</li>
+        <li><b>竞争空隙是结构性的：</b>京东买走配方IP而非人格IP，美团卫星店是渠道而非品牌，"真人师傅IP×仪式感交付"无人占位。</li>
+      </ul>
+    </div>
+    <div class="vcard warn">
+      <h3>⚠️ 必须修正/盯死的点</h3>
+      <ul>
+        <li><b>组装后的化学反应没有先例</b>——五层模块各自被验证过，合在一起没有，这正是样板期要证伪的东西。</li>
+        <li><b>三条生死线：</b>第6个月前日均单量越过400单、报废率锁死3%以内、第18个月私域订单占比越过15%（目标20%）——任一失守即滑向"净利10%对抽佣15-30%"的行业死因区间。</li>
+        <li><b>爬坡期约3万元/月的亏损是预算项而非意外：</b>悲观档保本点（540单/日）高于其假设单量近一倍。</li>
+        <li><b>合规三处修正已写死：</b>租用后厨改"档口分割独立办证"；短视频数据改"用户主动投喂"；错峰只做"闲时立减"、永不高峰加价。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第1章 ============ -->
+<section class="ch reveal" id="ch1">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 01</span>
+    <h2>项目概述与模式定义</h2>
+    <p class="ch-sum">本章一句话：<b>五条已被巨头分别付费验证的曲线拼成一台整机——竞争空隙不在单点创新，而在系统级组装。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">1.1 模式全景</div>
+    <p class="hl">五个被分别验证的模块首次组装：京东验证了净菜现炒+公示直播，美团验证了卫星店单位经济，瑞幸达美乐验证了私域，肯德基海底捞验证了时段折扣，黑珍珠与素人摊贩验证了师傅背书——但没有一家把五件事装进同一个品牌。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="figscroll">
+          <svg width="820" height="430" viewBox="0 0 820 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="锅气计划五层模式架构图">
+            <defs>
+              <linearGradient id="g1a" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#9d6bff"/><stop offset="1" stop-color="#f0b45b"/>
+              </linearGradient>
+            </defs>
+            <text x="410" y="26" text-anchor="middle" fill="#e8edf5" font-size="16" font-weight="800">「锅气计划」五层模式架构</text>
+            <text x="410" y="46" text-anchor="middle" fill="#8fa0b8" font-size="11.5">五条被巨头分别验证的模块首次组装为整机</text>
+            <!-- center spine -->
+            <rect x="330" y="62" width="160" height="330" rx="14" fill="none" stroke="url(#g1a)" stroke-width="2" stroke-dasharray="6 5"/>
+            <text x="410" y="82" text-anchor="middle" fill="#f0b45b" font-size="11" font-weight="800">核心卖点（中轴）</text>
+            <text x="410" y="236" text-anchor="middle" fill="#e8edf5" font-size="12.5" font-weight="800" transform="rotate(-90 410 236)">食材标准化与安全 ⇒ 出品一致化</text>
+            <!-- layers: y from 94, each h=56, gap=6 -->
+            <!-- 体验层 -->
+            <rect x="20" y="94" width="300" height="56" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.4"/>
+            <rect x="20" y="94" width="6" height="56" rx="3" fill="#5b8cff"/>
+            <text x="40" y="118" fill="#5b8cff" font-size="13.5" font-weight="800">体验层 · 仪式感开箱</text>
+            <text x="40" y="138" fill="#c6d1e2" font-size="11">回答"怎么收到的"：腰封/分层盒/桌布纸巾 +1.5-2元</text>
+            <rect x="500" y="94" width="300" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="514" y="118" fill="#8fa0b8" font-size="11">验证者：大董"董到家"礼盒（对照组）</text>
+            <text x="514" y="136" fill="#8fa0b8" font-size="11">海底捞/西贝"低成本高感知"配件</text>
+            <line x1="320" y1="122" x2="330" y2="122" stroke="#5b8cff" stroke-width="1.4"/>
+            <line x1="490" y1="122" x2="500" y2="122" stroke="#5b8cff" stroke-width="1.4"/>
+            <!-- 效率层 -->
+            <rect x="20" y="156" width="300" height="56" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.4"/>
+            <rect x="20" y="156" width="6" height="56" rx="3" fill="#5b8cff"/>
+            <text x="40" y="180" fill="#5b8cff" font-size="13.5" font-weight="800">效率层 · 净菜直采+半成品便当化</text>
+            <text x="40" y="200" fill="#c6d1e2" font-size="11">回答"安不安全"：央厨切配+公示+直播</text>
+            <rect x="500" y="156" width="300" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="514" y="180" fill="#8fa0b8" font-size="11">验证者：ほっともっと2427店 / 七鲜小厨</text>
+            <text x="514" y="198" fill="#8fa0b8" font-size="11">首周日均1000+单、复购+220%</text>
+            <line x1="320" y1="184" x2="330" y2="184" stroke="#5b8cff" stroke-width="1.4"/>
+            <line x1="490" y1="184" x2="500" y2="184" stroke="#5b8cff" stroke-width="1.4"/>
+            <!-- 人格层 -->
+            <rect x="20" y="218" width="300" height="56" rx="10" fill="#141c2b" stroke="#9d6bff" stroke-width="1.6"/>
+            <rect x="20" y="218" width="6" height="56" rx="3" fill="#9d6bff"/>
+            <text x="40" y="242" fill="#b790ff" font-size="13.5" font-weight="800">人格层 · 地摊师傅海选+打榜</text>
+            <text x="40" y="262" fill="#c6d1e2" font-size="11">回答"谁炒的"：真人IP驻店现炒</text>
+            <rect x="500" y="218" width="300" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="514" y="242" fill="#8fa0b8" font-size="11">验证者：10亿"菜品合伙人"6.6万份报名</text>
+            <text x="514" y="260" fill="#8fa0b8" font-size="11">黑珍珠主厨 / 素人摊贩出圈公式</text>
+            <line x1="320" y1="246" x2="330" y2="246" stroke="#9d6bff" stroke-width="1.4"/>
+            <line x1="490" y1="246" x2="500" y2="246" stroke="#9d6bff" stroke-width="1.4"/>
+            <!-- 关系层 -->
+            <rect x="20" y="280" width="300" height="56" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.4"/>
+            <rect x="20" y="280" width="6" height="56" rx="3" fill="#f0b45b"/>
+            <text x="40" y="304" fill="#f0b45b" font-size="13.5" font-weight="800">关系层 · 私域App+AI点餐</text>
+            <text x="40" y="324" fill="#c6d1e2" font-size="11">忌口档案/截图导入/多人点餐沉淀复购</text>
+            <rect x="500" y="280" width="300" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="514" y="304" fill="#8fa0b8" font-size="11">验证者：瑞幸私域日贡献3.5万杯</text>
+            <text x="514" y="322" fill="#8fa0b8" font-size="11">达美乐自有渠道订单占比约五成</text>
+            <line x1="320" y1="308" x2="330" y2="308" stroke="#f0b45b" stroke-width="1.4"/>
+            <line x1="490" y1="308" x2="500" y2="308" stroke="#f0b45b" stroke-width="1.4"/>
+            <!-- 网络层 -->
+            <rect x="20" y="342" width="300" height="56" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.4"/>
+            <rect x="20" y="342" width="6" height="56" rx="3" fill="#f0b45b"/>
+            <text x="40" y="366" fill="#f0b45b" font-size="13.5" font-weight="800">网络层 · 分布式后厨+错峰定价</text>
+            <text x="40" y="386" fill="#c6d1e2" font-size="11">蜂窝选址压履约成本，闲时立减削峰</text>
+            <rect x="500" y="342" width="300" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="514" y="366" fill="#8fa0b8" font-size="11">验证者：美团卫星店5500+家、坪效4500元/㎡</text>
+            <text x="514" y="384" fill="#8fa0b8" font-size="11">海底捞69折/肯德基早餐价</text>
+            <line x1="320" y1="370" x2="330" y2="370" stroke="#f0b45b" stroke-width="1.4"/>
+            <line x1="490" y1="370" x2="500" y2="370" stroke="#f0b45b" stroke-width="1.4"/>
+            <text x="410" y="420" text-anchor="middle" fill="#8fa0b8" font-size="11">现炒只是入场券；差异化 = 谁炒的 × 怎么收到的 × 安不安全</text>
+          </svg>
+        </div>
+        <p class="figcap"><b>图1 · 五层模式架构：</b>中轴为贯穿全部模块的核心卖点"食材标准化与安全带来出品一致化"；右侧为各层已被付费验证的先行者证据。</p>
+        <div class="minihead">五个模块逐层拆解</div>
+        <ul>
+          <li><b>体验层（1.1.1）：</b>外卖收货环节是品牌体验的最大洼地。纯效率逻辑必死（笨熊造饭关停200家、二十五块半离场），但无品牌支撑的仪式感同样必死（全聚德小鸭哥亏1,344万）。仪式感全套升级单均增量约1.5-2元，必须作为固定成本写进单店模型。</li>
+          <li><b>效率层（1.1.2）：</b>把"炒"之外的一切工序工业化——直采净菜与半成品，门店只留最后一道炒制。ほっともっと以2427店运行同一分工；净菜按法规属食用农产品而非预制菜，可合规标注"中央厨房当日配送"；供应商公示把效率层转化为信任资产。</li>
+          <li><b>人格层（1.1.3）：</b>"现炒"已成行业标配，"谁炒的"才是新的信任载体。海选按MCN逻辑而非招聘逻辑运行——账号资产归平台、师傅签收益分成、同时孵化3-5个师傅矩阵，对冲单一IP出走与素人流量半衰期（6-24个月）。</li>
+          <li><b>关系层（1.1.4）：</b>平台流量租来的客户关系随时会被收回。功能全部瞄准"美团给不了"的场景；达美乐自建配送致人力成本占收入43.7%连亏的教训说明配送必须继续用平台运力。</li>
+          <li><b>网络层（1.1.5）：</b>履约成本由网点密度与订单时间分布两个结构性变量决定。合规红线：租用后厨不能共用证照，须档口物理分割独立办证或入驻持证共享厨房。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">1.2 模式定义与核心假设</div>
+    <p class="hl">本项目不把"现炒"当卖点——它是入场券；核心卖点是"人格化信任×体验溢价×安全信任"三件套，模式生死最终落在客单价、单量、报废率、抽佣四个可测量假设上。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <p>西贝事件后"新鲜现炒"已退化为全行业基础宣传口径；费大厨仅凭现炒心智支撑人均70-80元重模式并拒绝外卖，说明现炒心智属于强品牌而非工艺本身。三件套共同支撑唯一承诺：<b>食材标准化与安全带来出品一致化</b>。</p>
+        <div class="twrap"><table>
+          <thead><tr><th>关键假设</th><th>基准值</th><th>对标依据</th><th>验证方式（谁/何时/怎么做）</th></tr></thead>
+          <tbody>
+            <tr><td><b>客单价</b></td><td>28-35元</td><td>老乡鸡称重店客单约33元、大米先生人均约23元</td><td>运营负责，首店第30天核对实收客单，偏离±15%即调整菜单结构</td></tr>
+            <tr><td><b>单店日均单量</b></td><td>300-500单</td><td>外婆家卫星店稳定月均7000+单、老乡鸡卫星店月均2万单</td><td>店长负责，第90天起连续30天日均低于250单触发选址与流量复盘</td></tr>
+            <tr><td><b>食材报废率</b></td><td>≤3%</td><td>玉子屋预订制废弃率&lt;0.1%，行业短保报废普遍5%-20%</td><td>供应链负责，以销定配+前一日预订锁量，每周盘点，超3%即缩减SKU</td></tr>
+            <tr><td><b>平台抽佣后净利</b></td><td>≥5%</td><td>餐饮净利率约10%对平台抽佣15-30%的剪刀差是行业死因</td><td>财务负责，按月出单店UE表，私域订单占比第18个月须达15%（目标20%）</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>传导链条：</b>客单价决定体验层1.5-2元包装增量能否被消化 → 单量决定网络层点位模型能否跑平 → 报废率决定效率层是真降本还是换个科目亏钱 → 抽佣决定关系层私域建设的紧迫程度。<b>报废率最危险</b>——唯一不受流量影响、纯由运营纪律决定的变量，也是日本便当业把利润率锁死在3%-5%的核心原因。首店试点的全部意义，就是在放大投资前把这四个数字钉死在区间内。</p>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第2章 ============ -->
+<section class="ch reveal" id="ch2">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 02</span>
+    <h2>市场分析</h2>
+    <p class="ch-sum">本章一句话：<b>外卖不是需要被"教育"的市场，而是被需求端信任危机、供给端巨头卡位未竟、监管端新规洗牌三重力量同时撕开缺口的市场——窗口期约18-24个月。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">2.1 市场规模与结构</div>
+    <p class="hl">近2万亿元且仍高个位数至双位数增长的存量基本盘：即便按最保守口径，每年新增体量也超2,000亿元，足以容纳若干个十亿级新品牌。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>双口径并列：</b>国家信息中心口径2025年在线餐饮外卖18,394亿元、渗透率29.7%、2030年预测29,440亿元（CAGR约9.9%）；网经社口径（含即时零售）22,850亿元、同比+24.47%。差异主要来自是否计入即时零售，不影响"基本盘足够大"的判断。</li>
+          <li><b>2025年外卖大战：</b>京东日单2,500万、峰值市占31%打破双寡头格局，但补贴退坡后回落至7-8%——<b>补贴买来的份额留不住，价格不是品质外卖的护城河，信任和供给才是。</b></li>
+          <li><b>代价：</b>汇丰测算2025Q2-2026Q1三家合计亏损约1,730亿元；美团由盈利358亿元转净亏233.54亿元，京东新业务全年亏损466.41亿元。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>平台</th><th>2025年关键动作</th><th>单量/份额表现</th><th>财务代价</th><th>品质供给布局</th></tr></thead>
+          <tbody>
+            <tr><td><b>京东外卖</b></td><td>"品质外卖"入场，百亿补贴+自营七鲜小厨</td><td>6月日单2,500万、峰值市占31%；退坡后约7-8%</td><td>新业务全年亏损466.41亿元</td><td>七鲜小厨50+家，净菜现炒+公示+24h直播，3年万店</td></tr>
+            <tr><td><b>美团</b></td><td>守份额，投入供给基建</td><td>GTV份额守住60%+，单量份额跌至约50-55%</td><td>全年净亏233.54亿元</td><td>浣熊食堂3年1,200家、卫星店5,500+、拼好饭日峰3,500万单</td></tr>
+            <tr><td><b>淘宝闪购</b></td><td>500亿元补贴+生态流量</td><td>即时零售收入229.06亿元、同比+60%</td><td>三家合计亏损约1,730亿元（汇丰）</td><td>AI治理清退违规商家5万家，Popeyes卫星店合作</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>解读：</b>三巨头无一例外把战后资源投向"品质供给基建"，平台竞争叙事已从"谁更便宜"切换到"谁的饭更可信"——验证本项目方向正确，但留给独立品牌的空间在"人格化信任"与"体验层"，而非基础设施层。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">2.2 需求侧痛点</div>
+    <p class="hl">信任危机决定"供给必须透明"、决策疲劳决定"触点必须简单"、价格带缺口决定"定位必须卡在20-40元"——三个痛点是一条因果链，圈定精确生态位。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>预制菜信任危机（2.2.1）：</b>西贝72小时日营业额单日蒸发100-300万元，累计亏损超5亿元、关店102家；60.48%消费者选购受影响，78.1%反映预制菜未明示。消费者反感的是"高价买预制却不被告知"——溢价空间在"谁能让我相信这盘菜是现炒的"。</li>
+          <li><b>点餐困难症与红包疲劳（2.2.2）：</b>84.7%受访者自称有选择困难症；拼好饭极简决策日单3,500万；膨胀红包需4-5步、领券攻略多达8步；约70%忌口用户需手写备注，52%认为"备注形同虚设"。</li>
+          <li><b>20-40元品质带真空（2.2.3）：</b>低价端拼好饭商家单均利润仅2-3元、品质底线被击穿；高价端全聚德外卖亏1,344万关闭；中间地带巨头都在聚集（七鲜定价20-40元、外婆家客单下探至30元），却尚无"安全+好吃+有尊严"的强心智品牌；健康轻食订单占比五年12%→25%。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>痛点</th><th>关键量化证据</th><th>对本模式的含义</th></tr></thead>
+          <tbody>
+            <tr><td><b>预制菜信任危机</b></td><td>西贝亏超5亿关店102家；60.48%选购受影响；78.1%反映未明示</td><td>"现炒"是入场券非卖点；信任必须可验证——师傅IP+公示+直播三层背书</td></tr>
+            <tr><td><b>点餐困难与红包疲劳</b></td><td>84.7%选择困难；拼好饭日单3,500万；领券8步</td><td>AI点餐、忌口档案、一口价直接对标决策成本，是美团主App做不动的差异化</td></tr>
+            <tr><td><b>20-40元品质带缺口</b></td><td>拼好饭商家单均利润2-3元；全聚德外卖亏1,344万；轻食订单12%→25%</td><td>主客单带锚定28-35元：多付的5-10元购买"可验证的现炒+开箱尊严"</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>反例教训：</b>全聚德证明仪式感救不了弱品牌，拼好饭证明低价留不住品质敏感用户——用可验证的现炒解决信任、用仪式感承接体验溢价、用私域App消灭决策摩擦，三者缺一则生态位不成立。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">2.3 政策与监管窗口</div>
+    <p class="hl">2026年6月"史上最严"外卖新规把外卖从流量生意改回重资产生意，清退灰色供给；央厨净菜≠预制菜的法规身份已明确——合规是本项目的出厂配置而非追赶项。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>新规核心条款（2.3.1）：</b>一证一店、招牌与实体一致、取餐地址与许可证场所一致、强制"互联网+明厨亮灶"与食安封签。执法已有批量案例：1张证照开7家店、1家实体店开15家"幽灵外卖"被处罚，上海警方破获32起伪造证照团伙案。约三成外卖产品出自无堂食经营店，清场力度不可低估。</li>
+          <li><b>法规身份（2.3.2）：</b>2024年六部门《通知》明确仅经清洗、去皮、分切的净菜属食用农产品而非预制菜，央厨菜肴不纳入预制菜范围；2026年2月预制菜国标征求意见稿进一步确认——可合规标注"中央厨房当日配送、门店现炒"。</li>
+          <li><b>两个诚实边界：</b>"央厨不算预制菜"法律位阶存在讨论空间；公众认知与官方定义错位（西贝正栽在此）——<b>正确姿势是双轨并行：法规层面用足合规身份，传播层面不依赖定义辩护，用公示、溯源码和直播让"现炒"可被亲眼验证。</b></li>
+        </ul>
+        <p>监管的每一次收紧，都在为合规者清出市场份额——这是本项目必须在未来18-24个月内完成单城验证与模式定型的根本理由。</p>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第3章 ============ -->
+<section class="ch reveal" id="ch3">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 03</span>
+    <h2>竞品与对标分析</h2>
+    <p class="ch-sum">本章一句话：<b>巨头占住效率层、高端品牌验证了体验层，"真人师傅IP×仪式感交付"的组合在外卖场景无人占位——这正是本项目的位置。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">3.1 巨头卡位现状</div>
+    <p class="hl">掌握流量与资本的巨头在"效率与人格"之间无一例外选择效率，人格心智最强的费大厨公开拒绝外卖——"谁炒的"心智高地在外卖场景至今无人认领。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>京东七鲜小厨（3.1.1）：</b>"净菜冷链日配+机器人现炒"重资产样本，50+店、单店日均500+单、首周日均超1000单、3日复购率+220%；10亿"菜品合伙人"首周报名6.6万份。但京东买走的是<b>配方IP而非师傅本人</b>，人格信任链在出锅前即被切断；单店投入约100万元，代价极其昂贵。启示：同样的参与感，我们用赛事化内容留住师傅本人、零保底成本。</li>
+          <li><b>美团组合拳（3.1.2）：</b>浣熊食堂（门槛约150万、3年1200家）做场地，卫星店（5500+家、坪效4500元/㎡、8-10个月回本）借存量品牌，拼好饭走低价——<b>美团做的是基础设施，不生产人格与内容</b>。基础设施越成熟，长在其上的内容型品牌越稀缺。</li>
+          <li><b>现炒赛道（3.1.3）：</b>农耕记结构最相似但人格化止步于口号；老乡鸡毛利率常年仅约20%预告真人现炒成本天花板；费大厨年营收超10亿却"请大家不要点费大厨的外卖"。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>玩家</th><th>模式内核</th><th>规模与关键数据</th><th>对本项目的映射</th></tr></thead>
+          <tbody>
+            <tr><td><b>京东七鲜小厨</b></td><td>净菜日配+机器人现炒+配方合伙人</td><td>50+店、日均500+单、报名6.6万份；单店约100万投入</td><td>海选叙事被验证，但"配方IP≠师傅IP"留空白</td></tr>
+            <tr><td><b>美团浣熊食堂</b></td><td>平台重资产集中厨房+明厨亮灶</td><td>目标3年1200家；门槛约150万</td><td>合规基础设施，可入驻而非正面竞争</td></tr>
+            <tr><td><b>美团卫星店</b></td><td>存量品牌轻量化外卖专营店</td><td>5500+家、坪效4500元/㎡、8-10个月回本</td><td>单店UE基准；证明分布式后厨可行</td></tr>
+            <tr><td><b>拼好饭</b></td><td>需求集约低价拼单</td><td>日峰3500万单；商家到手薄利、争议大</td><td>反面参照：不做低价内卷</td></tr>
+            <tr><td><b>农耕记</b></td><td>央厨料包+门店现炒</td><td>深圳50+直营；广州纯外卖；卫星店利润率约10%</td><td>结构最近似，但无人格层</td></tr>
+            <tr><td><b>费大厨</b></td><td>全直营现炒、拒绝外卖</td><td>约158店、年营收超10亿、人均70-80元</td><td>"谁炒的"心智极强且外卖无人占位</td></tr>
+            <tr><td><b>老乡鸡/大米先生</b></td><td>规模化现炒快餐</td><td>大米先生1000+直营店；老乡鸡毛利率约20%</td><td>真人现炒成本天花板，须半成品对冲</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>行动含义：</b>单店UE对标卫星店区间（8-10个月回本），供给叙事对标费大厨人格心智，海选机制对标七鲜参与感但改为"人留场"的赛事结构。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">3.2 国际对标</div>
+    <p class="hl">日本便当业用数十年把这件事分别做过一遍：工序切分无模式级风险，但利润率天花板3-5%——半成品+现炒解决"好吃与合规"，不解决"赚钱"，利润率必须靠品牌溢价与订单密度撑起。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>玉子屋（3.2.1）：</b>日销约4万份（官网口径，"13万份"系中文媒体误传），每天只做一种便当，食材成本率约50%、利润率自我约束5%、废弃率&lt;0.1%。三件武器：少SKU日替菜单、菜单预告加预订、"回收即调研"反馈闭环。不可照搬：B2B团餐前提、自营车队与5%利润率纪律。</li>
+          <li><b>ほっともっと/キッチンオリジン（3.2.2）：</b>"自建工厂切配+门店煮炒炸炊"验证超三十年（2427店/540店），与本项目完全同构；但营业利益率仅5.4%/3.3%。萨莉亚证明"坦诚+性价比"的半预制在中国可被接受。</li>
+          <li><b>Franklin Junction（美）：</b>不建任何新厨房、撮合闲置后厨为知名品牌做外卖，"从第一单开始人人盈利"——本项目分布式后厨设计原则：轻资产进入+品牌层自建，不在效率层与巨头拼资本。</li>
+          <li><b>红线：</b>玉子屋1982年曾因食物中毒停业一周险遭倒闭——大规模单一供给下食安事件有系统性破坏力，供应商公示与多后厨分散结构正是对冲。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>对标主体</th><th>模式内核</th><th>规模</th><th>利润率</th><th>可直接迁移</th><th>不可照搬</th></tr></thead>
+          <tbody>
+            <tr><td><b>玉子屋</b></td><td>单一菜单+预订制+自营团餐</td><td>日销约4万份</td><td>约5%</td><td>少SKU、菜单预告、预订锁量、以销定产</td><td>B2B团餐、自配送车队、5%利润率预期</td></tr>
+            <tr><td><b>ほっともっと</b></td><td>自建工厂切配+门店"煮炒炸炊"</td><td>2427店</td><td>5.4%（FY2017）</td><td>工序切分、开放厨房现场感</td><td>自建仓配重资产</td></tr>
+            <tr><td><b>キッチンオリジン</b></td><td>店内现制惣菜+接单现做</td><td>540店</td><td>3.3%（FY2025）</td><td>明档现做对冲工业感</td><td>高客单受商圈约束</td></tr>
+            <tr><td><b>萨莉亚</b></td><td>央厨半成品+门店极简加工+全程透明</td><td>中国数百店</td><td>人力成本约同行1/3</td><td>透明化半预制的信任化解法</td><td>全预制路线（无现炒）</td></tr>
+            <tr><td><b>Franklin Junction</b></td><td>host kitchen撮合闲置后厨与品牌</td><td>崩塌期仍获530万美元融资</td><td>零新增资本、首单即盈利</td><td>不建厨房资产、自控品控培训</td><td>美国证照环境；中国须独立办证</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">3.3 失败案例教训库</div>
+    <p class="hl">中美外卖死亡名单死因高度收敛：没有一个死于"菜不好吃"，全部死于"算不过账+没人记住你"——净利约10%对平台抽佣15-30%的算术题里，纯效率逻辑无解。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>美国云厨房崩塌（3.3.1）：</b>Reef日营收不足500美元点位直接清退（一次暂停95个）；Butler每家酒店日10-20单、融资5000万美元后无预警解散；CloudKitchens入住率仅约50%、租户年流失65%；Kitchen United宣称"找到可持续模式"仅10周后出售全部18个点位。收购残骸者判词："如果你只做纯外卖生意，它根本赚不到钱"。</li>
+          <li><b>中国共享厨房一代（3.3.2）：</b>熊猫星厨C轮5000万美元、巅峰100多店，本质是二房东，"现金流上限从诞生起就被锁死"；纯外卖品牌笨熊造饭关200店。硬结论：分布式后厨必须"档口分割、独立办证"——<b>证照不是成本项，而是清退小散乱竞争者的护城河；品牌层不是营销预算，而是生存资格。</b></li>
+          <li><b>全聚德对照（3.3.3）：</b>小鸭哥亏1344万关闭，大董"董到家"238元礼盒却跑通——成败分野在品牌力是否撑得起溢价。仪式感只能作为"放大器"部署在信任之上，包装成本控制在客单价5%以内。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>案例</th><th>资本/规模峰值</th><th>直接死因</th><th>本项目对应防线</th></tr></thead>
+          <tbody>
+            <tr><td><b>Reef（美）</b></td><td>融资15亿美元、330台拖车</td><td>单点日销&lt;500美元；监管安全灾难</td><td>单点盈利后才复制；不碰灰区证照</td></tr>
+            <tr><td><b>Kitchen United（美）</b></td><td>融资1.75亿美元</td><td>"可持续模式"被证伪</td><td>选址按配送半径需求密度</td></tr>
+            <tr><td><b>Butler（美）</b></td><td>5000万美元、408家酒店</td><td>每店日10-20单，密度撑不起固定成本</td><td>密度优先；多后厨峰值互备分流</td></tr>
+            <tr><td><b>CloudKitchens（美）</b></td><td>估值150亿美元</td><td>"餐饮版WeWork"：收租不管商户死活</td><td>不做二房东；与后厨方按单分成</td></tr>
+            <tr><td><b>熊猫星厨/吉刻/黄小递</b></td><td>熊猫星厨C轮5000万美元</td><td>二房东模式+证照问题+商户高流失</td><td>轻资产但自持品牌与品控；独立办证</td></tr>
+            <tr><td><b>纯外卖品牌一代</b></td><td>笨熊造饭等获多轮融资</td><td>无品牌、复购依赖付费流量</td><td>师傅IP+私域App沉淀自有复购</td></tr>
+            <tr><td><b>全聚德小鸭哥</b></td><td>老字号背书</td><td>仪式感无品牌支撑，成本压垮UE</td><td>仪式感只做放大器，成本占比≤5%</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>战略排序强约束：</b>效率层（半成品、多后厨、预订制）决定能否活到盈亏平衡，品牌层（师傅IP、开箱仪式）决定能否活过平台流量退坡。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">3.4 竞争定位图</div>
+    <p class="hl">"高人格×高体验"的右上象限在外卖场景没有任何在位者——这是组织能力错配造成的结构性空白，不是被集体否决的选项。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>坐标系：</b>横轴"供给人格化程度"（机器人/配方IP→真人师傅IP），纵轴"交付体验溢价"（功能包装→仪式感开箱）。巨头全挤左下角；大董占"高体验、低人格"但238元客单无法日常化；费大厨占"高人格、中体验"但拒绝外卖。</li>
+          <li><b>为什么是机会：</b>平台无法标准化采购真人手艺与人设（京东只能10亿买断配方），高端餐饮无法承受外卖价格带——成因是结构性空白。</li>
+          <li><b>每块砖都被单独验证过：</b>海选参与感（6.6万份报名）、半成品+现炒（日本三十年+中国卫星店）、仪式感溢价（大董对照组）、私域复购（达美乐自有渠道约50%）。</li>
+          <li><b>拼了一半的玩家都死在不完整：</b>云厨房有效率无品牌、小鸭哥有仪式无人格、纯外卖品牌有流量无资产——拆开每层都有巨头更强，合在一起没人能做，<b>组合本身就是壁垒</b>。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第4章 ============ -->
+<section class="ch reveal" id="ch4">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 04</span>
+    <h2>商业模式与产品体系</h2>
+    <p class="ch-sum">本章一句话：<b>把七项原始构想升级为可投资、可落地的完整系统——壁垒在系统级组装，合规架构是设计前置约束。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">4.1 产品体系：菜单工程与SKU策略</div>
+    <p class="hl">20-30个标准化SKU叠加"每周师傅特炒"，用菜单收敛换需求预测精度——SKU策略是本模式的第一工程问题，菜单膨胀超40个SKU即触发运营红线。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>层级</th><th>SKU数量</th><th>功能定位</th><th>更新频率</th><th>对标依据</th></tr></thead>
+          <tbody>
+            <tr><td><b>常驻基础层</b></td><td>20-30个</td><td>贡献80%以上单量，全标准化</td><td>季度评估、末位淘汰</td><td>费大厨30余道菜全国复制</td></tr>
+            <tr><td><b>师傅特炒层</b></td><td>每周1-3款</td><td>打榜师傅招牌菜，内容传播与尝新</td><td>每周轮换</td><td>七鲜"菜品合伙人"千道菜池</td></tr>
+            <tr><td><b>季节/测试层</b></td><td>3-5个</td><td>新品灰度测试，达标晋级</td><td>月度滚动</td><td>玉子屋"日替わり"收敛逻辑</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li><b>准入与淘汰机制：</b>测试层须"单店日均≥15单且复购率高于均值"方可晋级，常驻层连续四周垫底强制下架——报废率主动权握在供给侧。师傅特炒层一鱼三吃：作品展示位、菜单新鲜感来源、未来分成计价单位。</li>
+          <li><b>半成品便当化三件套（4.1.2）：</b>克重份装净菜+复合调味包（一袋成菜）+现炒SOP卡（投料顺序、秒级节点、出锅标准），用物料标准化锁死出品一致性——"食材标准化=出品一致化"的工程实现。</li>
+          <li><b>全链路损耗账：</b>毛菜单价低约30%但隐含每店1-2名切配工与15-20%损耗，央厨净菜可压至5%以内；起步期第三方净菜双供应商制，<b>不自建央厨</b>（乡村基关停央厨转全现炒后成本反升4600万元）。</li>
+          <li><b>供应商公示升级为获客资产：</b>对标老乡鸡公示246家供应商联系方式，上线即公示全部供应商名单。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">4.2 体验设计：开箱仪式感系统</div>
+    <p class="hl">开箱是外卖品牌唯一100%触达用户的物理界面：四层结构全套升级增量约1.5-2元/单、控制在售价5%以内，每一件都承担"合规+品牌"双重职能。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>层级</th><th>内容</th><th>增量成本</th><th>功能与感知逻辑</th></tr></thead>
+          <tbody>
+            <tr><td><b>① 封签/腰封</b></td><td>食安封签与品牌腰封合一</td><td>约0.1-0.2元</td><td>2026年6月起封签强制、无封签可拒收；"强粘易撕破"构成开箱第一个仪式节点</td></tr>
+            <tr><td><b>② 分层餐盒</b></td><td>主菜/米饭/汤品分层、汤面分离</td><td>较单层盒高30-50%</td><td>"汤洒面坨"是差评与复购流失隐形杀手；1-2条差评可使稳定单量下降10-20%</td></tr>
+            <tr><td><b>③ 品质餐具包</b></td><td>无毛刺竹筷、加厚勺、纸巾</td><td>约0.2-0.4元</td><td>劣质餐具是消费者高频吐槽点</td></tr>
+            <tr><td><b>④ 配件包</b></td><td>一次性桌布、湿巾、感谢卡</td><td>约0.4-0.8元</td><td>海底捞/西贝已验证"低成本高感知"；批量价通常低于0.5元</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li><b>制度性证据：</b>美团2025年新评分体系已把"包装满意度+门店复购率"纳入餐品质量分排名因子——包装投入直接影响平台流量分配。</li>
+          <li><b>配件即私域触点（4.2.2）：</b>感谢卡印小程序码、湿巾印师傅打榜入口——把0.5元物料变成复购与内容双入口；桌布是感知杠杆最高的单品。</li>
+          <li><b>边界：</b>1.5-2元/单定位"得体"而非"奢华"，避免过度包装反感；仪式感是放大器而非救命稻草（小鸭哥 vs 大董对照）。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">4.3 生产系统：标准化现炒工作站</div>
+    <p class="hl">用多台小锅并发模拟大锅产能比真正的大锅更能保口感：首店全人工验证口味与SOP、第2店起导入机器人，直播是预埋进工作站的原生基建。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="figscroll">
+          <svg width="980" height="240" viewBox="0 0 980 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="锅气计划全链路生产流程图">
+            <defs>
+              <marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5b8cff"/></marker>
+            </defs>
+            <text x="490" y="24" text-anchor="middle" fill="#e8edf5" font-size="15" font-weight="800">全链路生产流程：从净菜到错峰交付</text>
+            <!-- nodes y=48 h=64 -->
+            <g font-size="11.5">
+              <rect x="10" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.5"/>
+              <text x="69" y="74" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12.5">净菜直采切配</text>
+              <text x="69" y="94" text-anchor="middle" fill="#8fa0b8">双供应商制</text>
+              <text x="69" y="107" text-anchor="middle" fill="#8fa0b8">克重误差≤±5%</text>
+              <rect x="146" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.5"/>
+              <text x="205" y="74" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12.5">冷链日配</text>
+              <text x="205" y="94" text-anchor="middle" fill="#8fa0b8">6:00-7:00到店验温</text>
+              <text x="205" y="107" text-anchor="middle" fill="#8fa0b8">现炒不隔夜</text>
+              <rect x="282" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.5"/>
+              <text x="341" y="74" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12.5">半成品便当份装</text>
+              <text x="341" y="94" text-anchor="middle" fill="#8fa0b8">净菜+调味包+SOP卡</text>
+              <text x="341" y="107" text-anchor="middle" fill="#8fa0b8">三件套按单组合</text>
+              <rect x="418" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#9d6bff" stroke-width="2"/>
+              <text x="477" y="74" text-anchor="middle" fill="#b790ff" font-weight="800" font-size="12.5">现炒工作站</text>
+              <text x="477" y="94" text-anchor="middle" fill="#8fa0b8">4-6工位小锅鲜炒</text>
+              <text x="477" y="107" text-anchor="middle" fill="#f0b45b">📹 直播机位预埋</text>
+              <rect x="554" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="613" y="74" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12.5">四层包装</text>
+              <text x="613" y="94" text-anchor="middle" fill="#8fa0b8">封签腰封合一</text>
+              <text x="613" y="107" text-anchor="middle" fill="#8fa0b8">+1.5-2元/单</text>
+              <rect x="690" y="48" width="118" height="64" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="749" y="74" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12.5">平台配送</text>
+              <text x="749" y="94" text-anchor="middle" fill="#8fa0b8">永不自建骑手</text>
+              <text x="749" y="107" text-anchor="middle" fill="#8fa0b8">3公里配送圈</text>
+              <rect x="826" y="48" width="140" height="64" rx="10" fill="#141c2b" stroke="url(#g1a)" stroke-width="1.8"/>
+              <text x="896" y="74" text-anchor="middle" fill="#e8edf5" font-weight="800" font-size="12.5">错峰定价交付</text>
+              <text x="896" y="94" text-anchor="middle" fill="#8fa0b8">早鸟立减1-3元</text>
+              <text x="896" y="107" text-anchor="middle" fill="#8fa0b8">预约数据回喂以销定配</text>
+              <line x1="128" y1="80" x2="144" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+              <line x1="264" y1="80" x2="280" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+              <line x1="400" y1="80" x2="416" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+              <line x1="536" y1="80" x2="552" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+              <line x1="672" y1="80" x2="688" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+              <line x1="808" y1="80" x2="824" y2="80" stroke="#5b8cff" stroke-width="2" marker-end="url(#ar2)"/>
+            </g>
+            <!-- feedback loop -->
+            <path d="M896,112 L896,150 L69,150 L69,116" fill="none" stroke="#f0b45b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ar2)"/>
+            <text x="490" y="144" text-anchor="middle" fill="#f0b45b" font-size="11">订单/预约数据回流 → 需求预测 → 以销定配（报废率&lt;3%红线）</text>
+            <!-- capacity annotation -->
+            <rect x="418" y="168" width="272" height="56" rx="10" fill="#101623" stroke="#22304a"/>
+            <text x="554" y="190" text-anchor="middle" fill="#c6d1e2" font-size="11">产能：单工位15-25份/小时，4工位并发80-100份/小时</text>
+            <text x="554" y="208" text-anchor="middle" fill="#c6d1e2" font-size="11">覆盖午高峰峰值76单/小时（日均500单情景）并留20%冗余</text>
+          </svg>
+        </div>
+        <p class="figcap"><b>图2 · 全链路生产流程：</b>"炒"之外的一切工序工业化，门店只保留最后一道炒制；订单与预约数据回流驱动以销定配，把报废率锁死在3%以内。</p>
+        <ul>
+          <li><b>锅气工程结论（4.3.1）：</b>锅气=美拉德+焦糖化反应，条件是"急剧且精准的温度跃升"；大滚筒闷炒"几乎无锅气"，小锅鲜炒每次一份、独立控温，以"一机多锅、一人多机"叠加产能。大份量场景走"小批量、多批次、分段炒制"。</li>
+          <li><b>工作站模块：</b>参照浣熊食堂"20㎡档口+2-4人、前期投入5-6万元"成熟样板，每工位预埋直播机位、380V动力电与排烟，成为可跨店复制的固定资产单元。</li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>方案</th><th>设备投入</th><th>人力配置</th><th>出品一致性</th><th>结论</th></tr></thead>
+          <tbody>
+            <tr><td><b>全人工</b></td><td>约0</td><td>师傅月薪7000-8000元，2-3人月人力1.2-2.1万</td><td>依赖个人，波动大</td><td><b>首店起步方案</b></td></tr>
+            <tr><td><b>半自动</b></td><td>1-3万级</td><td>仅自动加4种液体调料，一人盯3-4口锅</td><td>中</td><td>解放手臂解放不了编制，不推荐</td></tr>
+            <tr><td><b>全自动小锅机器人</b></td><td>3-5万/台</td><td>1人管2-3台（8-12灶头），人力降50-60%</td><td>高（还原度90%+待验证）</td><td><b>第2店起逐步导入</b>，回本6-12个月</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li><b>机器人采用条件（4.3.2）：</b>日均稳定超250单、常驻SKU六成以上完成机器菜谱调试、380V电力冗余（七鲜首店曾因断电倒掉半成品、午间约30单延迟）；以盲测通过为准，按2026年11月实施的国标《商用智能炒菜机》参数验收。</li>
+          <li><b>直播三重身份（4.3.3）：</b>合规项（视频保存≥14日）+信任项（开通直播商家复购率最高+12%、投诉率-23%、订单量+5%）+内容项（打榜素材）。成本80-270元/路，美团补贴池已增至5亿元。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+  <div class="sec">
+    <div class="tag">4.4 人员与内容系统：师傅海选打榜</div>
+    <p class="hl">师傅海选的本质不是招聘渠道，而是一条持续运转的内容生产线——用MCN逻辑做餐饮人力供给，3-5个并行IP矩阵对冲出走与流量半衰期。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="figscroll">
+          <svg width="720" height="440" viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="师傅海选打榜循环图">
+            <defs>
+              <marker id="ar3" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#f0b45b"/></marker>
+            </defs>
+            <text x="360" y="28" text-anchor="middle" fill="#e8edf5" font-size="15" font-weight="800">师傅海选打榜循环（季度赛制）</text>
+            <text x="360" y="47" text-anchor="middle" fill="#8fa0b8" font-size="11">供给池：全国地摊从业者约3000-4000万 · 参与感验证：七鲜6.6万份报名/周</text>
+            <!-- center -->
+            <circle cx="360" cy="245" r="62" fill="#141c2b" stroke="#9d6bff" stroke-width="1.8"/>
+            <text x="360" y="238" text-anchor="middle" fill="#b790ff" font-size="12.5" font-weight="800">内容生产线</text>
+            <text x="360" y="256" text-anchor="middle" fill="#8fa0b8" font-size="10.5">MCN逻辑 · 账号归平台</text>
+            <!-- circular arrows (radius 150) -->
+            <path d="M 470,128 A 150,150 0 0 1 505,206" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <path d="M 505,284 A 150,150 0 0 1 470,362" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <path d="M 402,392 A 150,150 0 0 1 318,392" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <path d="M 250,362 A 150,150 0 0 1 215,284" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <path d="M 215,206 A 150,150 0 0 1 250,128" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <path d="M 318,98 A 150,150 0 0 1 402,98" fill="none" stroke="#f0b45b" stroke-width="2" marker-end="url(#ar3)"/>
+            <!-- nodes -->
+            <g font-size="11">
+              <rect x="285" y="62" width="150" height="46" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.5"/>
+              <text x="360" y="82" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12">① 海选报名</text>
+              <text x="360" y="99" text-anchor="middle" fill="#8fa0b8">短视频投稿即内容弹药</text>
+              <rect x="478" y="128" width="180" height="46" rx="10" fill="#141c2b" stroke="#5b8cff" stroke-width="1.5"/>
+              <text x="568" y="148" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12">② 技能考核</text>
+              <text x="568" y="165" text-anchor="middle" fill="#8fa0b8">克重误差/出锅时间/盲测</text>
+              <rect x="478" y="316" width="180" height="46" rx="10" fill="#141c2b" stroke="#9d6bff" stroke-width="1.5"/>
+              <text x="568" y="336" text-anchor="middle" fill="#b790ff" font-weight="800" font-size="12">③ 入围炒制常驻SKU</text>
+              <text x="568" y="353" text-anchor="middle" fill="#8fa0b8">轮值直播 · 真人真摊核验</text>
+              <rect x="285" y="382" width="150" height="46" rx="10" fill="#141c2b" stroke="#9d6bff" stroke-width="1.5"/>
+              <text x="360" y="402" text-anchor="middle" fill="#b790ff" font-weight="800" font-size="12">④ 用户打榜</text>
+              <text x="360" y="419" text-anchor="middle" fill="#8fa0b8">去氪金：绑评价/复购/晒单</text>
+              <rect x="62" y="316" width="180" height="46" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="152" y="336" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12">⑤ 分成激励</text>
+              <text x="152" y="353" text-anchor="middle" fill="#8fa0b8">特炒署名位+销量阶梯分成</text>
+              <rect x="62" y="128" width="180" height="46" rx="10" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="152" y="148" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12">⑥ 季度再海选</text>
+              <text x="152" y="165" text-anchor="middle" fill="#8fa0b8">对抗IP半衰期6-24个月</text>
+            </g>
+          </svg>
+        </div>
+        <p class="figcap"><b>图3 · 师傅海选打榜循环：</b>报名素材即内容、考核移植自费大厨考核法、打榜"去氪金化"只绑真实消费行为，季度再海选持续补充新面孔。</p>
+        <ul>
+          <li><b>机制四层（4.4.1）：</b>季度赛制；技能关按克重误差、出锅时间、口味盲测打分（方法移植自费大厨"切肉误差1毫米、煸油精确到秒"）；优胜者获"本周特炒"署名位与流量包；契约层签分成协议+竞业条款+账号资产归属条款。</li>
+          <li><b>打榜必须"去氪金化"：</b>"倒奶事件"后监管明确禁止花钱买投票——投票权只绑定真实评价、复购、晒单；榜单参照黑珍珠评级流量逻辑（上榜餐厅线上流量平均+97%）。</li>
+          <li><b>矩阵结构（4.4.2）：</b>素人IP流量半衰期6-24个月（拉面哥单场带货从1万单降至几十单）；隋坡新号两周涨粉百万、李子柒之争致公司失去投资——同时孵化3-5个人设差异化IP，账号注册主体为平台公司；"真人真摊"核验公示留证，不碰假人设。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">4.5 私域App与AI点餐</div>
+    <p class="hl">私域App定位"会员与复购工具"：做美团给不了的功能、不做美团的替代品——交易闭环留在平台，配送永不自建。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>已验证路径：</b>瑞幸180万私域用户日贡献3.5万杯、入群后月消费频次+30%；喜茶自有渠道贡献率60-65%。但美团"小美"已实现一句话点餐——私域必须在"小美"做不到处建立纵深。</li>
+          <li><b>五项核心功能：</b>①截图地址一键导入（用户主动上传+弹窗授权，不静默读剪贴板）；②AI问询点餐（20-30个SKU下推荐准确率天然优于百万SKU平台助手）；③忌口档案默认勾选（供给端可100%执行，平台做不到的闭环）；④多人点餐忌口聚合（明确空白点）；⑤短视频关键词推荐修正为"用户主动投喂"（个保法第23条）。</li>
+          <li><b>两条红线（4.5.2）：</b>不碰飞单红线（2026年4月总局对7家平台罚没35.97亿元）；配送永不自建（达美乐自建骑手致人力成本占收入43.7%、三年连亏1.8/2.7/4.7亿元）——全程使用平台运力。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">4.6 配送与选址网络</div>
+    <p class="hl">宁要蜂窝内的一公里密度，不要全市的均匀覆盖；错峰只做"闲时立减"、永不"高峰加价"——同一机制，"涨"触发抵制、"降"被欢迎。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="figscroll">
+          <svg width="720" height="330" viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="蜂窝选址示意图">
+            <defs>
+              <linearGradient id="g6a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#9d6bff"/></linearGradient>
+              <marker id="ar6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#8fa0b8"/></marker>
+            </defs>
+            <text x="360" y="24" text-anchor="middle" fill="#e8edf5" font-size="15" font-weight="800">蜂窝选址：3公里配送圈 × 4店互备</text>
+            <!-- delivery circle 3km -->
+            <circle cx="330" cy="180" r="130" fill="rgba(91,140,255,.06)" stroke="#5b8cff" stroke-width="1.6" stroke-dasharray="7 5"/>
+            <text x="330" y="66" text-anchor="middle" fill="#5b8cff" font-size="11.5">3公里配送圈（30分钟达）</text>
+            <!-- store hexagons -->
+            <g font-size="11">
+              <polygon points="330,158 349,169 349,191 330,202 311,191 311,169" fill="url(#g6a)" stroke="#e8edf5" stroke-width="1.2"/>
+              <text x="330" y="185" text-anchor="middle" fill="#0a0e15" font-weight="800">A店</text>
+              <polygon points="248,210 267,221 267,243 248,254 229,243 229,221" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="248" y="237" text-anchor="middle" fill="#f0b45b" font-weight="800">B店</text>
+              <polygon points="412,210 431,221 431,243 412,254 393,243 393,221" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="412" y="237" text-anchor="middle" fill="#f0b45b" font-weight="800">C店</text>
+              <polygon points="330,262 349,273 349,295 330,306 311,295 311,273" fill="#141c2b" stroke="#f0b45b" stroke-width="1.5"/>
+              <text x="330" y="289" text-anchor="middle" fill="#f0b45b" font-weight="800">D店</text>
+            </g>
+            <!-- 1km lines -->
+            <line x1="267" y1="221" x2="311" y2="196" stroke="#8fa0b8" stroke-width="1.2" marker-end="url(#ar6)"/>
+            <line x1="393" y1="221" x2="349" y2="196" stroke="#8fa0b8" stroke-width="1.2" marker-end="url(#ar6)"/>
+            <line x1="330" y1="262" x2="330" y2="206" stroke="#8fa0b8" stroke-width="1.2" marker-end="url(#ar6)"/>
+            <text x="330" y="132" text-anchor="middle" fill="#8fa0b8" font-size="10.5">店间距≤1公里 · 峰值互备分流</text>
+            <!-- legend -->
+            <rect x="510" y="80" width="196" height="196" rx="12" fill="#101623" stroke="#22304a"/>
+            <text x="524" y="104" fill="#e8edf5" font-size="12" font-weight="800">密度逻辑（南城香标杆）</text>
+            <text x="524" y="126" fill="#8fa0b8" font-size="10.5">· 门店间隔≤1公里支撑一日两配</text>
+            <text x="524" y="144" fill="#8fa0b8" font-size="10.5">· 食材成本压至27%（行业35%）</text>
+            <text x="524" y="162" fill="#8fa0b8" font-size="10.5">· 坪效达同行2.5倍</text>
+            <text x="524" y="186" fill="#f0b45b" font-size="11" font-weight="800">布点单元</text>
+            <text x="524" y="206" fill="#8fa0b8" font-size="10.5">写字楼+成熟社区复合网格</text>
+            <text x="524" y="224" fill="#8fa0b8" font-size="10.5">单城首期沿走廊布3-5店</text>
+            <text x="524" y="248" fill="#f0b45b" font-size="11" font-weight="800">合规硬约束</text>
+            <text x="524" y="266" fill="#8fa0b8" font-size="10.5">一地一证 · 档口物理分割独立办证</text>
+            <text x="330" y="322" text-anchor="middle" fill="#8fa0b8" font-size="10.5">半径缩短 ⇒ 30分钟达+到手温度 ⇒ 差评率与复购的直接改善</text>
+          </svg>
+        </div>
+        <p class="figcap"><b>图6 · 蜂窝选址示意：</b>单城首期沿"写字楼+成熟社区"走廊布3-5店成蜂窝，店间距1公里级，相邻店峰值互备分流。</p>
+        <div class="twrap"><table>
+          <thead><tr><th>后厨获取路径</th><th>投入与周期</th><th>证照结构</th><th>适用阶段</th></tr></thead>
+          <tbody>
+            <tr><td><b>自建档口（卫星店型）</b></td><td>参照浣熊档口前期5-6万元+设备</td><td>独立办证，权责最清晰</td><td>主力路径（蜂窝加密期）</td></tr>
+            <tr><td><b>租用餐厅后厨分割档口</b></td><td>租金低，改造周期短，30-45天开张</td><td>物理分割后独立办证（一档口一证）</td><td>过渡期路径（首店验证）</td></tr>
+            <tr><td><b>入驻持证共享厨房</b></td><td>拎包入驻，入场费约2万+月租1-1.5万</td><td>运营方统一办齐证照，7-15天开张</td><td>跨城快速铺城市用</td></tr>
+          </tbody>
+        </table></div>
+        <p class="tcap">绝对禁止项：不挂靠共用证照、不做分时共享、不开一证多店——新规下已有刑事立案与高额处罚先例。</p>
+        <div class="figscroll">
+          <svg width="860" height="330" viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="错峰定价梯度示意图">
+            <defs>
+              <linearGradient id="g4b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#9d6bff"/></linearGradient>
+            </defs>
+            <text x="430" y="24" text-anchor="middle" fill="#e8edf5" font-size="15" font-weight="800">错峰定价梯度：订单密度 × 闲时立减</text>
+            <text x="80" y="43" fill="#8fa0b8" font-size="11">只做闲时立减、永不高峰加价 · 让利幅度＜闲时订单边际贡献</text>
+            <!-- axes -->
+            <line x1="80" y1="260" x2="800" y2="260" stroke="#22304a" stroke-width="1.5"/>
+            <!-- bars: 10点 5.9%, 11点 ~9%, 12点 15.2%, 13点 ~7% ; scale 12px/% -->
+            <g font-size="11">
+              <rect x="130" y="189" width="90" height="71" rx="6" fill="url(#g4b)" opacity="0.85"/>
+              <text x="175" y="180" text-anchor="middle" fill="#e8edf5" font-weight="800">5.9%</text>
+              <rect x="290" y="152" width="90" height="108" rx="6" fill="url(#g4b)" opacity="0.85"/>
+              <text x="335" y="143" text-anchor="middle" fill="#e8edf5" font-weight="800">≈9%</text>
+              <rect x="450" y="78" width="90" height="182" rx="6" fill="#f0b45b"/>
+              <text x="495" y="69" text-anchor="middle" fill="#f0b45b" font-weight="800">15.2% 峰值</text>
+              <rect x="610" y="176" width="90" height="84" rx="6" fill="url(#g4b)" opacity="0.85"/>
+              <text x="655" y="167" text-anchor="middle" fill="#e8edf5" font-weight="800">≈7%</text>
+              <!-- time labels -->
+              <text x="175" y="280" text-anchor="middle" fill="#c6d1e2" font-weight="800" font-size="12">10:30前下单</text>
+              <text x="335" y="280" text-anchor="middle" fill="#c6d1e2" font-weight="800" font-size="12">11:00 时段</text>
+              <text x="495" y="280" text-anchor="middle" fill="#c6d1e2" font-weight="800" font-size="12">12:00 正价锚</text>
+              <text x="655" y="280" text-anchor="middle" fill="#c6d1e2" font-weight="800" font-size="12">13:00后</text>
+              <!-- price badges -->
+              <rect x="132" y="88" width="86" height="30" rx="15" fill="#141c2b" stroke="#f0b45b" stroke-width="1.4"/>
+              <text x="175" y="108" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12">立减2-3元</text>
+              <line x1="175" y1="118" x2="175" y2="185" stroke="#f0b45b" stroke-width="1" stroke-dasharray="3 3"/>
+              <rect x="452" y="30" width="86" height="30" rx="15" fill="#141c2b" stroke="#22304a"/>
+              <text x="495" y="50" text-anchor="middle" fill="#e8edf5" font-weight="800" font-size="12">正价 31.5元</text>
+              <rect x="612" y="104" width="86" height="30" rx="15" fill="#141c2b" stroke="#f0b45b" stroke-width="1.4"/>
+              <text x="655" y="124" text-anchor="middle" fill="#f0b45b" font-weight="800" font-size="12">立减2元</text>
+              <line x1="655" y1="134" x2="655" y2="172" stroke="#f0b45b" stroke-width="1" stroke-dasharray="3 3"/>
+            </g>
+            <!-- 2.6x annotation -->
+            <path d="M175,196 C 250,120 380,100 448,110" fill="none" stroke="#5b8cff" stroke-width="1.4" stroke-dasharray="5 4"/>
+            <rect x="238" y="86" width="130" height="26" rx="13" fill="#101623" stroke="#5b8cff"/>
+            <text x="303" y="103" text-anchor="middle" fill="#5b8cff" font-size="11" font-weight="800">峰谷密度差 2.6×</text>
+            <text x="430" y="315" text-anchor="middle" fill="#8fa0b8" font-size="11">梯度2-3档、幅度1-3元 · 早鸟立减绑定预约单（10:30前预约12:00送达）⇒ 需求预测基础设施</text>
+          </svg>
+        </div>
+        <p class="figcap"><b>图4 · 错峰定价梯度：</b>只做"闲时立减"叙事（Wendy's"高峰涨价"遭全美抵制的教训）；梯度表公示在菜单页，不做连续动态调价、不做千人千价。</p>
+        <ul>
+          <li><b>经济学基础：</b>设备与运力按峰值配置，把峰顶5-10%需求前移一小时的边际成本趋近于零；海底捞69折、星巴克Happy Hour均以时段绑定折扣长期运行不伤价格体系。</li>
+          <li><b>绑定空白机会：</b>平台预约单目前没有任何价格激励——早鸟立减与预约单绑定后，预约数据直接喂给以销定配系统，错峰定价同时成为报废率控制工具。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第5章 ============ -->
+<section class="ch reveal" id="ch5">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 05</span>
+    <h2>模式补强：原始方案未覆盖的八个模块</h2>
+    <p class="ch-sum">本章一句话：<b>先把损耗和信任的暗线堵死，再谈增长曲线——三个P0模块全是防守型，守住复购、信任与毛利三条生命线。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.0 八模块总览</div>
+    <p class="hl">这不是"八件都要做的事"，而是一张分阶段的风险-收益地图：P0防守（订阅/食安/报废）→P1结构（分成/团餐）→P2依赖前置条件（夜间档/环保试点）。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开总览表</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>模块</th><th>解决什么问题</th><th>对标案例</th><th>关键指标</th><th>优先级</th></tr></thead>
+          <tbody>
+            <tr><td><b>5.1 会员与订阅制</b></td><td>复购无锁定、需求随机波动</td><td>Pret月付25镑、瑞幸私域日贡献3.5万杯</td><td>会员月复购频次、次卡核销率≥70%</td><td><b>P0</b></td></tr>
+            <tr><td><b>5.2 食安信任工程</b></td><td>外卖信任赤字、单次事故致命</td><td>老乡鸡246家供应商全公示+59期自查报告</td><td>公示覆盖率100%、投诉率较行业低23%</td><td><b>P0</b></td></tr>
+            <tr><td><b>5.3 报废率控制体系</b></td><td>短保损耗侵蚀3-8个点净利</td><td>玉子屋废弃率&lt;0.1%</td><td>报废率行业5%-20%→目标&lt;3%</td><td><b>P0</b></td></tr>
+            <tr><td><b>5.4 师傅合伙人分成</b></td><td>师傅激励不相容、IP出走</td><td>七鲜菜品合伙人100万/菜保底</td><td>师傅年留存率≥80%、特炒分成占比</td><td>P1</td></tr>
+            <tr><td><b>5.5 B端团餐第二曲线</b></td><td>写字楼波谷产能闲置</td><td>玉子屋职场团餐、拼好饭配送7元→3.7元</td><td>B端单量占比15-20%</td><td>P1</td></tr>
+            <tr><td><b>5.6 数据资产与菜单迭代</b></td><td>菜单凭感觉、迭代无依据</td><td>玉子屋剩菜反馈预测次日订单</td><td>周度调优频次、新品晋级率</td><td>P1</td></tr>
+            <tr><td><b>5.7 夜间档产能复用</b></td><td>晚间产能与设备闲置</td><td>海底捞夜宵段核销占29%</td><td>夜间产能利用率、夜间SKU毛利率</td><td>P2</td></tr>
+            <tr><td><b>5.8 环保包装合规前瞻</b></td><td>限塑令替换成本突击</td><td>喜茶吸管替换年增成本2000万元</td><td>包装合规率100%、单均≤5%售价</td><td>P0+P2</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.1 会员与订阅制</div>
+    <p class="hl">订阅制的真正价值不是预收现金，而是把需求从"随机事件"变成"计划数据"——它同时是复购工具和报废率预测工具。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>三层轻订阅（不做月付重订阅）：</b>储值次卡（充10送1，锁定频次不锁定菜单）；周度预约卡（预约本周三天午餐并锁定错峰时段，价格梯度即订阅折扣，数据进入以销定配）；师傅粉丝卡（新特炒优先试吃权换评价数据，为打榜供给"去氪金化"真实投票）。</li>
+        <li><b>依据：</b>Pret月付25镑、Panera首年获数百万新客；瑞幸入群后月消费频次+30%；中国用户对重订阅有抵触基因——"不愿被绑定"。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.2 食安信任工程</div>
+    <p class="hl">对外卖品牌，食安不是质量议题而是生存议题——透明化是唯一被验证的对冲工具，且必须在被质疑之前建成。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>代价已被反复定价：</b>西贝亏超5亿关店102家、杨铭宇缩水超3000家、华莱士退市。</li>
+        <li><b>三层结构：</b>供应商公示（含联系电话、批次检测报告，"要求全部能打通"）；月度自查报告（对标老乡鸡59期《自查自纠报告》）；食品安全责任险（保单信息公示在App与包装卡）。</li>
+        <li><b>铁律：</b>公示数据必须经得起卧底与直播检验——被动自证不如主动公示，话术与实际的任何缝隙都是亿级风险敞口。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.3 报废率控制体系</div>
+    <p class="hl">短保现炒最大的隐性成本不在采购价而在报废——行业基准5%-20%的暗线足以吞掉薄利模型的全部净利，目标写死为&lt;3%。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>天花板：</b>玉子屋废弃率&lt;0.1%（单一菜单+预订数据）；中间方案同样存在——预售制把烘焙损耗从15%降至3%，按需定产从5%降至1.2%。</li>
+        <li><b>三个数据入口：</b>周度预约卡（T-3至T-1确定性订单）、早鸟预约单（T-1午市基准量）、私域历史订单曲线（时段级预测）。</li>
+        <li><b>三道处置闸：</b>以销定配（按预测下限下单滚动补单）、批次效期管理（临期倒计时到小时）、临期出清（员工餐或折扣SKU）。SKU收敛是该目标成立的前提。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.4 师傅合伙人分成结构</div>
+    <p class="hl">100万保底是京东式资本竞价，初创照搬会被保底负债压垮——改良为"低保底+高分成弹性+师徒分成+荣誉前置"，把"买断配方IP"改为"分享IP成长"。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>分成与特炒SKU销量阶梯挂钩，随IP成长动态调整，规避MCN"机构占大头、后期必失稳"的宿命。</li>
+        <li><b>师徒分成：</b>徒弟上岗炒制其特炒SKU时师傅持续抽培养分成——个人手艺裂变为组织资产，对冲6-24个月流量半衰期。</li>
+        <li>边界不变：账号与配方数据归平台公司，师傅获分成与署名但不持有账号——分成结构激励"留下"而非合同捆绑"困住"。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.5 B端第二曲线：写字楼团餐</div>
+    <p class="hl">B端团餐不是副业，而是与错峰产能天然咬合的第二曲线——蜂窝选址+预订制恰好补上玉子屋模式在中国缺失的拼图。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>需求侧：</b>拼好饭验证"需求集约→配送成本7元→3.7元、配送时间降46%"；企业订餐平台支持一次预订未来一整周。供给侧结构性空白：中国团餐百强集中度仅5%（日韩欧美60-80%）。</li>
+        <li><b>落地：</b>蜂窝内3店成型后，向1公里半径写字楼推10份起订、T-1日17点锁单、11:00前批量出餐。一举三得：填平10-11点产能低谷、确定性订单喂给报废率体系、匹配写字楼选址的收入结构。</li>
+        <li><b>财务：</b>B端目标单量占比15-20%，以集约为由让利3-5%而非打价格战——甜头出自履约节约。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.6 数据资产与菜单迭代闭环</div>
+    <p class="hl">把菜单变成一台由数据驱动的周度迭代机器——口味偏好、时段需求曲线、热点转化率的累积，构成竞品无法靠抄菜单复制的壁垒。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>方法论源头：</b>玉子屋回收餐盒检查剩菜反馈次日预测——剩菜数据即最真实的菜单评分。本模式替代数据源：外卖评价关键词、AI问询对话记录、忌口档案聚合分布、"本周短视频热菜"标签。</li>
+        <li><b>周度节奏：</b>周一汇总数据→周三选1-2个候选进测试层→灰度两周按"日均≥15单且复购率高于均值"晋级或淘汰→常驻层末位强制下架。菜单预告制同步上线。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.7 夜间档与产能复用</div>
+    <p class="hl">设备与租金按峰值配置、谷值空转——夜间档不是硬撑时长，而是"产能复用+SKU延展"：20-22点上线3-5个夜间专属SKU，几乎零新增设备投入。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>订单双驼峰：午11-12点占15.2%、晚18-19点占9.2%、夜宵约10%；海底捞折扣券夜宵段核销占29%。</li>
+        <li>炒锅类夜宵（炒饭、炒粉、小炒拼盘）复用现炒工作站与调味包体系；时段绑定独立SKU避免同一菜品分时变价的心理抵触。</li>
+        <li><b>启动条件前置写死：</b>单店UE连续两个月跑正、夜间档单独核算毛利、人力错峰排班不加编。轮值直播移至夜间档——内容流量与产能利用在同一闲置时段汇合。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">5.8 环保包装合规前瞻</div>
+    <p class="hl">包装环保不是情怀题，而是合规成本的时间分布题——被动等到强制替换时代价已被定价（喜茶仅吸管替换年增2000万元）。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>避开两个坑：</b>PLA伪降解（成本1.5-5.5倍、需工业堆肥、耐热仅50-70℃不适配现炒高温）；循环餐盒卫生心理障碍（须复用14-20次以上才有环境效益，校园试点"学生心理上排斥"）。</li>
+        <li><b>两步走：</b>当下以PP5为主材（5号标识合规底牌）+探索纸浆模塑低温件替代；循环餐盒只在B端团餐封闭场景试点（香港Foodpanda×WWF押金制做到96%回收率）。</li>
+        <li>环保叙事只做"可核实陈述"，不做"可降解"话术营销——夸大的环保宣称是负债而非资产。</li>
+      </ul></div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第6章 ============ -->
+<section class="ch reveal" id="ch6">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 06</span>
+    <h2>运营计划</h2>
+    <p class="ch-sum">本章一句话：<b>把食安信任工程与报废率控制从承诺变成每日动作——所有流程以"报废率&lt;3%、合规零瑕疵、出品零方差"为验收线。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">6.1 供应链运营</div>
+    <p class="hl">不自建央厨、不押单一供应商：用"双供应商（主力70%+备份30%）+五维准入标准"买确定性——"价格便宜"被剔除出准入条件。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>准入维度</th><th>硬性标准</th><th>验证方式</th><th>候选池代表</th></tr></thead>
+          <tbody>
+            <tr><td><b>冷链日配能力</b></td><td>一日一配起、蜂窝期一日两配，全程温控可查</td><td>试配30天测温抽查</td><td>蜀海（17个冷链物流中心）</td></tr>
+            <tr><td><b>克重份装定制</b></td><td>按SKU克重误差≤±5%份装、贴批次码</td><td>首批全检、此后抽检</td><td>千味央厨"模拟餐厅后厨"定制</td></tr>
+            <tr><td><b>检测与溯源开放</b></td><td>出厂检测报告随批提供、数据接口开放</td><td>合同条款+首批验证</td><td>七鲜供应商同池（正大、圣农等）</td></tr>
+            <tr><td><b>区域仓距离</b></td><td>覆盖蜂窝门店，应急补货≤2小时</td><td>模拟爆单补货演练</td><td>美菜/快驴区域仓</td></tr>
+            <tr><td><b>财务与合规稳定</b></td><td>存续≥3年、无重大食安处罚</td><td>企查查+监管公示核查</td><td>剔除有收缩/处罚前科者</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li><b>份额可流动：</b>每季度按准点率、克重合格率、批次检测合格率重议份额——供应商才有改进动机；首批名单上线即公示。</li>
+          <li><b>日配节奏（6.1.2）：</b>15:00汇总次日预约与历史数据生成配货单、17:00前发供应商；次日6:00-7:00冷链到店验温签收。对标日本便当业："装盘后4小时内食用"铁律落地为"出锅到封签≤30分钟、签收后建议2小时内食用"的腰封承诺；三区分离、温度每2小时记录；当日生鲜当日弃。反向警示：库迪因冷链未建成鲜食损耗超行业均值——不具备日配条件的商圈宁可不开店。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">6.2 食安与合规架构</div>
+    <p class="hl">证照是唯一"一票否决"事项：一地一证是硬约束，合规路径只有档口分割独立办证或入驻持证共享厨房两条——新规四项义务全部"超标准执行并做成获客资产"。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="minihead">开店证照决策树</div>
+        <ul>
+          <li>跨城快速落位？→ <b>是</b>：入驻持证共享厨房/浣熊食堂（入场费约2万+月租约1万/档口，7-15天开张）</li>
+          <li>→ <b>否</b>，商圈有可分割现成后厨？→ <b>有</b>：租用并物理分割、独立办证（复用水电排烟，30-45天）；→ <b>无</b>：自建20㎡标准档口（前期5-6万元，45-60天）</li>
+          <li>三条路径统一收口：开业前合规验收（一证一店+明厨亮灶+封签+溯源公示）；<b>禁止路径：共用证照/挂靠/分时共享/一证多店——行政处罚至刑事立案先例，一票否决。</b></li>
+        </ul>
+        <div class="twrap"><table>
+          <thead><tr><th>合规项</th><th>法规要求</th><th>本方案执行标准</th><th>单项成本</th></tr></thead>
+          <tbody>
+            <tr><td><b>一证一店</b></td><td>同一资质不得同平台开多店，招牌与实体一致</td><td>每店独立办证、网店招牌=实体招牌，无堂食加注标识</td><td>办证工本费千元级</td></tr>
+            <tr><td><b>明厨亮灶</b></td><td>监控覆盖关键环节，视频保存≥14日</td><td>4路GB/T28181摄像头覆盖切配-烹饪-消毒-打包，上线即申请平台打标</td><td>80-270元/路，可申领美团5亿补贴池</td></tr>
+            <tr><td><b>食安封签</b></td><td>一次性不可复原专用封签，无封签可拒收</td><td>封签与品牌腰封合一，每单必贴</td><td>约0.1-0.2元/单</td></tr>
+            <tr><td><b>溯源公示</b></td><td>鼓励公示（非强制）</td><td>全部供应商名单+批次溯源码上线即公示，季度更新</td><td>系统开发一次性投入</td></tr>
+          </tbody>
+        </table></div>
+        <p>四项合计单店增量不足千元/月，对价明确：接入明厨亮灶商户订单量+5%、食安投诉率-23%；溯源公示恰是差异化所在。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">6.3 单店运营SOP与组织</div>
+    <p class="hl">设计原点是被验证的物理模块"20㎡档口+2-4人、前期5-6万元"：五环单向动线+按峰值反推的产能+三层巡检，成本不足营收1.5%、对冲存亡级品控风险。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <ul>
+          <li><b>五环单向动线：</b>收货验温→冷藏暂存→开袋分装→4-6个炒工位→打包封签取餐。老乡鸡入驻浣熊后动线优化使拣货8分钟→3分钟、出餐效率+40%——对20㎡小店，动线即产能。</li>
+          <li><b>产能与编制：</b>4工位并发80-100份/小时覆盖峰值76单/小时并留20%冗余；"1+3+2"编制（店长1+师傅2-3+打包1-2），对应卫星店"人效3.5万元/月以上"标杆线。</li>
+          <li><b>三层巡检（6.3.2）：</b>日检（开市检查表+美团AI巡检识别未戴工帽等）、周检（区域督导不预告巡店、随机抽3单盲测）、月检（神秘顾客每店每月≥4次全程录像评分，与店长绩效、师傅打榜资格挂钩）+每月《自查自纠报告》。对冲MrBeast Burger式放任崩塌；加盟门店食安违规率32%、是直营的4.6倍——全直营+巡检把底数压向趋零。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 第7章 ============ -->
+<section class="ch reveal" id="ch7">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 07</span>
+    <h2>营销与增长计划</h2>
+    <p class="ch-sum">本章一句话：<b>不需要"买流量"——增长是一台三阶段接力引擎：海选赛事制造参与感 → 直播打榜转化为订单 → 会员AI点餐沉淀为习惯。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">7.1 冷启动：海选赛事即营销</div>
+    <p class="hl">第一笔营销预算不投给平台竞价，而投给一场"地摊师傅海选赛"——赛事本身就是内容，报名者就是第一批传播者。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>参与感红利已验证：</b>七鲜6.6万份报名/周；全国地摊从业者约3000-4000万、一线城市制度化松绑，天然携带稳就业与烟火气的传播性。</li>
+        <li><b>三个要点：</b>赛制绑定短视频（报名素材即内容弹药库）；人设按出圈公式筛选（低价锚点+现做+坚守+情绪价值，"炒得好"且"讲得出故事"）；真实性是生死线（从业经历背调并公示留证）。</li>
+        <li><b>首赛目标：</b>报名≥500人、短视频投稿≥300条、首店开业首月日均≥200单；赛事预算占全周期40%，投向奖金、制作与本地媒体而非流量采买。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">7.2 平台期：直播+打榜+包装自传播</div>
+    <p class="hl">把海选攒下的关注转化为可复购订单，三件武器按成本从低到高：后厨直播、去氪金化打榜、开箱晒图。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>直播：</b>开通后厨直播商家复购率最高+12%、投诉率-23%；大米先生单场后厨直播带动约1.1万单，"尝香聚"50-60%新客来自直播。机位已预埋进工作站，增量成本仅80-270元/路。</li>
+        <li><b>打榜：</b>黑珍珠上榜餐厅线上流量平均+97%——榜单本身即流量分配机制；投票权只绑真实评价、复购与晒单，上榜师傅获"本周特炒"署名位与流量包。</li>
+        <li><b>包装自传播：</b>包装满意度已纳入美团评分排名因子；以腰封撕口、师傅手写信、打榜投票卡三触点把晒图评价率做到商圈品类前10%，形成"收货→晒图→投票→复购"自闭环。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">7.3 私域期：会员体系+AI点餐</div>
+    <p class="hl">私域不是起点而是终点——过早导流既触碰飞单红线也没有承接能力；最强留存理由不是优惠券，而是使用越深、档案越厚、迁移成本越高的AI点餐组合。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>合规路径只有品牌自有触点：</b>短视频公域、线下物料、配件包小程序码；交易闭环前期留在美团，私域先承接会员、积分与社群（瑞幸"App+企微社群"双轮路径）。</li>
+        <li><b>回报已被头部定价：</b>瑞幸私域日贡献3.5万杯、月频次+30%；喜茶自有渠道60-65%；百胜中国数字订单占比94%。</li>
+        <li><b>启动门槛与目标：</b>单城3店以上、平台店月复购率≥25%、企微社群≥5000人；18个月内私域订单占比达20%、会员月频次高于非会员30%。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">7.4 三阶段增长引擎总览</div>
+    <p class="hl">预算前重后轻由资产形态决定——越到后期，增长越由产品功能而非预算驱动；素人IP半衰期6-24个月决定了接力必须前置。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>阶段</th><th>目标</th><th>核心动作</th><th>关键指标</th><th>预算占比</th></tr></thead>
+          <tbody>
+            <tr><td><b>冷启动期（0-6月）</b></td><td>零成本建立城市级品牌认知</td><td>海选赛、报名短视频内容库、真人真摊核验公示</td><td>报名≥500人；投稿≥300条；首月日均≥200单</td><td>40%</td></tr>
+            <tr><td><b>平台期（6-18月）</b></td><td>把关注转化为可复购订单</td><td>后厨直播轮值、去氪金化打榜、开箱晒图三触点</td><td>直播新客占比≥30%；晒图率商圈前10%；月复购率≥25%</td><td>35%</td></tr>
+            <tr><td><b>私域期（18月+）</b></td><td>把订单沉淀为使用习惯</td><td>企微社群、会员积分、AI点餐与忌口档案</td><td>私域订单占比≥20%；会员频次+30%；忌口档案覆盖≥50%</td><td>25%</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>阶段交接硬性考核：</b>直播新客占比跌破20%或矩阵内单IP粉丝月环比转负，即加速私域导流——避免重蹈单顶流"流量退潮后无所承接"的覆辙。</p>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第8章 ============ -->
+<section class="ch reveal" id="ch8">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 08</span>
+    <h2>成本、定价与客群承接深度分析</h2>
+    <p class="ch-sum">本章一句话：<b>单份31.5元真正留在手里的只有1.75元——这是一门"活着但不暴利"的生意，宣称稳态净利率超15%的测算都应被直接质疑。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">8.1 单份外卖全链路成本拆解</div>
+    <p class="hl">成本结构"三足鼎立"：食材到口50.0%+平台相关18.1%+运营固定类19.0%合计占售价87%——净利空间在结构上就是薄的，这不是经营不善，是品类宿命。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="figscroll">
+          <svg width="880" height="290" viewBox="0 0 880 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="单份成本瀑布堆叠条">
+            <text x="440" y="22" text-anchor="middle" fill="#e8edf5" font-size="15" font-weight="800">单份成本瀑布：31.5元客单的去向（基准档）</text>
+            <!-- above labels -->
+            <g font-size="10.5">
+              <text x="224" y="52" text-anchor="middle" fill="#5b8cff" font-weight="800" font-size="12">净菜采购 14.30元 · 45.4%</text>
+              <line x1="224" y1="58" x2="224" y2="106" stroke="#5b8cff" stroke-width="1"/>
+              <text x="445" y="52" text-anchor="middle" fill="#f0b45b" font-weight="800">包装 2.00</text>
+              <line x1="445" y1="58" x2="445" y2="106" stroke="#f0b45b" stroke-width="1"/>
+              <text x="505" y="80" text-anchor="middle" fill="#b790ff" font-weight="800">人力 3.20</text>
+              <line x1="505" y1="86" x2="505" y2="106" stroke="#9d6bff" stroke-width="1"/>
+              <text x="571" y="52" text-anchor="middle" fill="#e07a5c" font-weight="800">抽佣 2.50</text>
+              <line x1="571" y1="58" x2="571" y2="106" stroke="#e07a5c" stroke-width="1"/>
+              <text x="636" y="80" text-anchor="middle" fill="#5c9de0" font-weight="800">配送 3.20</text>
+              <line x1="636" y1="86" x2="636" y2="106" stroke="#5c9de0" stroke-width="1"/>
+              <text x="765" y="52" text-anchor="middle" fill="#6fd6a0" font-weight="800" font-size="12">净利 1.75 · 5.5%</text>
+              <line x1="765" y1="58" x2="765" y2="106" stroke="#6fd6a0" stroke-width="1"/>
+            </g>
+            <!-- bar y=110 h=46 -->
+            <g>
+              <rect x="60" y="110" width="329" height="46" fill="#5b8cff"/>
+              <rect x="389" y="110" width="11.5" height="46" fill="#4a7de0"/>
+              <rect x="400.5" y="110" width="21.9" height="46" fill="#e05c5c"/>
+              <rect x="422.4" y="110" width="46" height="46" fill="#f0b45b"/>
+              <rect x="468.4" y="110" width="73.6" height="46" fill="#9d6bff"/>
+              <rect x="542" y="110" width="57.5" height="46" fill="#e07a5c"/>
+              <rect x="599.5" y="110" width="73.6" height="46" fill="#5c9de0"/>
+              <rect x="673.1" y="110" width="20.7" height="46" fill="#6fb8d6"/>
+              <rect x="693.8" y="110" width="27.6" height="46" fill="#7a8db8"/>
+              <rect x="721.4" y="110" width="23" height="46" fill="#8fa0b8"/>
+              <rect x="744.4" y="110" width="40.3" height="46" fill="#6fd6a0"/>
+              <rect x="60" y="110" width="724.7" height="46" fill="none" stroke="#22304a" stroke-width="1.5" rx="6"/>
+            </g>
+            <!-- below labels, staggered -->
+            <g font-size="10">
+              <line x1="395" y1="156" x2="395" y2="180" stroke="#4a7de0" stroke-width="1"/>
+              <text x="395" y="193" text-anchor="middle" fill="#4a7de0">冷链 0.50</text>
+              <line x1="411" y1="156" x2="411" y2="204" stroke="#e05c5c" stroke-width="1"/>
+              <text x="411" y="217" text-anchor="middle" fill="#e05c5c" font-weight="800">报废 0.95</text>
+              <line x1="683" y1="156" x2="683" y2="180" stroke="#6fb8d6" stroke-width="1"/>
+              <text x="683" y="193" text-anchor="middle" fill="#6fb8d6">营销 0.90</text>
+              <line x1="707" y1="156" x2="707" y2="204" stroke="#7a8db8" stroke-width="1"/>
+              <text x="707" y="217" text-anchor="middle" fill="#7a8db8">租金 1.20</text>
+              <line x1="733" y1="156" x2="733" y2="228" stroke="#8fa0b8" stroke-width="1"/>
+              <text x="733" y="241" text-anchor="middle" fill="#8fa0b8">折旧分成 1.00</text>
+            </g>
+            <text x="60" y="272" fill="#8fa0b8" font-size="11">食材到口15.75元(50.0%) ＋ 平台相关5.70元(18.1%) ＋ 运营固定类约6.0元(19.0%) ＝ 87% → 净利仅1.75元/单</text>
+            <text x="60" y="288" fill="#e05c5c" font-size="11">最脆弱三处：①平台扣点（议价权为零）②食材率50%自我高基准（净菜溢价×报废联动）③"1+3+2"人力刚性（日单&lt;310即失血）</text>
+          </svg>
+        </div>
+        <p class="figcap"><b>图5 · 单份成本瀑布：</b>从售价到净利经过11道扣除；报废是唯一可能单日翻三倍的科目（爬坡期预测失准即冲至8%、吞掉全部净利）。</p>
+        <div class="twrap"><table>
+          <thead><tr><th>成本项</th><th>单均金额（元）</th><th>占售价比</th><th>行业基准</th></tr></thead>
+          <tbody>
+            <tr><td>净菜采购（含切配外包溢价）</td><td>14.30</td><td>45.4%</td><td>玉子屋食材率50%、高出同行10-15pp；央厨净菜损耗可压至5%以内</td></tr>
+            <tr><td>冷链日配</td><td>0.50</td><td>1.6%</td><td>集单冷链较分散配送降本25%+</td></tr>
+            <tr><td>报废损耗</td><td>0.95</td><td>3.0%</td><td>行业5%-20%；玉子屋&lt;0.1%；以销定配+预售制可压至1.2%-3%</td></tr>
+            <tr><td>包装（含仪式感升级约+2元）</td><td>2.00</td><td>6.3%</td><td>包装占外卖售价5%-10%</td></tr>
+            <tr><td>人力（店长1+师傅3+打包帮厨2）</td><td>3.20</td><td>10.2%</td><td>师傅月薪7000-8000元；机器人3-5万/台、回本6-12个月</td></tr>
+            <tr><td>平台抽佣（技术服务费+流量采买）</td><td>2.50</td><td>7.9%</td><td>平台综合抽佣15%-30% GMV</td></tr>
+            <tr><td>配送分摊</td><td>3.20</td><td>10.2%</td><td>普通单4-8元；拼好饭集约后单均3.7元</td></tr>
+            <tr><td>营销分摊</td><td>0.90</td><td>2.9%</td><td>平台期约占GMV 3%</td></tr>
+            <tr><td>租金分摊</td><td>1.20</td><td>3.8%</td><td>租用分割档口约1万元/月</td></tr>
+            <tr><td>折旧摊销与师傅分成</td><td>1.00</td><td>3.2%</td><td>单店约20万按24个月摊销；特炒分成约GMV 1%</td></tr>
+            <tr><td><b>单份净利</b></td><td><b>1.75</b></td><td><b>5.5%</b></td><td>玉子屋5%；老乡鸡净利率6%-7%</td></tr>
+          </tbody>
+        </table></div>
+        <p class="tcap">表8-1 · 基准档：客单31.5元×日均400单，2026年7月测算值（非历史数据）。</p>
+        <p><b>对照系（8.1.2）：</b>对玉子屋贵在平台扣点（18.1%对0%）与一次性包装，省在无中央工厂重资产——平台成本就是本模式的"结构性税"；对七鲜贵在采购价、省在资产轻（20万对约100万/店），故不打价格战、错位28-35元带；对普通纯外卖店贵在食材率高10-20pp与包装+2元（自觉缴纳的"品牌税"），省在租金、报废与合规确定性。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">8.2 定价带选择与成本加成逻辑</div>
+    <p class="hl">三个价格带之间不是价格差、是商业模式差：10-15元带是炮灰区、20-30元带是死亡算术区、30-50元带入场券是品牌力——建议定价28-35元、主力成交价锚定31-32元。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>价格带</th><th>代表玩家</th><th>成本结构特征</th><th>存活条件</th></tr></thead>
+          <tbody>
+            <tr><td><b>10-15元（拼好饭带）</b></td><td>拼好饭日峰800万单、单均仍亏约1元</td><td>需求集约使配送7元→3.7元；商家让利+骑手降薪补贴低价</td><td>极致SKU收敛+平台补贴+海量单量，缺一即死</td></tr>
+            <tr><td><b>20-30元（普通外卖带）</b></td><td>85.2%消费者可接受≤30元</td><td>净利约10%被15%-30%抽佣侵蚀</td><td>单量密度+低租金+出餐效率赚"缝隙钱"；美国云厨房全行业死于这道算术</td></tr>
+            <tr><td><b>30-50元（品质外卖带）</b></td><td>老乡鸡客单约33元；太二卫星店35-50元；卫星店利润率14.8%</td><td>食材与人力重投入换复购；品牌背书摊薄获客</td><td>必须有品牌资产托底复购</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li><b>加成推导（8.2.2）：</b>基准档单份全成本约29.75元、变动成本约23.75元。定价28元时边际贡献被压至约4.2元、保本点飙升至约540单/日——<b>28元是"只有私域或团餐对冲扣点后才成立"的价格，不能作主力定价</b>；定价35元边际贡献约10.3元、保本点降至约285单/日。</li>
+          <li><b>结构：</b>"50%食材基准+约37%刚性运营与平台成本+5%净利纪律"，没有一拍脑袋的余地。下沿用于错峰早鸟与团餐合约，上沿用于师傅特炒与礼盒化SKU（承担"测试溢价天花板"的探针职能）。</li>
+          <li><b>对照判决：</b>大董238元礼盒跑通、小鸭哥亏1344万关闭——同一套"仪式感+高客单"打法，有品牌力托底则生、无品牌力托底则死。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">8.3 客群画像与承接度验证</div>
+    <p class="hl">核心客群是决策疲劳的写字楼白领——31-32元主力定价恰好踩在接受度上沿，每上移1元都必须用可感知体验对冲；价格弹性必须用A/B实测出来而非猜出来。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li><b>写字楼白领（8.3.1）：</b>拼好饭"替用户做决定"日单3500万证明极简决策本身是价值；健康轻食订单占比五年12%→25%；85.2%可接受≤30元，餐品涨价超2元即抵触、配送费涨3-5元反而容忍。</li>
+        <li><b>家庭晚餐（8.3.2）：</b>65%家庭给孩子点过外卖、25%为老人点过——为家人点餐时决策权重从"快和省"切换为"敢不敢吃"，是供应商公示与溯源码的变现场景；家庭单客单上探45-70元。</li>
+        <li><b>B端团餐：</b>按"低单价、低扣点、低配送成本"单独建模（美餐约10%抽佣），边际贡献反而高于C端散单，作第二增长曲线而非价格带下调。</li>
+        <li><b>实测设计（8.3.3）：</b>①同SKU两档价（31.5 vs 33.5元）跑4-6周测弹性系数；②错峰梯度以31.5元为锚只做闲时降价；③熔断线：任一价格组复购率相对对照组下滑超15%即终止。开业前90天的目标是用最小代价买到真实价格弹性曲线。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">8.4 盈亏平衡与敏感性</div>
+    <p class="hl">基准档保本点日均约310单、回本9.6个月落在卫星店8-10个月行业区间内；悲观档保本点540单高于其假设单量近一倍——爬坡期约3万/月亏损是预算项而非意外。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>指标</th><th>悲观档</th><th>基准档</th><th>乐观档</th></tr></thead>
+          <tbody>
+            <tr><td>日均单量×客单价</td><td>300单×28元</td><td>400单×31.5元</td><td>500单×35元</td></tr>
+            <tr><td>月固定成本（万元）</td><td>6.71</td><td>7.20</td><td>8.73</td></tr>
+            <tr><td>单份边际贡献（元）</td><td>4.16</td><td>7.75</td><td>10.25</td></tr>
+            <tr><td><b>日均保本单量</b></td><td><b>约540单</b></td><td><b>约310单</b></td><td><b>约285单</b></td></tr>
+            <tr><td>月净利（万元）</td><td>-2.96</td><td><b>+2.08</b></td><td>+6.65</td></tr>
+            <tr><td>净利率</td><td>-11.8%</td><td><b>5.5%</b></td><td>12.7%</td></tr>
+            <tr><td>单店投资与回本</td><td>—（亏损期）</td><td>20万、约9.6个月</td><td>28万、约4.2个月</td></tr>
+            <tr><td>报废率/抽佣率 +1pp 影响</td><td>-0.25万</td><td>-0.38万</td><td>-0.53万</td></tr>
+            <tr><td>单量 -10% 影响</td><td>-0.37万</td><td>-0.93万</td><td>-1.54万</td></tr>
+          </tbody>
+        </table></div>
+        <p class="tcap">表8-4 · 三档情景盈亏平衡与敏感性测算（2026年7月模型，30天口径）。</p>
+        <p><b>哪一处先断气（8.4.2）：</b>先断气的是<b>抽佣</b>——扣点回到25%（+7pp）则月净利从+2.08万转为约-0.57万、永不回本，且完全不受创业者控制；第二是<b>报废率</b>——恶化至8%濒临归零，但属唯一可靠内控压住的"慢性病"；<b>单量</b>是显性变量——跌破310单即亏损但可预警、可用错峰与团餐填充。管理优先级：建私域团餐对冲抽佣（结构性）＞锁死报废率&lt;3%（运营性）＞蜂窝密度与错峰守单量（战术性）。</p>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ============ 第9章 ============ -->
+<section class="ch reveal" id="ch9">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 09</span>
+    <h2>风险分析与对策</h2>
+    <p class="ch-sum">本章一句话：<b>每项风险都挂着可量化的预警指标与写进SOP的触发动作——六项风险中四项的对策并非新增，而是第4-5章已建成的模式组件。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.0 风险矩阵总览</div>
+    <p class="hl">三种应对范式：食安属"低概率×致命"前置买保险；单量与补贴战属"高概率×高损耗"结构性回避；巨头抄袭、IP出走与合规属"慢性侵蚀"靠资产归属与制度设计。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开风险矩阵</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>风险</th><th>概率</th><th>影响</th><th>预警信号（量化）</th><th>触发对策</th><th>责任方</th></tr></thead>
+          <tbody>
+            <tr><td><b>巨头抄袭</b></td><td>高</td><td>中</td><td>同商圈出现巨头打榜业态、特炒SKU被复制</td><td>蜂窝加密锁密度、账号与矩阵先行固化、加码真人叙事</td><td>CEO/品牌</td></tr>
+            <tr><td><b>食安事故</b></td><td>低</td><td>致命</td><td>客诉率周环比异常、"异物/腹泻"差评突增</td><td>2小时响应下架当批次、批次追溯、自查报告主动披露</td><td>食安（一票否决）</td></tr>
+            <tr><td><b>合规触碰</b></td><td>低（设计内置）</td><td>高</td><td>地方监管口径调整、平台协议更新</td><td>开店前合规清单核查、季度法律顾问复审</td><td>合规负责人</td></tr>
+            <tr><td><b>IP出走</b></td><td>中高</td><td>高</td><td>单一师傅流量占比&gt;40%、分成谈判僵局</td><td>替补轮值、阶梯上调分成、流量向中腰部倾斜</td><td>内容/人力</td></tr>
+            <tr><td><b>单量不及预期</b></td><td>中高</td><td>高</td><td>日均连续4周&lt;200单、报废率&gt;5%、午高峰利用率&lt;50%</td><td>冻结扩张、SKU收敛回20个、B端地推补量</td><td>运营负责人</td></tr>
+            <tr><td><b>补贴战挤压</b></td><td>高</td><td>中</td><td>商圈客单被压至15元以下、单量分流&gt;20%</td><td>不跟进降价，加码信任工程与会员权益，B端对冲</td><td>CEO/财务</td></tr>
+          </tbody>
+        </table></div>
+        <p>全部预警指标均为可量化口径，纳入周报监控，任一项连续两周越线即启动对应SOP。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.1 巨头抄袭风险</div>
+    <p class="hl">巨头抄得动"零件"，抄不动人格资产与关系资产——只能签名厨做资本竞价的平台逻辑，做不了从3000-4000万地摊从业者海选真人师傅的草根叙事。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>威胁量级：七鲜3年万店、浣熊3年1200家、拼好饭日峰3500万单；七鲜供应链与本模式几乎同构。</li>
+        <li>不可复制边界：季度赛制持续运转的真人内容生产线、私域忌口档案与复购关系、周度菜单迭代的数据资产。</li>
+        <li>触发动作：加速蜂窝加密锁定一公里配送密度，师傅合约与矩阵先行固化，内容上加码"真人真摊"核验叙事。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.2 食安风险</div>
+    <p class="hl">唯一不接受"概率低"辩护的风险——单次事故代价已被反复定价（曼玲下架、华莱士退市、杨铭宇缩水3000家、西贝亏5亿），信任工程必须在被质疑之前建成。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>共同结构：翻车品牌均为纯加盟或弱管控体系（加盟违规率32%、直营4.6倍）；全直营档口先在体制上排除最大敞口。</li>
+        <li>对策：公示+自查+责任险三层前置运转；铁律——公示数据必须经得起卧底与直播检验。</li>
+        <li>触发动作：2小时内响应并下架当批次全量产品、启动批次追溯、当月自查报告主动披露；食安负责人持一票否决权。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.3 合规风险</div>
+    <p class="hl">三条红线（证照/飞单/个保法）没有一条需要"赌"——全部是设计阶段的选择题，且选择已在第4章写死；新规对重投入合规玩家是护城河而非负担。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>证照红线：一地一证硬约束，档口分割独立办证或入驻持证共享厨房，禁止项写入运营手册。</li>
+        <li>飞单红线：私域App定位会员工具，交易闭环留在平台，配送永不自建（7家平台已被罚没35.97亿元）。</li>
+        <li>数据红线：短视频数据修正为"用户主动粘贴/授权"；打榜投票只绑真实评价，不碰"花钱买票"。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.4 IP出走风险</div>
+    <p class="hl">靠合同困人是伪对策（律师指非劳动关系竞业限制"极有可能无效"）——对冲是四层结构：3-5人矩阵、账号归平台、分成阶梯上调、师徒分成。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>案例代价：隋坡新号两周涨粉百万；李子柒之争致公司失去投资；董宇辉单飞令东方甄选流量焦虑。素人IP半衰期6-24个月——即使不出走，单一顶流也会自然衰减。</li>
+        <li>刘畊宏离开机构后掉粉超1200万：IP价值=人+机构运作的组合——平台须持续投入内容与流量运营，使"留下"对师傅也是理性选择。</li>
+        <li>预警信号：单一师傅流量占比超40%、分成谈判僵局、粉丝向个人账号迁移。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.5 单量不及预期</div>
+    <p class="hl">单量密度不足是该品类排名第一的死因（云厨房死亡名单死法高度一致）——防线是需求确定性前置+B端对冲+扩张熔断，单量可不及预期，损耗不能失控。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>第一层：周度预约卡与早鸟预约单提供T-3至T-1订单数据，以销定配把报废率压至3%红线内。</li>
+        <li>第二层：写字楼团餐预订制填平10-11点产能低谷，目标占比15-20%。</li>
+        <li>第三层：<b>单店日均未稳定超250单、UE未连续两月跑正之前，冻结下一家店</b>——拒绝用规模掩盖单点模型的失败。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">9.6 巨头补贴战挤压</div>
+    <p class="hl">低价内卷已被定性为不可持续（三家合计亏损1730亿元、监管约谈）——应对是结构性回避而非战术跟进：补贴终会退潮，留在牌桌上靠单店UE而非价格。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>拼好饭商家单均利润2-3元、"增量不增收"——低价带没有创业品牌容身之地。</li>
+        <li>坚守28-35元品质带；价格工具只用1-3元闲时立减；B端让利3-5%出自履约集约节约。</li>
+        <li>触发动作：不跟进降价，加码信任工程曝光与私域会员权益，以B端占比提升和报废率压缩吸收波动。</li>
+      </ul></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 第10章 ============ -->
+<section class="ch reveal" id="ch10">
+  <div class="ch-head">
+    <span class="ch-no">CHAPTER 10</span>
+    <h2>实施路线图</h2>
+    <p class="ch-sum">本章一句话：<b>先证明一单赚钱，再证明一店复制，最后证明一城复制——每阶段扩张必须以跨过验证门槛为前提，绝不"边亏边赌规模"。</b></p>
+  </div>
+
+  <div class="sec">
+    <div class="tag">10.0 三阶段总览</div>
+    <p class="hl">验证指标全部指向"复购与单位经济"而非"单量规模"——没有复购的单量只是平台抽佣的燃料；季度海选从第6个月起贯穿36个月全程、不设终点。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开路线图总表</span></summary>
+      <div class="body">
+        <div class="twrap"><table>
+          <thead><tr><th>阶段</th><th>时间</th><th>核心目标</th><th>关键动作</th><th>go/no-go决策门槛</th></tr></thead>
+          <tbody>
+            <tr><td><b>一：单店验证</b></td><td>0-6月</td><td>跑通单店UE</td><td>分割档口独立办证、新规合规到位、首季海选、四层开箱上线</td><td>日均≥300单、报废率&lt;5%、月复购率≥25%、晒单率≥8%；复购弱→回炉菜单，禁止扩张</td></tr>
+            <tr><td><b>二：蜂窝加密</b></td><td>6-18月</td><td>单城4店+私域闭环</td><td>1公里蜂窝布点、机器人导入、私域App上线、B端团餐试点</td><td>各店日均≥250单、网络月净利转正、私域占比≥15%；新店爬坡&gt;4月→暂停加密</td></tr>
+            <tr><td><b>三：跨城复制</b></td><td>18-36月</td><td>城市模型可复制+IP生态</td><td>借道共享厨房落新城、季度海选常态化、3-5人IP矩阵、会员订阅</td><td>新城首店6个月内复刻阶段一指标、私域占比≥20%、订阅≥1万；亏损城市熔断退出</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">10.1 第一阶段（0-6月）：单城首店验证UE</div>
+    <p class="hl">前3个月建设、后3个月验证：合规没有"先上车后补票"，UE不成立时最大损失锁定在单店约10-15万元投入之内。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>租用后厨分割档口并独立办证；一证一店、明厨亮灶、食安封签开业前一次性到位。</li>
+        <li>首季师傅海选同步启动；全人工工作站跑通SOP；四层开箱结构上线并追踪晒单率。</li>
+        <li><b>门槛（第6个月末）：</b>日均≥300单、报废率&lt;5%、月复购率≥25%、晒单率≥8%。单量弱但复购达标→追加本地短视频投放并延长验证2个月；复购不达标→回炉菜单工程，禁止扩张。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">10.2 第二阶段（6-18月）：蜂窝加密+私域+B端试点</div>
+    <p class="hl">沿"写字楼+成熟社区"走廊布至4店、店间距1公里级；私域App严格限定"会员与复购工具"，交易闭环留在美团。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>第2店起导入小锅炒菜机器人（3-5万/台、回本6-12个月），以国标参数验收、盲测把关。</li>
+        <li>私域App第9-12个月上线：瑞幸证明自有渠道可扛复购，达美乐警示配送永不自建。</li>
+        <li><b>门槛（第18个月末）：</b>蜂窝4店且各店日均≥250单、网络月净利转正、私域月活≥2万且订单占比≥15%。私域弱→App收缩至"忌口档案+积分"两功能。</li>
+      </ul></div>
+    </details>
+  </div>
+
+  <div class="sec">
+    <div class="tag">10.3 第三阶段（18-36月）：跨城复制+IP生态+订阅规模化</div>
+    <p class="hl">追求"城市单元盈利模型"的可复制性而非速度——每城独立核算，亏损城市熔断退出；只有持续补充新面孔的3-5人矩阵才能对抗IP衰减。</p>
+    <details>
+      <summary><span class="arrow">▸</span><span class="sumlabel">展开详情</span></summary>
+      <div class="body"><ul>
+        <li>新城借道持证共享厨房快速落位（浣熊3年1200家的基建红利），每城首店沿用阶段一验证纪律。</li>
+        <li>季度海选常态化是硬规定；分成阶梯化、账号归平台的生态结构全面运转。</li>
+        <li>会员订阅在私域订单占比稳定超20%后推出，组合"订阅价+优先时段+特炒预售"锁定高频用户。</li>
+      </ul>
+      <div class="minihead">下个月就开始做的三件事</div>
+      <ul>
+        <li>① <b>启动海选</b>——发布首季师傅海选招募，完成报名通道、技能考核标准与分成协议模板（人）；</li>
+        <li>② <b>供应商询价</b>——向至少两家净菜供应商索取克重份装+复合调味包报价，锁定双供应商成本基线（货）；</li>
+        <li>③ <b>档口寻源</b>——筛选3个可物理分割、独立办证的候选档口并完成房东意向谈判（场）。</li>
+      </ul>
+      <p>三件事均不依赖外部资金即可推进，分别对应模式的三条命脉：人、货、场。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 参考文献 ============ -->
+<section class="ch reveal" id="refs">
+  <div class="ch-head">
+    <span class="ch-no">REFERENCES</span>
+    <h2>参考文献（278条）</h2>
+    <p class="ch-sum">全部278条公开来源完整保留可查；浓缩版正文不逐条标注引用上标。</p>
+  </div>
+  <details class="refs-block">
+    <summary><span class="arrow">▸</span>展开全部 278 条参考文献</summary>
+    <ol class="refs">
+<li><span class="rn">[1]</span>国家信息中心（预测部，执笔：张巍）《我国在线外卖行业的经济效应和发展趋势分析》（2025年在线餐饮外卖市场规模18,394亿元、渗透率29.7%，2030年预测29,440亿元） <a href="https://www.sic.gov.cn/sic/93/182/188/648/0919/2c97b8cb-8d20be1e-0192-095038b6-0f09.pdf" target="_blank" rel="noopener">https://www.sic.gov.cn/sic/93/182/188/648/0919/2c97b8cb-8d20be1e-0192-095038b6-0f09.pdf</a></li>
+<li><span class="rn">[2]</span>成都商报/中国新闻周刊《预制菜风波后亏损超5亿元，贾国龙确认：西贝将关闭102家门店》<a href="https://cbgc.scol.com.cn/news/7182119" target="_blank" rel="noopener">https://cbgc.scol.com.cn/news/7182119</a> （2026-01-15）</li>
+<li><span class="rn">[3]</span>太平洋科技《京东七鲜小厨启动10亿元菜品合伙人计划 三年内将建10000家门店》2025-08-02 <a href="https://g.pconline.com.cn/x/1958/19580452.html" target="_blank" rel="noopener">https://g.pconline.com.cn/x/1958/19580452.html</a></li>
+<li><span class="rn">[4]</span>新浪财经/投融界《美团外卖业务新计划：「拼好饭」将引入1万个品牌，「卫星店」年底将开设超万家》2025-07-23 <a href="https://finance.sina.com.cn/stock/relnews/hk/2025-07-23/doc-infhmxpv3760085.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/stock/relnews/hk/2025-07-23/doc-infhmxpv3760085.shtml</a></li>
+<li><span class="rn">[5]</span>人民网上海《严查！上海曝光一批&quot;幽灵外卖&quot;&quot;一证多店&quot;》，2026-05-28，<a href="http://sh.people.com.cn/n2/2026/0528/c176737-41594343.html" target="_blank" rel="noopener">http://sh.people.com.cn/n2/2026/0528/c176737-41594343.html</a></li>
+<li><span class="rn">[6]</span>亿邦动力《七鲜小厨首店开业一周日均订单超1000单 &quot;菜品合伙人&quot;计划超6.6万份报名》2025-07-30 <a href="https://www.ebrun.com/20250730/587344.shtml" target="_blank" rel="noopener">https://www.ebrun.com/20250730/587344.shtml</a></li>
+<li><span class="rn">[7]</span>WeSCRM《留住千万级私域用户，瑞幸靠的是什么？》2025-12-01 <a href="https://www.wescrm.com/siyuzhishiku/siyuyunying/7557.html" target="_blank" rel="noopener">https://www.wescrm.com/siyuzhishiku/siyuyunying/7557.html</a></li>
+<li><span class="rn">[8]</span>FoodTalks《全球最大的披萨公司，在中国干不过必胜客？》2022-04-11 <a href="https://www.foodtalks.cn/news/20820" target="_blank" rel="noopener">https://www.foodtalks.cn/news/20820</a></li>
+<li><span class="rn">[9]</span>雪球《瑞幸、星巴克、蜜雪冰城在华配送服务揭秘：均与第三方平台深度合作》2025-06-15 <a href="https://xueqiu.com/3181890538/338799460" target="_blank" rel="noopener">https://xueqiu.com/3181890538/338799460</a></li>
+<li><span class="rn">[10]</span>深圳本地宝《2026海底捞大学生69折使用规则》<a href="http://sz.bendibao.com/youhui/2024110/953879.shtml" target="_blank" rel="noopener">http://sz.bendibao.com/youhui/2024110/953879.shtml</a> (2026-01-04)</li>
+<li><span class="rn">[11]</span>海外网《大众点评品质外卖联合&quot;黑珍珠&quot;餐厅推出&quot;主厨推荐&quot;单人餐》，2025-10-28，<a href="https://news.haiwainet.cn/n/2025/1028/c3541089-32904186.html" target="_blank" rel="noopener">https://news.haiwainet.cn/n/2025/1028/c3541089-32904186.html</a></li>
+<li><span class="rn">[12]</span>搜狐《小店做销量｜农耕记大店+外卖小店模式，要不要跟？》2023-11-08 <a href="https://www.sohu.com/a/734809582_115106" target="_blank" rel="noopener">https://www.sohu.com/a/734809582_115106</a></li>
+<li><span class="rn">[13]</span>搜狐《全聚德外卖因缺乏仪式感亏损千万，餐厅应该如何用仪式感引流？》2019-03-29 <a href="https://www.sohu.com/a/304712671_100012929" target="_blank" rel="noopener">https://www.sohu.com/a/304712671_100012929</a></li>
+<li><span class="rn">[14]</span>餐饮内参《赚流量，赢顾客，你的外卖可能还需要一个好看的赠品！》<a href="https://m.canyin88.com/zhuanlan/waimaitoutiao/2019/0124/71055.html" target="_blank" rel="noopener">https://m.canyin88.com/zhuanlan/waimaitoutiao/2019/0124/71055.html</a> （2019-01-24）</li>
+<li><span class="rn">[15]</span>Plenus プレスリリース《2024年年間販売数ランキング発表！》2024-12-24，<a href="https://www.plenus.co.jp/files/optionallink/00002861_file.pdf" target="_blank" rel="noopener">https://www.plenus.co.jp/files/optionallink/00002861_file.pdf</a></li>
+<li><span class="rn">[16]</span>流通ニュース《ほっともっと／オープンキッチン採用店舗の出店を開始》2016-08-25，<a href="https://www.ryutsuu.biz/topix/i082518.html" target="_blank" rel="noopener">https://www.ryutsuu.biz/topix/i082518.html</a></li>
+<li><span class="rn">[17]</span>lead-much.com《ほっともっとのフランチャイズ(FC)…徹底解説》2022-05-08，<a href="https://lead-much.com/detail/1272/" target="_blank" rel="noopener">https://lead-much.com/detail/1272/</a></li>
+<li><span class="rn">[18]</span>网易《农耕记外卖宣传语惹网友质疑：没用预制菜假一罚十？》2024-11-17 <a href="https://www.163.com/dy/article/JH72BBOR0552RR09.html" target="_blank" rel="noopener">https://www.163.com/dy/article/JH72BBOR0552RR09.html</a></li>
+<li><span class="rn">[19]</span>食品机械设备网《从外卖大战看预制菜发展新契机》2025-07-15 <a href="https://m.foodjx.com/app/news/detail/154528.html" target="_blank" rel="noopener">https://m.foodjx.com/app/news/detail/154528.html</a></li>
+<li><span class="rn">[20]</span>蓝鲸财经《预制菜国标上线，西贝们的后厨秘密锁不住了》2025-09-15 <a href="https://www.lanjinger.com/d/1757985478314334220" target="_blank" rel="noopener">https://www.lanjinger.com/d/1757985478314334220</a></li>
+<li><span class="rn">[21]</span>中新网（科技日报转载）《&quot;鸡排哥&quot;&quot;炒粉哥&quot;接连走红，&quot;情绪价值&quot;成假日文旅新密码》，2025-10-07，<a href="https://www.stdaily.com/web/gdxw/2025-10/07/content_411970.html" target="_blank" rel="noopener">https://www.stdaily.com/web/gdxw/2025-10/07/content_411970.html</a></li>
+<li><span class="rn">[22]</span>网易《凭一句三元管饱爆火，如今流量褪去后，&quot;拉面哥&quot;的现状》，2026-05-11，<a href="https://m.163.com/dy/article/KSL2P5UC0556CDBA.html" target="_blank" rel="noopener">https://m.163.com/dy/article/KSL2P5UC0556CDBA.html</a></li>
+<li><span class="rn">[23]</span>知乎专栏《达美乐中国拟赴港上市，剑指5000家门店，去年收入16亿元》2022-03-29 <a href="https://zhuanlan.zhihu.com/p/489537153" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/489537153</a></li>
+<li><span class="rn">[24]</span>IT之家《美团首款AI Agent产品&quot;小美&quot;开启公测》2025-09-12 <a href="https://www.ithome.com/0/882/362.htm" target="_blank" rel="noopener">https://www.ithome.com/0/882/362.htm</a></li>
+<li><span class="rn">[25]</span>美团研究院&amp;中国饭店协会《中国外卖产业调查研究报告》（2019年前三季度数据）<a href="https://s3plus.meituan.net/v1/mss_531b5a3906864f438395a28a5baec011/official-website/865995bf-2b23-4bc3-bd34-fba61dea4486" target="_blank" rel="noopener">https://s3plus.meituan.net/v1/mss_531b5a3906864f438395a28a5baec011/official-website/865995bf-2b23-4bc3-bd34-fba61dea4486</a> (2019-12)</li>
+<li><span class="rn">[26]</span>北方新报电子版（征求意见稿&quot;一证一店&quot;&quot;互联网+即时亮灶&quot;），2025-10-20，<a href="https://szb.nmgnews.com.cn/bfxb/resfile/2025-10-20/06/bfxb2025102006.pdf" target="_blank" rel="noopener">https://szb.nmgnews.com.cn/bfxb/resfile/2025-10-20/06/bfxb2025102006.pdf</a></li>
+<li><span class="rn">[27]</span>南方都市报《新鲜现炒成餐饮宣传重点，预制菜如何重建信任》2026-04-10 <a href="https://ipaper.oeeee.com/ipaper/G/html/2026-04/10/content_2937.htm" target="_blank" rel="noopener">https://ipaper.oeeee.com/ipaper/G/html/2026-04/10/content_2937.htm</a></li>
+<li><span class="rn">[28]</span>新浪财经《吃辣椒炒肉的队伍要排到美国了？费大厨百万年薪招店长》2025-05-29 <a href="https://finance.sina.com.cn/tech/roll/2025-05-29/doc-ineyfcye9754539.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tech/roll/2025-05-29/doc-ineyfcye9754539.shtml</a></li>
+<li><span class="rn">[29]</span>得到头条《费大厨&quot;一道菜&quot;与&quot;预制大厨&quot;策略》2024-09-11 <a href="https://www.dedao.cn/share/course/article?id=5Yejy8dqoQD9JoQ6nlKR1r0xpgmWk3" target="_blank" rel="noopener">https://www.dedao.cn/share/course/article?id=5Yejy8dqoQD9JoQ6nlKR1r0xpgmWk3</a></li>
+<li><span class="rn">[30]</span>微信公众号《安徽富二代卖盒饭，一年收入超60亿》（老乡鸡财务分析）<a href="http://mp.weixin.qq.com/s?__biz=MTI0OTM2NDUwMQ==&amp;mid=2653603359&amp;idx=1&amp;sn=4e0a5a4a966d5601c7703c32f3c84921" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MTI0OTM2NDUwMQ==&amp;mid=2653603359&amp;idx=1&amp;sn=4e0a5a4a966d5601c7703c32f3c84921</a></li>
+<li><span class="rn">[31]</span>网易《逆势连开53店，大米先生&quot;跑马圈地&quot;背后的底气与隐忧》2026-03-11 <a href="https://www.163.com/dy/article/KNP7AONS05198DT6.html" target="_blank" rel="noopener">https://www.163.com/dy/article/KNP7AONS05198DT6.html</a></li>
+<li><span class="rn">[32]</span>玉子屋官网 企业情報，<a href="https://www.tamagoya.co.jp/company/" target="_blank" rel="noopener">https://www.tamagoya.co.jp/company/</a> （访问于2025年）</li>
+<li><span class="rn">[33]</span>搜狐《我加盟热门便利店后才明白的五个真相》<a href="https://www.sohu.com/a/1031520941_122733889" target="_blank" rel="noopener">https://www.sohu.com/a/1031520941_122733889</a> （2026-06-03）</li>
+<li><span class="rn">[34]</span>US Tech Automations（引 Technomic 2024 Industry Pulse：平台抽佣 15–30% GMV）. <a href="https://ustechautomations.com/resources/blog/reduce-ghost-kitchens-outgrow-square-for-restaurants-with-automation-2026" target="_blank" rel="noopener">https://ustechautomations.com/resources/blog/reduce-ghost-kitchens-outgrow-square-for-restaurants-with-automation-2026</a></li>
+<li><span class="rn">[35]</span>CBNData/餐饮老板内参《自烹加热、买饭送砂锅，过度包装的外卖们正变得不讨好》<a href="https://www.cbndata.com/information/99642" target="_blank" rel="noopener">https://www.cbndata.com/information/99642</a> （2020-10-13）</li>
+<li><span class="rn">[36]</span>Plenus 第57期報告書 2017-02-28，<a href="https://www.plenus.co.jp/files/business/00000016_pdffile.pdf" target="_blank" rel="noopener">https://www.plenus.co.jp/files/business/00000016_pdffile.pdf</a></li>
+<li><span class="rn">[37]</span>网经社电子商务研究中心《2025年度中国数字生活市场数据报告》（2025年在线外卖市场规模22,850亿元，同比增长24.47%）2026-04-23 <a href="https://www.100ec.cn/detail--6658740.html" target="_blank" rel="noopener">https://www.100ec.cn/detail--6658740.html</a></li>
+<li><span class="rn">[38]</span>万得库（引中研普华产业研究院预测及行业统计）《2025年中国外卖行业深度分析：市场规模突破1.6万亿》（美团+饿了么合计约92%份额、2027年预测19,567亿元、健康轻食订单占比五年12%→25%）2025-05-27 <a href="https://www.vzkoo.com/read/2025052734c2ae14b6b612f3c9c4fcff.html" target="_blank" rel="noopener">https://www.vzkoo.com/read/2025052734c2ae14b6b612f3c9c4fcff.html</a></li>
+<li><span class="rn">[39]</span>观察者网（引艾瑞咨询数据）《艾瑞：京东外卖日均订单量突破2500万单，市场份额超31%》2025-06-10 <a href="https://www.guancha.cn/economy/2025_06_10_778877.shtml" target="_blank" rel="noopener">https://www.guancha.cn/economy/2025_06_10_778877.shtml</a></li>
+<li><span class="rn">[40]</span>36氪《外卖大战一年回顾：烧光800亿，到底谁赢了？》2026-02-05 <a href="https://m.36kr.com/p/3671171087229568" target="_blank" rel="noopener">https://m.36kr.com/p/3671171087229568</a></li>
+<li><span class="rn">[41]</span>网经社《汇丰曝2025阿里 京东 美团外卖大战总亏1730亿元》2026-04-13 <a href="https://www.100ec.cn/detail--6658403.html" target="_blank" rel="noopener">https://www.100ec.cn/detail--6658403.html</a></li>
+<li><span class="rn">[42]</span>虎嗅《外卖补贴大战，终究是餐饮产业全盘皆输》2026-03-19 <a href="https://www.huxiu.com/article/4843558.html" target="_blank" rel="noopener">https://www.huxiu.com/article/4843558.html</a></li>
+<li><span class="rn">[43]</span>腾讯新闻《京东2025年收入双位数增长，七鲜小厨营业已超50家》2026-03-06 <a href="https://news.qq.com/rain/a/20260306A04S1M00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20260306A04S1M00</a></li>
+<li><span class="rn">[44]</span>钛媒体/澎湃《外卖大战一年：美团回不去、阿里停不下》2026-06-03 <a href="https://www.tmtpost.com/8011985.html" target="_blank" rel="noopener">https://www.tmtpost.com/8011985.html</a></li>
+<li><span class="rn">[45]</span>FoodTalks《美团抢先出手啦！三年1200家&quot;浣熊食堂&quot;为京东外卖打个样》2025-07-03 <a href="https://www.foodtalks.cn/news/57640" target="_blank" rel="noopener">https://www.foodtalks.cn/news/57640</a></li>
+<li><span class="rn">[46]</span>新浪科技《Popeyes中国首次落地&quot;卫星店&quot;模式，携手淘宝闪购布局即时零售》2026-07-16 <a href="https://finance.sina.com.cn/tech/roll/2026-07-16/doc-inihyyvy4463459.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tech/roll/2026-07-16/doc-inihyyvy4463459.shtml</a></li>
+<li><span class="rn">[47]</span>中国食品安全网《拦截假&quot;神药&quot;、赋能明厨亮灶，淘宝闪购以AI持续加强风险治理》2026-03-12 <a href="https://www.cfsn.cn/news/detail/36/338950.html" target="_blank" rel="noopener">https://www.cfsn.cn/news/detail/36/338950.html</a></li>
+<li><span class="rn">[48]</span>联商网《西贝&quot;预制菜&quot;风波72小时：日营业额蒸发百万》<a href="http://m.linkshop.com/article/news/537138" target="_blank" rel="noopener">http://m.linkshop.com/article/news/537138</a> （2025-09-15）</li>
+<li><span class="rn">[49]</span>第一财经（解放日报转载）《近四成受访者接受预制菜年夜饭》<a href="https://www.jfdaily.com/wx/detail.do?id=1060938" target="_blank" rel="noopener">https://www.jfdaily.com/wx/detail.do?id=1060938</a> （2026-02-01）</li>
+<li><span class="rn">[50]</span>红网《受访者对预制菜认知度偏低 呼吁强化信息公开与监管》<a href="https://yuqing.rednet.cn/content/646943/66/15301273.html" target="_blank" rel="noopener">https://yuqing.rednet.cn/content/646943/66/15301273.html</a> （2025-09-22）</li>
+<li><span class="rn">[51]</span>《预制菜产业中消费者知情权的法律保障》<a href="https://www.fcipub.org/articleDetail/826" target="_blank" rel="noopener">https://www.fcipub.org/articleDetail/826</a> （2025-09-25）</li>
+<li><span class="rn">[52]</span>当餐网《西贝预制菜风波是餐饮公关生死课》<a href="http://www.dangcan.com/canyin/4524.html" target="_blank" rel="noopener">http://www.dangcan.com/canyin/4524.html</a> （2025-09-12）</li>
+<li><span class="rn">[53]</span>中国经济时报《西贝深陷预制菜信任危机》<a href="https://finance.sina.com.cn/roll/2025-09-15/doc-infqqumy9483513.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/roll/2025-09-15/doc-infqqumy9483513.shtml</a> （2025-09-15）</li>
+<li><span class="rn">[54]</span>中国青年报/新浪《84.7%受访者自称有选择困难症》2018-01-30 <a href="https://news.sina.cn/2018-01-30/detail-ifyqyqni5098874.d.html" target="_blank" rel="noopener">https://news.sina.cn/2018-01-30/detail-ifyqyqni5098874.d.html</a></li>
+<li><span class="rn">[55]</span>华尔街见闻《10块钱一份的拼好饭，磨平了外卖商家们最后一点棱角》2024-11-27 <a href="https://wallstreetcn.com/articles/3735493" target="_blank" rel="noopener">https://wallstreetcn.com/articles/3735493</a></li>
+<li><span class="rn">[56]</span>腾讯新闻《美团拼好饭，比拼多多还狠》2024-10-23 <a href="https://news.qq.com/rain/a/20241023A04Q0000" target="_blank" rel="noopener">https://news.qq.com/rain/a/20241023A04Q0000</a></li>
+<li><span class="rn">[57]</span>正观新闻《肯德基入驻拼好饭，外卖大战后美团拼好饭赢了？》2025-11-19 <a href="https://wap.zhengguannews.cn/html/zgh/373659.html" target="_blank" rel="noopener">https://wap.zhengguannews.cn/html/zgh/373659.html</a></li>
+<li><span class="rn">[58]</span>百度经验《美团膨胀红包玩法》2023-05-11 <a href="https://jingyan.baidu.com/article/5d368d1e8d4f0c7e61c05729.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/5d368d1e8d4f0c7e61c05729.html</a></li>
+<li><span class="rn">[59]</span>什么值得买《实测美团外卖整点抢大额红包入口，手把手领券攻略》2026-02-17 <a href="https://www.sohu.com/a/988038548_121806542" target="_blank" rel="noopener">https://www.sohu.com/a/988038548_121806542</a></li>
+<li><span class="rn">[60]</span>虎嗅（网易数读×饿了么数据）《不要香菜！有多少人跟我的外卖备注一样》2021-02-08 <a href="https://m.huxiu.com/article/409091.html" target="_blank" rel="noopener">https://m.huxiu.com/article/409091.html</a></li>
+<li><span class="rn">[61]</span>湖北日报网《研究了6万份外卖备注后 告诉你挑食的人到底在挑剔什么》2021-04-27 <a href="http://m.cnhubei.com/content/2021-04/27/content_13760688.html" target="_blank" rel="noopener">http://m.cnhubei.com/content/2021-04/27/content_13760688.html</a></li>
+<li><span class="rn">[62]</span>什么值得买《外卖备注&quot;不要辣&quot;真的有效吗？1000+用户真实体验大PK》2026-01-20 <a href="https://post.smzdm.com/p/a0v8w74w" target="_blank" rel="noopener">https://post.smzdm.com/p/a0v8w74w</a></li>
+<li><span class="rn">[63]</span>知乎专栏（综合科创板日报等）《京东放大招：豪掷10亿招募&quot;菜品合伙人&quot;，三年要开万家七鲜小厨》2025-07-24 <a href="https://zhuanlan.zhihu.com/p/1931798504830902831" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/1931798504830902831</a></li>
+<li><span class="rn">[64]</span>潮新闻《外婆家与美团外卖达成战略合作：2025年开设100家品牌&quot;卫星店&quot;》，2024-12-19，<a href="https://tidenews.com.cn/news.html?id=2992980" target="_blank" rel="noopener">https://tidenews.com.cn/news.html?id=2992980</a></li>
+<li><span class="rn">[65]</span>上观新闻《外卖平台和经营者监管新规拟出台》，2025-10-17，<a href="https://www.jfdaily.com/news/detail?id=1000945" target="_blank" rel="noopener">https://www.jfdaily.com/news/detail?id=1000945</a></li>
+<li><span class="rn">[66]</span>上观新闻《&quot;史上最严&quot;外卖规定下周施行，上海刚明确》，2026-05-26，<a href="https://m.jfdaily.com/wx/detail.do?id=1118235" target="_blank" rel="noopener">https://m.jfdaily.com/wx/detail.do?id=1118235</a></li>
+<li><span class="rn">[67]</span>上观新闻《一张证竟开了七家店，严查！》，2026-05-27，<a href="https://www.jfdaily.com/news/detail?id=1118636" target="_blank" rel="noopener">https://www.jfdaily.com/news/detail?id=1118636</a></li>
+<li><span class="rn">[68]</span>解放日报《1家实体店开15家&quot;幽灵外卖&quot;》，2026-03-24，<a href="https://www.jfdaily.com/staticsg/res/html/journal/detail.html?code=jfrb&amp;date=2026-03-24&amp;id=499984&amp;page=07" target="_blank" rel="noopener">https://www.jfdaily.com/staticsg/res/html/journal/detail.html?code=jfrb&amp;date=2026-03-24&amp;id=499984&amp;page=07</a></li>
+<li><span class="rn">[69]</span>解放日报《为&quot;幽灵外卖&quot;制作假证》，2026-05-12，<a href="https://www.jfdaily.com/staticsg/res/html/journal/detail.html?code=jfrb&amp;date=2026-05-12&amp;id=509205&amp;page=02" target="_blank" rel="noopener">https://www.jfdaily.com/staticsg/res/html/journal/detail.html?code=jfrb&amp;date=2026-05-12&amp;id=509205&amp;page=02</a></li>
+<li><span class="rn">[70]</span>市场监管总局官网《关于加强预制菜食品安全监管 促进产业高质量发展的通知》<a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/spscs/art/2024/art_e1ba9385be204186adc0f2cfef717693.html" target="_blank" rel="noopener">https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/spscs/art/2024/art_e1ba9385be204186adc0f2cfef717693.html</a> （2024-03）</li>
+<li><span class="rn">[71]</span>央视新闻《到底什么才是预制菜？6部门曾发文明确》<a href="https://news.cctv.com/2025/09/14/ARTI8vDjikqnSQjTXXy16myT250914.shtml" target="_blank" rel="noopener">https://news.cctv.com/2025/09/14/ARTI8vDjikqnSQjTXXy16myT250914.shtml</a> （2025-09-14）</li>
+<li><span class="rn">[72]</span>和讯《预制菜：2024年六部门明确定义及非预制菜范围》<a href="https://m.hexun.com/stock/2025-09-14/221347909.html" target="_blank" rel="noopener">https://m.hexun.com/stock/2025-09-14/221347909.html</a> （2025-09-14）</li>
+<li><span class="rn">[73]</span>同花顺/每经《预制菜国家标准征求意见了！中央厨房制作的菜肴等不算预制菜》<a href="http://news.10jqka.com.cn/field/20260208/674640018.shtml" target="_blank" rel="noopener">http://news.10jqka.com.cn/field/20260208/674640018.shtml</a> （2026-02-08）</li>
+<li><span class="rn">[74]</span>财新《预制菜国标征求意见稿发布 未强制要求餐饮店公示预制菜》<a href="https://www.caixin.com/2026-02-06/102412198.html" target="_blank" rel="noopener">https://www.caixin.com/2026-02-06/102412198.html</a> （2026-02-06）</li>
+<li><span class="rn">[75]</span>网易《中央厨房制作菜肴不属于预制菜，真有这规定吗？》<a href="http://163.com/dy/article/K9IKJCKT0552CSHY.html" target="_blank" rel="noopener">http://163.com/dy/article/K9IKJCKT0552CSHY.html</a> （2025-09-16）</li>
+<li><span class="rn">[76]</span>财新《预制菜&quot;风波&quot;发酵 西贝致歉》<a href="https://www.caixin.com/2025-09-15/102362615.html" target="_blank" rel="noopener">https://www.caixin.com/2025-09-15/102362615.html</a> （2025-09-15）</li>
+<li><span class="rn">[77]</span>财新网《罗永浩、贾国龙口水战背后 预制菜争议何解》2025-09-12 <a href="https://www.caixin.com/2025-09-12/102361876.html" target="_blank" rel="noopener">https://www.caixin.com/2025-09-12/102361876.html</a></li>
+<li><span class="rn">[78]</span>新浪财经《京东七鲜小厨 vs 美团浣熊食堂，外卖商家应该选哪种模式？》2025-07-30 <a href="https://finance.sina.cn/tech/2025-07-30/detail-infihfyp3641005.d.html" target="_blank" rel="noopener">https://finance.sina.cn/tech/2025-07-30/detail-infihfyp3641005.d.html</a></li>
+<li><span class="rn">[79]</span>新浪科技《京东七鲜小厨：面向全国招募经营合伙人，计划2026年完成所有一二线城市布局》2025-12-29 <a href="https://finance.sina.com.cn/tech/2025-12-29/doc-inhemiuy5079628.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tech/2025-12-29/doc-inhemiuy5079628.shtml</a></li>
+<li><span class="rn">[80]</span>投中网/定焦One（新浪转载）《京东&quot;炒菜&quot;，能逆袭吗？》2025-07-28 <a href="https://finance.sina.cn/tech/2025-07-28/detail-infhysic5885805.d.html" target="_blank" rel="noopener">https://finance.sina.cn/tech/2025-07-28/detail-infhysic5885805.d.html</a></li>
+<li><span class="rn">[81]</span>搜狐《京东&quot;七鲜小厨&quot;商业模式分析 从供应链创新重塑外卖市场格局》2025-08-04 <a href="https://www.sohu.com/a/920676453_120491808" target="_blank" rel="noopener">https://www.sohu.com/a/920676453_120491808</a></li>
+<li><span class="rn">[82]</span>商派ShopeX《刘强东开大！京东外卖百亿自建餐厅&quot;七鲜小厨&quot;》2026-07-24 <a href="https://www.shopex.cn/news/archives/26619.html" target="_blank" rel="noopener">https://www.shopex.cn/news/archives/26619.html</a></li>
+<li><span class="rn">[83]</span>新浪科技（腾讯转载）《美团&quot;浣熊食堂&quot;启动合伙人招募 加盟门槛150万元》2025-08-27 <a href="https://news.qq.com/rain/a/20250827A03J5D00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20250827A03J5D00</a></li>
+<li><span class="rn">[84]</span>鞭牛士（凤凰网转载）《美团浣熊食堂开放加盟，投资门槛约150万》2025-08-30 <a href="https://h5.ifeng.com/c/vivoArticle/v002Kv2sEKPJ8CaKHFPrl3bjSe6--3k701OCjL6iYuParrJA__" target="_blank" rel="noopener">https://h5.ifeng.com/c/vivoArticle/v002Kv2sEKPJ8CaKHFPrl3bjSe6--3k701OCjL6iYuParrJA__</a></li>
+<li><span class="rn">[85]</span>中华网科技《餐饮竞争下的破局样本：美团AI驱动外婆家卫星店实现大幅增长》2025-09-03 <a href="https://m.tech.china.com/digi/articles/20250903/202509031725414.html" target="_blank" rel="noopener">https://m.tech.china.com/digi/articles/20250903/202509031725414.html</a></li>
+<li><span class="rn">[86]</span>World Financial Review《Tamago-ya – The Bento King of Tokyo》（基于Stanford GSB案例GS60）2019-08-22，<a href="https://worldfinancialreview.com/tamago-ya-the-bento-king-of-tokyo/" target="_blank" rel="noopener">https://worldfinancialreview.com/tamago-ya-the-bento-king-of-tokyo/</a> ；案例页：<a href="https://www.gsb.stanford.edu/faculty-research/case-studies/tamago-ya-japan-delivering-lunch-boxes-your-work" target="_blank" rel="noopener">https://www.gsb.stanford.edu/faculty-research/case-studies/tamago-ya-japan-delivering-lunch-boxes-your-work</a></li>
+<li><span class="rn">[87]</span>36氪/红餐网《每天只卖一个单品，年入90亿日元，拆解&quot;日本外卖大王&quot;的商业逻辑》2023-05-09，<a href="https://m.36kr.com/p/2250583436848775" target="_blank" rel="noopener">https://m.36kr.com/p/2250583436848775</a></li>
+<li><span class="rn">[88]</span>搜狐/远发国际《日均订单量6万份…废弃率只有0.1%》2019-09-21，<a href="https://www.sohu.com/a/342360703_804430" target="_blank" rel="noopener">https://www.sohu.com/a/342360703_804430</a></li>
+<li><span class="rn">[89]</span>餐饮界《每天只供应一种菜的外卖怎么做到年销10亿？》2016-05-18，<a href="https://www.canyinj.com/news/2921.html" target="_blank" rel="noopener">https://www.canyinj.com/news/2921.html</a></li>
+<li><span class="rn">[90]</span>共同通信PRWire《最新型の「ほっともっと」「YAYOI」》2016-08-24，<a href="https://cdn.kyodonewsprwire.jp/prwfile/release/M102015/201608243590/_prw_OR1fl_7z0Rcad5.pdf" target="_blank" rel="noopener">https://cdn.kyodonewsprwire.jp/prwfile/release/M102015/201608243590/_prw_OR1fl_7z0Rcad5.pdf</a></li>
+<li><span class="rn">[91]</span>池尻大橋商店街 キッチンオリジン店舗紹介 2023-02-10，<a href="http://ikejiri-ohashi.com/shop/eat/origin/" target="_blank" rel="noopener">http://ikejiri-ohashi.com/shop/eat/origin/</a></li>
+<li><span class="rn">[92]</span>オリジン東秀 会社概要 <a href="https://www.toshu.co.jp/company/outline/" target="_blank" rel="noopener">https://www.toshu.co.jp/company/outline/</a></li>
+<li><span class="rn">[93]</span>bunnabi 財務DATA オリジン東秀（営業利益16億6,800万円）<a href="https://bunnabi.jp/2027/s/cn_data.php?ccd2" target="_blank" rel="noopener">https://bunnabi.jp/2027/s/cn_data.php?ccd2</a></li>
+<li><span class="rn">[94]</span>FoodTalks《净利暴涨50%，被称为预制菜之王，萨莉亚为何广受赞誉？》2025-10-21，<a href="https://www.foodtalks.cn/news/59593" target="_blank" rel="noopener">https://www.foodtalks.cn/news/59593</a></li>
+<li><span class="rn">[95]</span>Franklin Junction / Food On Demand, &quot;How Franklin Junction is Redefining Ghost Kitchens Amidst Industry Challenges&quot;, 2024-10-08. <a href="https://franklinjunction.com/how-franklin-junction-is-redefining-ghost-kitchens-amidst-industry-challenges/" target="_blank" rel="noopener">https://franklinjunction.com/how-franklin-junction-is-redefining-ghost-kitchens-amidst-industry-challenges/</a></li>
+<li><span class="rn">[96]</span>Inspired Stories Podcast, &quot;How Franklin Junction Maximizes Extra Kitchen Capacity&quot;（Rishi Nigam 访谈，host kitchen 定义）, 2025-05-20. <a href="https://inspiredstoriespodcast.com/transforming-restaurant-profitability-how-franklin-junction-maximizes-extra-kitchen-capacity/" target="_blank" rel="noopener">https://inspiredstoriespodcast.com/transforming-restaurant-profitability-how-franklin-junction-maximizes-extra-kitchen-capacity/</a></li>
+<li><span class="rn">[97]</span>Tyler Cauble / The Cauble Group, &quot;Why Ghost Kitchens Failed: The $1 Billion Real Estate Lesson Nobody Saw Coming&quot;. <a href="https://www.tylercauble.com/blog/why-ghost-kitchens-failed-the-1-billion-real-estate-lesson-nobody-saw-coming" target="_blank" rel="noopener">https://www.tylercauble.com/blog/why-ghost-kitchens-failed-the-1-billion-real-estate-lesson-nobody-saw-coming</a></li>
+<li><span class="rn">[98]</span>The Food Institute, &quot;Ghost-Kitchen Startup Reef Technology Encounters More Operational Problems&quot;, 2022-01-13. <a href="https://foodinstitute.com/focus/ghost-kitchen-reef-technology-encounters-more-operational-problems/" target="_blank" rel="noopener">https://foodinstitute.com/focus/ghost-kitchen-reef-technology-encounters-more-operational-problems/</a></li>
+<li><span class="rn">[99]</span>Restaurant Dive, &quot;Wendy&#x27;s will shut down remaining US Reef units&quot;, 2023-05-10. <a href="https://www.restaurantdive.com/news/wendys-will-close-remaining-us-reef-units-q2-2023/649917/" target="_blank" rel="noopener">https://www.restaurantdive.com/news/wendys-will-close-remaining-us-reef-units-q2-2023/649917/</a></li>
+<li><span class="rn">[100]</span>Crunchbase News, &quot;Boom-Era Excesses Haunt The Ghost Kitchen Space&quot;, 2023-06-23. <a href="https://news.crunchbase.com/agtech-foodtech/ghost-kitchen-startups-funding-cloudkitchens-kalanick/" target="_blank" rel="noopener">https://news.crunchbase.com/agtech-foodtech/ghost-kitchen-startups-funding-cloudkitchens-kalanick/</a></li>
+<li><span class="rn">[101]</span>Restaurant Dive, &quot;Hotel ghost kitchen company Butler Hospitality quietly dissolved in May&quot;, 2022-06-29. <a href="https://www.restaurantdive.com/news/butler-hospitality-hotel-ghost-kitchen-company-dissolves/626284/" target="_blank" rel="noopener">https://www.restaurantdive.com/news/butler-hospitality-hotel-ghost-kitchen-company-dissolves/626284/</a></li>
+<li><span class="rn">[102]</span>TechCrunch, &quot;Butler raised $50M for room service delivery, then dissolved&quot;, 2022-07-08. <a href="https://techcrunch.com/2022/07/08/butler-shows-hundreds-of-employees-the-door-after-raising-50m-for-room-service-delivery/" target="_blank" rel="noopener">https://techcrunch.com/2022/07/08/butler-shows-hundreds-of-employees-the-door-after-raising-50m-for-room-service-delivery/</a></li>
+<li><span class="rn">[103]</span>PYMNTS, &quot;Ex-Uber CEO Travis Kalanick&#x27;s CloudKitchens Cuts Staff&quot; (引 FT 报道), 2023-09-05. <a href="https://www.pymnts.com/startups/2023/cloudkitchens-cuts-staff-as-startups-hunger-for-funding/" target="_blank" rel="noopener">https://www.pymnts.com/startups/2023/cloudkitchens-cuts-staff-as-startups-hunger-for-funding/</a></li>
+<li><span class="rn">[104]</span>Restaurant Business, &quot;CloudKitchens won&#x27;t succeed until its restaurants do&quot;, 2023-09-07. <a href="https://restaurantbusinessonline.com/technology/cloudkitchens-wont-succeed-until-its-restaurants-do" target="_blank" rel="noopener">https://restaurantbusinessonline.com/technology/cloudkitchens-wont-succeed-until-its-restaurants-do</a></li>
+<li><span class="rn">[105]</span>Restaurant Business, &quot;MrBeast sues Virtual Dining Concepts to shut down MrBeast Burger&quot;, 2023-07-31. <a href="https://restaurantbusinessonline.com/technology/mrbeast-sues-virtual-dining-concepts-shut-down-mrbeast-burger" target="_blank" rel="noopener">https://restaurantbusinessonline.com/technology/mrbeast-sues-virtual-dining-concepts-shut-down-mrbeast-burger</a></li>
+<li><span class="rn">[106]</span>Nation&#x27;s Restaurant News, &quot;Uber Eats has already removed 8,000 virtual restaurants from its system amid crackdown&quot;, 2023-07-18. <a href="https://www.nrn.com/delivery-takeout-solutions/uber-eats-has-already-removed-8-000-virtual-restaurants-from-its-system-amid-crackdown" target="_blank" rel="noopener">https://www.nrn.com/delivery-takeout-solutions/uber-eats-has-already-removed-8-000-virtual-restaurants-from-its-system-amid-crackdown</a></li>
+<li><span class="rn">[107]</span>Restaurant Dive, &quot;Kitchen United will sell or close all physical units, pivot to software&quot;, 2023-11-28. <a href="https://www.restaurantdive.com/news/kitchen-united-closes-kroger-units-sells-or-closes-the-rest-software-pivot/700900/" target="_blank" rel="noopener">https://www.restaurantdive.com/news/kitchen-united-closes-kroger-units-sells-or-closes-the-rest-software-pivot/700900/</a></li>
+<li><span class="rn">[108]</span>Modern Retail（Kitchen United 融资 1.75 亿美元）, 同 [^15^].</li>
+<li><span class="rn">[109]</span>Nation&#x27;s Restaurant News, &quot;The ghost kitchen industry is shrinking — here&#x27;s why that&#x27;s a good thing&quot;, 2024-03-22. <a href="https://www.nrn.com/delivery-takeout-solutions/the-ghost-kitchen-industry-is-shrinking-here-s-why-that-s-a-good-thing" target="_blank" rel="noopener">https://www.nrn.com/delivery-takeout-solutions/the-ghost-kitchen-industry-is-shrinking-here-s-why-that-s-a-good-thing</a></li>
+<li><span class="rn">[110]</span>百度百科&quot;熊猫星厨&quot;词条（检索于2026-07），<a href="https://baike.baidu.com/item/熊猫星厨/22056001" target="_blank" rel="noopener">https://baike.baidu.com/item/熊猫星厨/22056001</a></li>
+<li><span class="rn">[111]</span>36氪/商业街探案《纠纷不断的熊猫星厨，正把共享厨房带进火坑》，2020-10-12，<a href="https://m.36kr.com/p/922051251013507" target="_blank" rel="noopener">https://m.36kr.com/p/922051251013507</a></li>
+<li><span class="rn">[112]</span>36氪《「吉刻联盟」获得千万级Pre-A轮融资》，2018-02-26，<a href="https://m.36kr.com/p/1722298204161" target="_blank" rel="noopener">https://m.36kr.com/p/1722298204161</a></li>
+<li><span class="rn">[113]</span>百度百科&quot;吉刻联盟共享厨房&quot;词条，<a href="https://baike.baidu.com/item/吉刻联盟共享厨房/53299522" target="_blank" rel="noopener">https://baike.baidu.com/item/吉刻联盟共享厨房/53299522</a></li>
+<li><span class="rn">[114]</span>界面新闻《“进一波死一波”，共享厨房不香了？》，2020-07-30，<a href="https://www.jiemian.com/article/4756840.html" target="_blank" rel="noopener">https://www.jiemian.com/article/4756840.html</a></li>
+<li><span class="rn">[115]</span>FoodTalks Wow Food Awards《大董烤鸭·片片鸭（黑金礼盒）》<a href="https://www.foodtalks.cn/fbifwowfoodawards/gallery/wowfood/detail/5936" target="_blank" rel="noopener">https://www.foodtalks.cn/fbifwowfoodawards/gallery/wowfood/detail/5936</a> （2022-03-17）</li>
+<li><span class="rn">[116]</span>外卖新规实施，点餐可查看商家&quot;堂食&quot;&quot;明厨亮灶&quot;标签，新京报，2026-06-01，<a href="https://m.bjnews.com.cn/detail/1780305294168439.html" target="_blank" rel="noopener">https://m.bjnews.com.cn/detail/1780305294168439.html</a></li>
+<li><span class="rn">[117]</span>广东省市场监督管理局答复《一个经营地址能办两张〈食品经营许可证〉吗？》，2025-05-23，<a href="http://www.chnfn.com/xinwenzhongxin/guoneixinwen/daluxinwen/2025/0523/34140.html" target="_blank" rel="noopener">http://www.chnfn.com/xinwenzhongxin/guoneixinwen/daluxinwen/2025/0523/34140.html</a></li>
+<li><span class="rn">[118]</span>搜狐《外卖一店多开工商怎么惩罚》，2024-01-15，<a href="https://www.sohu.com/a/751947780_121873494" target="_blank" rel="noopener">https://www.sohu.com/a/751947780_121873494</a></li>
+<li><span class="rn">[119]</span>《中华人民共和国个人信息保护法》第23条 2021-08-20 <a href="http://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1785951" target="_blank" rel="noopener">http://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1785951</a></li>
+<li><span class="rn">[120]</span>微信公众号《你的App又弹窗了吗？&quot;告知-同意&quot;弹窗背后的个人信息保护规则》2025-07-28 <a href="http://mp.weixin.qq.com/s?__biz=MzA4NTI1NDIyNg==&amp;mid=2651124637&amp;idx=1&amp;sn=2e5a257c758838106b52c787c0207f95" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MzA4NTI1NDIyNg==&amp;mid=2651124637&amp;idx=1&amp;sn=2e5a257c758838106b52c787c0207f95</a></li>
+<li><span class="rn">[121]</span>Fortune《Wendy&#x27;s insists its trial with &#x27;dynamic pricing&#x27; is all about prices going down…》<a href="https://fortune.com/2024/02/28/wendys-surge-pricing-dynamic-company-statement/" target="_blank" rel="noopener">https://fortune.com/2024/02/28/wendys-surge-pricing-dynamic-company-statement/</a> (2024-02-28)</li>
+<li><span class="rn">[122]</span>Restaurant Dive《Wendy&#x27;s backtracks on dynamic pricing after consumer backlash》<a href="https://www.restaurantdive.com/news/wendys-backtracks-on-dynamic-pricing-after-consumer-backlash/708799/" target="_blank" rel="noopener">https://www.restaurantdive.com/news/wendys-backtracks-on-dynamic-pricing-after-consumer-backlash/708799/</a> (2024-02-28)</li>
+<li><span class="rn">[123]</span>经济观察网《费大厨：连锁正餐标准化的另类尝试》<a href="http://m.eeo.com.cn/2023/0519/592349.shtml" target="_blank" rel="noopener">http://m.eeo.com.cn/2023/0519/592349.shtml</a> （2023-05-19）</li>
+<li><span class="rn">[124]</span>《招聘服务员要求本科学历？费大厨的底气是什么？》<a href="http://mp.weixin.qq.com/s?__biz=MzU5MDY1MjM5Mg==&amp;mid=2247502135&amp;idx=1&amp;sn=819e30c8e5d8deeb6cc53b77acd4c4cf" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MzU5MDY1MjM5Mg==&amp;mid=2247502135&amp;idx=1&amp;sn=819e30c8e5d8deeb6cc53b77acd4c4cf</a> （2025-07-11）</li>
+<li><span class="rn">[125]</span>新京报（搜狐转载）《多个湘菜品牌加速布局一线城市》<a href="https://www.sohu.com/a/740343992_362042" target="_blank" rel="noopener">https://www.sohu.com/a/740343992_362042</a> （2023-11-30）</li>
+<li><span class="rn">[126]</span>京东10亿现金启动&quot;菜品合伙人&quot;招募计划，经济观察网，2025-07-22，<a href="http://m.eeo.com.cn/2025/0722/740122.shtml" target="_blank" rel="noopener">http://m.eeo.com.cn/2025/0722/740122.shtml</a></li>
+<li><span class="rn">[127]</span>小宇宙播客《连葱花都是预制的米村拌饭…》<a href="https://www.xiaoyuzhoufm.com/episode/6617c39c5dae7932c6db4f7e" target="_blank" rel="noopener">https://www.xiaoyuzhoufm.com/episode/6617c39c5dae7932c6db4f7e</a> （2024-04-11）</li>
+<li><span class="rn">[128]</span>界面新闻《2024海底捞&amp;蜀海供应链大会》<a href="https://www.jiemian.com/article/12104509.html" target="_blank" rel="noopener">https://www.jiemian.com/article/12104509.html</a> （2024-12-11）</li>
+<li><span class="rn">[129]</span>中国发展网《国发易保与海底捞蜀海供应链签署战略合作协议》<a href="https://m.chinadevelopment.com.cn/index.php?s=index/article/id/1897626" target="_blank" rel="noopener">https://m.chinadevelopment.com.cn/index.php?s=index/article/id/1897626</a> （2024-05-31）</li>
+<li><span class="rn">[130]</span>快科技《外卖现炒现做 后厨24小时直播！京东七鲜小厨公示食材供应商》<a href="https://news.mydrivers.com/1/1083/1083085.htm" target="_blank" rel="noopener">https://news.mydrivers.com/1/1083/1083085.htm</a> （2025-10-29）</li>
+<li><span class="rn">[131]</span>品玩《一年让2.4亿用户吃好饭！京东外卖靠品质让外卖行业&quot;变了天&quot;》<a href="https://www.pingwest.com/a/312396" target="_blank" rel="noopener">https://www.pingwest.com/a/312396</a> （2026-03-24）</li>
+<li><span class="rn">[132]</span>《连锁餐饮食材配送方案对比：中央厨房模式与分散采购成本分析》<a href="http://www.hnajds.com/news/122502.html" target="_blank" rel="noopener">http://www.hnajds.com/news/122502.html</a> （访问于2026年）</li>
+<li><span class="rn">[133]</span>现代物流杂志《从熊猫餐厅、老乡鸡和大米先生，看供应链成为展现中餐魅力的关键》<a href="http://materialflow.com.cn/qushi/5882.html" target="_blank" rel="noopener">http://materialflow.com.cn/qushi/5882.html</a> （2026-06-26）</li>
+<li><span class="rn">[134]</span>上海铭莜亘《2024年食材配送与冷链物流一体化方案…》<a href="http://zjlhgc.com/news/43920.html" target="_blank" rel="noopener">http://zjlhgc.com/news/43920.html</a> （访问于2026年）</li>
+<li><span class="rn">[135]</span>《短保食品的社区分销：预售制与社区集中配送模式》<a href="https://www.sequ.biz/articles/20250402170500091.html" target="_blank" rel="noopener">https://www.sequ.biz/articles/20250402170500091.html</a> （访问于2026年）</li>
+<li><span class="rn">[136]</span>同花顺《老乡鸡溯源报告2.0刷新餐饮行业天花板》<a href="https://m.10jqka.com.cn/20260510/c676574492.shtml" target="_blank" rel="noopener">https://m.10jqka.com.cn/20260510/c676574492.shtml</a> （2026-05-10）</li>
+<li><span class="rn">[137]</span>虎嗅《老乡鸡通过〈自查自纠报告〉公开食品安全问题降低系统性风险》<a href="https://www.huxiu.com/article/4830455.html" target="_blank" rel="noopener">https://www.huxiu.com/article/4830455.html</a> （2026-01-28）</li>
+<li><span class="rn">[138]</span>FineBI《餐饮外卖分析成本高吗？效益与ROI全面解析》<a href="https://www.finebi.com/blog/article/685a13e128946ecca803711a" target="_blank" rel="noopener">https://www.finebi.com/blog/article/685a13e128946ecca803711a</a> （2025-06-24）</li>
+<li><span class="rn">[139]</span>新快网《美团外卖商家评分新增更多维度，食品安全和复购等客观指标&quot;增重&quot;》<a href="https://www.xkb.com.cn/articleDetail/443207" target="_blank" rel="noopener">https://www.xkb.com.cn/articleDetail/443207</a> （2025-10-16）</li>
+<li><span class="rn">[140]</span>DoNews《美团外卖推新评分体系 治理恶意差评》<a href="https://www.donews.com/news/detail/4/6185791.html" target="_blank" rel="noopener">https://www.donews.com/news/detail/4/6185791.html</a> （2025-10-16）</li>
+<li><span class="rn">[141]</span>搜狐《说明餐盒定制服务价格区间……》<a href="https://www.sohu.com/a/1011248360_122690207" target="_blank" rel="noopener">https://www.sohu.com/a/1011248360_122690207</a> （2026-04-18）</li>
+<li><span class="rn">[142]</span>中国新闻周刊/时间视频《6月1日起外卖新规实施 没有食安封签可直接拒收》<a href="https://www.toutiao.com/w/1866416770987209/" target="_blank" rel="noopener">https://www.toutiao.com/w/1866416770987209/</a> （2026-05-28）</li>
+<li><span class="rn">[143]</span>淘宝种草笔记《为什么定制腰封能让礼品盒更有仪式感？》<a href="https://jianghu.taobao.com/detail/47637_55029725" target="_blank" rel="noopener">https://jianghu.taobao.com/detail/47637_55029725</a> （2025-11-20）</li>
+<li><span class="rn">[144]</span>淘宝百科《一次性双层汤面分离打包盒：设计、原理与应用解析》<a href="https://bk.taobao.com/k/一次性餐盒/e1101fddd20d428bbc9bf366ec2f25c9.html" target="_blank" rel="noopener">https://bk.taobao.com/k/一次性餐盒/e1101fddd20d428bbc9bf366ec2f25c9.html</a> （2025-12-02）</li>
+<li><span class="rn">[145]</span>摆脱塑缚《可降解塑料是外卖包装的救星吗？》<a href="http://mp.weixin.qq.com/s?__biz=MzA4NDcwMzAyMw==&amp;mid=2650542586..." target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MzA4NDcwMzAyMw==&amp;mid=2650542586...</a> （2023-09-05）</li>
+<li><span class="rn">[146]</span>腾讯新闻《黑色塑料餐盒最脏？外卖筷子发霉怎么办？｜刺客：劣质餐具》<a href="https://news.qq.com/rain/a/20230829A03TI700" target="_blank" rel="noopener">https://news.qq.com/rain/a/20230829A03TI700</a> （2023-08-29）</li>
+<li><span class="rn">[147]</span>淘宝好物爆料《定制湿巾印logo也太适合做外卖赠品了！》<a href="https://jianghu.taobao.com/detail/47598_39370651" target="_blank" rel="noopener">https://jianghu.taobao.com/detail/47598_39370651</a> （2025-09-03）</li>
+<li><span class="rn">[148]</span>少数派《新玩意｜海底捞外送火锅》<a href="https://sspai.com/post/65064" target="_blank" rel="noopener">https://sspai.com/post/65064</a> （2021-02-13）</li>
+<li><span class="rn">[149]</span>供应商网 外卖食安封签产品参数（&quot;强粘易撕破&quot;）<a href="https://m.gys.cn/shangbiao/3669865164.html" target="_blank" rel="noopener">https://m.gys.cn/shangbiao/3669865164.html</a> （2015-01-21收录）</li>
+<li><span class="rn">[150]</span>外卖玩家《外卖店铺1个差评对评分的影响多大？》<a href="https://www.waimaiwanjia.com/?p=28731" target="_blank" rel="noopener">https://www.waimaiwanjia.com/?p=28731</a> （日期待考）</li>
+<li><span class="rn">[151]</span>大众点评 海底捞外卖评价 <a href="https://m.dianping.com/review/942560575" target="_blank" rel="noopener">https://m.dianping.com/review/942560575</a> （2021-07-10）</li>
+<li><span class="rn">[152]</span>告别口味波动：佩厨智能炒菜机如何实现中式爆炒的锅气，佩厨官网，2026-07-11，<a href="https://www.peicook.com/article/g9zgj04w" target="_blank" rel="noopener">https://www.peicook.com/article/g9zgj04w</a></li>
+<li><span class="rn">[153]</span>机器人掀起后厨革命，经济观察报，2026-03-06，<a href="http://www.eeo.com.cn/2026/0306/806031.shtml" target="_blank" rel="noopener">http://www.eeo.com.cn/2026/0306/806031.shtml</a></li>
+<li><span class="rn">[154]</span>浣熊食堂一边迭代一边扩张，亿邦动力/零售商业财经，2025-07-10，<a href="https://m.ebrun.com/585007.html" target="_blank" rel="noopener">https://m.ebrun.com/585007.html</a></li>
+<li><span class="rn">[155]</span>如何加盟美团&quot;浣熊食堂&quot;，微信公众号，2025-07-31，<a href="http://mp.weixin.qq.com/s?__biz=Mzk0MjM0OTc4OQ==&amp;mid=2247570816&amp;idx=1&amp;sn=5a3aec5cb381c0355db5491803c3339d" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=Mzk0MjM0OTc4OQ==&amp;mid=2247570816&amp;idx=1&amp;sn=5a3aec5cb381c0355db5491803c3339d</a></li>
+<li><span class="rn">[156]</span>2026年盖码饭炒菜机器人推荐（工程水电配合），中华网，2026-07-07，<a href="https://m.tech.china.com/articles/20260707/202607071910755.html" target="_blank" rel="noopener">https://m.tech.china.com/articles/20260707/202607071910755.html</a></li>
+<li><span class="rn">[157]</span>2026炒菜机器人回本周期？真实用户反馈、隐性成本，佩厨官网，2026-07-20，<a href="https://www.peicook.com/article/d96ysmbb" target="_blank" rel="noopener">https://www.peicook.com/article/d96ysmbb</a></li>
+<li><span class="rn">[158]</span>炒菜机器人回本周期怎么算？，佩厨官网，2026-06-29，<a href="https://www.peicook.com/article/nt5pomkc" target="_blank" rel="noopener">https://www.peicook.com/article/nt5pomkc</a></li>
+<li><span class="rn">[159]</span>炒菜机器人品牌怎么选？2026年商用回本周期对比（半自动段），佩厨官网，2026-07-03，<a href="https://www.peicook.com/article/8rbmx9zh" target="_blank" rel="noopener">https://www.peicook.com/article/8rbmx9zh</a></li>
+<li><span class="rn">[160]</span>日均炒菜1300多份，厨师背后有&quot;秘密武器&quot;，工人日报微信，2025-08-06，<a href="http://mp.weixin.qq.com/s?__biz=MjM5MTM3NTMwNA==&amp;mid=2661617292&amp;idx=2&amp;sn=559c1b7404c8913b0e086da04c6c56af" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MTM3NTMwNA==&amp;mid=2661617292&amp;idx=2&amp;sn=559c1b7404c8913b0e086da04c6c56af</a></li>
+<li><span class="rn">[161]</span>炒菜机器人回本周期到底要多久？2026年五大商用品牌选型参考，搜狐，2026-07-21，<a href="https://www.sohu.com/a/1052893404_121289327" target="_blank" rel="noopener">https://www.sohu.com/a/1052893404_121289327</a></li>
+<li><span class="rn">[162]</span>记者实探京东七鲜小厨首店：机器人炒菜，爆单后出餐速度承压，腾讯新闻（新黄河），2025-07-22，<a href="https://view.inews.qq.com/a/20250722A05QO900" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250722A05QO900</a></li>
+<li><span class="rn">[163]</span>对话橡鹿机器人杨建成：2025新餐饮方程式，界面新闻，2025-07-09，<a href="http://mp.weixin.qq.com/s?__biz=Mzg5Mzg5NTcyOA==&amp;mid=2247489030&amp;idx=1&amp;sn=9d9539197644f7a1710377f88e42a2b7" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=Mzg5Mzg5NTcyOA==&amp;mid=2247489030&amp;idx=1&amp;sn=9d9539197644f7a1710377f88e42a2b7</a></li>
+<li><span class="rn">[164]</span>中国餐饮AI应用研究报告2026，MBA智库，2026-04-01，<a href="https://doc.mbalib.com/view/e592ffa71bcf10fd33da95c608f37fd8.html" target="_blank" rel="noopener">https://doc.mbalib.com/view/e592ffa71bcf10fd33da95c608f37fd8.html</a></li>
+<li><span class="rn">[165]</span>商用炒菜机器人选哪家？2026年核心技术指标横向对比，未央网，2026-06-05，<a href="https://www.weiyangx.com/468685.html" target="_blank" rel="noopener">https://www.weiyangx.com/468685.html</a></li>
+<li><span class="rn">[166]</span>网络餐饮服务经营者落实食品安全主体责任监督管理规定（全文），商务部政策库，2026-01-27，<a href="https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=105547" target="_blank" rel="noopener">https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=105547</a></li>
+<li><span class="rn">[167]</span>美团官方《2025年，商家提的问题，我们都改进了哪些？》，2026-02-05，<a href="https://www.meituan.com/news/NN260206199002398" target="_blank" rel="noopener">https://www.meituan.com/news/NN260206199002398</a></li>
+<li><span class="rn">[168]</span>搜狐《数字技术重塑无堂食外卖监管新生态》<a href="https://www.sohu.com/a/877736555_121952162" target="_blank" rel="noopener">https://www.sohu.com/a/877736555_121952162</a> （2025-03-31）</li>
+<li><span class="rn">[169]</span>GB28181监控摄像头价格（明厨亮灶专用），淘宝，检索于2026-07，<a href="https://guangtao.taobao.com/product-7e857e8dec0e686a679f8820ae0567c88a62c7f0af4310ed4dab45198cbbc93c.html" target="_blank" rel="noopener">https://guangtao.taobao.com/product-7e857e8dec0e686a679f8820ae0567c88a62c7f0af4310ed4dab45198cbbc93c.html</a></li>
+<li><span class="rn">[170]</span>明厨亮灶摄像头品牌价格，淘宝，检索于2026-07，<a href="https://guangtao.taobao.com/product-4b3b5320593e746ef429c9b95d373815cc43ed631314c49423895fba4085e22a.html" target="_blank" rel="noopener">https://guangtao.taobao.com/product-4b3b5320593e746ef429c9b95d373815cc43ed631314c49423895fba4085e22a.html</a></li>
+<li><span class="rn">[171]</span>推动外卖透明化，美团宣布将为更多&quot;明厨亮灶&quot;商家提供补贴，新京报，2025-09-20，<a href="https://m.bjnews.com.cn/detail/1758333073168452.html" target="_blank" rel="noopener">https://m.bjnews.com.cn/detail/1758333073168452.html</a></li>
+<li><span class="rn">[172]</span>网易/中国市场监管新闻网《美团、饿了么携手安康赢共推&quot;明厨亮灶&quot;升级》<a href="https://www.163.com/dy/article/K9OHVQJU05568W0A.html" target="_blank" rel="noopener">https://www.163.com/dy/article/K9OHVQJU05568W0A.html</a> （2025-09-18）</li>
+<li><span class="rn">[173]</span>网易《网红摊贩霸屏热搜！四千万从业者崛起，地摊经济撑起37万亿市场》，2025-11-17，<a href="https://www.163.com/dy/article/KEJ5PDIR05568JUO.html" target="_blank" rel="noopener">https://www.163.com/dy/article/KEJ5PDIR05568JUO.html</a></li>
+<li><span class="rn">[174]</span>微信公众号《地摊经济再燃，旅游经济与城市秩序的一场博弈》，2023-05-12，<a href="http://mp.weixin.qq.com/s?__biz=MzA3MDEzOTMwMw==&amp;mid=2658767850" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MzA3MDEzOTMwMw==&amp;mid=2658767850</a></li>
+<li><span class="rn">[175]</span>云南网《2025成都都市圈&quot;农家乐乐万家&quot;厨艺大赛海选火热启动》，2025-08-06，<a href="https://news.yunnan.cn/system/2025/08/06/033575601.shtml" target="_blank" rel="noopener">https://news.yunnan.cn/system/2025/08/06/033575601.shtml</a></li>
+<li><span class="rn">[176]</span>红网《厨艺大赛展风采 以赛提质强服务》，2022-09-22，<a href="https://cs.rednet.cn/content/2022/09/22/11861015.html" target="_blank" rel="noopener">https://cs.rednet.cn/content/2022/09/22/11861015.html</a></li>
+<li><span class="rn">[177]</span>36氪《&quot;单条广告8万只分500&quot;？隋坡解约风波背后》，2025-05-22，<a href="https://m.36kr.com/p/3304495855196929" target="_blank" rel="noopener">https://m.36kr.com/p/3304495855196929</a></li>
+<li><span class="rn">[178]</span>腾讯新闻《四年选秀的&quot;黑红流量&quot;困局》，2021-12-12，<a href="https://news.qq.com/rain/a/20211212A099L700" target="_blank" rel="noopener">https://news.qq.com/rain/a/20211212A099L700</a></li>
+<li><span class="rn">[179]</span>凤凰网《爱奇艺蒙牛就&quot;倒奶事件&quot;双双道歉》，2021-05-07，<a href="https://news.ifeng.com/c/863U0hhHqc3" target="_blank" rel="noopener">https://news.ifeng.com/c/863U0hhHqc3</a></li>
+<li><span class="rn">[180]</span>央视网《只要瓶盖不要奶 倒奶式&quot;打投&quot;粉丝为何如此疯狂》，2021-05-07，<a href="https://news.cctv.com/2021/05/07/ARTItwvEhQdipPyxoDSYUuoL210507.shtml" target="_blank" rel="noopener">https://news.cctv.com/2021/05/07/ARTItwvEhQdipPyxoDSYUuoL210507.shtml</a></li>
+<li><span class="rn">[181]</span>投中网/雪豹财经社（新浪转载）《人均300的贵价餐厅，被黑珍珠&quot;流量江湖&quot;困住》，2024-05-27，<a href="https://tech.sina.cn/2024-05-27/detail-inawscep3848071.d.html" target="_blank" rel="noopener">https://tech.sina.cn/2024-05-27/detail-inawscep3848071.d.html</a></li>
+<li><span class="rn">[182]</span>重庆晨报《不再是&quot;顶流&quot;？&quot;拉面哥&quot;最新发声！》，2025-10-06，<a href="https://www.cqnews.net/1/detail/1424688658158706688.html" target="_blank" rel="noopener">https://www.cqnews.net/1/detail/1424688658158706688.html</a></li>
+<li><span class="rn">[183]</span>创业邦/金错刀《中国顶流大厨，为何被MCN追着泼脏水？》，2026-05-01，<a href="https://m.cyzone.cn/article/799184" target="_blank" rel="noopener">https://m.cyzone.cn/article/799184</a></li>
+<li><span class="rn">[184]</span>扬子晚报《网红厨师遭MCN指责违约侵权，律师：MCN竞业限制或属无效》，2025-05-20，<a href="https://www.yzwb.net/news/txs/202505/t20250520_209922.html" target="_blank" rel="noopener">https://www.yzwb.net/news/txs/202505/t20250520_209922.html</a></li>
+<li><span class="rn">[185]</span>艾媒咨询《深度｜&quot;独行&quot;的董宇辉给俞敏洪们上的重要一课》，2024-07-31，<a href="https://www.iimedia.cn/c1092/101572.html" target="_blank" rel="noopener">https://www.iimedia.cn/c1092/101572.html</a></li>
+<li><span class="rn">[186]</span>江苏网警/上海辟谣平台《拥有40万粉丝的网红&quot;骑手&quot;被抓》，2024-12-11，<a href="https://jsnews.jschina.com.cn/piyao/qwfb/202412/t20241211_s675956f6e4b081b5d4ff1e4c.shtml" target="_blank" rel="noopener">https://jsnews.jschina.com.cn/piyao/qwfb/202412/t20241211_s675956f6e4b081b5d4ff1e4c.shtml</a></li>
+<li><span class="rn">[187]</span>新华社《假剧情伤害真骑手！卖惨营销乱象亟待整治》，2024-11-08，<a href="http://www.news.cn/fortune/20241108/74f625a6ee7347cea65499b31cf50851/c.html" target="_blank" rel="noopener">http://www.news.cn/fortune/20241108/74f625a6ee7347cea65499b31cf50851/c.html</a></li>
+<li><span class="rn">[188]</span>人人都是产品经理《从瑞幸咖啡社群谈起，看私域流量的困境和机会》2020-08-03 <a href="https://www.woshipm.com/operate/4115035.html" target="_blank" rel="noopener">https://www.woshipm.com/operate/4115035.html</a></li>
+<li><span class="rn">[189]</span>FoodTalks《6300万会员，茶饮第一品牌是如何布局私域的？》2023-02-08 <a href="https://www.foodtalks.cn/news/41132" target="_blank" rel="noopener">https://www.foodtalks.cn/news/41132</a></li>
+<li><span class="rn">[190]</span>CBNData《喜茶上线&quot;拼好饭&quot;的隐与忧》2025-08-27 <a href="https://www.cbndata.com/information/294400" target="_blank" rel="noopener">https://www.cbndata.com/information/294400</a></li>
+<li><span class="rn">[191]</span>智东西《我让美团的小美给我做了半天助理》2025-09-16 <a href="https://zhidx.com/p/504573.html" target="_blank" rel="noopener">https://zhidx.com/p/504573.html</a></li>
+<li><span class="rn">[192]</span>有赞社区《产品发布｜新建收货地址支持智能识别自动触发》2024-04-24 <a href="https://bbs.youzan.com/thread-694968-1-1.html" target="_blank" rel="noopener">https://bbs.youzan.com/thread-694968-1-1.html</a></li>
+<li><span class="rn">[193]</span>PHP中文网《美团外卖无门槛红包怎么领 复制口令直接领券步骤》2025-08-11 <a href="https://www.php.cn/faq/1447979.html" target="_blank" rel="noopener">https://www.php.cn/faq/1447979.html</a></li>
+<li><span class="rn">[194]</span>知产财经《广州互联网法院发布个人信息保护典型案例》（李某某诉某网络科技公司案，剪贴板）<a href="https://www.ipeconomy.cn/index/news/magazine_details/id/6068.html" target="_blank" rel="noopener">https://www.ipeconomy.cn/index/news/magazine_details/id/6068.html</a></li>
+<li><span class="rn">[195]</span>《开发者个人信息保护合规指引》（含《App违法违规收集使用个人信息行为认定方法》摘录）2026-06-15 <a href="https://www.csjplatform.com/en/supportcenter/5452" target="_blank" rel="noopener">https://www.csjplatform.com/en/supportcenter/5452</a></li>
+<li><span class="rn">[196]</span>搜狐（AI蓝媒汇）《美团外卖，&quot;神抢&quot;AI》2025-03-28 <a href="https://www.sohu.com/a/876916581_99970452" target="_blank" rel="noopener">https://www.sohu.com/a/876916581_99970452</a></li>
+<li><span class="rn">[197]</span>百度经验《多人一起点外卖怎么用饿了么来拼单？》2019-08-06 <a href="https://jingyan.baidu.com/article/f3e34a12448376b5eb6535d3.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/f3e34a12448376b5eb6535d3.html</a></li>
+<li><span class="rn">[198]</span>美团餐饮系统帮助中心《小程序2.0操作手册（多人点餐、备注提醒）》<a href="https://h5.dianping.com/app/cs-faas-page/saas-mvp/video-detail.html?id=1956" target="_blank" rel="noopener">https://h5.dianping.com/app/cs-faas-page/saas-mvp/video-detail.html?id=1956</a></li>
+<li><span class="rn">[199]</span>美团规则中心《美团到店餐饮商户违规处理规范》2026-06-09 <a href="https://rules-center.meituan.com/rules-detail/294?commonType=1" target="_blank" rel="noopener">https://rules-center.meituan.com/rules-detail/294?commonType=1</a></li>
+<li><span class="rn">[200]</span>美团规则中心《美团买药关于&quot;诱导至第三方交易&quot;实施细则》2024-11-07 <a href="https://rules-center.meituan.com/rules-detail/1197?commonType=20" target="_blank" rel="noopener">https://rules-center.meituan.com/rules-detail/1197?commonType=20</a></li>
+<li><span class="rn">[201]</span>腾讯新闻《天猫禁止包裹卡引流，商家的私域不能建在微信上》2024-06-27 <a href="https://news.qq.com/rain/a/20240627A09J6F00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20240627A09J6F00</a></li>
+<li><span class="rn">[202]</span>新华社《京东、饿了么、抖音、淘宝、天猫7家电商平台被罚没35.97亿元》2026-04-17 <a href="https://www.news.cn/fortune/20260417/827d0346a23b4ee6aeac0c1bc92be99c/c.html" target="_blank" rel="noopener">https://www.news.cn/fortune/20260417/827d0346a23b4ee6aeac0c1bc92be99c/c.html</a></li>
+<li><span class="rn">[203]</span>央广网《“坪效之王”南城香，会是中式快餐的&quot;终极模型&quot;吗？》，2024-05-06，<a href="https://ent.cnr.cn/canyin/zixun/20240506/t20240506_526695352.shtml" target="_blank" rel="noopener">https://ent.cnr.cn/canyin/zixun/20240506/t20240506_526695352.shtml</a></li>
+<li><span class="rn">[204]</span>GeoQ《从选址到运营，南城香如何做到单日店均流水3万》，<a href="https://geoq.cn/newsinfo/4596190.html" target="_blank" rel="noopener">https://geoq.cn/newsinfo/4596190.html</a></li>
+<li><span class="rn">[205]</span>虎嗅《南城香是怎么成为&quot;北漂食堂&quot;的？》，2024-03-10，<a href="https://www.huxiu.com/article/2767938.html" target="_blank" rel="noopener">https://www.huxiu.com/article/2767938.html</a></li>
+<li><span class="rn">[206]</span>央广网《&quot;分时共享店铺&quot;的经营模式是否合规？》，2021-12-02，<a href="http://china.cnr.cn/gdgg/20211202/t20211202_525676795.shtml" target="_blank" rel="noopener">http://china.cnr.cn/gdgg/20211202/t20211202_525676795.shtml</a></li>
+<li><span class="rn">[207]</span>人民日报《给&quot;分时共享店铺&quot;赛道制定合适的监管规则》，2021-12-06，<a href="http://paper.people.com.cn/zgcsb/html/2021-12/06/content_25892512.htm" target="_blank" rel="noopener">http://paper.people.com.cn/zgcsb/html/2021-12/06/content_25892512.htm</a></li>
+<li><span class="rn">[208]</span>北京商报《三年开1200家&quot;浣熊食堂&quot; 美团再探外卖新可能》，2025-07-01，<a href="https://www.bbtnews.com.cn/2025/0701/561715.shtml" target="_blank" rel="noopener">https://www.bbtnews.com.cn/2025/0701/561715.shtml</a></li>
+<li><span class="rn">[209]</span>原创力文档《餐饮业外卖市场用户需求分析》<a href="https://max.book118.com/html/2025/0201/7136154010010032.shtm" target="_blank" rel="noopener">https://max.book118.com/html/2025/0201/7136154010010032.shtm</a> (2025-02-02)【低置信】</li>
+<li><span class="rn">[210]</span>Dealmoon《限今天：星巴克Happy Hour 周四限时活动星冰乐半价》<a href="https://www.dealmoon.com/cn/50-off-starbucks-happy-hour-activities/1022738.html" target="_blank" rel="noopener">https://www.dealmoon.com/cn/50-off-starbucks-happy-hour-activities/1022738.html</a> (2018-10-11)</li>
+<li><span class="rn">[211]</span>小宇宙播客《餐饮集体卷&quot;低价&quot;》（引艾媒咨询数据）<a href="https://www.xiaoyuzhoufm.com/episode/66c5a0a133591c27beaecb43" target="_blank" rel="noopener">https://www.xiaoyuzhoufm.com/episode/66c5a0a133591c27beaecb43</a> (2024-08-25)</li>
+<li><span class="rn">[212]</span>微信公众号（航旅新零售）《锚定效应如何塑造你的机票选择》<a href="http://mp.weixin.qq.com/s?__biz=Mzg2MzIyMTk5Mg==&amp;mid=2247518866&amp;idx=1&amp;sn=84f727de66de22d1e6ba49d9bb3a2add" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=Mzg2MzIyMTk5Mg==&amp;mid=2247518866&amp;idx=1&amp;sn=84f727de66de22d1e6ba49d9bb3a2add</a></li>
+<li><span class="rn">[213]</span>CBC/CACCC《DoorDash遭加拿大竞争局起诉：误导性定价争议》<a href="https://caccc.ca/2025/06/09/competition-bureau-sues-food-delivery-company-doordash-alleging-misleading-price-promotions/" target="_blank" rel="noopener">https://caccc.ca/2025/06/09/competition-bureau-sues-food-delivery-company-doordash-alleging-misleading-price-promotions/</a> (2025-06-09)</li>
+<li><span class="rn">[214]</span>新浪财经《外卖涨价背后 成本与算法成幕后推手 各方观点》<a href="https://news.sina.cn/bignews/opinion/2026-03-14/detail-inhqyaqp0365539.d.html" target="_blank" rel="noopener">https://news.sina.cn/bignews/opinion/2026-03-14/detail-inhqyaqp0365539.d.html</a> (2026-03-14)【中置信】</li>
+<li><span class="rn">[215]</span>百度经验《饿了么怎么设置送达时间》<a href="https://jingyan.baidu.com/article/17bd8e520b21e7c4ab2bb8ed.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/17bd8e520b21e7c4ab2bb8ed.html</a> (2023-05-05)</li>
+<li><span class="rn">[216]</span>天天问（人人都是产品经理）《饿了么的&quot;预约送达时间&quot;功能，是否形同虚设？》<a href="https://wen.woshipm.com/question/detail/t6890j.html" target="_blank" rel="noopener">https://wen.woshipm.com/question/detail/t6890j.html</a></li>
+<li><span class="rn">[217]</span>财联社《付费订阅模式能否开启餐厅复苏新局面？》<a href="https://m.cls.cn/detail/1278454" target="_blank" rel="noopener">https://m.cls.cn/detail/1278454</a> (2023-02-27)</li>
+<li><span class="rn">[218]</span>OFweek维科号《外卖大战的终极答案，在拼好饭里》（引华泰研究）<a href="https://mp.ofweek.com/Internet/a356714748567" target="_blank" rel="noopener">https://mp.ofweek.com/Internet/a356714748567</a> (2025-11-12)</li>
+<li><span class="rn">[219]</span>餐饮界《回收便当盒，建立用户黏性》（同[^7^]）；创业邦（同[^2^]）</li>
+<li><span class="rn">[220]</span>美团渠道分析《上海热门火锅推荐》<a href="https://source.meituan.com/q/haidilao-guide-20260324141350-5" target="_blank" rel="noopener">https://source.meituan.com/q/haidilao-guide-20260324141350-5</a> (2026-03-24)【中低置信】</li>
+<li><span class="rn">[221]</span>腾讯新闻/南方周末《&quot;无需餐具&quot;还是送，餐盒循环嫌麻烦：外卖限塑，难在哪？》<a href="https://news.qq.com/rain/a/20201106A0IC4T00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20201106A0IC4T00</a> （2020-11-06）</li>
+<li><span class="rn">[222]</span>TapTouch《订阅式餐饮模式：您的餐厅应该提供吗？》<a href="https://taptouchpos.com/zh-CN/blogs/subscription-meal-models-should-your-restaurant-offer-them/" target="_blank" rel="noopener">https://taptouchpos.com/zh-CN/blogs/subscription-meal-models-should-your-restaurant-offer-them/</a> (2025-12-04)【中置信】</li>
+<li><span class="rn">[223]</span>搜狐《餐饮订阅制：打破现金流与顾客关系的不确定性》<a href="https://www.sohu.com/a/989284783_121079493" target="_blank" rel="noopener">https://www.sohu.com/a/989284783_121079493</a> (2026-02-25)【中置信】</li>
+<li><span class="rn">[224]</span>微信公众号《百胜中国终于扛过来了》2025-08-09 <a href="http://mp.weixin.qq.com/s?__biz=Mzk5MDA0MDcxNg==&amp;mid=2247484093&amp;idx=1&amp;sn=342257dfa7c290e824b8a3c586d7fad0" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=Mzk5MDA0MDcxNg==&amp;mid=2247484093&amp;idx=1&amp;sn=342257dfa7c290e824b8a3c586d7fad0</a></li>
+<li><span class="rn">[225]</span>小宇宙播客《宠物经济≠宠物生意》（谈中国订阅制难度）<a href="https://www.xiaoyuzhoufm.com/episode/685094657dd7cf656627b6b9" target="_blank" rel="noopener">https://www.xiaoyuzhoufm.com/episode/685094657dd7cf656627b6b9</a> (2025-06-16)</li>
+<li><span class="rn">[226]</span>钛媒体《315追踪：被挂牌督办，杨铭宇黄焖鸡…门店数较高点缩水超3000家》<a href="https://www.tmtpost.com/7493509.html" target="_blank" rel="noopener">https://www.tmtpost.com/7493509.html</a> （2025-03-14）</li>
+<li><span class="rn">[227]</span>虎嗅《&quot;喷射战士&quot;华莱士，紧急退市》<a href="https://www.huxiu.com/article/4837824.html" target="_blank" rel="noopener">https://www.huxiu.com/article/4837824.html</a> （2026-02-28）</li>
+<li><span class="rn">[228]</span>联商网专栏《老乡鸡创始人束从轩：靠透明化等三招反内卷》<a href="http://blog.linkshop.com/u/yiilong/534339.html" target="_blank" rel="noopener">http://blog.linkshop.com/u/yiilong/534339.html</a> （2024-06-28）</li>
+<li><span class="rn">[229]</span>《西贝预制菜风波：信任崩塌始末》<a href="https://torontowechat.ca/blogs/news/..." target="_blank" rel="noopener">https://torontowechat.ca/blogs/news/...</a> （2025-09-14）</li>
+<li><span class="rn">[230]</span>文汇报《超市、便利店食品报废率近10%？》<a href="https://wenhui.whb.cn/third/yidian/202009/08/369797.html" target="_blank" rel="noopener">https://wenhui.whb.cn/third/yidian/202009/08/369797.html</a> （2020-09-08）</li>
+<li><span class="rn">[231]</span>新浪财经《京东七鲜小厨：10亿现金招募&quot;菜品合伙人&quot; 3年建设10000家门店》2025-08-02 <a href="https://finance.sina.com.cn/roll/2025-08-02/doc-infircmq3539916.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/roll/2025-08-02/doc-infircmq3539916.shtml</a></li>
+<li><span class="rn">[232]</span>美餐官网《智慧餐饮系统解决方案》<a href="https://www.meican.com/tech-enabled" target="_blank" rel="noopener">https://www.meican.com/tech-enabled</a> （检索于2026）</li>
+<li><span class="rn">[233]</span>PC下载网《美餐宴请软件功能》<a href="https://m.pcsoft.com.cn/android/soft/58993.html" target="_blank" rel="noopener">https://m.pcsoft.com.cn/android/soft/58993.html</a> (2023-06-27)</li>
+<li><span class="rn">[234]</span>小宇宙播客《团餐是一门什么样的生意？》2023-07-02，<a href="https://www.xiaoyuzhoufm.com/episode/64a201f04ea8301fb9f55662" target="_blank" rel="noopener">https://www.xiaoyuzhoufm.com/episode/64a201f04ea8301fb9f55662</a></li>
+<li><span class="rn">[235]</span>搜狐《算法下的「奔跑」：谁来为外卖骑手的交通安全负责？》<a href="https://www.sohu.com/a/816692342_389742" target="_blank" rel="noopener">https://www.sohu.com/a/816692342_389742</a> (2024-10-15)</li>
+<li><span class="rn">[236]</span>中国经济网《肯德基&quot;6元早餐&quot;挑战麦当劳 两大快餐巨头竞争激烈》<a href="http://www.ce.cn/cysc/sp/info/201012/28/t20101228_20659532.shtml" target="_blank" rel="noopener">http://www.ce.cn/cysc/sp/info/201012/28/t20101228_20659532.shtml</a> (2010-12-28)</li>
+<li><span class="rn">[237]</span>网易《县城跑腿新玩法：唤醒外卖小哥的&quot;沉睡运力&quot;》<a href="https://www.163.com/dy/article/JSPV32VR0538Q1KC.html" target="_blank" rel="noopener">https://www.163.com/dy/article/JSPV32VR0538Q1KC.html</a> (2025-04-10)【中置信】</li>
+<li><span class="rn">[238]</span>瑞欧科技《塑料制品禁止与限制使用政策及其实施现状分析》<a href="https://www.reach24h.com/food-contact-material/industry-news/plastics-govern-unscramble" target="_blank" rel="noopener">https://www.reach24h.com/food-contact-material/industry-news/plastics-govern-unscramble</a> （2025-09-01）</li>
+<li><span class="rn">[239]</span>可降解塑料餐盒与传统塑料餐盒力学性能与成本对比分析 <a href="http://kjjhc.com/news/287739.html" target="_blank" rel="noopener">http://kjjhc.com/news/287739.html</a> （2026-06-15）</li>
+<li><span class="rn">[240]</span>东方财富证券《中国可降解材料市场研究报告》<a href="https://pdf.dfcfw.com/pdf/H3_AP202204141559239159_1.pdf" target="_blank" rel="noopener">https://pdf.dfcfw.com/pdf/H3_AP202204141559239159_1.pdf</a> （2022-04-14）</li>
+<li><span class="rn">[241]</span>微信公众号《外卖餐盒涉及碳排放或超千万吨……》<a href="http://mp.weixin.qq.com/s?__biz=MzI0NjkxMTIzNg==&amp;mid=2247485128..." target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MzI0NjkxMTIzNg==&amp;mid=2247485128...</a> （日期待考）</li>
+<li><span class="rn">[242]</span>豆瓣/摆脱塑缚《国内首创｜循环外卖餐盒+餐盒回收柜，破解塑料污染》<a href="https://www.douban.com/note/788428904/" target="_blank" rel="noopener">https://www.douban.com/note/788428904/</a> （2020-12-18）</li>
+<li><span class="rn">[243]</span>搜狐《重用模式结合押金制，迎来中国环保减塑的下一站》<a href="https://www.sohu.com/a/834586623_100235747" target="_blank" rel="noopener">https://www.sohu.com/a/834586623_100235747</a> （2024-12-10）</li>
+<li><span class="rn">[244]</span>人民网福建《&quot;福州曼玲粥店将吃剩排骨再下锅&quot;追踪》<a href="http://fj.people.com.cn/n2/2021/0316/c181466-34624493.html" target="_blank" rel="noopener">http://fj.people.com.cn/n2/2021/0316/c181466-34624493.html</a> （2021-03-16）</li>
+<li><span class="rn">[245]</span>中研普华《净菜加工市场规模已突破3000亿元》<a href="https://www.chinairn.com/hyzx/20240821/163653894.shtml" target="_blank" rel="noopener">https://www.chinairn.com/hyzx/20240821/163653894.shtml</a> （2024-08-21）</li>
+<li><span class="rn">[246]</span>CBNData《美团快驴大收缩：难以改造的餐饮供应链》<a href="https://www.cbndata.com/information/198819" target="_blank" rel="noopener">https://www.cbndata.com/information/198819</a> （2021-08-31）</li>
+<li><span class="rn">[247]</span>东方财富/每日经济新闻《千味央厨：为餐饮企业提供定制化、标准化的预制半成品》<a href="https://finance.eastmoney.com/a/202505273415428825.html" target="_blank" rel="noopener">https://finance.eastmoney.com/a/202505273415428825.html</a> （2025-05-27）</li>
+<li><span class="rn">[248]</span>东吴证券《从千味央厨看速冻面米餐饮市场新蓝海》<a href="https://img3.gelonghui.com/pdf/6569c-bdbe46d2-9104-4fa2-af80-4f9cce1892e7.pdf" target="_blank" rel="noopener">https://img3.gelonghui.com/pdf/6569c-bdbe46d2-9104-4fa2-af80-4f9cce1892e7.pdf</a> （2020-07-12）</li>
+<li><span class="rn">[249]</span>新浪科技《七鲜小厨公开食材供应商名单，开放24小时现炒直播》<a href="https://finance.sina.com.cn/tech/2025-10-29/doc-infvpywq8760538.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tech/2025-10-29/doc-infvpywq8760538.shtml</a> （2025-10-29）</li>
+<li><span class="rn">[250]</span>央广网《规模超万亿！食材供应链的风口来了？》<a href="http://ent.cnr.cn/ylzt/cyfh/hd/20210323/t20210323_525443726.shtml" target="_blank" rel="noopener">http://ent.cnr.cn/ylzt/cyfh/hd/20210323/t20210323_525443726.shtml</a> （2021-03-23）</li>
+<li><span class="rn">[251]</span>澎湃《3.9元的库迪咖啡爆单了…》<a href="https://www.thepaper.cn/newsDetail_forward_30751724" target="_blank" rel="noopener">https://www.thepaper.cn/newsDetail_forward_30751724</a> （2025-05-01）</li>
+<li><span class="rn">[252]</span>株式会社い和多 東京都食品衛生自主管理認証制度 認証基準（平成30年）<a href="https://e-bento.co.jp/wp/wp-content/uploads/2018/10/h30_tokyo-tokutei.pdf" target="_blank" rel="noopener">https://e-bento.co.jp/wp/wp-content/uploads/2018/10/h30_tokyo-tokutei.pdf</a></li>
+<li><span class="rn">[253]</span>system-haccp.com《弁当屋のHACCP》2024-08-23，<a href="https://www.system-haccp.com/industry/lunch-box.html" target="_blank" rel="noopener">https://www.system-haccp.com/industry/lunch-box.html</a></li>
+<li><span class="rn">[254]</span>sunessen《弁当製造における衛生管理》<a href="http://sunessen.com/pdf/haccp.pdf" target="_blank" rel="noopener">http://sunessen.com/pdf/haccp.pdf</a></li>
+<li><span class="rn">[255]</span>36氪《「熊猫星厨」完成数千万美元B轮融资》，2018-08-14，<a href="https://m.36kr.com/p/1722744750081" target="_blank" rel="noopener">https://m.36kr.com/p/1722744750081</a></li>
+<li><span class="rn">[256]</span>钛媒体/商业街探案《租金纠纷、管理不善，外卖创业者还敢和熊猫星厨合作吗？》，2020-05-11，<a href="https://www.tmtpost.com/4370820.html" target="_blank" rel="noopener">https://www.tmtpost.com/4370820.html</a></li>
+<li><span class="rn">[257]</span>连云区&quot;互联网+明厨亮灶&quot;接入指南，连云港市连云区政府，2026-04-28，<a href="http://www.lianyun.gov.cn/lyq/rdhy/content/8d0378aa-5e96-4f09-b047-16f8aa0ab055.html" target="_blank" rel="noopener">http://www.lianyun.gov.cn/lyq/rdhy/content/8d0378aa-5e96-4f09-b047-16f8aa0ab055.html</a></li>
+<li><span class="rn">[258]</span>赢商网《餐饮老板集体加码小店，&quot;小店+外卖&quot;成餐饮破题新路子？》，2024-12-07，<a href="https://m.winshang.com/news729599.html" target="_blank" rel="noopener">https://m.winshang.com/news729599.html</a></li>
+<li><span class="rn">[259]</span>虎嗅《315餐饮第一&quot;暴雷&quot;：杨铭宇黄焖鸡被曝剩菜回收、变质肉上桌》<a href="https://www.huxiu.com/article/4113779.html" target="_blank" rel="noopener">https://www.huxiu.com/article/4113779.html</a> （2025-03-12）</li>
+<li><span class="rn">[260]</span>Food On Demand, &quot;An Operator&#x27;s Look Inside DoorDash Kitchens Full Service&quot;, 2021. <a href="https://foodondemand.com/09022021/an-operators-look-inside-doordash-kitchens-full-service/" target="_blank" rel="noopener">https://foodondemand.com/09022021/an-operators-look-inside-doordash-kitchens-full-service/</a></li>
+<li><span class="rn">[261]</span>凤凰网江西《鸡排哥网红街&quot;退烧&quot;，景德镇依旧火热》，2026-03-23，<a href="https://jx.ifeng.com/" target="_blank" rel="noopener">https://jx.ifeng.com/</a></li>
+<li><span class="rn">[262]</span>新榜《带动1.1万单交易，抖音后厨直播大战带飞线下消费》，2025-09-16，<a href="https://voice.newrank.cn/study/observation/EDDEEE25550DC3E5" target="_blank" rel="noopener">https://voice.newrank.cn/study/observation/EDDEEE25550DC3E5</a></li>
+<li><span class="rn">[263]</span>人人都是产品经理《180万私域用户，9000多个群，这个企微案例有点6》2021-03-09 <a href="https://www.woshipm.com/marketing/4394074.html" target="_blank" rel="noopener">https://www.woshipm.com/marketing/4394074.html</a></li>
+<li><span class="rn">[264]</span>kensan.pro《弁当1種類で廃棄率0.1%を実現！玉子屋に学ぶ「アナログAI経営」》2026-04-01，<a href="https://kensan.pro/2026/04/01/..." target="_blank" rel="noopener">https://kensan.pro/2026/04/01/...</a></li>
+<li><span class="rn">[265]</span>今日头条《拼好饭：外卖界杀出个&quot;拼多多&quot;，商家骑手用户三方都在骂？》<a href="http://toutiao.com/article/7498598908092776960" target="_blank" rel="noopener">http://toutiao.com/article/7498598908092776960</a> (2025-04-29)</li>
+<li><span class="rn">[266]</span>上观新闻《外卖到底赚不赚钱，五位餐馆老板向我们交了个底》，2020-04-26，<a href="https://www.jfdaily.com/wx/detail.do?id=241392" target="_blank" rel="noopener">https://www.jfdaily.com/wx/detail.do?id=241392</a></li>
+<li><span class="rn">[267]</span>搜狐/北京商报《京东七鲜小厨：不与餐饮老店抢生意》2025-07-27 <a href="https://www.sohu.com/a/916937316_115865" target="_blank" rel="noopener">https://www.sohu.com/a/916937316_115865</a></li>
+<li><span class="rn">[268]</span>腾讯新闻《拼好饭：吐槽不影响购买！单日订单峰值破800万》<a href="https://news.qq.com/rain/a/20241215A034DC00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20241215A034DC00</a> (2024-12-15)</li>
+<li><span class="rn">[269]</span>澎湃新闻《“9.9元”拼好饭，缘何未成美团的新流量入口？》<a href="https://www.thepaper.cn/newsDetail_forward_29007774" target="_blank" rel="noopener">https://www.thepaper.cn/newsDetail_forward_29007774</a> (2024-10-12)</li>
+<li><span class="rn">[270]</span>新浪财经《餐饮品牌布局卫星店，外卖厨房成重要形式》，2025-07-02，<a href="https://finance.sina.com.cn/jjxw/2025-07-02/doc-infeanhk2527560.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2025-07-02/doc-infeanhk2527560.shtml</a></li>
+<li><span class="rn">[271]</span>美团官网新闻《美团联合本地零售品牌，分别孵育打造了哪些创新业态？》，2024-12-25，<a href="https://www.meituan.com/news/NN241225074005762" target="_blank" rel="noopener">https://www.meituan.com/news/NN241225074005762</a></li>
+<li><span class="rn">[272]</span>Restaurant Dive, &quot;Ask an expert: What structural problems killed the ghost kitchen?&quot;（律师 Alon Lagstein 专访）, 2024-05-17. <a href="https://www.restaurantdive.com/news/ask-an-expert-what-structural-problems-killed-the-ghost-kitchen/716465/" target="_blank" rel="noopener">https://www.restaurantdive.com/news/ask-an-expert-what-structural-problems-killed-the-ghost-kitchen/716465/</a></li>
+<li><span class="rn">[273]</span>零点校园《校园外卖定价密码：动态策略如何破解&quot;午高峰&quot;与&quot;闲时单&quot;困局？》<a href="https://www.0xiao.com/news/48924.html" target="_blank" rel="noopener">https://www.0xiao.com/news/48924.html</a> (2025-03-14)【中置信】</li>
+<li><span class="rn">[274]</span>动点科技《美餐，个人外卖转型后如何做企业订餐平台》<a href="https://cn.technode.com/post/2015-07-14/meican-zhaoxiao/" target="_blank" rel="noopener">https://cn.technode.com/post/2015-07-14/meican-zhaoxiao/</a> (2015-07-14)</li>
+<li><span class="rn">[275]</span>Restaurant Business《DoorDash pushes back against inflated delivery prices》<a href="https://restaurantbusinessonline.com/technology/doordash-pushes-back-against-inflated-delivery-prices" target="_blank" rel="noopener">https://restaurantbusinessonline.com/technology/doordash-pushes-back-against-inflated-delivery-prices</a> (2023-04-27)</li>
+<li><span class="rn">[276]</span>人人都是产品经理《盘点&quot;小作文&quot;事件始末》，2023-12-05，<a href="https://www.woshipm.com/it/5959978.html" target="_blank" rel="noopener">https://www.woshipm.com/it/5959978.html</a></li>
+<li><span class="rn">[277]</span>新京报评论（东方财富转载）《外卖大战一年商户利润骤降 内卷式竞争只会害惨餐饮业》2026-03-17 <a href="https://biz.eastmoney.com/a/202603163673460139.html" target="_blank" rel="noopener">https://biz.eastmoney.com/a/202603163673460139.html</a></li>
+<li><span class="rn">[278]</span>千龙网《餐饮内卷高淘汰期，共享厨房里的卫星店成为新宠儿》，2024-06-25，<a href="https://china.qianlong.com/2024/0625/8290534.shtml" target="_blank" rel="noopener">https://china.qianlong.com/2024/0625/8290534.shtml</a></li>
+</ol>
+  </details>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div>「锅气计划」标准化现炒外卖模式评估与成本定价分析 · 调研与撰写日期：2026-07-26</div>
+  <div>基于10个维度、约600条公开来源的交叉验证调研 · 278条参考文献可查</div>
+  <div class="disclaim">⚠️ 数据来自公开来源，财务数据为2026年7月模型测算值而非历史数据。本报告不构成投资建议。</div>
+</footer>
+
+<script>
+(function(){
+  // progress bar
+  var bar=document.getElementById('progress');
+  function upd(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+  }
+  document.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  },{threshold:0,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  // details label toggle
+  document.querySelectorAll('details').forEach(function(d){
+    var lab=d.querySelector('.sumlabel');
+    if(!lab)return;
+    d.addEventListener('toggle',function(){
+      lab.textContent=d.open?'收起详情':(lab.dataset.label||'展开详情');
+    });
+    lab.dataset.label=lab.textContent;
+  });
+})();
+</script>
+</body>
+</html>

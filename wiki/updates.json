@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-26",
+      "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
+      "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
+      "topic": "锅气计划外卖模式评估",
+      "body": "对7个原始设想逐条对照已有模式下结论：仪式感包装（+1.5-2元/单）、错峰分时定价、供应商公示经得起验证；师傅海选、私域App、租用后厨需合规修正。核心章给出单份成本瀑布（保本点日均310单、净利率5.5%）、28-35元定价带推导与客群承接度验证。基于10个维度约600条公开来源交叉调研。",
+      "body_en": "All 7 original assumptions benchmarked against live models: ritual unboxing (+¥1.5-2/order), off-peak time-based pricing and supplier transparency hold up; chef auditions, private-domain app and shared-kitchen leasing need compliance fixes. Core chapter delivers a per-order cost waterfall (break-even at 310 orders/day, 5.5% net margin), ¥28-35 pricing band and customer acceptance analysis. Cross-verified across 10 research dimensions and ~600 public sources."
+    },
+    {
+      "date": "2026-07-26",
       "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
       "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
       "topic": "凡人修仙传全脉络Wiki",
