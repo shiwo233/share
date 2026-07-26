@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-07-26",
+      "title": "新议题入库：《桶联 BinBot 全链路智能垃圾处理系统 PRD》",
+      "title_en": "New topic: BinBot fully-automated trash pipeline PRD",
+      "topic": "桶联 BinBot 智能垃圾系统",
+      "body": "产品设计概念稿：自动检测打包、腔内喷雾除味、推出交接机构、扫地机器人升降护栏运送与 12 项场景冗余；含 Word/Markdown 版 PRD 下载。",
+      "body_en": "Concept PRD: auto-seal detection, deodorizing spray, push-out handoff, robot-vacuum transport with lifting guardrail, and 12 redundancy scenarios; Word/Markdown PRD included."
+    },
+    {
       "date": "2026-07-24",
       "title": "Wiki 升级：深色/浅色、中英双语、分类板块、悬停预览",
       "title_en": "Wiki upgraded: dark/light theme, CN-EN, categories, hover preview",

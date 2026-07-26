@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桶联 BinBot · 全链路智能垃圾处理系统产品设计 | Research Wiki</title>
+<style>
+:root{
+  --bg:#0a0e15; --bg2:#101623; --card:#141c2b; --line:#22304a;
+  --txt:#e8edf5; --sub:#8fa0b8; --acc:#5b8cff; --acc2:#f0b45b;
+  --grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(91,140,255,.35)}
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(10,14,21,.8);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+nav .inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:0 18px;height:60px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap;text-decoration:none;color:var(--txt)}
+nav .spacer{flex:1;min-width:8px}
+nav .logo .mark{width:28px;height:28px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+nav .logo .grad{background:var(--grad);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 7s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+nav .sep{width:1px;height:20px;background:var(--line);flex-shrink:0}
+nav a.nl{color:var(--sub);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:8px;white-space:nowrap;transition:.25s}
+nav a.nl:hover{color:var(--txt);background:rgba(91,140,255,.12)}
+nav a.nl.home{color:var(--acc);font-weight:700}
+.wrap{max-width:860px;margin:0 auto;padding:96px 18px 60px}
+header.hero{text-align:center;padding:26px 0 30px}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);color:var(--acc2);
+  padding:4px 14px;border-radius:999px;font-size:12px;letter-spacing:.15em;margin-bottom:16px}
+h1{font-size:clamp(24px,5.6vw,34px);line-height:1.35;font-weight:800;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--sub);margin-top:14px;font-size:13.5px}
+.hero .meta{margin-top:14px;font-size:11.5px;color:var(--sub);opacity:.8;letter-spacing:.08em}
+h2{font-size:19px;margin:46px 0 6px;font-weight:800;display:flex;align-items:center;gap:10px}
+h2 .num{width:26px;height:26px;flex:none;border-radius:8px;background:var(--grad);color:#fff;
+  font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.lead{color:var(--sub);font-size:13.5px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;transition:.3s}
+.card:hover{border-color:rgba(91,140,255,.4)}
+.card h3{font-size:15.5px;margin-bottom:8px}
+.card h3 .em{color:var(--acc2)}
+.card p,.card li{font-size:14px;color:#c3cddd}
+.card ul{padding-left:18px}
+.card li{margin:5px 0}
+.card strong{color:var(--txt)}
+.flow{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;position:relative;padding-bottom:22px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:19px;top:42px;bottom:2px;width:2px;background:var(--line)}
+.step:last-child::before{display:none}
+.dot{width:40px;height:40px;flex:none;border-radius:12px;background:var(--bg2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:18px;z-index:1}
+.step .body{padding-top:6px}
+.step .body b{font-size:14.5px}
+.step .body b .new{color:var(--acc2);font-size:11px;border:1px dashed var(--acc2);border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+.step .body span{display:block;font-size:13px;color:var(--sub)}
+.arch{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.arch .hub{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;font-size:13.5px;font-weight:700}
+.arch .hub span{font-weight:400;font-size:11.5px;color:var(--sub);display:block;margin-top:4px}
+.arch .link{text-align:center;color:var(--sub);font-size:11.5px;padding:6px 0;letter-spacing:.15em}
+.arch .mods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.arch .mods{grid-template-columns:1fr}}
+.arch .mod{border:1.5px dashed rgba(91,140,255,.5);border-radius:12px;padding:13px;font-size:12.5px;color:#c3cddd}
+.arch .mod b{font-size:13.5px;display:block;margin-bottom:4px;color:var(--txt)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:7px 16px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);font-size:13px;color:var(--sub);cursor:pointer;transition:.25s}
+.tab.on{background:var(--grad);color:#fff;border-color:transparent;font-weight:700}
+.pane{display:none}.pane.on{display:block;animation:fade .25s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pill{display:inline-block;background:rgba(91,140,255,.12);color:var(--acc);
+  font-size:11.5px;padding:3px 10px;border-radius:999px;margin:2px 4px 2px 0}
+.scroll{overflow-x:auto;border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);
+  border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg2);font-weight:700;font-size:12.5px;white-space:nowrap;color:var(--acc2)}
+td{color:#c3cddd}
+tr:last-child td{border-bottom:none}
+details{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden}
+summary{padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:18px;color:var(--sub);transition:.25s}
+details[open] summary::after{content:"–";color:var(--acc)}
+details .inner{padding:0 16px 15px;font-size:13.5px;color:#c3cddd}
+.road .item{border-left:3px solid;padding:4px 0 4px 14px;margin-bottom:16px;border-image:linear-gradient(180deg,#5b8cff,#9d6bff) 1}
+.road .item b{font-size:14.5px}
+.road .item p{font-size:13px;color:var(--sub)}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kpi .k{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;transition:.3s}
+.kpi .k:hover{border-color:rgba(240,180,91,.5);transform:translateY(-2px)}
+.kpi .k b{font-size:22px;display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.kpi .k span{font-size:12px;color:var(--sub)}
+.nextup{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;transition:.3s;position:relative;overflow:hidden}
+.nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.nextup .nu-kicker{font-size:11px;letter-spacing:.25em;color:var(--acc2);font-weight:700;margin-bottom:8px}
+.nextup h4{font-size:15.5px;line-height:1.45;margin-bottom:6px}
+.nextup p{font-size:12.5px;color:var(--sub);line-height:1.65}
+.nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11.5px;color:var(--sub);flex-wrap:wrap}
+.nextup .nu-tag{border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.nextup .nu-all{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--acc);text-decoration:none}
+@media(min-width:1100px){
+  .nextup{position:fixed;right:22px;top:84px;width:252px;z-index:70;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .nextup:hover{border-color:var(--acc);transform:translateY(-3px)}
+}
+@media(max-width:1099px){
+  .nextup{max-width:860px;margin:0 auto 18px;display:block}
+}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:30px 0 20px;text-align:center;color:var(--sub);font-size:12.5px}
+footer a{color:var(--acc);text-decoration:none}
+#toTop{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:80;cursor:pointer}
+#toTop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <a class="nl" href="#flow">链路</a><a class="nl" href="#arch">架构</a><a class="nl" href="#modules">模块</a><a class="nl" href="#redundancy">冗余</a><a class="nl" href="#specs">参数</a><a class="nl" href="#roadmap">路线图</a><a class="nl" href="#kpi">指标</a>
+  <span class="spacer"></span>
+  <span class="sep"></span>
+  <a class="nl home" href="../wiki/">主页</a>
+  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
+</div></nav>
+
+<aside class="nextup">
+  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+  <h4>中国大模型六小虎深度研究</h4>
+  <p>智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、江湖八卦与 2026–2028 推演。</p>
+  <div class="nu-meta"><span class="nu-tag">AI</span><span class="nu-tag">公司研究</span><span>2026-07-24</span></div>
+  <a class="nu-all" href="../six-tigers-report/">立即阅读 →</a>
+</aside>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="tag">产品设计 · PRD v1.0 · 概念稿</div>
+  <h1>桶联 BinBot<br>全链路智能垃圾处理系统</h1>
+  <p>检测装满 → 自动热封打包 → 喷雾除味 → 自动套新袋 → 推出交接 → 扫地机器人运送<br>把「最后一袋垃圾」的无人化链路补齐</p>
+  <div class="meta">2026-07-26 ｜ 立项评审稿 ｜ 追踪：米家生态准入、扫地机开放协议、同类竞品动态</div>
+</header>
+
+<h2 id="flow"><span class="num">①</span>核心链路：七步全自动</h2>
+<p class="lead">人只需要出门时顺手拎走一袋已封口的垃圾，其余环节全部无人值守。</p>
+<div class="card"><div class="flow">
+  <div class="step"><div class="dot">📡</div><div class="body"><b>双传感装满检测</b><span>ToF 激光测高 + 桶底称重，任一达阈值即触发（默认 90% / 3kg），矛盾时以 ToF 为准</span></div></div>
+  <div class="step"><div class="dot">🔥</div><div class="body"><b>热熔封口打包</b><span>≤12s，封口宽 ≥8mm，承重 5kg 不漏（成熟 ASAR 方案优化）</span></div></div>
+  <div class="step"><div class="dot">💨</div><div class="body"><b>腔内喷雾除味<span class="new">本次新增</span></b><span>封口后、套袋前的无袋黄金窗口：360° 微雾 + 封口杆自清洁 + 高配 UV-C，根治长期异味</span></div></div>
+  <div class="step"><div class="dot">🛍️</div><div class="body"><b>风吸自动套新袋</b><span>负压铺袋 ≤8s，红外确认，失败自动重试 2 次</span></div></div>
+  <div class="step"><div class="dot">📤</div><div class="body"><b>举升 + 侧推交接<span class="new">本次新增</span></b><span>托盘举升 → 前侧滑门开启 → 推板 ≤0.1m/s 送出至交接平台，导向翼板防倒，全程 ≤6s</span></div></div>
+  <div class="step"><div class="dot">🤖</div><div class="body"><b>召唤扫地机器人</b><span>IoT 自动召唤 / 小爱语音 / App 按键 / 定时巡检，UWB 对位误差 ±2cm</span></div></div>
+  <div class="step"><div class="dot">🛡️</div><div class="body"><b>升降护栏围护运送</b><span>装载确认后护栏升起 15cm 防倾倒，降速 40% 送达指定投放点，到站 App + 语音提醒</span></div></div>
+</div></div>
+
+<h2 id="arch"><span class="num">②</span>系统架构</h2>
+<p class="lead">垃圾桶与机器人不硬连接，通过米家 IoT 中枢以「事件—场景」联动：兼容用户已有扫地机、跨品牌可扩展、单点故障不拖垮全局。</p>
+<div class="arch">
+  <div class="hub">米家 IoT 中枢<span>小爱语音 · 米家 App · 智能场景引擎 · 本地网关（断外网可用）</span></div>
+  <div class="link">↑↓ MQTT / MiOT spec ↑↓</div>
+  <div class="mods">
+    <div class="mod"><b>A · 智能垃圾桶主机</b>装满检测（ToF+称重）· 热封打包 · 除味喷雾 · 风吸套袋 · 举升推出机构 · 备用电池</div>
+    <div class="mod"><b>B · 扫地机运输套件</b>载物平台（6kg）· 升降护栏环 · 对接信标 · 「收运模式」固件 OTA 插件</div>
+  </div>
+</div>
+
+<h2 id="modules"><span class="num">③</span>两大模块详解</h2>
+<div class="tabs">
+  <div class="tab on" data-t="a">A · 垃圾桶主机</div>
+  <div class="tab" data-t="b">B · 机器人套件</div>
+  <div class="tab" data-t="c">IoT 语音联动</div>
+</div>
+<div class="pane on" id="pane-a">
+  <div class="card"><h3>装满检测与自动打包 <span class="em">（默认模式 · 无人值守）</span></h3>
+    <ul><li>ToF 测距（App 可调 70–100%）与称重传感<strong>双冗余</strong>，任一达阈值即打包；防止单一重物骗过称重</li>
+    <li>无断点袋盒 + 热熔封口切断，袋盒 25–30 袋（约 1 个月用量）</li></ul></div>
+  <div class="card"><h3>除味清洁喷雾 <span class="em">—— 解决「长期有味」</span></h3>
+    <ul><li>时机：封口完成、旧袋推出后、套新袋前（腔内无袋的最佳清洁窗口）</li>
+    <li>食品级次氯酸/电解水微雾：内壁 360° 喷 3s + 封口机构喷杆自清洁 1s；高配 UV-C 辅照 30s</li>
+    <li>桶底导流槽 + 可拆接水盘；<strong>缺液仅降级提醒，不阻塞流程</strong></li></ul></div>
+  <div class="card"><h3>推出机构 <span class="em">—— 用「推」不用「抓」</span></h3>
+    <ul><li>静音丝杆托盘举升 → 前侧自动滑门 → 同步带推板低速推出，两侧导向翼板防倒</li>
+    <li>纯线性机构 vs 机械臂：成本仅 1/5、故障率低、易做防水</li>
+    <li>备用电池：停电可完成当前封口动作，避免封一半的袋子卡住</li></ul></div>
+</div>
+<div class="pane" id="pane-b">
+  <div class="card"><h3>加装套件，而非新机器人</h3>
+    <ul><li>载物平台：磁吸/卡扣固定于扫地机顶部，承重 6kg，防滑硅胶 + 三点限位卡扣</li>
+    <li><strong>升降护栏环</strong>：待机降下收起（照常钻沙发底），装载后升起 15cm 围护；升起期间自动更新机身高度禁区，禁止进入低矮家具底部</li>
+    <li>红外 + UWB 对接信标；固件 OTA「收运模式」：降速 40%、禁爬 1cm 以上门槛（低重心策略）</li></ul></div>
+  <div class="card"><h3>四路召唤冗余</h3>
+    <span class="pill">IoT 自动召唤</span><span class="pill">小爱语音</span><span class="pill">App / 桶身按键</span><span class="pill">定时巡检</span></div>
+</div>
+<div class="pane" id="pane-c">
+  <div class="card"><h3>手动打包的强约束设计</h3>
+    <p>用户在 App 将打包模式设为「手动」时，<strong>系统强制引导完成米家绑定，未绑定则手动模式不可保存</strong>——确保手动 = 可语音 / 远程触发，杜绝「只能按桶身键」的假手动。</p></div>
+  <div class="card"><h3>官方场景模板</h3>
+    <ul><li>离家模式 → 全屋垃圾桶自动打包收运</li><li>每晚 22:00 垃圾量 &gt;60% 自动打包</li>
+    <li>打包完成 → 玄关灯闪烁，提醒出门带走</li></ul></div>
+</div>
+
+<h2 id="redundancy"><span class="num">④</span>场景冗余设计 ×12</h2>
+<p class="lead">原则：「降级不瘫痪，死机才算失败」。12 类异常全覆盖，任一环掉链子都有 B 计划。</p>
+<details open><summary>供电与机构类（R1–R2）</summary><div class="inner">打包中途停电 → 备用电池完成当前封口后安全停机；袋子卡住 / 铺袋失败 → 重试 2 次后进入「仅打包不套袋」人工处理态，App + 桶身红灯报警。</div></details>
+<details><summary>耗材类（R3）</summary><div class="inner">清洁液耗尽不阻塞流程：跳过喷雾继续运行并记录，连续干运行 5 次后强提醒。</div></details>
+<details><summary>调度类（R4 / R11）</summary><div class="inner">机器人忙 / 被困 → 任务排队最长 30 分钟 → 改派第二台 → 超时则垃圾袋暂存交接平台、桶照常套新袋继续使用，App 提醒人工取走。多桶同时召唤按「装满程度 + 先叫先得」排队，厨房湿垃圾桶可插队。</div></details>
+<details><summary>安全类（R5 / R6 / R8 / R10）</summary><div class="inner">超重超体积 → 停止推出并回收至桶内，提示人工处理；运送中倾角 / 重量突变 → 立即停车报警；人宠靠近 → 机构动作即停；护栏升起期间 → 禁止进入沙发 / 床底等低矮区域。</div></details>
+<details><summary>环境类（R7 / R9 / R12）</summary><div class="inner">断网走本地网关，纯离线保持「打包 + 套袋」基础闭环、蜂鸣代替机器人运送；湿垃圾渗漏自动触发「袋中袋」双层模式；指定投放点被堵自动切换备用投放点，均不可用则返回交接位等待。</div></details>
+
+<h2 id="specs"><span class="num">⑤</span>关键工程目标</h2>
+<div class="scroll"><table>
+  <tr><th>指标</th><th>目标值</th></tr>
+  <tr><td>全流程时长</td><td>检测→推出 ≤ 60s（封口 ≤12s）；单次运送含对位 ≤ 3min</td></tr>
+  <tr><td>袋盒 / 清洁液</td><td>25–30 袋（约 1 个月）/ 300ml 约 90 次喷雾</td></tr>
+  <tr><td>护栏 / 载重</td><td>升起 15cm 围护 10L 标准袋 / 平台承重 6kg</td></tr>
+  <tr><td>噪音</td><td>打包 ≤55dB，推出 ≤45dB</td></tr>
+  <tr><td>售价目标</td><td>主机 ¥899（含 1 袋盒 + 1 液盒）｜ 机器人套件 ¥299，兼容主流米家系扫地机</td></tr>
+</table></div>
+
+<h2 id="roadmap"><span class="num">⑥</span>版本路线图</h2>
+<div class="road">
+  <div class="item"><b>V1.0 MVP · 6 个月</b><p>主机（打包 + 喷雾 + 套袋 + 推出）+ 1 款扫地机适配套件 + 米家接入 + 基础冗余 R1–R8</p></div>
+  <div class="item"><b>V1.5</b><p>双袋湿垃圾模式、多桶调度、备用投放点（R9–R12）</p></div>
+  <div class="item"><b>V2.0</b><p>到站自动卸袋机构、跨品牌机器人开放协议</p></div>
+  <div class="item"><b>V3.0 · 远期</b><p>对接社区无人收运（HARR-E 类）：家 → 楼下 → 集中点全无人链路</p></div>
+</div>
+
+<h2 id="kpi"><span class="num">⑦</span>北极星指标</h2>
+<div class="kpi">
+  <div class="k"><b>≤1 次</b><span>每周人工触碰垃圾（仅剩出门拎走）</span></div>
+  <div class="k"><b>≥98%</b><span>全流程成功率（降级不算失败）</span></div>
+  <div class="k"><b>&lt;2%</b><span>3 个月桶腔异味投诉率</span></div>
+  <div class="k"><b>≥3 款</b><span>首发适配主流米家系扫地机</span></div>
+</div>
+
+<footer>
+  桶联 BinBot · PRD v1.0 · 概念设计稿，供立项评审使用<br>
+  <a href="./prd.docx">下载 Word 版 PRD</a> · <a href="./prd.md">Markdown 版</a> · <a href="../wiki/">返回 Research Wiki 主页</a>
+</footer>
+</div>
+
+<div id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('pane-'+t.dataset.t).classList.add('on');
+  });
+});
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>400),{passive:true});
+</script>
+</body>
+</html>
