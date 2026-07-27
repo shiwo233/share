@@ -290,27 +290,11 @@ footer li{margin:5px 0 0 20px}
 <header>
   <div class="kicker">DRAM 101 · 2026.07</div>
   <h1 class="hero">ssy 给你做<br><em>DRAM 科普</em></h1>
-  <p class="hero-sub">全球万亿 AI 算力的钱，到底被谁赚走了？<br>沿着最贵的那块主板一层层拆下去——答案藏在内存里</p>
+  <p class="hero-sub">全球万亿 AI 算力的钱，到底被谁赚走了？<br>答案，藏在内存里</p>
   <div class="hero-cta">
-    <a class="btn pri" href="#hook">先问钱</a>
-    <a class="btn" href="#graph">看产业图谱</a>
+    <a class="btn pri" href="#graph">看产业图谱</a>
   </div>
 </header>
-
-<!-- ============ 开局：钱的问题 ============ -->
-<section id="hook">
-  <div class="sec-tag rv">FOLLOW THE MONEY</div>
-  <h2 class="rv">先别聊参数，先问钱</h2>
-  <p class="sec-desc rv">巨头们在台前互掐（英伟达 vs AMD vs 国产芯片），但把这块最贵的主板拆到底，会发现一个闷声发财的「真卖铲人」——内存。</p>
-  <div class="teardown rv">
-    <div class="td"><span class="td-n">第一层</span><b>一块旗舰 AI 加速卡</b><span>售价 20 万+ 仍一卡难求，英伟达拿走了最大的估值故事</span></div>
-    <div class="td-arr">↓ 拆开看 ↓</div>
-    <div class="td"><span class="td-n">第二层</span><b>GPU 旁边围着一圈内存</b><span>机构估算：<hot>HBM 占整卡物料成本约一半</hot>——比 GPU 主芯片本身还贵</span></div>
-    <div class="td-arr">↓ 再往下拆 ↓</div>
-    <div class="td hl"><span class="td-n">第三层</span><b>「卖铲人」浮出水面</b><span>每季度约 <hot>850 亿美元</hot> DRAM 营收，<hot>90% 被三巨头分走</hot>；1Q26 环比 +81.5%，超级周期</span></div>
-  </div>
-  <p class="sec-desc rv" style="margin-top:16px;margin-bottom:0">所以要看懂钱去了哪，先得看懂内存这门生意的三条技术路线 ↓</p>
-</section>
 
 <!-- ============ 一屏速览 ============ -->
 <section id="glance">
@@ -995,8 +979,19 @@ function draw(){
   if(fOn)al=n._pass?1:0.06;
   ctx.globalAlpha=al;
   const hotN=i===hot;
-  if(n.type==='center'){ctx.globalAlpha=1;return}
-  if(n.type==='gen'){
+  if(n.type==='center'){
+   const r=n.rw*Math.min(pr.s,1.6),x=pr.x,y=pr.y;
+   const gl=ctx.createRadialGradient(x,y,r*0.6,x,y,r*2.3);
+   gl.addColorStop(0,'rgba(157,107,255,.20)');gl.addColorStop(1,'rgba(157,107,255,0)');
+   ctx.beginPath();ctx.arc(x,y,r*2.3,0,TAU);ctx.fillStyle=gl;ctx.fill();
+   const g=ctx.createLinearGradient(x-r,y-r,x+r,y+r);
+   g.addColorStop(0,'#5b8cff');g.addColorStop(.55,'#9d6bff');g.addColorStop(1,'#f0b45b');
+   ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fillStyle=g;ctx.fill();
+   if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke()}
+   ctx.fillStyle='#0a0e15';ctx.font=`900 ${Math.round(15*Math.min(pr.s,1.3))}px sans-serif`;
+   ctx.textAlign='center';ctx.textBaseline='middle';
+   ctx.fillText('DRAM',x,y+1);
+  }else if(n.type==='gen'){
    const w=n.w*pr.s,h=n.h*pr.s;
    rr(pr.x-w/2,pr.y-h/2,w,h,h/2);
    ctx.fillStyle=n.col;ctx.fill();
@@ -1034,20 +1029,6 @@ function draw(){
     ctx.fillText((c.est?'≈':'')+c.share+'%',x,y+r+5+13*sf)}
   }
  });
- /* core drawn last: always on top like a sun */
- const cn=nodes[centerI],cpr=cn.pr;
- const cr=cn.rw*Math.min(cpr.s,1.6),cxx=cpr.x,cyy=cpr.y;
- const cgl=ctx.createRadialGradient(cxx,cyy,cr*0.6,cxx,cyy,cr*2.3);
- cgl.addColorStop(0,'rgba(157,107,255,.22)');cgl.addColorStop(1,'rgba(157,107,255,0)');
- ctx.globalAlpha=1;
- ctx.beginPath();ctx.arc(cxx,cyy,cr*2.3,0,TAU);ctx.fillStyle=cgl;ctx.fill();
- const cg=ctx.createLinearGradient(cxx-cr,cyy-cr,cxx+cr,cyy+cr);
- cg.addColorStop(0,'#5b8cff');cg.addColorStop(.55,'#9d6bff');cg.addColorStop(1,'#f0b45b');
- ctx.beginPath();ctx.arc(cxx,cyy,cr,0,TAU);ctx.fillStyle=cg;ctx.fill();
- if(hot===centerI){ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke()}
- ctx.fillStyle='#0a0e15';ctx.font=`900 ${Math.round(15*Math.min(cpr.s,1.3))}px sans-serif`;
- ctx.textAlign='center';ctx.textBaseline='middle';
- ctx.fillText('DRAM',cxx,cyy+1);
  ctx.globalAlpha=1;
 }
 /* ---- hit test ---- */

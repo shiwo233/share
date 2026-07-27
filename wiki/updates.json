@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v7.2：删除「先问钱」板块 + 球心遮挡修正",
+      "title_en": "DRAM 101 v7.2: removed the money-teardown section, fixed core occlusion",
+      "topic": "内存技术全景对比",
+      "body": "开篇「先问钱 / FOLLOW THE MONEY」三层拆解板块整体移除，Hero 区只保留「看产业图谱」主按钮，页面从速览直接进入正题；3D 球网修正遮挡关系：球心 DRAM 恢复按深度排序绘制，作为最内层不再遮挡外层的三星/美光等公司节点。",
+      "body_en": "Removed the opening 'follow the money' three-layer teardown section; the hero now keeps a single primary 'View the industry graph' button. Fixed the 3D sphere's occlusion: the DRAM core is drawn in depth order again and, as the innermost layer, no longer covers outer vendor nodes like Samsung or Micron."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v7.1：首页按钮直达产业图谱",
       "title_en": "DRAM 101 v7.1: hero button jumps straight to the industry graph",
       "topic": "内存技术全景对比",
