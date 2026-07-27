@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-07-27",
+      "title": "新议题入库：《内存技术全景对比：DDR / GDDR / HBM 与长鑫能力地图》",
+      "title_en": "New topic: DRAM Tech Map — DDR/GDDR/HBM & CXMT Capability",
+      "topic": "内存技术全景对比",
+      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≤5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
+      "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
+    },
+    {
       "date": "2026-07-26",
       "title": "凡人修仙传 Wiki 升级 v2：四张交互总表 + 图谱缩放控件",
       "title_en": "Mortal's Journey Wiki v2: interactive tables + zoomable graph",
