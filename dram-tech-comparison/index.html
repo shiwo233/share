@@ -91,25 +91,36 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .flow .fp small{display:block;font-size:10px;color:var(--sub);font-weight:400}
 .flow .fa{color:var(--sub);font-size:11px}
 .flow .fp.hl{border-color:var(--acc2);color:var(--acc2)}
-/* ===== spec tiles (compact overview) ===== */
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.chip{padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:13px;cursor:pointer;transition:.3s;user-select:none}
-.chip.on{color:#0a0e15;font-weight:700;border-color:transparent}
-.chip[data-f="all"].on{background:var(--grad)}
-.chip[data-f="ddr"].on{background:var(--ddr)} .chip[data-f="gddr"].on{background:var(--gddr)}
-.chip[data-f="hbm"].on{background:var(--hbm)} .chip[data-f="cx"].on{background:var(--green)}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;cursor:pointer;transition:.25s;position:relative;overflow:hidden;animation:fade .35s ease}
-.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
-.tile.f-ddr::before{background:var(--ddr)} .tile.f-gddr::before{background:var(--gddr)} .tile.f-hbm::before{background:var(--hbm)}
-.tile:hover{border-color:var(--acc);transform:translateY(-2px)}
-.tile:active{transform:scale(.97)}
-.tile .tg{font-size:16px;font-weight:800;display:flex;align-items:center;gap:7px}
-.tile .tg .sd{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
-.tile .tb{font-size:11.5px;color:var(--sub);font-weight:700;margin-top:3px}
-.tile .ty{font-size:10.5px;color:var(--sub);opacity:.75}
-.tile.dim{opacity:.25;pointer-events:none}
+/* ===== spec route lanes ===== */
+.spec-toggle{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sub);cursor:pointer;user-select:none;margin:0 0 14px}
+.swt{width:38px;height:22px;border-radius:99px;background:#1c2740;border:1px solid var(--line);position:relative;transition:.3s;flex:0 0 auto}
+.swt::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--sub);transition:.3s}
+.spec-toggle.on .swt{background:var(--green);border-color:var(--green)}
+.spec-toggle.on .swt::after{left:18px;background:#0a0e15}
+.lane2{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 14px 8px;margin-bottom:12px}
+.lane2-head{display:flex;align-items:center;gap:10px;margin-bottom:11px;flex-wrap:wrap}
+.lane2-tag{font-size:13.5px;font-weight:800;padding:4px 12px;border-radius:9px;color:#0a0e15}
+.lane2-sub{font-size:12px;color:var(--sub)}
+.lane2-track{display:flex;align-items:stretch;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.lane2-track::-webkit-scrollbar{display:none}
+.gnode{flex:0 0 auto;width:118px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:9px 10px;cursor:pointer;transition:.25s;animation:fade .35s ease}
+.gnode:hover{border-color:var(--acc);transform:translateY(-2px)}
+.gnode.on{border-color:var(--acc);box-shadow:0 0 0 1.5px var(--acc)}
+.gnode .gn-t{font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:6px}
+.gnode .gn-t .sd{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.gnode .gn-y{font-size:10.5px;color:var(--sub)}
+.gnode .gn-b{font-size:11px;color:var(--sub);font-weight:700;margin-top:2px}
+.gnode.ghost{opacity:.42;border-style:dashed;cursor:default}
+.gnode.ghost:hover{border-color:var(--line);transform:none}
+.gnode.dim2{opacity:.22}
+.garr{flex:0 0 auto;align-self:center;color:var(--sub);font-size:12px;padding:0 5px}
+.lane2-detail{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.ld-inner{border-top:1px dashed var(--line);margin-top:6px;padding-top:13px;padding-bottom:6px}
+.ld-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ld-head .gen{font-size:18px;font-weight:800}
+.ld-head .gp-link{margin-left:auto;font-size:12px;font-weight:700;color:var(--acc);text-decoration:none;white-space:nowrap}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(min-width:760px){.gnode{width:132px}}
 /* ===== spec modal ===== */
 .modal{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:rgba(4,7,12,.66);backdrop-filter:blur(6px)}
 .modal.show{display:flex}
@@ -124,7 +135,7 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .st-y{background:rgba(91,185,140,.15);color:var(--green);border:1px solid rgba(91,185,140,.4)}
 .st-p{background:rgba(240,180,91,.13);color:var(--amber);border:1px solid rgba(240,180,91,.4)}
 .st-n{background:rgba(255,123,123,.11);color:var(--red);border:1px solid rgba(255,123,123,.35)}
-.sheet .grid{display:grid;grid-template-columns:88px 1fr;gap:6px 12px;font-size:13.5px}
+.sheet .grid,.ld-inner .grid{display:grid;grid-template-columns:88px 1fr;gap:6px 12px;font-size:13.5px}
 .grid dt{color:var(--sub);white-space:nowrap}
 .grid dd{color:var(--txt);font-weight:600}
 .sheet .sh-actions{display:flex;gap:10px;margin-top:16px}
@@ -340,19 +351,13 @@ footer li{margin:5px 0 0 20px}
   </div>
 </section>
 
-<!-- ============ 参数总览 ============ -->
+<!-- ============ 参数路线 ============ -->
 <section id="specs">
-  <div class="sec-tag rv">SPECS AT A GLANCE</div>
-  <h2 class="rv">十代内存参数总览</h2>
-  <p class="sec-desc rv">一张总览图看全十代。状态点：<b style="color:var(--green)">●</b> 长鑫已量产 <b style="color:var(--amber)">●</b> 爬坡中 <b style="color:var(--red)">●</b> 空白。点任意卡片看完整参数。</p>
-  <div class="chips rv" id="chips">
-    <button class="chip on" data-f="all">全部</button>
-    <button class="chip" data-f="ddr">DDR 通用</button>
-    <button class="chip" data-f="gddr">GDDR 显存</button>
-    <button class="chip" data-f="hbm">HBM 高带宽</button>
-    <button class="chip" data-f="cx">仅看长鑫能做</button>
-  </div>
-  <div class="tiles rv" id="tiles"></div>
+  <div class="sec-tag rv">SPECS ON THE ROADMAP</div>
+  <h2 class="rv">十代内存：沿技术路线逐代展开</h2>
+  <p class="sec-desc rv">三条路线、十代产品，虚线框是下一代。状态点：<b style="color:var(--green)">●</b> 长鑫已量产 <b style="color:var(--amber)">●</b> 爬坡中 <b style="color:var(--red)">●</b> 空白。<b>点任意一代，在线路图下方展开它的完整介绍。</b></p>
+  <div class="spec-toggle rv" id="cxToggle"><span class="swt"></span>高亮长鑫能做的代际</div>
+  <div id="lanes" class="rv"></div>
 </section>
 
 <!-- spec modal -->
@@ -386,6 +391,23 @@ footer li{margin:5px 0 0 20px}
   <p class="sec-desc rv">2026 年 Q1 全球 DRAM 营收 943 亿美元（环比 +81.5%，超级周期）。先看总盘，再拆开看「高端 / 通用」的成色。</p>
 
   <div class="share-block rv">
+    <h3>行业构成：这个盘子由什么组成<small>估算口径 · 2026</small></h3>
+    <div class="tip">HBM 以约 23% 的位元消耗，贡献约两成营收；GDDR 体量小但单价高</div>
+    <div class="legrow">
+      <span><i style="background:#3b6fd4"></i>通用（DDR / LPDDR）≈77%</span>
+      <span><i style="background:linear-gradient(90deg,#9d6bff,#b98cff)"></i>HBM ≈18%</span>
+      <span><i style="background:#6d4bd8"></i>GDDR ≈5%</span>
+    </div>
+    <div class="mixbar" id="mixBar">
+      <div style="width:0;background:#3b6fd4" data-w="77"></div>
+      <div style="width:0;background:linear-gradient(90deg,#9d6bff,#b98cff)" data-w="18"></div>
+      <div style="width:0;background:#6d4bd8" data-w="5"></div>
+    </div>
+    <div class="mix-cap"><span>通用 ≈77%</span><span>HBM ≈18%</span><span>GDDR ≈5%</span></div>
+    <div class="share-note">估算口径：BofA——HBM 位元出货占 DRAM 总位元 2026 年 23%（2025 年 19%），HBM 市场规模 $35B→$54.6B；GDDR 约占 4–5%。</div>
+  </div>
+
+  <div class="share-block rv">
     <h3>DRAM 总盘：份额 × 高低端构成<small>CFM 1Q26 份额 · 分段为估算口径</small></h3>
     <div class="tip">整条宽度 = 该公司份额；条内 <b style="color:#b98cff">紫色段 = 高端（HBM + GDDR）</b>，蓝/绿段 = 通用（DDR / LPDDR）</div>
     <div class="legrow">
@@ -393,18 +415,11 @@ footer li{margin:5px 0 0 20px}
       <span><i style="background:#3b6fd4"></i>通用（DDR/LPDDR）</span>
       <span><i style="background:var(--green)"></i>长鑫·通用</span>
     </div>
-    <!-- industry mix strip -->
-    <div class="mixbar" id="mixBar">
-      <div style="width:0;background:#3b6fd4" data-w="77"></div>
-      <div style="width:0;background:linear-gradient(90deg,#9d6bff,#b98cff)" data-w="18"></div>
-      <div style="width:0;background:#6d4bd8" data-w="5"></div>
-    </div>
-    <div class="mix-cap"><span>行业整体构成（估算）：通用 DDR/LPDDR ≈77%</span><span>HBM ≈18%</span><span>GDDR ≈5%</span></div>
     <div id="segBars"></div>
     <div class="callout">
       <b>关键事实：</b>长鑫 7.7% 的份额<b>全部</b>落在通用段（DDR/LPDDR）；占整个盘子约 <b>23%</b> 的高端段（HBM + GDDR）里，中国厂商的份额是 <b>0</b>——HBM3 刚起步、GDDR 无产品线。份额第四 ≠ 高端入局。
     </div>
-    <div class="share-note">估算口径：行业 HBM 营收占比约两成（BofA：HBM 位元出货占 DRAM 总位元 2026 年 23%）；各公司高端段按其 HBM 份额（Counterpoint 1Q26：海力士 58% / 三星 21% / 美光 21%）与 GDDR 布局折算。三星/美光另有 LPDDR 服务器新业务，未计入高端段。</div>
+    <div class="share-note">估算口径：各公司高端段按其 HBM 份额（Counterpoint 1Q26：海力士 58% / 三星 21% / 美光 21%）与 GDDR 布局折算；三星/美光另有 LPDDR 服务器新业务，未计入高端段。</div>
   </div>
 
   <div class="share-2col rv">
@@ -601,25 +616,64 @@ const DATA=[
 const ST={y:"st-y",p:"st-p",n:"st-n"};
 const STC={y:"#5bb98c",p:"#f0b45b",n:"#ff7b7b"};
 const FC={ddr:"#5b8cff",gddr:"#f0935b",hbm:"#9d6bff"};
-/* ================= spec tiles + modal ================= */
-const tiles=document.getElementById('tiles');
-function renderTiles(f){
-  tiles.innerHTML='';
-  DATA.forEach(d=>{
-    const el=document.createElement('div');
-    const hide=(f!=='all'&&d.f!==f)||(f==='cx'&&d.cx==='n');
-    el.className='tile f-'+d.f+(hide?' dim':'');
-    el.innerHTML=`<div class="tg"><span class="sd" style="background:${STC[d.cx]}"></span>${d.g}</div><div class="tb">${d.bw}</div><div class="ty">${d.y}</div>`;
-    el.onclick=()=>openSpec(d.id);
-    tiles.appendChild(el);
+/* ================= spec route lanes ================= */
+const LANES=[
+ {tag:'DDR 通用内存',sub:'DIMM 模组 · 多通道堆带宽',cls:'ddr',ids:['ddr4','ddr5'],ghost:'DDR6 · 预研'},
+ {tag:'GDDR 图形显存',sub:'BGA 贴卡 · 单引脚极限速率',cls:'gddr',ids:['gddr6','gddr6x','gddr7'],ghost:'GDDR7+ · 40Gbps+'},
+ {tag:'HBM 高带宽内存',sub:'TSV 堆叠 · 位宽换带宽',cls:'hbm',ids:['hbm2','hbm2e','hbm3','hbm3e','hbm4'],ghost:'HBM4E · 2027'}
+];
+const lanesBox=document.getElementById('lanes');
+let openLane=-1,openId=null;
+LANES.forEach((L,li)=>{
+  const lane=document.createElement('div'); lane.className='lane2';
+  let track='';
+  L.ids.forEach(id=>{
+    const d=DATA.find(x=>x.id===id);
+    track+=`<div class="gnode" data-id="${d.id}" data-cx="${d.cx}" style="border-top:3px solid ${FC[d.f]}">
+      <div class="gn-t"><span class="sd" style="background:${STC[d.cx]}"></span>${d.g}</div>
+      <div class="gn-y">${d.y}</div><div class="gn-b">${d.bw}</div></div><span class="garr">→</span>`;
   });
-}
-renderTiles('all');
-document.getElementById('chips').addEventListener('click',e=>{
-  const b=e.target.closest('.chip'); if(!b)return;
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-  b.classList.add('on'); renderTiles(b.dataset.f);
+  track+=`<div class="gnode ghost"><div class="gn-t" style="color:var(--sub)">${L.ghost}</div><div class="gn-y">下一代</div></div>`;
+  lane.innerHTML=`<div class="lane2-head"><span class="lane2-tag" style="background:${FC[L.cls]}">${L.tag}</span><span class="lane2-sub">${L.sub}</span></div>
+    <div class="lane2-track">${track}</div>
+    <div class="lane2-detail"><div class="ld-inner" style="display:none"></div></div>`;
+  lanesBox.appendChild(lane);
+  lane.querySelectorAll('.gnode[data-id]').forEach(n=>{
+    n.onclick=()=>{
+      const id=n.dataset.id;
+      const detail=lane.querySelector('.lane2-detail'),inner=lane.querySelector('.ld-inner');
+      if(openLane===li&&openId===id){ /* collapse */
+        detail.style.maxHeight='0';openLane=-1;openId=null;
+        lane.querySelectorAll('.gnode').forEach(x=>x.classList.remove('on'));return;
+      }
+      /* close others */
+      document.querySelectorAll('.lane2-detail').forEach(x=>x.style.maxHeight='0');
+      document.querySelectorAll('.gnode').forEach(x=>x.classList.remove('on'));
+      const d=DATA.find(x=>x.id===id);
+      inner.style.display='block';
+      inner.innerHTML=`<div class="ld-head"><span class="gen">${d.g}</span><span class="fam" style="background:${FC[d.f]}">${d.f.toUpperCase()}</span><span class="st ${ST[d.cx]}">${d.cxt}</span><a class="gp-link" href="#graph" data-gid="${d.id}">在产业图谱中查看 →</a></div>
+      <dl class="grid">
+        <dt>首发/标准</dt><dd>${d.y}</dd><dt>单引脚速率</dt><dd>${d.pin}</dd>
+        <dt>总线位宽</dt><dd>${d.bus}</dd><dt>带宽</dt><dd>${d.bw}</dd>
+        <dt>容量</dt><dd>${d.cap}</dd><dt>电压</dt><dd>${d.v}</dd>
+        <dt>关键技术</dt><dd>${d.tech}</dd><dt>典型应用</dt><dd>${d.app}</dd>
+        <dt>供应商</dt><dd>${d.sup}</dd>
+      </dl>`;
+      inner.querySelector('.gp-link').onclick=()=>setTimeout(()=>window.graphFocus&&graphFocus(id),400);
+      n.classList.add('on');
+      detail.style.maxHeight=inner.scrollHeight+'px';
+      openLane=li;openId=id;
+    };
+  });
 });
+document.getElementById('cxToggle').onclick=function(){
+  this.classList.toggle('on');
+  const on=this.classList.contains('on');
+  document.querySelectorAll('.gnode[data-id]').forEach(n=>{
+    n.classList.toggle('dim2',on&&n.dataset.cx==='n');
+  });
+};
+/* ================= spec modal (used by graph panel) ================= */
 const modal=document.getElementById('specModal');
 function openSpec(id){
   const d=DATA.find(x=>x.id===id); if(!d)return;

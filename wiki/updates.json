@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v4：参数区改为路线展开图 + 行业构成图独立",
+      "title_en": "DRAM 101 v4: specs on route lanes, standalone industry-mix chart",
+      "topic": "内存技术全景对比",
+      "body": "十代参数区去卡片化：改为三条技术路线的演进线路图（DDR/GDDR/HBM 三条 lane，虚线框为下一代），点击任意一代在线路图下方展开完整参数介绍，并可一键跳转产业图谱；新增「高亮长鑫能做」开关。市占区拆分为两个独立图表：「行业构成：盘子由什么组成」（通用≈77%/HBM≈18%/GDDR≈5%）与「DRAM 总盘：份额×高低端分段」，不再混排。",
+      "body_en": "Spec section rebuilt as three route-evolution lanes (DDR/GDDR/HBM, dashed ghost nodes for next-gen): tap any generation to expand its full spec sheet below the lane, with one-click jump to the industry graph; added a 'highlight CXMT-capable' toggle. Share section split into two standalone charts: industry mix (commodity ≈77% / HBM ≈18% / GDDR ≈5%) and vendor share × high/low-end segments."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v3：新增产业图谱 + 市占率高低端拆分 + 参数总览格",
       "title_en": "DRAM 101 v3: industry graph, high/low-end share split, spec grid",
       "topic": "内存技术全景对比",
