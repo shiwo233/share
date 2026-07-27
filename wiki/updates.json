@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v5：产业图谱改中心扩散型 + 叙事改「先问钱」",
+      "title_en": "DRAM 101 v5: radial industry graph + follow-the-money narrative",
+      "topic": "内存技术全景对比",
+      "body": "产业图谱重做为中心扩散型：DRAM 居中，DDR/GDDR/HBM 三条路线向三个方向生长，每一环是一代产品、环外围绕该代供应商（圆大小=市占率），公司与产品交织成完整圆形，支持拖动/缩放/点选。叙事参考拆解类视频改为「先问钱」：新增开篇「万亿 AI 算力的钱被谁赚走了」三层拆解（整机→GPU 旁的 HBM→卖铲人三巨头：每季约 850 亿美元 DRAM 营收、九成归三家），结论区呼应「估值归英伟达、现金流归卖铲人」。",
+      "body_en": "Industry graph rebuilt as a radial layout: DRAM at the center, three route branches (DDR/GDDR/HBM) growing outward, each ring a generation surrounded by its vendors (node size = share), forming a full circle with drag/zoom/tap. Narrative restructured around the money question: a new opening teardown (board -> HBM around the GPU -> the shovel sellers taking 90% of ~$85B quarterly DRAM revenue), echoed in the conclusion."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v4：参数区改为路线展开图 + 行业构成图独立",
       "title_en": "DRAM 101 v4: specs on route lanes, standalone industry-mix chart",
       "topic": "内存技术全景对比",
