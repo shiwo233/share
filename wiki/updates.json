@@ -2,6 +2,22 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v7：球心 DRAM + 年代壳层 + 快速导航与标签筛选",
+      "title_en": "DRAM 101 v7: DRAM core, year shells, quick nav & tag filters",
+      "topic": "内存技术全景对比",
+      "body": "3D 球网中心加入发光的 DRAM 原点，三条路线从球心沿扇区向外生长；十代产品按年代落在四层壳上——DDR4/HBM2 在最内层、HBM4/GDDR7 在最外层，壳层以虚线环+年份标注；公司节点改为纬度/半径双重交错分层，不再同处一层。新增「快速导航」（全景/HBM/DDR/GDDR/中国厂商，一键旋转直达并高亮）与「标签筛选」（三系家族 + 三巨头/中国厂商/台系利基，未选中项几乎隐去、选中项连线高亮）。",
+      "body_en": "A glowing DRAM core now sits at the sphere center with the three routes growing outward; the ten generations rest on four year shells (DDR4/HBM2 innermost, HBM4/GDDR7 outermost) marked by dashed rings and year labels; vendor nodes are staggered across latitude and radius instead of one layer. Added quick-nav chips (overview/HBM/DDR/GDDR/China vendors — one-tap rotate-and-highlight) and tag filters (three families plus big-3/China/Taiwan-niche groups — non-matches fade out, matching links highlight)."
+    },
+    {
+      "date": "2026-07-27",
+      "title": "DRAM科普 v6：产业图谱改 3D 球网 + 公司饼图 + 10 家厂商",
+      "title_en": "DRAM 101 v6: 3D sphere industry graph, company pie nodes, 10 vendors",
+      "topic": "内存技术全景对比",
+      "body": "产业图谱重做为可拖动旋转的 3D 球网（自绘 Canvas 3D，无外部库）：三条技术路线盘踞三大发光扇区（HBM/DDR/GDDR 大字底纹），每家公司合并为一个饼图圆、饼块=产品结构（如海力士 HBM≈30/通用≈66），圆大小∝DRAM 总份额且反差拉大（三星≈5.7 倍于小厂），鼠标悬停显示占比明细；公司从 4 家扩到 10 家（新增南亚科/华邦/力积电/兆易创新/北京君正/东芯，利基厂份额标估算）；供货关系与代际演进全部改为球面弧线；产品图例挪到顶部并与公司图例穿插。",
+      "body_en": "Industry graph rebuilt as a draggable 3D sphere (hand-rolled canvas 3D, no libs): three routes occupy three glowing sectors with big HBM/DDR/GDDR watermarks; each vendor is a single pie-chart node showing its product mix (e.g. SK hynix HBM ~30 / commodity ~66), radius scaled by overall DRAM share with much stronger contrast, hover for the breakdown; vendor count up from 4 to 10 (added Nanya/Winbond/PSMC/GigaDevice/ISSI/Dosilicon, niche shares marked as estimates); supply links and generation chains redrawn as on-sphere arcs; family legend moved to the top and interleaved with vendor colors."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v5：产业图谱改中心扩散型 + 叙事改「先问钱」",
       "title_en": "DRAM 101 v5: radial industry graph + follow-the-money narrative",
       "topic": "内存技术全景对比",

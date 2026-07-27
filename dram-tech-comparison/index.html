@@ -177,7 +177,7 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .graphwrap.fs{position:fixed;inset:0;z-index:97;border-radius:0;border:none}
 .graphwrap.fs #graphcv{height:100%}
 .gstage{position:relative}
-#graphcv{display:block;width:100%;height:460px;touch-action:none;cursor:grab}
+#graphcv{display:block;width:100%;height:500px;touch-action:none;cursor:grab}
 #graphcv:active{cursor:grabbing}
 @media(min-width:720px){#graphcv{height:700px}}
 .ghint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--sub);background:rgba(16,22,35,.75);padding:4px 10px;border-radius:99px;pointer-events:none}
@@ -195,8 +195,30 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .gpanel .gp-row b{color:var(--txt);text-align:right}
 .gpanel .gp-x{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:12px;cursor:pointer}
 .gpanel .gp-btn{display:block;margin-top:12px;text-align:center;padding:9px;border-radius:11px;background:var(--grad);color:#0a0e15;font-weight:700;font-size:12.5px;text-decoration:none;border:none;cursor:pointer;width:100%}
-.glegend{display:flex;gap:12px;flex-wrap:wrap;padding:11px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--sub)}
+.glegend{display:flex;gap:10px 12px;flex-wrap:wrap;padding:11px 14px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--sub);background:rgba(16,22,35,.5)}
 .glegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.glegend .glf{font-weight:800;letter-spacing:.3px}
+.glegend .gln{flex:0 0 100%;font-size:10.5px;opacity:.75}
+.gtools{padding:9px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:7px;background:rgba(16,22,35,.35)}
+.gt-row{display:flex;align-items:flex-start;gap:8px}
+.gt-tag{font-size:10.5px;color:var(--sub);flex:none;width:30px;letter-spacing:1px;padding-top:5px}
+.gt-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.gt-chips button{font-size:11px;padding:4px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--sub);cursor:pointer;transition:all .2s}
+.gt-chips button:hover{color:var(--txt);border-color:var(--acc)}
+.gt-chips button.on{background:var(--grad);color:#0a0e15;border-color:transparent;font-weight:700}
+.gt-sep{width:1px;height:14px;background:var(--line);margin:0 2px}
+.gtip{position:absolute;pointer-events:none;background:rgba(16,22,35,.96);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:238px;opacity:0;transition:opacity .15s;z-index:6;backdrop-filter:blur(8px);box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.gtip.show{opacity:1}
+.tt-head{display:flex;align-items:center;gap:7px;font-size:12.5px;margin-bottom:2px;flex-wrap:wrap}
+.tt-head i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.tt-head b{color:var(--txt);font-size:13px}
+.tt-head span{color:var(--sub);font-size:10.5px;flex:0 0 100%}
+.tt-row{display:flex;align-items:center;gap:7px;margin-top:7px;font-size:11.5px}
+.tt-row>i{width:9px;height:9px;border-radius:3px;display:inline-block;flex:none}
+.tt-row>span{width:64px;flex:none;color:var(--sub)}
+.tt-bar{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.tt-bar i{display:block;height:100%;border-radius:3px}
+.tt-row b{width:34px;text-align:right;color:var(--txt)}
 /* ===== teardown (hook) ===== */
 .teardown{display:flex;flex-direction:column;gap:0}
 .td{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;position:relative}
@@ -470,11 +492,21 @@ footer li{margin:5px 0 0 20px}
 <section id="graph">
   <div class="sec-tag rv">INDUSTRY GRAPH</div>
   <h2 class="rv">产业图谱：技术 · 年代 · 公司</h2>
-  <p class="sec-desc rv">中心是 DRAM，三条路线向三个方向生长：每一环是一代产品，环外围绕的是该代的供应商——<b>圆圈越大，该代市占率越高</b>。拖动平移、滚轮/双指缩放、点击节点看详情。</p>
+  <p class="sec-desc rv">一颗可以转动的 DRAM 产业星球：<b>球心是 DRAM</b>，三条路线沿三大扇区向外生长——<b>越新的技术壳层越靠外</b>（DDR4/HBM2 在最内层）；10 家公司分层交错列队，圆越大 DRAM 总份额越大，饼图是产品结构。用下方「导航」直达扇区，用「筛选」按标签高亮。</p>
   <div class="graphwrap rv" id="graphWrap">
+    <div class="glegend" id="glegend"></div>
+    <div class="gtools">
+      <div class="gt-row"><span class="gt-tag">导航</span><div class="gt-chips" id="gnav">
+        <button data-nav="all" class="on">全景</button><button data-nav="hbm">HBM 扇区</button><button data-nav="ddr">DDR 扇区</button><button data-nav="gddr">GDDR 扇区</button><button data-nav="cn">中国厂商</button>
+      </div></div>
+      <div class="gt-row"><span class="gt-tag">筛选</span><div class="gt-chips" id="gfilter">
+        <button data-f="all" class="on">全部</button><button data-f="hbm">HBM</button><button data-f="ddr">DDR</button><button data-f="gddr">GDDR</button><span class="gt-sep"></span><button data-c="big3">三巨头</button><button data-c="cn">中国厂商</button><button data-c="tw">台系利基</button>
+      </div></div>
+    </div>
     <div class="gstage" id="gstage">
       <canvas id="graphcv"></canvas>
-      <div class="ghint">拖动平移 · 滚轮/双指缩放 · 点击节点看详情</div>
+      <div class="gtip" id="gtip"></div>
+      <div class="ghint">拖动旋转球体 · 滚轮/双指缩放 · 悬停看占比 · 点击看详情</div>
       <div class="gctl">
         <button id="gzIn" title="放大">＋</button>
         <button id="gzOut" title="缩小">－</button>
@@ -483,7 +515,6 @@ footer li{margin:5px 0 0 20px}
       </div>
       <div class="gpanel" id="gpanel"></div>
     </div>
-    <div class="glegend" id="glegend"></div>
   </div>
 </section>
 
@@ -787,30 +818,44 @@ function animateOnView(id){
 ['bw','share'].forEach(animateOnView);
 </script>
 <script>
-/* ================= industry graph · radial (canvas, no libs) ================= */
+/* ================= industry graph · 3D sphere v7 (canvas, no libs) ================= */
 (function(){
 const cv=document.getElementById('graphcv'),ctx=cv.getContext('2d'),
-      wrap=document.getElementById('graphWrap'),panel=document.getElementById('gpanel');
+      wrap=document.getElementById('graphWrap'),panel=document.getElementById('gpanel'),
+      tip=document.getElementById('gtip');
 const DPR=Math.min(devicePixelRatio||1,2);
-let W=0,H=0;
-const W0=1210,H0=1210,CX=605,CY=605;
-const CO={samsung:{name:'三星',col:'#38bdf8'},sk:{name:'SK海力士',col:'#818cf8'},micron:{name:'美光',col:'#fb7185'},cxmt:{name:'长鑫',col:'#5bb98c',cn:true}};
-const HUBS=[
- {id:'hbm', name:'HBM 高带宽', ang:90,  col:FC.hbm, fan:36, gens:['hbm2','hbm2e','hbm3','hbm3e','hbm4'], ghost:'HBM4E · 2027'},
- {id:'ddr', name:'DDR 通用',   ang:214, col:FC.ddr, fan:33, gens:['ddr4','ddr5'], ghost:'DDR6 · 预研'},
- {id:'gddr',name:'GDDR 显存',  ang:326, col:FC.gddr,fan:33, gens:['gddr6','gddr6x','gddr7'], ghost:'GDDR7+'}
+let W=0,H=0,cx0=0,cy0=0,zoom=1,userZoomed=false;
+const R=300,PERSP=960,TAU=Math.PI*2;
+const FAMNAME={ddr:'DDR 通用',gddr:'GDDR 显存',hbm:'HBM 高带宽'};
+/* shell radius by year: older inside, newer outside */
+const shellR=y=>150+(y-2014)/12*150;
+/* ---- 10 companies: size ∝ overall DRAM share; pie = product mix; lat/az/r staggered ---- */
+const COS=[
+ {id:'samsung',name:'三星',    col:'#38bdf8',share:40.5,lat:-28,az:30, rr:300,pie:{ddr:85,gddr:5,hbm:10},note:'全能霸主：通用盘 40.5% 全球第一；HBM4 拿下英伟达 Rubin 约三成订单，正缩小与 SK 的 HBM 差距。'},
+ {id:'sk',     name:'SK海力士',col:'#818cf8',share:29.6,lat:-31,az:74, rr:294,pie:{ddr:66,gddr:4,hbm:30},note:'HBM 之王：HBM 份额 58%，HBM4 约七成订单；通用盘 29.6%。三巨头中 HBM 占比最高。'},
+ {id:'micron', name:'美光',    col:'#fb7185',share:19.9,lat:-27,az:120,rr:288,pie:{ddr:80,gddr:5,hbm:15},note:'GDDR6X 独家发明者（PAM4 私有方案）；HBM4 重新送样分到少量余量；SOCAMM2 为 Vera CPU 开辟第二赛道。'},
+ {id:'cxmt',   name:'长鑫存储',col:'#5bb98c',share:7.7, lat:-30,az:168,rr:276,pie:{ddr:100},cn:true,note:'全球第四（7.7%），但 100% 在通用段：DDR4/DDR5 已量产；HBM3 2026 年爬坡、全球产能占比不足 3%，HBM4 空白。'},
+ {id:'giga',   name:'兆易创新',col:'#34d399',share:0.2, lat:-44,az:200,rr:258,pie:{ddr:100},cn:true,est:true,note:'Nor Flash 全球前二；利基 DRAM 由长鑫代工，主营 DDR3/DDR4 小容量盘。'},
+ {id:'issi',   name:'北京君正',col:'#22d3ee',share:0.2, lat:-52,az:230,rr:250,pie:{ddr:100},cn:true,est:true,note:'收购美国 ISSI：车规/工控利基 DRAM，汽车仪表盘与工业长单主力之一。'},
+ {id:'dosilicon',name:'东芯股份',col:'#a3e635',share:0.1,lat:-42,az:260,rr:262,pie:{ddr:100},cn:true,est:true,note:'中小容量利基 DRAM / SLC NAND，面向网通、安防与可穿戴市场。'},
+ {id:'nanya',  name:'南亚科',  col:'#c084fc',share:1.6, lat:-50,az:290,rr:252,pie:{ddr:100},est:true,note:'台系利基厂：DDR3/DDR4 长约与工控盘为主，正向自研 20nm 级 DDR5 利基转型。'},
+ {id:'winbond',name:'华邦电子',col:'#fbbf24',share:0.6, lat:-43,az:320,rr:264,pie:{ddr:100},est:true,note:'台系利基厂：低密度 DRAM + Nor Flash，车规/工控超长供货周期。'},
+ {id:'psmc',   name:'力积电',  col:'#f97316',share:0.3, lat:-54,az:350,rr:246,pie:{ddr:100},est:true,note:'逻辑代工为主、利基 DRAM 为辅；DRAM 份额为估算值。'}
 ];
-const GCOS={
- ddr4:[['samsung',40.5],['sk',29.6],['micron',19.9],['cxmt',7.7]],
- ddr5:[['samsung',40.5],['sk',29.6],['micron',19.9],['cxmt',7.7]],
- gddr6:[['samsung',45],['sk',30],['micron',25]],
- gddr6x:[['micron',100]],
- gddr7:[['samsung',45],['sk',30],['micron',25]],
- hbm2:[['sk',60],['samsung',40]],
- hbm2e:[['sk',50],['samsung',30],['micron',20]],
- hbm3:[['sk',55],['samsung',35],['micron',10],['cxmt',2]],
- hbm3e:[['sk',58],['samsung',21],['micron',21]],
- hbm4:[['sk',70],['samsung',30],['micron',2]]
+/* ---- gen nodes: family sector anchors; radius = year shell ---- */
+const GENS=[
+ {id:'hbm2', lat:50,az:-52,yr:2016},{id:'hbm2e',lat:50,az:-26,yr:2019},{id:'hbm3',lat:50,az:0,yr:2022},{id:'hbm3e',lat:50,az:26,yr:2023},{id:'hbm4',lat:50,az:52,yr:2026},
+ {id:'ddr4', lat:8, az:112,yr:2014},{id:'ddr5', lat:8, az:148,yr:2020},
+ {id:'gddr6',lat:8, az:230,yr:2018},{id:'gddr6x',lat:8,az:250,yr:2021},{id:'gddr7',lat:8,az:270,yr:2024}
+];
+const WMS=[{t:'HBM',fam:'hbm',lat:68,az:0,col:FC.hbm},{t:'DDR',fam:'ddr',lat:28,az:130,col:FC.ddr},{t:'GDDR',fam:'gddr',lat:26,az:250,col:FC.gddr}];
+const CHAINS=[['hbm2','hbm2e','hbm3','hbm3e','hbm4'],['ddr4','ddr5'],['gddr6','gddr6x','gddr7']];
+const SUPPLY={
+ samsung:['ddr4','ddr5','gddr6','gddr7','hbm2','hbm2e','hbm3','hbm3e','hbm4'],
+ sk:['ddr4','ddr5','gddr6','gddr7','hbm2','hbm2e','hbm3','hbm3e','hbm4'],
+ micron:['ddr4','ddr5','gddr6','gddr6x','gddr7','hbm2e','hbm3','hbm3e','hbm4'],
+ cxmt:['ddr4','ddr5','hbm3'],
+ giga:['ddr4'],issi:['ddr4'],dosilicon:['ddr4'],nanya:['ddr4'],winbond:['ddr4'],psmc:['ddr4']
 };
 const GCON={
  ddr4:'1Q26 DRAM 总份额（CFM）',ddr5:'1Q26 DRAM 总份额（CFM）',
@@ -818,236 +863,377 @@ const GCON={
  hbm2:'2016–18 格局（估）',hbm2e:'估算',hbm3:'估算 · 长鑫 2026 爬坡<3%',
  hbm3e:'Counterpoint 1Q26',hbm4:'Rubin 订单（SemiAnalysis）'
 };
-function P(r,deg){const a=deg*Math.PI/180;return{x:CX+r*Math.cos(a),y:CY-r*Math.sin(a)}}
-/* build nodes & edges */
+/* ---- 3D helpers ---- */
+function ll(lat,az,rr){const la=lat*Math.PI/180,a=az*Math.PI/180,r=rr||R;
+ return{x:r*Math.cos(la)*Math.sin(a),y:-r*Math.sin(la),z:r*Math.cos(la)*Math.cos(a)}}
+let rotY=-0.8,rotX=0.5;
+const RY0=-0.8,RX0=0.5;
+function rot(p){const cy=Math.cos(rotY),sy=Math.sin(rotY);
+ const x=p.x*cy+p.z*sy,z1=-p.x*sy+p.z*cy,y=p.y;
+ const cx=Math.cos(rotX),sx=Math.sin(rotX);
+ return{x:x,y:y*cx-z1*sx,z:y*sx+z1*cx}}
+function proj(p){const s=PERSP/(PERSP-p.z)*zoom;return{x:cx0+p.x*s,y:cy0+p.y*s,s:s,z:p.z}}
+function rgba(hex,a){const n=parseInt(hex.slice(1),16);return`rgba(${n>>16},${(n>>8)&255},${n&255},${a})`}
+/* ---- build nodes & edges ---- */
 const nodes=[],edges=[];
 const N=n=>{nodes.push(n);return nodes.length-1};
-const centerI=N({type:'center',x:CX,y:CY,r:46,name:'DRAM'});
-const genNodeIdx={};
-HUBS.forEach(h=>{
-  const hp=P(92,h.ang);
-  h.hubI=N({type:'hub',id:h.id,x:hp.x,y:hp.y,w:96,h:32,col:h.col,name:h.name,ref:h});
-  edges.push({a:centerI,b:h.hubI,kind:'fam',col:h.col});
-  let prevI=h.hubI;
-  h.gens.forEach((gid,i)=>{
-    const r=160+i*88, gp=P(r,h.ang), d=DATA.find(x=>x.id===gid);
-    const gi=N({type:'gen',id:gid,x:gp.x,y:gp.y,w:88,h:36,col:FC[d.f],name:d.g,y:d.y,ref:h});
-    genNodeIdx[gid]=gi;
-    edges.push({a:prevI,b:gi,kind:'fam',col:h.col});
-    /* companies on outer ring of this gen */
-    const cos=GCOS[gid],r2=r+46,k=cos.length,
-          step=Math.max(15,75/r2*57.2958);
-    cos.forEach((c,ci)=>{
-      const off=(ci-(k-1)/2)*step, cp=P(r2,h.ang+off);
-      const ni=N({type:'co',id:gid+'_'+c[0],x:cp.x,y:cp.y,r:Math.min(22,4+Math.sqrt(c[1])*1.9),co:c[0],share:c[1],gen:gid,name:CO[c[0]].name});
-      edges.push({a:gi,b:ni,kind:'co'});
-    });
-    prevI=gi;
-  });
-});
-/* view transform */
-let scale=1,ox=0,oy=0,sel=-1,hov=-1;
-function fit(){const s=Math.min(W/W0,H/H0)*0.985;scale=(W<720)?s*1.12:s;ox=W/2-CX*scale;oy=H/2-CY*scale}
-function resize(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);if(!resize._i){fit();resize._i=1}draw()}
-function world(px,py){return{x:(px-ox)/scale,y:(py-oy)/scale}}
-function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
-function linkedSet(i){const s=new Set([i]);edges.forEach(e=>{if(e.a===i)s.add(e.b);if(e.b===i)s.add(e.a)});return s}
+const centerI=N({type:'center',p3:{x:0,y:0,z:0},rw:34,name:'DRAM'});
+GENS.forEach(g=>{const d=DATA.find(x=>x.id===g.id);
+ g.ni=N({type:'gen',id:g.id,p3:ll(g.lat,g.az,shellR(g.yr)),col:FC[d.f],name:d.g,y:d.y,w:78,h:29});});
+COS.forEach(c=>{c.ni=N({type:'co',id:c.id,p3:ll(c.lat,c.az,c.rr),co:c,rw:6+Math.sqrt(c.share)*6.2});});
+const gi=id=>GENS.find(g=>g.id===id).ni;
+/* spokes: center -> oldest gen of each family */
+[['ddr4',FC.ddr],['gddr6',FC.gddr],['hbm2',FC.hbm]].forEach(s=>
+ edges.push({a:centerI,b:gi(s[0]),kind:'spoke',col:s[1]}));
+CHAINS.forEach(ch=>{for(let i=0;i<ch.length-1;i++){const d=DATA.find(x=>x.id===ch[i]);
+ edges.push({a:gi(ch[i]),b:gi(ch[i+1]),kind:'gen',col:FC[d.f]})}});
+COS.forEach(c=>{SUPPLY[c.id].forEach(gid=>edges.push({a:c.ni,b:gi(gid),kind:'co',col:c.col}))});
+edges.forEach(e=>{e.pA=nodes[e.a].p3;e.pB=nodes[e.b].p3});
+const adj=nodes.map(()=>new Set());
+edges.forEach(e=>{adj[e.a].add(e.b);adj[e.b].add(e.a)});
+/* wireframe grids */
+const MER=[],PAR=[];
+for(let az=0;az<360;az+=30){const pts=[];for(let lat=-84;lat<=84;lat+=6)pts.push(ll(lat,az));MER.push(pts)}
+[-60,-30,0,30,60].forEach(lat=>{const pts=[];for(let az=0;az<=360;az+=6)pts.push(ll(lat,az));PAR.push(pts)});
+WMS.forEach(w=>{w.p3=ll(w.lat,w.az)});
+/* year shell rings (silhouette circles) */
+const SHELLS=[2014,2018,2022,2026].map(y=>({y:y,r:shellR(y)}));
+/* ---- filters ---- */
+let fFam=null,fCo=null;
+function pass(n){
+ if(n.type==='center')return true;
+ if(n.type==='gen'){const d=DATA.find(x=>x.id===n.id);return!fFam||d.f===fFam}
+ const c=n.co;
+ if(!fCo)return true;
+ if(fCo==='big3')return['samsung','sk','micron'].includes(c.id);
+ if(fCo==='cn')return!!c.cn;
+ if(fCo==='tw')return['nanya','winbond','psmc'].includes(c.id);
+ return true;
+}
+const filterOn=()=>fFam||fCo;
+function syncFilterChips(){
+ document.querySelectorAll('#gfilter [data-f]').forEach(b=>
+  b.classList.toggle('on',(fFam===null&&b.dataset.f==='all')||b.dataset.f===fFam));
+ document.querySelectorAll('#gfilter [data-c]').forEach(b=>
+  b.classList.toggle('on',b.dataset.c===fCo));
+}
+function clearFilters(){fFam=null;fCo=null;syncFilterChips()}
+/* ---- view ---- */
+function zoom0(){return Math.min(W,H)*0.44/R}
+function resize(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;
+ ctx.setTransform(DPR,0,0,DPR,0,0);cx0=W/2;cy0=H/2;
+ if(!resize._i||!userZoomed){zoom=zoom0();resize._i=1}draw()}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);
+ ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+let sel=-1,hov=-1;
+/* arc on interpolated shell between two points */
+function arcPts(a,b){const K=10,out=[];
+ const rA=Math.hypot(a.x,a.y,a.z),rB=Math.hypot(b.x,b.y,b.z);
+ for(let i=0;i<=K;i++){const t=i/K;
+  let x=a.x+(b.x-a.x)*t,y=a.y+(b.y-a.y)*t,z=a.z+(b.z-a.z)*t;
+  const m=Math.hypot(x,y,z)||1,rr2=rA+(rB-rA)*t;
+  out.push(proj(rot({x:x/m*rr2,y:y/m*rr2,z:z/m*rr2})))}
+ return out}
 function draw(){
-  ctx.clearRect(0,0,W,H);
-  ctx.save();ctx.translate(ox,oy);ctx.scale(scale,scale);
-  const hot=sel>=0?sel:hov;
-  const linked=hot>=0?linkedSet(hot):null;
-  /* sector wedges */
-  HUBS.forEach(h=>{
-    ctx.beginPath();
-    ctx.moveTo(CX,CY);
-    ctx.arc(CX,CY,560,(90-h.ang-h.fan)*Math.PI/180,(90-h.ang+h.fan)*Math.PI/180);
-    ctx.closePath();
-    ctx.fillStyle=h.col;ctx.globalAlpha=0.045;ctx.fill();
-  });
-  /* dashed rings */
-  ctx.globalAlpha=0.06;ctx.strokeStyle='#8fa0b8';ctx.setLineDash([3,6]);ctx.lineWidth=1;
-  [160,248,336,424,512].forEach(r=>{ctx.beginPath();ctx.arc(CX,CY,r,0,7);ctx.stroke()});
-  ctx.setLineDash([]);ctx.globalAlpha=1;
-  /* edges */
-  edges.forEach(e=>{
-    const A=nodes[e.a],B=nodes[e.b];
-    const isHot=linked&&(linked.has(e.a)&&linked.has(e.b));
-    ctx.globalAlpha=linked?(isHot?0.95:0.05):(e.kind==='fam'?0.5:0.3);
-    ctx.strokeStyle=e.kind==='fam'?e.col:'rgba(140,160,195,.55)';
-    ctx.lineWidth=e.kind==='fam'?(isHot?3:2):1;
-    ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();
-  });
-  ctx.globalAlpha=1;
-  /* nodes */
-  nodes.forEach((n,i)=>{
-    const dim=linked&&!linked.has(i);
-    ctx.globalAlpha=dim?0.12:1;
-    if(n.type==='center'){
-      const g=ctx.createLinearGradient(n.x-46,n.y-46,n.x+46,n.y+46);
-      g.addColorStop(0,'#5b8cff');g.addColorStop(.55,'#9d6bff');g.addColorStop(1,'#f0b45b');
-      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,7);ctx.fillStyle=g;ctx.fill();
-      if(i===hot){ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke()}
-      ctx.fillStyle='#0a0e15';ctx.font='900 17px sans-serif';
-      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('DRAM',n.x,n.y+1);
-    }else if(n.type==='hub'||n.type==='gen'){
-      const hotN=i===hot;
-      rr(n.x-n.w/2,n.y-n.h/2,n.w,n.h,n.h/2);
-      ctx.fillStyle=n.col;ctx.fill();
-      if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
-      ctx.fillStyle='#0a0e15';ctx.textAlign='center';ctx.textBaseline='middle';
-      if(n.type==='gen'){
-        ctx.font='800 12.5px sans-serif';ctx.fillText(n.name,n.x,n.y-5);
-        ctx.font='9.5px sans-serif';ctx.fillStyle='rgba(10,14,21,.65)';ctx.fillText(n.y,n.x,n.y+9);
-      }else{
-        ctx.font='800 13px sans-serif';ctx.fillText(n.name,n.x,n.y+1);
-      }
-    }else{/* company */
-      const c=CO[n.co],hotN=i===hot;
-      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,7);
-      ctx.fillStyle=c.col;ctx.fill();
-      if(c.cn){ctx.setLineDash([4,3]);ctx.strokeStyle='#f0b45b';ctx.lineWidth=2;
-        ctx.beginPath();ctx.arc(n.x,n.y,n.r+4,0,7);ctx.stroke();ctx.setLineDash([])}
-      if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(n.x,n.y,n.r+2,0,7);ctx.stroke()}
-      if(n.r>=13){ctx.fillStyle='rgba(10,14,21,.85)';ctx.font='800 10px sans-serif';
-        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n.share+'%',n.x,n.y+1)}
-      ctx.fillStyle='rgba(232,237,245,.92)';ctx.font='10.5px sans-serif';
-      ctx.textAlign='center';ctx.textBaseline='top';
-      ctx.fillText(c.name,n.x,n.y+n.r+4);
-    }
-  });
-  ctx.globalAlpha=1;
-  ctx.restore();
-}
-function hit(px,py){
-  const p=world(px,py);
-  for(let i=nodes.length-1;i>=0;i--){
-    const n=nodes[i];
-    if(n.type==='co'||n.type==='center'){const dx=p.x-n.x,dy=p.y-n.y;const rr0=(n.r||30)+6;if(dx*dx+dy*dy<=rr0*rr0)return i}
-    else{if(Math.abs(p.x-n.x)<=n.w/2+4&&Math.abs(p.y-n.y)<=n.h/2+4)return i}
-  }
-  return -1;
-}
-function showPanel(i){
-  const n=nodes[i];let html='';
-  if(n.type==='center'){
-    html=`<h4><span style="color:var(--acc2)">●</span> DRAM 内存</h4>
-    <div class="gp-sub">同一个存储单元，三条商业化路线</div>
-    <div class="gp-kv">DRAM 本质都是「电容 + 晶体管」的存储阵列，因为接口宽度、封装形态不同，分化为三条路线：<br><br><b style="color:${FC.ddr}">DDR</b> 走模组多通道、<b style="color:${FC.gddr}">GDDR</b> 走板载高频率、<b style="color:${FC.hbm}">HBM</b> 走 3D 堆叠超宽接口。点击三个方向的分支深入查看。</div>`;
-  }else if(n.type==='hub'){
-    const h=n.ref;
-    const desc={ddr:'DIMM 模组插槽，64 位/通道，靠多通道堆带宽。长鑫主场：DDR4/DDR5 均已量产，份额 7.7%。',gddr:'BGA 颗粒焊在显卡上，32 位/颗，走 PAM 高频信号。三巨头 100% 分食，长鑫无产品线。',hbm:'TSV 3D 堆叠 + 2.5D 封装，位宽 1024→2048，AI 算力的内存答案。长鑫 HBM3 2026 爬坡，HBM4 空白。'}[h.id];
-    html=`<h4><span style="color:${h.col}">●</span> ${h.name}</h4>
-    <div class="gp-sub">${h.gens.length} 代已发布 + 下一代在途</div>
-    <div class="gp-kv">${desc}</div>`;
-  }else if(n.type==='gen'){
-    const d=DATA.find(x=>x.id===n.id);
-    html=`<h4><span style="color:${FC[d.f]}">●</span> ${d.g}</h4>
-    <div class="gp-sub">${d.y} · ${d.f.toUpperCase()} 家族</div>
-    <div class="gp-row"><span>带宽</span><b>${d.bw}</b></div>
-    <div class="gp-row"><span>单引脚速率</span><b>${d.pin}</b></div>
-    <div class="gp-row"><span>位宽</span><b>${d.bus}</b></div>
-    <div class="gp-row"><span>容量</span><b>${d.cap}</b></div>
-    <div class="gp-row"><span>供应商</span><b>${d.sup}</b></div>
-    <div class="gp-row"><span>长鑫状态</span><b style="color:${STC[d.cx]}">${d.cxt}</b></div>
-    <button class="gp-btn" id="gpSpec">查看完整参数 →</button>`;
+ ctx.clearRect(0,0,W,H);
+ nodes.forEach(n=>{n.pr=proj(rot(n.p3));n._pass=pass(n)});
+ const hot=sel>=0?sel:hov;
+ const linked=hot>=0?adj[hot]:null;
+ const fOn=filterOn();
+ /* wireframe */
+ ctx.lineWidth=1;
+ const wf=p=>{for(let i=0;i<p.length-1;i++){
+   const a=proj(rot(p[i])),b=proj(rot(p[i+1]));
+   const f=((a.z+b.z)/2/R+1)/2;
+   ctx.strokeStyle=`rgba(143,160,184,${(0.015+0.055*f).toFixed(3)})`;
+   ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}};
+ MER.forEach(wf);PAR.forEach(wf);
+ /* year shell rings */
+ ctx.setLineDash([3,6]);
+ SHELLS.forEach(sh=>{
+  const sr=sh.r*PERSP/Math.sqrt(PERSP*PERSP-sh.r*sh.r)*zoom;
+  ctx.strokeStyle='rgba(143,160,184,0.10)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.arc(cx0,cy0,sr,0,TAU);ctx.stroke();
+  const ly=cy0-sr-4;
+  if(ly>10){ctx.fillStyle='rgba(143,160,184,0.45)';
+   ctx.font='9.5px sans-serif';ctx.textAlign='center';ctx.textBaseline='bottom';
+   ctx.fillText(sh.y,cx0,ly)}
+ });
+ ctx.setLineDash([]);
+ /* sector watermarks */
+ WMS.forEach(w=>{const pr=proj(rot(w.p3)),zn=pr.z/R;
+  if(zn<-0.45)return;
+  let f=Math.min(1,(zn+0.45)/1.1);
+  if(fFam&&fFam!==w.fam)f*=0.25;
+  const g=ctx.createRadialGradient(pr.x,pr.y,0,pr.x,pr.y,160*pr.s);
+  g.addColorStop(0,rgba(w.col,0.11*f));g.addColorStop(1,rgba(w.col,0));
+  ctx.beginPath();ctx.arc(pr.x,pr.y,160*pr.s,0,TAU);ctx.fillStyle=g;ctx.fill();
+  ctx.fillStyle=rgba(w.col,0.23*f);
+  ctx.font=`900 ${Math.round(92*pr.s)}px sans-serif`;
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(w.t,pr.x,pr.y)});
+ /* edges */
+ edges.forEach(e=>{
+  const isHot=linked&&(e.a===hot||e.b===hot);
+  const epass=nodes[e.a]._pass&&nodes[e.b]._pass;
+  let base;
+  if(fOn)base=epass?(e.kind==='gen'?0.75:(e.kind==='spoke'?0.6:0.4)):0.02;
+  else base=linked?(isHot?(e.kind==='gen'?0.9:0.75):0.035):(e.kind==='gen'?0.55:(e.kind==='spoke'?0.5:0.15));
+  const pts=e.kind==='spoke'?[proj(rot(e.pA)),proj(rot(e.pB))]:arcPts(e.pA,e.pB);
+  ctx.lineWidth=e.kind==='gen'?(isHot?3:2.2):(e.kind==='spoke'?1.6:(isHot?1.8:1.1));
+  for(let i=0;i<pts.length-1;i++){
+   const f=((pts[i].z+pts[i+1].z)/2/R+1)/2;
+   ctx.strokeStyle=rgba(e.col,base*(0.15+0.85*f));
+   ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[i+1].x,pts[i+1].y);ctx.stroke()}
+ });
+ /* nodes, back to front */
+ const order=nodes.map((_,i)=>i).sort((a,b)=>nodes[a].pr.z-nodes[b].pr.z);
+ order.forEach(i=>{
+  const n=nodes[i],pr=n.pr,zn=pr.z/R;
+  let al=zn>0?1:Math.max(0.1,1+zn*0.9);
+  if(linked&&!linked.has(i))al*=0.3;
+  if(fOn)al=n._pass?1:0.06;
+  ctx.globalAlpha=al;
+  const hotN=i===hot;
+  if(n.type==='center'){ctx.globalAlpha=1;return}
+  if(n.type==='gen'){
+   const w=n.w*pr.s,h=n.h*pr.s;
+   rr(pr.x-w/2,pr.y-h/2,w,h,h/2);
+   ctx.fillStyle=n.col;ctx.fill();
+   if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
+   if(zn>-0.35){
+    ctx.fillStyle='#0a0e15';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font=`800 ${Math.max(8,12.5*pr.s)}px sans-serif`;
+    ctx.fillText(n.name,pr.x,pr.y-3.5*pr.s);
+    ctx.font=`${Math.max(7,9.5*pr.s)}px sans-serif`;
+    ctx.fillStyle='rgba(10,14,21,.62)';
+    ctx.fillText(n.y,pr.x,pr.y+8.5*pr.s)}
   }else{
-    const c=CO[n.co],d=DATA.find(x=>x.id===n.gen);
-    html=`<h4><span style="color:${c.col}">●</span> ${c.name}${c.cn?' <span style="font-size:10px;border:1px solid var(--green);color:var(--green);border-radius:99px;padding:1px 7px">中国</span>':''}</h4>
-    <div class="gp-sub">${d.g} 领域 · ${GCON[n.gen]}</div>
-    <div style="font-size:30px;font-weight:900;color:${c.col};margin:6px 0">${n.share}%</div>
-    <div class="gp-kv">${c.cn?(n.gen==='hbm3'?'2026 年启动 HBM3 量产爬坡，全球 HBM 产能占比不足 3%——这是中国在高端段唯一的 foothold。':'通用 DRAM 份额 7.7%（全球第四），但全部位于通用段。'):(n.gen==='gddr6x'?'该代为美光×英伟达私有 PAM4 方案，美光独家供应。':'该领域主要供应商之一。')}</div>`;
+   const c=n.co,r=n.rw*pr.s,x=pr.x,y=pr.y;
+   let a0=-Math.PI/2;
+   ['ddr','gddr','hbm'].forEach(f=>{if(!c.pie[f])return;
+    const v=c.pie[f]/100*TAU;
+    ctx.beginPath();ctx.moveTo(x,y);ctx.arc(x,y,r,a0,a0+v);ctx.closePath();
+    ctx.fillStyle=FC[f];ctx.fill();a0+=v});
+   const g=ctx.createRadialGradient(x-r*0.35,y-r*0.42,r*0.08,x,y,r);
+   g.addColorStop(0,'rgba(255,255,255,.16)');g.addColorStop(1,'rgba(0,0,0,.18)');
+   ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fillStyle=g;ctx.fill();
+   ctx.beginPath();ctx.arc(x,y,r,0,TAU);
+   ctx.lineWidth=Math.max(2,r*0.09);ctx.strokeStyle=c.col;ctx.stroke();
+   if(c.cn){ctx.setLineDash([4,3]);ctx.strokeStyle='#f0b45b';ctx.lineWidth=1.8;
+    ctx.beginPath();ctx.arc(x,y,r+3.5,0,TAU);ctx.stroke();ctx.setLineDash([])}
+   if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;
+    ctx.beginPath();ctx.arc(x,y,r+2,0,TAU);ctx.stroke()}
+   if(zn>-0.35){
+    const sf=Math.min(pr.s,1.35);
+    ctx.fillStyle=c.col;ctx.textAlign='center';ctx.textBaseline='top';
+    ctx.font=`800 ${11.5*sf}px sans-serif`;
+    ctx.fillText(c.name,x,y+r+5);
+    ctx.fillStyle='rgba(232,237,245,.72)';
+    ctx.font=`${10*sf}px sans-serif`;
+    ctx.fillText((c.est?'≈':'')+c.share+'%',x,y+r+5+13*sf)}
   }
-  panel.innerHTML=html+'<button class="gp-x" id="gpX">✕</button>';
-  panel.classList.add('show');
-  document.getElementById('gpX').onclick=()=>{panel.classList.remove('show');sel=-1;draw()};
-  const bs=document.getElementById('gpSpec');
-  if(bs)bs.onclick=()=>{panel.classList.remove('show');sel=-1;draw();openSpec(n.id)};
+ });
+ /* core drawn last: always on top like a sun */
+ const cn=nodes[centerI],cpr=cn.pr;
+ const cr=cn.rw*Math.min(cpr.s,1.6),cxx=cpr.x,cyy=cpr.y;
+ const cgl=ctx.createRadialGradient(cxx,cyy,cr*0.6,cxx,cyy,cr*2.3);
+ cgl.addColorStop(0,'rgba(157,107,255,.22)');cgl.addColorStop(1,'rgba(157,107,255,0)');
+ ctx.globalAlpha=1;
+ ctx.beginPath();ctx.arc(cxx,cyy,cr*2.3,0,TAU);ctx.fillStyle=cgl;ctx.fill();
+ const cg=ctx.createLinearGradient(cxx-cr,cyy-cr,cxx+cr,cyy+cr);
+ cg.addColorStop(0,'#5b8cff');cg.addColorStop(.55,'#9d6bff');cg.addColorStop(1,'#f0b45b');
+ ctx.beginPath();ctx.arc(cxx,cyy,cr,0,TAU);ctx.fillStyle=cg;ctx.fill();
+ if(hot===centerI){ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke()}
+ ctx.fillStyle='#0a0e15';ctx.font=`900 ${Math.round(15*Math.min(cpr.s,1.3))}px sans-serif`;
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText('DRAM',cxx,cyy+1);
+ ctx.globalAlpha=1;
 }
-function focusNode(i,zoom){
-  const n=nodes[i];
-  const ts=Math.min(2.2,Math.max(1.1,zoom||1.3));
-  const tox=W/2-n.x*ts,toy=H/2-n.y*ts;
-  const from={s:scale,x:ox,y:oy},to={s:ts,x:tox,y:toy},t0=performance.now();
-  (function anim(){
-    const p=Math.min((performance.now()-t0)/450,1),e=1-Math.pow(1-p,3);
-    scale=from.s+(to.s-from.s)*e;ox=from.x+(to.x-from.x)*e;oy=from.y+(to.y-from.y)*e;
-    draw();if(p<1)requestAnimationFrame(anim);
-  })();
+/* ---- hit test ---- */
+function hit(px,py){
+ const order=nodes.map((_,i)=>i).sort((a,b)=>nodes[b].pr.z-nodes[a].pr.z);
+ for(const i of order){const n=nodes[i];
+  if(n.pr.z<-20)continue;
+  if(!n._pass)continue;
+  if(n.type==='co'||n.type==='center'){const r=n.rw*n.pr.s+6;
+   if((px-n.pr.x)**2+(py-n.pr.y)**2<=r*r)return i}
+  else{const w=n.w*n.pr.s/2+4,h=n.h*n.pr.s/2+4;
+   if(Math.abs(px-n.pr.x)<=w&&Math.abs(py-n.pr.y)<=h)return i}}
+ return-1}
+/* ---- tooltip (company hover) ---- */
+function pieRows(c){return['ddr','gddr','hbm'].filter(f=>c.pie[f]).map(f=>
+ `<div class="tt-row"><i style="background:${FC[f]}"></i><span>${FAMNAME[f]}</span><div class="tt-bar"><i style="width:${c.pie[f]}%;background:${FC[f]}"></i></div><b>${c.pie[f]}%</b></div>`).join('')}
+function showTip(i,px,py){
+ const c=nodes[i].co;
+ tip.innerHTML=`<div class="tt-head"><i style="background:${c.col}"></i><b>${c.name}${c.cn?' 🇨🇳':''}</b><span>DRAM 总份额 ${c.est?'≈':''}${c.share}%${c.est?'（估算）':''} · 产品结构如下</span></div>${pieRows(c)}`;
+ tip.classList.add('show');
+ const tw=tip.offsetWidth,th=tip.offsetHeight;
+ tip.style.left=(px+16+tw>W-8?px-16-tw:px+16)+'px';
+ tip.style.top=(py+12+th>H-8?Math.max(8,py-12-th):py+12)+'px';
+}
+function hideTip(){tip.classList.remove('show')}
+/* ---- side panel ---- */
+function showPanel(i){
+ const n=nodes[i];let html='';
+ if(n.type==='center'){
+  html=`<h4><span style="color:var(--acc2)">●</span> DRAM 内存</h4>
+  <div class="gp-sub">球心 = 技术原点 · 壳层 = 年代（越靠外越新）</div>
+  <div class="gp-kv">DRAM 本质都是「电容 + 晶体管」的存储阵列，因接口宽度与封装形态不同，从球心沿三个扇区向外生长出三条路线：<b style="color:${FC.ddr}">DDR</b> 走模组多通道、<b style="color:${FC.gddr}">GDDR</b> 走板载高频率、<b style="color:${FC.hbm}">HBM</b> 走 3D 堆叠超宽接口。<br><br>内壳是 DDR4 / HBM2 等老技术，外壳是最新的 GDDR7 / HBM4；南半球分层交错的是 10 家供应商。上方「导航」可直达各扇区，「筛选」可按标签高亮。</div>`;
+ }else if(n.type==='gen'){
+  const d=DATA.find(x=>x.id===n.id);
+  html=`<h4><span style="color:${FC[d.f]}">●</span> ${d.g}</h4>
+  <div class="gp-sub">${d.y} · ${d.f.toUpperCase()} 家族 · ${GCON[n.id]}</div>
+  <div class="gp-row"><span>带宽</span><b>${d.bw}</b></div>
+  <div class="gp-row"><span>单引脚速率</span><b>${d.pin}</b></div>
+  <div class="gp-row"><span>位宽</span><b>${d.bus}</b></div>
+  <div class="gp-row"><span>容量</span><b>${d.cap}</b></div>
+  <div class="gp-row"><span>供应商</span><b>${d.sup}</b></div>
+  <div class="gp-row"><span>长鑫状态</span><b style="color:${STC[d.cx]}">${d.cxt}</b></div>
+  <button class="gp-btn" id="gpSpec">查看完整参数 →</button>`;
+ }else{
+  const c=n.co;
+  html=`<h4><span style="color:${c.col}">●</span> ${c.name}${c.cn?' <span style="font-size:10px;border:1px solid var(--green);color:var(--green);border-radius:99px;padding:1px 7px">中国</span>':''}</h4>
+  <div class="gp-sub">DRAM 总份额 ${c.est?'≈':''}${c.share}%${c.est?'（估算）':''} · 1Q26</div>
+  <div style="font-size:30px;font-weight:900;color:${c.col};margin:6px 0 2px">${c.est?'≈':''}${c.share}%</div>
+  ${pieRows(c)}
+  <div class="gp-kv" style="margin-top:12px">${c.note}</div>`;
+ }
+ panel.innerHTML=html+'<button class="gp-x" id="gpX">✕</button>';
+ panel.classList.add('show');
+ document.getElementById('gpX').onclick=()=>{panel.classList.remove('show');sel=-1;draw()};
+ const bs=document.getElementById('gpSpec');
+ if(bs)bs.onclick=()=>{panel.classList.remove('show');sel=-1;draw();openSpec(n.id)};
+}
+/* ---- focus / nav animation ---- */
+function tweenRot(tY,tX,cb){
+ const fY=rotY,fX=rotX,t0=performance.now();
+ (function anim(){const p=Math.min((performance.now()-t0)/650,1),e=1-Math.pow(1-p,3);
+  rotY=fY+(tY-fY)*e;rotX=fX+(tX-fX)*e;draw();
+  if(p<1)requestAnimationFrame(anim);else cb&&cb()})();
+}
+function rotTo(az,lat){
+ let tY=-az*Math.PI/180;
+ while(tY-rotY>Math.PI)tY-=TAU;while(tY-rotY<-Math.PI)tY+=TAU;
+ const tX=Math.max(-1.15,Math.min(1.15,-lat*Math.PI/180));
+ tweenRot(tY,tX);
+}
+function focusGen(gid){
+ const g=GENS.find(x=>x.id===gid);if(!g)return;
+ rotTo(g.az,g.lat);
+ sel=g.ni;showPanel(g.ni);
 }
 window.graphFocus=function(genId){
-  document.getElementById('graph').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{
-    const i=genNodeIdx[genId];if(i===undefined)return;
-    sel=i;showPanel(i);focusNode(i);
-  },500);
+ document.getElementById('graph').scrollIntoView({behavior:'smooth'});
+ setTimeout(()=>{clearFilters();focusGen(genId)},500);
 };
-/* events */
-let dragging=false,lx=0,ly=0,moved=0;
+/* quick nav */
+const NAV={
+ all:()=>{tweenRot(RY0,RX0);if(!userZoomed)zoom=zoom0();hov=-1},
+ hbm:()=>{rotTo(0,52);hov=gi('hbm3')},
+ ddr:()=>{rotTo(130,10);hov=gi('ddr5')},
+ gddr:()=>{rotTo(250,10);hov=gi('gddr7')},
+ cn:()=>{rotTo(185,-32);hov=COS.find(c=>c.id==='cxmt').ni}
+};
+document.querySelectorAll('#gnav button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('#gnav button').forEach(x=>x.classList.remove('on'));
+ b.classList.add('on');sel=-1;panel.classList.remove('show');hideTip();
+ NAV[b.dataset.nav]();poke();draw();
+});
+/* filter chips */
+document.querySelectorAll('#gfilter [data-f]').forEach(b=>b.onclick=()=>{
+ const f=b.dataset.f;
+ fFam=(f==='all'||fFam===f)?null:f;
+ sel=-1;panel.classList.remove('show');syncFilterChips();poke();draw();
+});
+document.querySelectorAll('#gfilter [data-c]').forEach(b=>b.onclick=()=>{
+ const c=b.dataset.c;
+ fCo=(fCo===c)?null:c;
+ sel=-1;panel.classList.remove('show');syncFilterChips();poke();draw();
+});
+/* ---- events ---- */
+let dragging=false,lx=0,ly=0,moved=0,lastAct=performance.now();
 const pointers=new Map();
+const poke=()=>{lastAct=performance.now()};
 cv.addEventListener('pointerdown',e=>{
-  cv.setPointerCapture(e.pointerId);
-  pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  dragging=true;lx=e.clientX;ly=e.clientY;moved=0;
+ cv.setPointerCapture(e.pointerId);
+ pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ dragging=true;lx=e.clientX;ly=e.clientY;moved=0;hideTip();poke();
+ if(hov>=0&&sel<0){hov=-1;
+  document.querySelectorAll('#gnav button').forEach(x=>x.classList.remove('on'));
+  document.querySelector('#gnav button').classList.add('on');draw()}
 });
 cv.addEventListener('pointermove',e=>{
-  if(pointers.has(e.pointerId))pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  if(pointers.size===2){
-    const pts=[...pointers.values()];
-    const d1=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
-    if(cv._pd){const f=d1/cv._pd;zoomAt(W/2,H/2,f)}
-    cv._pd=d1;moved=10;return;
-  }
-  if(dragging){
-    const dx=e.clientX-lx,dy=e.clientY-ly;
-    if(Math.abs(dx)+Math.abs(dy)>3)moved+=Math.abs(dx)+Math.abs(dy);
-    ox+=dx;oy+=dy;lx=e.clientX;ly=e.clientY;draw();
-  }else{
-    const r=cv.getBoundingClientRect();
-    const i=hit(e.clientX-r.left,e.clientY-r.top);
-    if(i!==hov){hov=i;draw()}
-  }
+ if(pointers.has(e.pointerId))pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pointers.size===2){
+  const pts=[...pointers.values()];
+  const d1=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+  if(cv._pd){zoom=Math.min(2.6,Math.max(0.45,zoom*d1/cv._pd));userZoomed=true;draw()}
+  cv._pd=d1;moved=10;poke();return;
+ }
+ if(dragging){
+  const dx=e.clientX-lx,dy=e.clientY-ly;
+  if(Math.abs(dx)+Math.abs(dy)>2)moved+=Math.abs(dx)+Math.abs(dy);
+  rotY+=dx*0.005;rotX=Math.max(-1.2,Math.min(1.2,rotX+dy*0.005));
+  lx=e.clientX;ly=e.clientY;poke();draw();
+ }else if(e.pointerType==='mouse'){
+  const r=cv.getBoundingClientRect();
+  const px=e.clientX-r.left,py=e.clientY-r.top;
+  const i=hit(px,py);
+  if(i!==hov){hov=i;draw()}
+  if(i>=0&&nodes[i].type==='co')showTip(i,px,py);else hideTip();
+ }
 });
 function endPointer(e){
-  pointers.delete(e.pointerId);cv._pd=null;
-  if(pointers.size===0){
-    dragging=false;
-    if(moved<6){
-      const r=cv.getBoundingClientRect();
-      const i=hit(e.clientX-r.left,e.clientY-r.top);
-      if(i>=0){sel=i;showPanel(i);draw()}
-      else{sel=-1;panel.classList.remove('show');draw()}
-    }
-    moved=0;
+ pointers.delete(e.pointerId);cv._pd=null;
+ if(pointers.size===0){
+  dragging=false;
+  if(moved<6){
+   const r=cv.getBoundingClientRect();
+   const i=hit(e.clientX-r.left,e.clientY-r.top);
+   if(i>=0){sel=i;showPanel(i)}
+   else{sel=-1;panel.classList.remove('show')}
+   draw();
   }
+  moved=0;
+ }
 }
 cv.addEventListener('pointerup',endPointer);
 cv.addEventListener('pointercancel',endPointer);
-cv.addEventListener('pointerleave',e=>{if(!dragging&&hov>=0){hov=-1;draw()}});
-function zoomAt(px,py,f){
-  const ns=Math.min(3,Math.max(0.25,scale*f));
-  const w=world(px,py);
-  scale=ns;ox=px-w.x*scale;oy=py-w.y*scale;draw();
-}
-cv.addEventListener('wheel',e=>{e.preventDefault();const r=cv.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,e.deltaY<0?1.12:0.89)},{passive:false});
+cv.addEventListener('pointerleave',()=>{if(!dragging){hov=-1;hideTip();draw()}});
+cv.addEventListener('wheel',e=>{e.preventDefault();poke();userZoomed=true;
+ zoom=Math.min(2.6,Math.max(0.45,zoom*(e.deltaY<0?1.12:0.89)));draw()},{passive:false});
 cv.addEventListener('dblclick',e=>{
-  const r=cv.getBoundingClientRect();const i=hit(e.clientX-r.left,e.clientY-r.top);
-  if(i>=0){sel=i;showPanel(i);focusNode(i)}else fit(),draw();
+ const r=cv.getBoundingClientRect();const i=hit(e.clientX-r.left,e.clientY-r.top);
+ if(i>=0&&nodes[i].type==='gen')focusGen(nodes[i].id);
+ else if(i>=0){sel=i;showPanel(i);draw()}
+ else{rotY=RY0;rotX=RX0;zoom=zoom0();userZoomed=false;sel=-1;panel.classList.remove('show');draw()}
+ poke();
 });
-document.getElementById('gzIn').onclick=()=>zoomAt(W/2,H/2,1.3);
-document.getElementById('gzOut').onclick=()=>zoomAt(W/2,H/2,0.77);
-document.getElementById('gzReset').onclick=()=>{fit();sel=-1;panel.classList.remove('show');draw()};
-document.getElementById('gzFs').onclick=()=>{
-  wrap.classList.toggle('fs');
-  setTimeout(resize,50);
-};
+document.getElementById('gzIn').onclick=()=>{userZoomed=true;zoom=Math.min(2.6,zoom*1.25);poke();draw()};
+document.getElementById('gzOut').onclick=()=>{userZoomed=true;zoom=Math.max(0.45,zoom*0.8);poke();draw()};
+document.getElementById('gzReset').onclick=()=>{rotY=RY0;rotX=RX0;zoom=zoom0();userZoomed=false;sel=-1;panel.classList.remove('show');clearFilters();poke();draw()};
+document.getElementById('gzFs').onclick=()=>{wrap.classList.toggle('fs');setTimeout(resize,50)};
 addEventListener('keydown',e=>{if(e.key==='Escape'&&wrap.classList.contains('fs')){wrap.classList.remove('fs');setTimeout(resize,50)}});
 addEventListener('resize',resize);
+/* auto-rotate when idle & visible */
+let vis=true;
+new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:0.05}).observe(wrap);
+(function loop(){
+ if(vis&&!document.hidden&&sel<0&&performance.now()-lastAct>4000){rotY+=0.0013;draw()}
+ requestAnimationFrame(loop);
+})();
+/* legend on top: company dots interleaved with family chips */
+const coL=(id,t)=>{const c=COS.find(x=>x.id===id);return`<span><i style="background:${c.col}"></i>${c.name}${t||''}</span>`};
+const famL=f=>`<span class="glf" style="color:${FC[f]}">■ ${FAMNAME[f]}</span>`;
 document.getElementById('glegend').innerHTML=
- '<span><i style="background:#38bdf8"></i>三星</span><span><i style="background:#818cf8"></i>SK海力士</span><span><i style="background:#fb7185"></i>美光</span><span><i style="background:#5bb98c"></i>长鑫（金边虚线）</span><span>圆大小 ∝ 该代市占率 · GDDR 细分为估算</span>';
+ coL('samsung')+coL('sk')+coL('micron')+famL('hbm')+
+ coL('cxmt','（金边虚线=中国）')+coL('giga')+coL('issi')+coL('dosilicon')+famL('ddr')+
+ coL('nanya')+coL('winbond')+coL('psmc')+famL('gddr')+
+ '<span class="gln">球心=DRAM · 虚线环=年代壳层（越外越新） · 圆大小∝DRAM总份额 · 饼图=产品结构 · 利基厂份额为估算</span>';
+syncFilterChips();
 resize();
 })();
-
 </script>
 <script>
 /* ================= chrome ================= */
