@@ -866,9 +866,9 @@ GENS.forEach(g=>{const d=DATA.find(x=>x.id===g.id);
  g.ni=N({type:'gen',id:g.id,p3:ll(g.lat,g.az,shellR(g.yr)),col:FC[d.f],name:d.g,y:d.y,w:78,h:29});});
 COS.forEach(c=>{c.ni=N({type:'co',id:c.id,p3:ll(c.lat,c.az,c.rr),co:c,rw:6+Math.sqrt(c.share)*6.2});});
 const gi=id=>GENS.find(g=>g.id===id).ni;
-/* spokes: center -> oldest gen of each family */
-[['ddr4',FC.ddr],['gddr6',FC.gddr],['hbm2',FC.hbm]].forEach(s=>
- edges.push({a:centerI,b:gi(s[0]),kind:'spoke',col:s[1]}));
+/* spokes: core DRAM -> every generation */
+GENS.forEach(g=>{const d=DATA.find(x=>x.id===g.id);
+ edges.push({a:centerI,b:g.ni,kind:'spoke',col:FC[d.f]})});
 CHAINS.forEach(ch=>{for(let i=0;i<ch.length-1;i++){const d=DATA.find(x=>x.id===ch[i]);
  edges.push({a:gi(ch[i]),b:gi(ch[i+1]),kind:'gen',col:FC[d.f]})}});
 COS.forEach(c=>{SUPPLY[c.id].forEach(gid=>edges.push({a:c.ni,b:gi(gid),kind:'co',col:c.col}))});
@@ -918,7 +918,9 @@ function arcPts(a,b){const K=10,out=[];
   const m=Math.hypot(x,y,z)||1,rr2=rA+(rB-rA)*t;
   out.push(proj(rot({x:x/m*rr2,y:y/m*rr2,z:z/m*rr2})))}
  return out}
+let time=0;
 function draw(){
+ time=performance.now()/1000;
  ctx.clearRect(0,0,W,H);
  nodes.forEach(n=>{n.pr=proj(rot(n.p3));n._pass=pass(n)});
  const hot=sel>=0?sel:hov;
@@ -961,14 +963,47 @@ function draw(){
   const isHot=linked&&(e.a===hot||e.b===hot);
   const epass=nodes[e.a]._pass&&nodes[e.b]._pass;
   let base;
-  if(fOn)base=epass?(e.kind==='gen'?0.75:(e.kind==='spoke'?0.6:0.4)):0.02;
-  else base=linked?(isHot?(e.kind==='gen'?0.9:0.75):0.035):(e.kind==='gen'?0.55:(e.kind==='spoke'?0.5:0.15));
-  const pts=e.kind==='spoke'?[proj(rot(e.pA)),proj(rot(e.pB))]:arcPts(e.pA,e.pB);
-  ctx.lineWidth=e.kind==='gen'?(isHot?3:2.2):(e.kind==='spoke'?1.6:(isHot?1.8:1.1));
-  for(let i=0;i<pts.length-1;i++){
-   const f=((pts[i].z+pts[i+1].z)/2/R+1)/2;
+  if(fOn)base=epass?(e.kind==='gen'?0.75:(e.kind==='spoke'?0.55:0.4)):0.02;
+  else base=linked?(isHot?0.85:0.035):(e.kind==='gen'?0.5:(e.kind==='spoke'?0.4:0.15));
+  if(e.kind==='gen'){
+   /* evolution chain: single path, marching quantum dashes (old -> new) */
+   const pts=arcPts(e.pA,e.pB);
+   const f=(pts.reduce((s,p)=>s+p.z,0)/pts.length/R+1)/2;
+   ctx.strokeStyle=rgba(e.col,base*(0.25+0.75*f));
+   ctx.lineWidth=isHot?2.8:2;
+   ctx.setLineDash([3,7]);
+   ctx.lineDashOffset=-time*22;
+   ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+   for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);
+   ctx.stroke();ctx.setLineDash([]);
+  }else if(e.kind==='spoke'){
+   /* core -> gen: base line + flowing quantum dots */
+   const A=proj(rot(e.pA)),B=proj(rot(e.pB));
+   const f=((A.z+B.z)/2/R+1)/2;
    ctx.strokeStyle=rgba(e.col,base*(0.15+0.85*f));
-   ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[i+1].x,pts[i+1].y);ctx.stroke()}
+   ctx.lineWidth=1.2;
+   ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();
+   if(base>0.05){
+    const phase=(e.b*0.37)%1;
+    for(let k=0;k<2;k++){
+     const t=(time*0.3+phase+k*0.5)%1;
+     const x=A.x+(B.x-A.x)*t,y=A.y+(B.y-A.y)*t,ds=A.s+(B.s-A.s)*t;
+     const a=(0.2+0.8*f)*Math.min(1,base*2.2)*Math.sin(t*Math.PI);
+     const g=ctx.createRadialGradient(x,y,0,x,y,5.5*ds);
+     g.addColorStop(0,rgba(e.col,0.85*a));g.addColorStop(1,rgba(e.col,0));
+     ctx.beginPath();ctx.arc(x,y,5.5*ds,0,TAU);ctx.fillStyle=g;ctx.fill();
+     ctx.beginPath();ctx.arc(x,y,1.6*ds,0,TAU);ctx.fillStyle=rgba('#ffffff',0.9*a);ctx.fill();
+    }
+   }
+  }else{
+   /* company supply lines: per-segment depth alpha */
+   const pts=arcPts(e.pA,e.pB);
+   ctx.lineWidth=isHot?1.8:1.1;
+   for(let i=0;i<pts.length-1;i++){
+    const f=((pts[i].z+pts[i+1].z)/2/R+1)/2;
+    ctx.strokeStyle=rgba(e.col,base*(0.15+0.85*f));
+    ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[i+1].x,pts[i+1].y);ctx.stroke()}
+  }
  });
  /* nodes, back to front */
  const order=nodes.map((_,i)=>i).sort((a,b)=>nodes[a].pr.z-nodes[b].pr.z);
@@ -1201,7 +1236,10 @@ addEventListener('resize',resize);
 let vis=true;
 new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:0.05}).observe(wrap);
 (function loop(){
- if(vis&&!document.hidden&&sel<0&&performance.now()-lastAct>4000){rotY+=0.0013;draw()}
+ if(vis&&!document.hidden){
+  if(sel<0&&performance.now()-lastAct>4000)rotY+=0.0013;
+  draw(); /* continuous: quantum flow animation */
+ }
  requestAnimationFrame(loop);
 })();
 /* legend on top: company dots interleaved with family chips */
@@ -1211,7 +1249,7 @@ document.getElementById('glegend').innerHTML=
  coL('samsung')+coL('sk')+coL('micron')+famL('hbm')+
  coL('cxmt','（金边虚线=中国）')+coL('giga')+coL('issi')+coL('dosilicon')+famL('ddr')+
  coL('nanya')+coL('winbond')+coL('psmc')+famL('gddr')+
- '<span class="gln">球心=DRAM · 虚线环=年代壳层（越外越新） · 圆大小∝DRAM总份额 · 饼图=产品结构 · 利基厂份额为估算</span>';
+ '<span class="gln">球心=DRAM · 流动光点=核心向各代产品供能 · 虚线环=年代壳层（越外越新） · 圆大小∝DRAM总份额 · 饼图=产品结构 · 利基厂份额为估算</span>';
 syncFilterChips();
 resize();
 })();

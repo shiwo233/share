@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v7.3：球心连线全部产品 + 量子流动效果",
+      "title_en": "DRAM 101 v7.3: core links every generation, quantum-flow lines",
+      "topic": "内存技术全景对比",
+      "body": "球心 DRAM 的辐条从 3 条扩到 10 条——核心直连全部十代产品；连线加入「量子流动」效果：每条辐条上有发光粒子从球心持续流向各代产品（白芯+家族色辉光，两端渐隐），代际演进链改为行军虚线沿「老→新」方向流动，画布转为持续渲染（离屏自动暂停省电）。",
+      "body_en": "The DRAM core's spokes grew from 3 to 10 — it now links every one of the ten generations directly. Lines gained a quantum-flow effect: glowing particles (white core + family-color halo, fading at both ends) stream continuously from the core toward each generation, and generation chains became marching dashes flowing from old to new; the canvas now renders continuously, pausing automatically off-screen."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v7.2：删除「先问钱」板块 + 球心遮挡修正",
       "title_en": "DRAM 101 v7.2: removed the money-teardown section, fixed core occlusion",
       "topic": "内存技术全景对比",
