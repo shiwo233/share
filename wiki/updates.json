@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v7.1：首页按钮直达产业图谱",
+      "title_en": "DRAM 101 v7.1: hero button jumps straight to the industry graph",
+      "topic": "内存技术全景对比",
+      "body": "首页 Hero 区「直接看结论」按钮改为「看产业图谱」，点击直接跳转到下方的 3D 球网产业图谱（顶部导航栏本就有「图谱」锚点）。",
+      "body_en": "The hero 'skip to conclusion' button is now 'View the industry graph', jumping straight to the 3D sphere industry graph below (the top nav already had a graph anchor)."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普 v7：球心 DRAM + 年代壳层 + 快速导航与标签筛选",
       "title_en": "DRAM 101 v7: DRAM core, year shells, quick nav & tag filters",
       "topic": "内存技术全景对比",
