@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普议题升级 v2：更名「ssy给你做DRAM科普」+ 移动端重构 + 市占率与巨头布局",
+      "title_en": "DRAM topic v2: renamed, mobile-first rebuild, market share & company roadmaps",
+      "topic": "内存技术全景对比",
+      "body": "移动端全面重构：一屏速览结论、路线/参数/布局全部改为折叠展开卡片。新增三大板块：三条路线简介与演变路程；1Q26 市占率（三星40.5%/海力士29.6%/美光19.9%/长鑫7.7%居第四，HBM 海力士≈56%，英伟达 HBM4 订单海力士≈70%/三星≈30%）；四家未来布局（HBM4E 2027 赛点：海力士绑台积电3nm、三星押自研2nm、美光弃自研投台积电、长鑫 HBM3E 目标2027）。",
+      "body_en": "Full mobile rebuild: one-screen overview, accordions for roadmaps/specs/roadmaps. Three new sections: route intros & evolution; 1Q26 market share (Samsung 40.5% / SK hynix 29.6% / Micron 19.9% / CXMT 7.7% No.4; SK hynix ≈56% of HBM and ≈70% of NVIDIA HBM4 orders); four company roadmaps heading into the 2027 HBM4E race."
+    },
+    {
+      "date": "2026-07-27",
       "title": "新议题入库：《内存技术全景对比：DDR / GDDR / HBM 与长鑫能力地图》",
       "title_en": "New topic: DRAM Tech Map — DDR/GDDR/HBM & CXMT Capability",
       "topic": "内存技术全景对比",
