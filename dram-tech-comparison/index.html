@@ -11,6 +11,7 @@
   --grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);
   --ddr:#5b8cff; --gddr:#f0935b; --hbm:#9d6bff;
   --green:#5bb98c; --amber:#f0b45b; --red:#ff7b7b;
+  --sam:#38bdf8; --sk:#818cf8; --mu:#fb7185;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
@@ -31,7 +32,7 @@ nav a.nl:hover{color:var(--txt);background:rgba(91,140,255,.15)}
 nav a.nl.on{color:#fff;background:rgba(91,140,255,.2)}
 nav a.home{color:var(--acc);font-weight:700}
 /* ===== hero ===== */
-header{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:96px 22px 44px;position:relative;overflow:hidden}
+header{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:104px 22px 52px;position:relative;overflow:hidden}
 header::before{content:"";position:absolute;width:70vw;height:70vw;max-width:620px;max-height:620px;border-radius:50%;background:radial-gradient(circle,rgba(157,107,255,.2),transparent 65%);top:-16%;left:-16%}
 header::after{content:"";position:absolute;width:60vw;height:60vw;max-width:500px;max-height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,180,91,.12),transparent 65%);bottom:-12%;right:-12%}
 .kicker{font-size:11.5px;letter-spacing:.4em;color:var(--acc);text-transform:uppercase;margin-bottom:16px;position:relative;z-index:1}
@@ -42,10 +43,6 @@ h1.hero em{font-style:normal;background:var(--grad);-webkit-background-clip:text
 .btn{padding:11px 24px;border-radius:999px;font-size:13.5px;text-decoration:none;transition:.3s;border:1px solid var(--line);color:var(--txt)}
 .btn.pri{background:var(--grad);border:none;color:#0a0e15;font-weight:700;box-shadow:0 8px 28px rgba(91,140,255,.35)}
 .btn:active{transform:scale(.96)}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:38px;position:relative;z-index:1;width:100%;max-width:640px}
-.stat{background:rgba(20,28,43,.75);border:1px solid var(--line);border-radius:15px;padding:13px 10px}
-.stat b{display:block;font-size:clamp(18px,5vw,25px);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.stat span{font-size:11.5px;color:var(--sub)}
 /* ===== sections ===== */
 section{max-width:1000px;margin:0 auto;padding:52px 18px 24px}
 .sec-tag{font-size:11.5px;letter-spacing:.3em;color:var(--acc);margin-bottom:9px}
@@ -89,40 +86,51 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .acc-badge{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:8px;color:#0a0e15}
 .b-ddr{background:var(--ddr)} .b-gddr{background:var(--gddr)} .b-hbm{background:var(--hbm)}
 .b-kr{background:#7dd3fc} .b-us{background:#fda4af} .b-cn{background:var(--green)}
-/* mini pill flow (route evolution) */
 .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 4px}
 .flow .fp{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);white-space:nowrap}
 .flow .fp small{display:block;font-size:10px;color:var(--sub);font-weight:400}
 .flow .fa{color:var(--sub);font-size:11px}
 .flow .fp.hl{border-color:var(--acc2);color:var(--acc2)}
-.flow .fp.cn{border-color:var(--green);color:var(--green)}
-/* ===== spec cards (accordion style) ===== */
+/* ===== spec tiles (compact overview) ===== */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .chip{padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:13px;cursor:pointer;transition:.3s;user-select:none}
 .chip.on{color:#0a0e15;font-weight:700;border-color:transparent}
 .chip[data-f="all"].on{background:var(--grad)}
 .chip[data-f="ddr"].on{background:var(--ddr)} .chip[data-f="gddr"].on{background:var(--gddr)}
 .chip[data-f="hbm"].on{background:var(--hbm)} .chip[data-f="cx"].on{background:var(--green)}
-.scard{background:var(--card);border:1px solid var(--line);border-radius:15px;margin-bottom:9px;overflow:hidden;border-left:5px solid;animation:fade .35s ease}
-.scard.f-ddr{border-left-color:var(--ddr)} .scard.f-gddr{border-left-color:var(--gddr)} .scard.f-hbm{border-left-color:var(--hbm)}
-.scard.open{border-color:var(--acc)}
-.s-head{display:flex;align-items:center;gap:8px;padding:13px 14px 11px;cursor:pointer;user-select:none;flex-wrap:wrap}
-.s-head .gen{font-size:17px;font-weight:800}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;cursor:pointer;transition:.25s;position:relative;overflow:hidden;animation:fade .35s ease}
+.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.tile.f-ddr::before{background:var(--ddr)} .tile.f-gddr::before{background:var(--gddr)} .tile.f-hbm::before{background:var(--hbm)}
+.tile:hover{border-color:var(--acc);transform:translateY(-2px)}
+.tile:active{transform:scale(.97)}
+.tile .tg{font-size:16px;font-weight:800;display:flex;align-items:center;gap:7px}
+.tile .tg .sd{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.tile .tb{font-size:11.5px;color:var(--sub);font-weight:700;margin-top:3px}
+.tile .ty{font-size:10.5px;color:var(--sub);opacity:.75}
+.tile.dim{opacity:.25;pointer-events:none}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* ===== spec modal ===== */
+.modal{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:rgba(4,7,12,.66);backdrop-filter:blur(6px)}
+.modal.show{display:flex}
+.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:20px 20px 0 0;width:100%;max-width:560px;max-height:86svh;overflow-y:auto;padding:20px 20px 30px;animation:up .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@media(min-width:720px){.modal{align-items:center}.sheet{border-radius:20px;animation:pop .25s ease}@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}}
+.sheet .sh-head{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap}
+.sheet .gen{font-size:22px;font-weight:800}
 .fam{font-size:10.5px;font-weight:800;color:#0a0e15;padding:2px 7px;border-radius:5px}
 .f-ddr .fam{background:var(--ddr)} .f-gddr .fam{background:var(--gddr)} .f-hbm .fam{background:var(--hbm)}
-.s-head .sbw{flex:0 0 100%;order:5;font-size:12px;color:var(--sub);font-weight:600;margin-top:2px}
 .st{margin-left:auto;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
 .st-y{background:rgba(91,185,140,.15);color:var(--green);border:1px solid rgba(91,185,140,.4)}
 .st-p{background:rgba(240,180,91,.13);color:var(--amber);border:1px solid rgba(240,180,91,.4)}
 .st-n{background:rgba(255,123,123,.11);color:var(--red);border:1px solid rgba(255,123,123,.35)}
-.s-arrow{color:var(--sub);font-size:11px;transition:transform .35s}
-.scard.open .s-arrow{transform:rotate(180deg)}
-.s-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
-.s-body .grid{display:grid;grid-template-columns:86px 1fr;gap:5px 12px;font-size:13px;padding:0 14px 14px}
+.sheet .grid{display:grid;grid-template-columns:88px 1fr;gap:6px 12px;font-size:13.5px}
 .grid dt{color:var(--sub);white-space:nowrap}
 .grid dd{color:var(--txt);font-weight:600}
-.expand-all{margin:0 0 12px auto;display:block;font-size:12px;color:var(--acc);background:none;border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sheet .sh-actions{display:flex;gap:10px;margin-top:16px}
+.sheet .sh-actions a,.sheet .sh-actions button{flex:1;text-align:center;padding:10px;border-radius:12px;font-size:13px;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--txt)}
+.sheet .sh-actions .go-g{background:var(--grad);color:#0a0e15;font-weight:700;border:none}
+.sh-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:14px;cursor:pointer}
 /* ===== bar charts ===== */
 .bwbox,.share-block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 16px;margin-bottom:12px}
 .share-block h3{font-size:15px;margin-bottom:2px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -135,6 +143,49 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .cbar .track{height:15px;background:#1c2740;border-radius:99px;overflow:hidden}
 .cbar .fill{height:100%;width:0;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
 .share-note{font-size:11.5px;color:var(--sub);border-top:1px dashed var(--line);padding-top:9px;margin-top:4px}
+/* ===== segmented mix bar ===== */
+.mixbar{display:flex;height:26px;border-radius:8px;overflow:hidden;margin-bottom:6px}
+.mixbar div{height:100%}
+.mix-cap{display:flex;justify-content:space-between;font-size:11px;color:var(--sub);margin-bottom:14px}
+.seg-row{margin-bottom:14px}
+.seg-row label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+.seg-row label b{font-weight:700}
+.seg-row label span{font-size:11.5px;color:var(--sub)}
+.seg-track{display:flex;height:20px;border-radius:99px;overflow:hidden;background:#1c2740}
+.seg{height:100%;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.seg-hi{background:linear-gradient(90deg,#9d6bff,#b98cff)}
+.seg-lo{background:#3b6fd4}
+.seg-lo-cn{background:var(--green)}
+.seg-lo-ot{background:#475569}
+.legrow{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--sub);margin:4px 0 14px}
+.legrow i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.callout{background:linear-gradient(135deg,rgba(91,185,140,.1),rgba(157,107,255,.08));border:1px solid rgba(91,185,140,.4);border-radius:14px;padding:13px 16px;font-size:13px;line-height:1.7;margin-top:10px}
+.callout b{color:var(--green)}
+/* ===== graph ===== */
+.graphwrap{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}
+.graphwrap.fs{position:fixed;inset:0;z-index:97;border-radius:0;border:none}
+.graphwrap.fs #graphcv{height:100%}
+.gstage{position:relative}
+#graphcv{display:block;width:100%;height:460px;touch-action:none;cursor:grab}
+#graphcv:active{cursor:grabbing}
+@media(min-width:720px){#graphcv{height:560px}}
+.ghint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--sub);background:rgba(16,22,35,.75);padding:4px 10px;border-radius:99px;pointer-events:none}
+.gctl{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:6px}
+.gctl button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(16,22,35,.85);color:var(--txt);font-size:15px;cursor:pointer}
+.gctl button:active{transform:scale(.92)}
+.gpanel{position:absolute;top:10px;right:10px;bottom:52px;width:min(272px,82vw);background:rgba(16,22,35,.94);border:1px solid var(--line);border-radius:16px;padding:16px;overflow-y:auto;transform:translateX(115%);transition:transform .35s cubic-bezier(.2,.9,.3,1);backdrop-filter:blur(8px)}
+.gpanel.show{transform:none}
+.gpanel h4{font-size:16px;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.gpanel .gp-sub{font-size:11.5px;color:var(--sub);margin-bottom:10px}
+.gpanel .gp-kv{font-size:12.5px;color:var(--sub);line-height:1.7}
+.gpanel .gp-kv b{color:var(--txt)}
+.gpanel .gp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
+.gpanel .gp-row span{color:var(--sub)}
+.gpanel .gp-row b{color:var(--txt);text-align:right}
+.gpanel .gp-x{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:12px;cursor:pointer}
+.gpanel .gp-btn{display:block;margin-top:12px;text-align:center;padding:9px;border-radius:11px;background:var(--grad);color:#0a0e15;font-weight:700;font-size:12.5px;text-decoration:none;border:none;cursor:pointer;width:100%}
+.glegend{display:flex;gap:12px;flex-wrap:wrap;padding:11px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--sub)}
+.glegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 /* ===== capability map ===== */
 .caps{display:grid;grid-template-columns:1fr;gap:12px}
 .cap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px;border-top:4px solid}
@@ -154,6 +205,16 @@ h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height
 .conc .row:last-child{border-bottom:none}
 .conc .ico{flex:0 0 24px;font-size:16px}
 .conc b{color:var(--txt)} .conc span{color:var(--sub)}
+/* ===== next-up (in-flow at end) ===== */
+.nextup{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden;max-width:1000px;margin:26px auto 0}
+.nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.nextup .nu-kicker{font-size:10.5px;letter-spacing:.25em;color:var(--acc2);font-weight:700;margin-bottom:7px}
+.nextup h4{font-size:15.5px;line-height:1.45;margin-bottom:5px}
+.nextup p{font-size:12.5px;color:var(--sub);line-height:1.6}
+.nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:11px;color:var(--sub);flex-wrap:wrap}
+.nextup .nu-tag{border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.nextup .nu-go{border:1px solid var(--green);color:var(--green);border-radius:999px;padding:2px 9px;text-decoration:none}
+.nextup .nu-all{display:inline-block;margin-top:11px;font-size:12px;font-weight:700;color:var(--acc);text-decoration:none}
 /* ===== footer/misc ===== */
 footer{border-top:1px solid var(--line);margin-top:44px;padding:32px 20px 56px;text-align:center;color:var(--sub);font-size:12px}
 footer details{text-align:left;max-width:760px;margin:12px auto 0}
@@ -161,23 +222,8 @@ footer summary{cursor:pointer;color:var(--acc);font-weight:600}
 footer li{margin:5px 0 0 20px}
 #toTop{position:fixed;right:16px;bottom:20px;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:17px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:80;cursor:pointer}
 #toTop.show{opacity:1;pointer-events:auto}
-/* next-up */
-.nextup{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px;transition:.3s;position:relative;overflow:hidden}
-.nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
-.nextup .nu-kicker{font-size:10.5px;letter-spacing:.25em;color:var(--acc2);font-weight:700;margin-bottom:7px}
-.nextup h4{font-size:15px;line-height:1.45;margin-bottom:5px}
-.nextup p{font-size:12px;color:var(--sub);line-height:1.6}
-.nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:11px;color:var(--sub);flex-wrap:wrap}
-.nextup .nu-tag{border:1px solid var(--line);border-radius:999px;padding:2px 9px}
-.nextup .nu-go{border:1px solid var(--green);color:var(--green);border-radius:999px;padding:2px 9px;text-decoration:none}
-.nextup .nu-all{display:inline-block;margin-top:11px;font-size:12px;font-weight:700;color:var(--acc);text-decoration:none}
-@media(min-width:1100px){
-  .nextup{position:fixed;right:22px;top:80px;width:250px;z-index:70;box-shadow:0 14px 40px rgba(0,0,0,.45)}
-  .nextup:hover{border-color:var(--acc);transform:translateY(-3px)}
-}
-@media(max-width:1099px){.nextup{max-width:1000px;margin:16px 18px 0;display:block}}
 @media(min-width:760px){
-  .stats{grid-template-columns:repeat(4,1fr);max-width:860px}
+  .tiles{grid-template-columns:repeat(5,1fr)}
   .caps{grid-template-columns:1fr 1fr 1fr}
   .share-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .share-2col .share-block{margin-bottom:0}
@@ -187,7 +233,7 @@ footer li{margin:5px 0 0 20px}
 <body>
 <div id="progress"></div>
 <nav><div class="inner">
-  <a class="nl" href="#glance">速览</a><a class="nl" href="#routes">路线</a><a class="nl" href="#specs">参数</a><a class="nl" href="#bw">天梯</a><a class="nl" href="#share">市占</a><a class="nl" href="#roadmap">布局</a><a class="nl" href="#cxmt">国产</a><a class="nl" href="#conclusion">结论</a>
+  <a class="nl" href="#glance">速览</a><a class="nl" href="#routes">路线</a><a class="nl" href="#specs">参数</a><a class="nl" href="#bw">天梯</a><a class="nl" href="#share">市占</a><a class="nl" href="#graph">图谱</a><a class="nl" href="#roadmap">布局</a><a class="nl" href="#cxmt">国产</a><a class="nl" href="#conclusion">结论</a>
   <span class="spacer"></span>
   <span class="sep"></span>
   <a class="nl home" href="https://shiwo233.github.io/share/wiki/">主页</a>
@@ -197,29 +243,12 @@ footer li{margin:5px 0 0 20px}
 <header>
   <div class="kicker">DRAM 101 · 2026.07</div>
   <h1 class="hero">ssy 给你做<br><em>DRAM 科普</em></h1>
-  <p class="hero-sub">DDR · GDDR · HBM 三条路线一次讲清：十代参数横评 / 带宽天梯 / 市占率 / 巨头未来布局 / 长鑫能力地图</p>
+  <p class="hero-sub">DDR · GDDR · HBM 三条路线一次讲清：十代参数横评 / 带宽天梯 / 市占率 / 产业图谱 / 巨头未来布局 / 长鑫能力地图</p>
   <div class="hero-cta">
     <a class="btn pri" href="#glance">60 秒速览</a>
-    <a class="btn" href="#routes">从路线演变看起</a>
-  </div>
-  <div class="stats">
-    <div class="stat"><b>3.3 TB/s</b><span>HBM4 单堆栈带宽峰值</span></div>
-    <div class="stat"><b>2048 位</b><span>HBM4 接口位宽（翻倍）</span></div>
-    <div class="stat"><b>7.7%</b><span>长鑫 DRAM 全球份额（1Q26）</span></div>
-    <div class="stat"><b>≈70%</b><span>海力士拿下 HBM4 订单比例</span></div>
+    <a class="btn" href="#graph">直接看产业图谱</a>
   </div>
 </header>
-
-<aside class="nextup" id="nextup">
-  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
-  <h4>中国大模型六小虎深度研究</h4>
-  <p>智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、能力横评与 2026–2028 推演。</p>
-  <div class="nu-meta">
-    <span class="nu-tag">🎯 个人兴趣研究</span>
-    <a class="nu-go" href="https://shiwo233.github.io/share/six-tigers-report/">已上线 · 点击阅读</a>
-  </div>
-  <a class="nu-all" href="https://shiwo233.github.io/share/wiki/">浏览全部议题 →</a>
-</aside>
 
 <!-- ============ 一屏速览 ============ -->
 <section id="glance">
@@ -311,11 +340,11 @@ footer li{margin:5px 0 0 20px}
   </div>
 </section>
 
-<!-- ============ 参数对比 ============ -->
+<!-- ============ 参数总览 ============ -->
 <section id="specs">
-  <div class="sec-tag rv">SPECS</div>
-  <h2 class="rv">十代内存参数总表</h2>
-  <p class="sec-desc rv">点芯片筛选系列，点卡片展开完整参数。徽标：<b style="color:var(--green)">绿=长鑫已量产</b> / <b style="color:var(--amber)">黄=爬坡中</b> / <b style="color:var(--red)">红=空白</b>。</p>
+  <div class="sec-tag rv">SPECS AT A GLANCE</div>
+  <h2 class="rv">十代内存参数总览</h2>
+  <p class="sec-desc rv">一张总览图看全十代。状态点：<b style="color:var(--green)">●</b> 长鑫已量产 <b style="color:var(--amber)">●</b> 爬坡中 <b style="color:var(--red)">●</b> 空白。点任意卡片看完整参数。</p>
   <div class="chips rv" id="chips">
     <button class="chip on" data-f="all">全部</button>
     <button class="chip" data-f="ddr">DDR 通用</button>
@@ -323,9 +352,21 @@ footer li{margin:5px 0 0 20px}
     <button class="chip" data-f="hbm">HBM 高带宽</button>
     <button class="chip" data-f="cx">仅看长鑫能做</button>
   </div>
-  <button class="expand-all rv" id="expandAll">全部展开</button>
-  <div id="cards"></div>
+  <div class="tiles rv" id="tiles"></div>
 </section>
+
+<!-- spec modal -->
+<div class="modal" id="specModal">
+  <div class="sheet" style="position:relative">
+    <button class="sh-close" id="specClose">✕</button>
+    <div class="sh-head" id="smHead"></div>
+    <dl class="grid" id="smGrid"></dl>
+    <div class="sh-actions">
+      <a class="go-g" href="#graph" id="smGoGraph">在产业图谱中查看 →</a>
+      <button id="smClose2">关闭</button>
+    </div>
+  </div>
+</div>
 
 <!-- ============ 带宽天梯 ============ -->
 <section id="bw">
@@ -342,27 +383,35 @@ footer li{margin:5px 0 0 20px}
 <section id="share">
   <div class="sec-tag rv">MARKET SHARE · 1Q26</div>
   <h2 class="rv">市占率：谁拿走了这个市场</h2>
-  <p class="sec-desc rv">2026 年 Q1 全球 DRAM 营收 943 亿美元（环比 +81.5%，超级周期）。三个切面看格局：</p>
+  <p class="sec-desc rv">2026 年 Q1 全球 DRAM 营收 943 亿美元（环比 +81.5%，超级周期）。先看总盘，再拆开看「高端 / 通用」的成色。</p>
+
+  <div class="share-block rv">
+    <h3>DRAM 总盘：份额 × 高低端构成<small>CFM 1Q26 份额 · 分段为估算口径</small></h3>
+    <div class="tip">整条宽度 = 该公司份额；条内 <b style="color:#b98cff">紫色段 = 高端（HBM + GDDR）</b>，蓝/绿段 = 通用（DDR / LPDDR）</div>
+    <div class="legrow">
+      <span><i style="background:linear-gradient(90deg,#9d6bff,#b98cff)"></i>高端（HBM+GDDR）</span>
+      <span><i style="background:#3b6fd4"></i>通用（DDR/LPDDR）</span>
+      <span><i style="background:var(--green)"></i>长鑫·通用</span>
+    </div>
+    <!-- industry mix strip -->
+    <div class="mixbar" id="mixBar">
+      <div style="width:0;background:#3b6fd4" data-w="77"></div>
+      <div style="width:0;background:linear-gradient(90deg,#9d6bff,#b98cff)" data-w="18"></div>
+      <div style="width:0;background:#6d4bd8" data-w="5"></div>
+    </div>
+    <div class="mix-cap"><span>行业整体构成（估算）：通用 DDR/LPDDR ≈77%</span><span>HBM ≈18%</span><span>GDDR ≈5%</span></div>
+    <div id="segBars"></div>
+    <div class="callout">
+      <b>关键事实：</b>长鑫 7.7% 的份额<b>全部</b>落在通用段（DDR/LPDDR）；占整个盘子约 <b>23%</b> 的高端段（HBM + GDDR）里，中国厂商的份额是 <b>0</b>——HBM3 刚起步、GDDR 无产品线。份额第四 ≠ 高端入局。
+    </div>
+    <div class="share-note">估算口径：行业 HBM 营收占比约两成（BofA：HBM 位元出货占 DRAM 总位元 2026 年 23%）；各公司高端段按其 HBM 份额（Counterpoint 1Q26：海力士 58% / 三星 21% / 美光 21%）与 GDDR 布局折算。三星/美光另有 LPDDR 服务器新业务，未计入高端段。</div>
+  </div>
+
   <div class="share-2col rv">
     <div class="share-block">
-      <h3>DRAM 总盘（营收口径）<small>CFM · 1Q26</small></h3>
-      <div class="tip">长鑫一年内从 3% 冲到 7.7%，超越南亚科升至全球第四</div>
-      <div id="shareDram"></div>
-      <div class="share-note">其余：南亚科 1.6%、华邦 0.6% 等。TrendForce 口径略有差异（三星 38.5% / 海力士 28.8% / 美光 22.4%）。</div>
-    </div>
-    <div class="share-block">
-      <h3>晶圆月产能对比<small>12 英寸折算 · 公开报道</small></h3>
-      <div class="tip">长鑫 2026 年底目标扩到 40 万片/月，仍不及三星 2/3</div>
-      <div id="shareCap"></div>
-      <div class="share-note">美光产能未获一致公开口径，未列入；三巨头约 80% 先进产能正转投 HBM。</div>
-    </div>
-  </div>
-  <div class="share-2col rv" style="margin-top:12px">
-    <div class="share-block">
-      <h3>HBM 市场份额<small>IDC · 2025–26 口径</small></h3>
-      <div class="tip">海力士过半垄断；HBM 营收已占 DRAM 行业约三成</div>
+      <h3>HBM 市场份额<small>Counterpoint · 1Q26</small></h3>
+      <div class="tip">海力士过半垄断；三星 HBM 份额从 13% 升至 21%，HBM4 下半年放量后还将继续</div>
       <div id="shareHbm"></div>
-      <div class="share-note">机构口径不一：IDC 给海力士 56.4%；Counterpoint 口径 53%；HBM3E 单品类海力士曾超六成。三星/美光为估算区间中值。</div>
     </div>
     <div class="share-block">
       <h3>英伟达 Rubin 平台 HBM4 订单<small>SemiAnalysis · 2026.2</small></h3>
@@ -370,6 +419,27 @@ footer li{margin:5px 0 0 20px}
       <div id="shareHbm4"></div>
       <div class="share-note">美光转向为 Vera CPU 供应 LPDDR5X（SOCAMM2，单 CPU 最高 1.5TB），开辟第二赛道。</div>
     </div>
+  </div>
+</section>
+
+<!-- ============ 产业图谱 ============ -->
+<section id="graph">
+  <div class="sec-tag rv">INDUSTRY GRAPH</div>
+  <h2 class="rv">产业图谱：技术 · 年代 · 公司</h2>
+  <p class="sec-desc rv">左侧 DDR / HBM 两大起点，向右展开十代产品；每代连接其首发年代与供应商——<b>圆圈越大，该领域市占率越高</b>。拖动平移、滚轮/双指缩放、点击节点看详情。</p>
+  <div class="graphwrap rv" id="graphWrap">
+    <div class="gstage" id="gstage">
+      <canvas id="graphcv"></canvas>
+      <div class="ghint">拖动平移 · 滚轮/双指缩放 · 点击节点看详情</div>
+      <div class="gctl">
+        <button id="gzIn" title="放大">＋</button>
+        <button id="gzOut" title="缩小">－</button>
+        <button id="gzReset" title="复位视图">⟲</button>
+        <button id="gzFs" title="全屏（Esc 退出）">⛶</button>
+      </div>
+      <div class="gpanel" id="gpanel"></div>
+    </div>
+    <div class="glegend" id="glegend"></div>
   </div>
 </section>
 
@@ -382,7 +452,7 @@ footer li{margin:5px 0 0 20px}
   <div class="acc rv" data-acc>
     <div class="acc-head">
       <span class="acc-badge b-kr">KR</span>
-      <div class="t"><b>SK 海力士 · HBM 王者守擂</b><small>DRAM 份额 29.6% · HBM 份额过半 · 英伟达 HBM4 约七成订单</small></div>
+      <div class="t"><b>SK 海力士 · HBM 王者守擂</b><small>DRAM 份额 29.6% · HBM 份额 58% · 英伟达 HBM4 约七成订单</small></div>
       <span class="acc-arrow">▼</span>
     </div>
     <div class="acc-body"><div class="acc-inner"><ul>
@@ -483,20 +553,31 @@ footer li{margin:5px 0 0 20px}
   <h2 class="rv">一句话结论</h2>
   <div class="conc rv">
     <div class="row"><span class="ico">🟢</span><div><b>通用 DRAM：</b><span>长鑫 DDR5/LPDDR5X 已追至同代差距一年以内，全球份额 7.7% 坐稳第四，垄断被打破。</span></div></div>
-    <div class="row"><span class="ico">🔴</span><div><b>图形显存 GDDR：</b><span>100% 被三星/海力士/美光分食，长鑫没有产品线，是纯垄断区。</span></div></div>
-    <div class="row"><span class="ico">🟡</span><div><b>高带宽 HBM：</b><span>长鑫 2026 刚跨过 HBM3 量产门槛；而 HBM4 订单已被海力士（约七成）和三星瓜分，代差约 3 年。</span></div></div>
+    <div class="row"><span class="ico">🔴</span><div><b>但份额第四 ≠ 高端入局：</b><span>占盘子约 23% 的高端段（HBM + GDDR）里中国份额为 0——GDDR 无产品线，HBM3 刚起步，HBM4 订单被海力士（约七成）和三星瓜分。</span></div></div>
+    <div class="row"><span class="ico">🟡</span><div><b>高带宽 HBM：</b><span>长鑫 2026 刚跨过 HBM3 量产门槛，与国际前沿 HBM4E 差约两代、3 年。</span></div></div>
     <div class="row"><span class="ico">♟️</span><div><b>下一赛点：</b><span>2027 年 HBM4E + 定制 HBM：海力士绑台积电 3nm、三星押自研 2nm、美光弃自研投台积电——Base Die 逻辑化让壁垒从「存储」升级为「存储 + 先进逻辑代工」的双重垄断。</span></div></div>
   </div>
 </section>
+
+<aside class="nextup" id="nextup">
+  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+  <h4>中国大模型六小虎深度研究</h4>
+  <p>智谱 / 月之暗面 / MiniMax / 百川 / 阶跃星辰 / 零一万物：格局、发家史、能力横评与 2026–2028 推演。</p>
+  <div class="nu-meta">
+    <span class="nu-tag">🎯 个人兴趣研究</span>
+    <a class="nu-go" href="https://shiwo233.github.io/share/six-tigers-report/">已上线 · 点击阅读</a>
+  </div>
+  <a class="nu-all" href="https://shiwo233.github.io/share/wiki/">浏览全部议题 →</a>
+</aside>
 
 <footer>
   数据截至 2026 年 7 月 · 份额与订单为机构统计/预估口径 · 不构成投资建议
   <details>
     <summary>主要参考来源</summary>
     <ul>
-      <li>市占率：CFM 闪存市场 1Q26 DRAM 排名（三星 40.5% / 海力士 29.6% / 美光 19.9% / 长鑫 7.7%）；TrendForce 1Q26；Counterpoint；IDC（海力士 HBM 56.4%，引自其美股 IPO 文件）</li>
-      <li>HBM4 订单：SemiAnalysis（2026.2，海力士约 70% / 三星约 30%）；新浪财经（2026.6，海力士 60–70% / 三星 25–30% / 美光余量）</li>
-      <li>路线图：三星 HBM4 首发量产公告（2026.2）、HBM4E 首批样品（2026.5）；SK海力士 HBM4E 路线图（2026.6）与 F-1 招股书（2026.7）；美光摩根大通会议披露（2026.5，HBM4E 用 1γ + 台积电 Base Die）</li>
+      <li>市占率：CFM 闪存市场 1Q26 DRAM 排名（三星 40.5% / 海力士 29.6% / 美光 19.9% / 长鑫 7.7%）；Counterpoint 1Q26（HBM：海力士 58% / 三星 21% / 美光 21%）；SemiAnalysis（HBM4 订单 70/30）</li>
+      <li>高低端拆分：BofA（HBM 位元占 DRAM 总位元 2026 年 23%，HBM 市场 $35B→$54.6B）；Omdia/WSTS（2025 DRAM $1505 亿）；分段为按上述口径的估算</li>
+      <li>路线图：三星 HBM4 首发量产公告（2026.2）、HBM4E 首批样品（2026.5）；SK海力士 HBM4E 路线图与 F-1 招股书（2026.7）；美光摩根大通会议披露（2026.5，HBM4E 用 1γ + 台积电 Base Die）</li>
       <li>长鑫：科创板招股说明书（月产能 30 万→40 万片、DDR5 占比 65%、募资 295 亿）；摩根士丹利 HBM 路线图；2025.11 IC China 发布</li>
       <li>管制：美国商务部 2024.12 对华 HBM 出口管制（HBM2E 及以上）</li>
     </ul>
@@ -506,64 +587,56 @@ footer li{margin:5px 0 0 20px}
 <script>
 /* ================= data ================= */
 const DATA=[
- {g:"DDR4",f:"ddr",pin:"1.6–3.2 Gbps",bus:"64位/通道",bw:"25.6 GB/s/通道",bwv:25.6,cap:"4–16Gb/颗",v:"1.2V",tech:"NRZ 信号、Bank Group、DIMM 模组",app:"PC、服务器、IoT",sup:"三巨头 + 长鑫等",cx:"y",cxt:"已量产",y:"2014"},
- {g:"DDR5",f:"ddr",pin:"4.8–6.4（高端 8.0+）Gbps",bus:"2×32位 子通道",bw:"51.2 GB/s/通道",bwv:51.2,cap:"16–24Gb/颗（头部 64Gb）",v:"1.1V",tech:"双子通道、片上 ECC、模组 PMIC、MRDIMM",app:"PC、服务器",sup:"三巨头 + 长鑫",cx:"y",cxt:"已量产·8000Mbps",y:"2020"},
- {g:"GDDR6",f:"gddr",pin:"14–18 Gbps",bus:"32位/颗",bw:"56–72 GB/s/颗",bwv:72,cap:"8–16Gb/颗",v:"1.35V",tech:"NRZ、BGA 板载贴卡",app:"显卡、游戏主机",sup:"三星 / 海力士 / 美光",cx:"n",cxt:"空白",y:"2018"},
- {g:"GDDR6X",f:"gddr",pin:"19–24 Gbps",bus:"32位/颗",bw:"76–96 GB/s/颗",bwv:96,cap:"8–16Gb/颗",v:"1.35V",tech:"PAM4 信号（美光×英伟达私有方案）",app:"高端 N 卡（3090–4090）",sup:"美光独家",cx:"n",cxt:"空白",y:"2020·非JEDEC"},
- {g:"GDDR7",f:"gddr",pin:"28–40 Gbps",bus:"32位/颗",bw:"112–160 GB/s/颗",bwv:160,cap:"16–24Gb/颗",v:"≈1.2V",tech:"PAM3 信号（2 周期传 3 位）",app:"RTX 50 系、AI 推理卡",sup:"三星 / 海力士 / 美光",cx:"n",cxt:"空白",y:"2024"},
- {g:"HBM2",f:"hbm",pin:"2.0 Gbps",bus:"1024位",bw:"256 GB/s/堆栈",bwv:256,cap:"8Gb×4/8层 → 4–8GB",v:"1.2V",tech:"TSV 3D 堆叠 + 2.5D 硅中介层",app:"早期 AI 卡（V100）",sup:"海力士 / 三星",cx:"p",cxt:"样品(2024)",y:"2016"},
- {g:"HBM2E",f:"hbm",pin:"3.2–3.6 Gbps",bus:"1024位",bw:"≈460 GB/s/堆栈",bwv:460,cap:"16Gb×8/12层 → 16GB",v:"1.2V",tech:"12 层堆叠、更高 TSV 密度",app:"A100 等",sup:"海力士 / 三星 / 美光",cx:"p",cxt:"客户验证",y:"2019"},
- {g:"HBM3",f:"hbm",pin:"6.4 Gbps",bus:"1024位",bw:"819 GB/s/堆栈",bwv:819,cap:"16/24Gb×8/12层 → 16–24GB",v:"≈1.0–1.1V",tech:"16 通道架构、更薄晶圆 TSV",app:"H100、国产 AI 芯片",sup:"三巨头（长鑫 2026 入场）",cx:"p",cxt:"2026 量产爬坡",y:"2022"},
- {g:"HBM3E",f:"hbm",pin:"8–9.6 Gbps",bus:"1024位",bw:"≈1.2 TB/s/堆栈",bwv:1229,cap:"24Gb×12层 → 36GB",v:"≈1.1V",tech:"MR-MUF / TC-NCF 先进键合、散热强化",app:"H200、B200、主流 AI 服务器",sup:"海力士主导(过半)+三星/美光",cx:"n",cxt:"在研·目标2027",y:"2023"},
- {g:"HBM4",f:"hbm",pin:"标准 8 Gbps；量产 11–11.7（最高 13）",bus:"2048位（翻倍）",bw:"2.8–3.3 TB/s/堆栈",bwv:3300,cap:"24/32Gb×12/16层 → 36–48GB",v:"≈0.9–1.1V",tech:"位宽翻倍、定制 Base Die（4nm 逻辑）、混合键合路线",app:"英伟达 Rubin 平台",sup:"三星/海力士/美光 垄断",cx:"n",cxt:"空白·代差≈3年",y:"2026 量产"}
+ {id:"ddr4",g:"DDR4",f:"ddr",pin:"1.6–3.2 Gbps",bus:"64位/通道",bw:"25.6 GB/s/通道",bwv:25.6,cap:"4–16Gb/颗",v:"1.2V",tech:"NRZ 信号、Bank Group、DIMM 模组",app:"PC、服务器、IoT",sup:"三巨头 + 长鑫等",cx:"y",cxt:"已量产",y:"2014"},
+ {id:"ddr5",g:"DDR5",f:"ddr",pin:"4.8–6.4（高端 8.0+）Gbps",bus:"2×32位 子通道",bw:"51.2 GB/s/通道",bwv:51.2,cap:"16–24Gb/颗（头部 64Gb）",v:"1.1V",tech:"双子通道、片上 ECC、模组 PMIC、MRDIMM",app:"PC、服务器",sup:"三巨头 + 长鑫",cx:"y",cxt:"已量产·8000Mbps",y:"2020"},
+ {id:"gddr6",g:"GDDR6",f:"gddr",pin:"14–18 Gbps",bus:"32位/颗",bw:"56–72 GB/s/颗",bwv:72,cap:"8–16Gb/颗",v:"1.35V",tech:"NRZ、BGA 板载贴卡",app:"显卡、游戏主机",sup:"三星 / 海力士 / 美光",cx:"n",cxt:"空白",y:"2018"},
+ {id:"gddr6x",g:"GDDR6X",f:"gddr",pin:"19–24 Gbps",bus:"32位/颗",bw:"76–96 GB/s/颗",bwv:96,cap:"8–16Gb/颗",v:"1.35V",tech:"PAM4 信号（美光×英伟达私有方案）",app:"高端 N 卡（3090–4090）",sup:"美光独家",cx:"n",cxt:"空白",y:"2020·非JEDEC"},
+ {id:"gddr7",g:"GDDR7",f:"gddr",pin:"28–40 Gbps",bus:"32位/颗",bw:"112–160 GB/s/颗",bwv:160,cap:"16–24Gb/颗",v:"≈1.2V",tech:"PAM3 信号（2 周期传 3 位）",app:"RTX 50 系、AI 推理卡",sup:"三星 / 海力士 / 美光",cx:"n",cxt:"空白",y:"2024"},
+ {id:"hbm2",g:"HBM2",f:"hbm",pin:"2.0 Gbps",bus:"1024位",bw:"256 GB/s/堆栈",bwv:256,cap:"8Gb×4/8层 → 4–8GB",v:"1.2V",tech:"TSV 3D 堆叠 + 2.5D 硅中介层",app:"早期 AI 卡（V100）",sup:"海力士 / 三星",cx:"p",cxt:"样品(2024)",y:"2016"},
+ {id:"hbm2e",g:"HBM2E",f:"hbm",pin:"3.2–3.6 Gbps",bus:"1024位",bw:"≈460 GB/s/堆栈",bwv:460,cap:"16Gb×8/12层 → 16GB",v:"1.2V",tech:"12 层堆叠、更高 TSV 密度",app:"A100 等",sup:"海力士 / 三星 / 美光",cx:"p",cxt:"客户验证",y:"2019"},
+ {id:"hbm3",g:"HBM3",f:"hbm",pin:"6.4 Gbps",bus:"1024位",bw:"819 GB/s/堆栈",bwv:819,cap:"16/24Gb×8/12层 → 16–24GB",v:"≈1.0–1.1V",tech:"16 通道架构、更薄晶圆 TSV",app:"H100、国产 AI 芯片",sup:"三巨头（长鑫 2026 入场）",cx:"p",cxt:"2026 量产爬坡",y:"2022"},
+ {id:"hbm3e",g:"HBM3E",f:"hbm",pin:"8–9.6 Gbps",bus:"1024位",bw:"≈1.2 TB/s/堆栈",bwv:1229,cap:"24Gb×12层 → 36GB",v:"≈1.1V",tech:"MR-MUF / TC-NCF 先进键合、散热强化",app:"H200、B200、主流 AI 服务器",sup:"海力士主导(58%)+三星/美光",cx:"n",cxt:"在研·目标2027",y:"2023"},
+ {id:"hbm4",g:"HBM4",f:"hbm",pin:"标准 8 Gbps；量产 11–11.7（最高 13）",bus:"2048位（翻倍）",bw:"2.8–3.3 TB/s/堆栈",bwv:3300,cap:"24/32Gb×12/16层 → 36–48GB",v:"≈0.9–1.1V",tech:"位宽翻倍、定制 Base Die（4nm 逻辑）、混合键合路线",app:"英伟达 Rubin 平台",sup:"三星/海力士/美光 垄断",cx:"n",cxt:"空白·代差≈3年",y:"2026 量产"}
 ];
 const ST={y:"st-y",p:"st-p",n:"st-n"};
+const STC={y:"#5bb98c",p:"#f0b45b",n:"#ff7b7b"};
 const FC={ddr:"#5b8cff",gddr:"#f0935b",hbm:"#9d6bff"};
-/* ================= spec cards ================= */
-const cards=document.getElementById('cards');
-function render(f){
-  cards.innerHTML='';
-  DATA.filter(d=>f==='all'||d.f===f||(f==='cx'&&d.cx!=='n')).forEach(d=>{
+/* ================= spec tiles + modal ================= */
+const tiles=document.getElementById('tiles');
+function renderTiles(f){
+  tiles.innerHTML='';
+  DATA.forEach(d=>{
     const el=document.createElement('div');
-    el.className='scard f-'+d.f;
-    el.innerHTML=`<div class="s-head"><span class="gen">${d.g}</span><span class="fam">${d.f.toUpperCase()}</span><span class="sbw">${d.bw}</span><span class="st ${ST[d.cx]}">${d.cxt}</span><span class="s-arrow">▼</span></div>
-    <div class="s-body"><dl class="grid">
-      <dt>首发/标准</dt><dd>${d.y}</dd>
-      <dt>单引脚速率</dt><dd>${d.pin}</dd>
-      <dt>总线位宽</dt><dd>${d.bus}</dd>
-      <dt>带宽</dt><dd>${d.bw}</dd>
-      <dt>容量</dt><dd>${d.cap}</dd>
-      <dt>电压</dt><dd>${d.v}</dd>
-      <dt>关键技术</dt><dd>${d.tech}</dd>
-      <dt>典型应用</dt><dd>${d.app}</dd>
-      <dt>供应商</dt><dd>${d.sup}</dd>
-    </dl></div>`;
-    el.querySelector('.s-head').onclick=()=>toggleCard(el);
-    cards.appendChild(el);
+    const hide=(f!=='all'&&d.f!==f)||(f==='cx'&&d.cx==='n');
+    el.className='tile f-'+d.f+(hide?' dim':'');
+    el.innerHTML=`<div class="tg"><span class="sd" style="background:${STC[d.cx]}"></span>${d.g}</div><div class="tb">${d.bw}</div><div class="ty">${d.y}</div>`;
+    el.onclick=()=>openSpec(d.id);
+    tiles.appendChild(el);
   });
 }
-function toggleCard(el){
-  const body=el.querySelector('.s-body');
-  const open=el.classList.toggle('open');
-  body.style.maxHeight=open?body.scrollHeight+'px':'0';
-}
-render('all');
+renderTiles('all');
 document.getElementById('chips').addEventListener('click',e=>{
   const b=e.target.closest('.chip'); if(!b)return;
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-  b.classList.add('on'); render(b.dataset.f);
-  document.getElementById('expandAll').textContent='全部展开';
+  b.classList.add('on'); renderTiles(b.dataset.f);
 });
-document.getElementById('expandAll').onclick=function(){
-  const all=[...document.querySelectorAll('.scard')];
-  const anyClosed=all.some(el=>!el.classList.contains('open'));
-  all.forEach(el=>{
-    const body=el.querySelector('.s-body');
-    el.classList.toggle('open',anyClosed);
-    body.style.maxHeight=anyClosed?body.scrollHeight+'px':'0';
-  });
-  this.textContent=anyClosed?'全部收起':'全部展开';
-};
+const modal=document.getElementById('specModal');
+function openSpec(id){
+  const d=DATA.find(x=>x.id===id); if(!d)return;
+  document.getElementById('smHead').innerHTML=`<span class="gen">${d.g}</span><span class="fam" style="background:${FC[d.f]}">${d.f.toUpperCase()}</span><span class="st ${ST[d.cx]}">${d.cxt}</span>`;
+  document.getElementById('smGrid').innerHTML=`
+    <dt>首发/标准</dt><dd>${d.y}</dd><dt>单引脚速率</dt><dd>${d.pin}</dd>
+    <dt>总线位宽</dt><dd>${d.bus}</dd><dt>带宽</dt><dd>${d.bw}</dd>
+    <dt>容量</dt><dd>${d.cap}</dd><dt>电压</dt><dd>${d.v}</dd>
+    <dt>关键技术</dt><dd>${d.tech}</dd><dt>典型应用</dt><dd>${d.app}</dd>
+    <dt>供应商</dt><dd>${d.sup}</dd>`;
+  modal.classList.add('show');
+  document.getElementById('smGoGraph').onclick=()=>{closeSpec();setTimeout(()=>window.graphFocus&&graphFocus(d.id),400)};
+}
+function closeSpec(){modal.classList.remove('show')}
+document.getElementById('specClose').onclick=closeSpec;
+document.getElementById('smClose2').onclick=closeSpec;
+modal.addEventListener('click',e=>{if(e.target===modal)closeSpec()});
 /* ================= accordions ================= */
 document.querySelectorAll('[data-acc]').forEach(acc=>{
   const head=acc.querySelector('.acc-head'),body=acc.querySelector('.acc-body');
@@ -574,55 +647,316 @@ document.querySelectorAll('[data-acc]').forEach(acc=>{
   };
 });
 /* ================= bar builders ================= */
-function buildBars(boxId,rows,maxOverride){
+function buildBars(boxId,rows){
   const box=document.getElementById(boxId);
-  const max=maxOverride||Math.max(...rows.map(r=>r[1]));
+  const max=Math.max(...rows.map(r=>r[1]));
   rows.forEach(r=>{
     const el=document.createElement('div'); el.className='cbar';
     el.innerHTML=`<label><b style="color:${r[3]||'var(--txt)'}">${r[0]}</b><span>${r[2]}</span></label><div class="track"><div class="fill" data-w="${Math.max(r[1]/max*100,1)}" style="background:${r[4]||'var(--grad)'}"></div></div>`;
     box.appendChild(el);
   });
 }
-/* bandwidth ladder */
 buildBars('bars',[...DATA].sort((a,b)=>a.bwv-b.bwv).map(d=>{
   const label=d.bwv>=1000?(d.bwv/1000).toFixed(1)+' TB/s':d.bwv+' GB/s';
   return [d.g,d.bwv,label,FC[d.f],FC[d.f]];
 }));
-/* market share charts */
-const C_SAM='#7dd3fc',C_SK='#a5b4fc',C_MU='#fda4af',C_CX='#5bb98c',C_OT='#475569';
-buildBars('shareDram',[
- ["三星 Samsung",40.5,"40.5%",C_SAM,C_SAM],
- ["SK海力士",29.6,"29.6%",C_SK,C_SK],
- ["美光 Micron",19.9,"19.9%",C_MU,C_MU],
- ["长鑫 CXMT",7.7,"7.7% ↑",C_CX,C_CX],
- ["南亚+华邦等",2.2,"2.2%",C_OT,C_OT]
-]);
-buildBars('shareCap',[
- ["三星",65,"65万片/月",C_SAM,C_SAM],
- ["SK海力士",50,"50万片/月",C_SK,C_SK],
- ["长鑫（2026底目标）",40,"30→40万片/月",C_CX,C_CX]
-]);
+const C_SAM='#38bdf8',C_SK='#818cf8',C_MU='#fb7185',C_CX='#5bb98c',C_OT='#475569';
 buildBars('shareHbm',[
- ["SK海力士",56.4,"≈56%（IDC）",C_SK,C_SK],
- ["三星",25,"≈25%（估）",C_SAM,C_SAM],
- ["美光",19,"<20%（估）",C_MU,C_MU]
+ ["SK海力士",58,"58%",C_SK,C_SK],
+ ["三星 Samsung",21,"21%（去年 13%↑）",C_SAM,C_SAM],
+ ["美光 Micron",21,"21%",C_MU,C_MU]
 ]);
 buildBars('shareHbm4',[
  ["SK海力士",70,"≈70%",C_SK,C_SK],
  ["三星",30,"≈30%",C_SAM,C_SAM],
  ["美光（GPU端）",0.4,"≈0 → Q2 重送样",C_MU,C_MU]
 ]);
-/* animate bars on view */
+/* segmented share bars */
+const SEG=[
+ ["三星 Samsung",40.5,15,"seg-lo"],
+ ["SK海力士",29.6,34,"seg-lo"],
+ ["美光 Micron",19.9,20,"seg-lo"],
+ ["长鑫 CXMT",7.7,0,"seg-lo-cn"],
+ ["南亚/华邦等",2.3,0,"seg-lo-ot"]
+];
+const segBox=document.getElementById('segBars');
+SEG.forEach(s=>{
+  const [name,total,hi,loCls]=s;
+  const row=document.createElement('div'); row.className='seg-row';
+  const hiTxt=hi>0?`高端≈${hi}% · 通用≈${100-hi}%`:'100% 通用（无高端）';
+  row.innerHTML=`<label><b>${name}</b><span>${total}%（${hiTxt}）</span></label>
+  <div style="width:${total/40.5*100}%"><div class="seg-track">
+    <div class="seg seg-hi" data-w="${hi}"></div><div class="seg ${loCls}" data-w="${100-hi}"></div>
+  </div></div>`;
+  segBox.appendChild(row);
+});
+/* animate on view */
 function animateOnView(id){
   const sec=document.getElementById(id);
   new IntersectionObserver((es,ob)=>{es.forEach(e=>{if(e.isIntersecting){
     sec.querySelectorAll('.fill').forEach(x=>requestAnimationFrame(()=>x.style.width=x.dataset.w+'%'));
+    sec.querySelectorAll('.seg').forEach(x=>requestAnimationFrame(()=>x.style.width=x.dataset.w+'%'));
+    sec.querySelectorAll('#mixBar div').forEach(x=>requestAnimationFrame(()=>x.style.width=x.dataset.w+'%'));
     ob.disconnect();
   }})},{threshold:.2}).observe(sec);
 }
 ['bw','share'].forEach(animateOnView);
+</script>
+<script>
+/* ================= industry graph (canvas, no libs) ================= */
+(function(){
+const cv=document.getElementById('graphcv'),ctx=cv.getContext('2d'),
+      wrap=document.getElementById('graphWrap'),panel=document.getElementById('gpanel');
+const DPR=Math.min(devicePixelRatio||1,2);
+let W=0,H=0;
+const W0=1000,H0=740;
+const CO={samsung:{name:'三星',col:'#38bdf8'},sk:{name:'SK海力士',col:'#818cf8'},micron:{name:'美光',col:'#fb7185'},cxmt:{name:'长鑫',col:'#5bb98c',cn:true}};
+const GDEF=[
+ {id:'ddr4', y:84, root:'ddr', cos:[['samsung',40.5],['sk',29.6],['micron',19.9],['cxmt',7.7]], con:'1Q26 DRAM 总份额（CFM）'},
+ {id:'ddr5', y:150,root:'ddr', cos:[['samsung',40.5],['sk',29.6],['micron',19.9],['cxmt',7.7]], con:'1Q26 DRAM 总份额（CFM）'},
+ {id:'gddr6',y:216,root:'ddr', cos:[['samsung',45],['sk',30],['micron',25]], con:'GDDR 细分估算（无权威公开口径）'},
+ {id:'gddr6x',y:282,root:'ddr',cos:[['micron',100]], con:'美光独家（PAM4 私有方案）'},
+ {id:'gddr7',y:348,root:'ddr', cos:[['samsung',45],['sk',30],['micron',25]], con:'GDDR 细分估算'},
+ {id:'hbm2', y:420,root:'hbm', cos:[['sk',60],['samsung',40]], con:'2016–18 格局（估）'},
+ {id:'hbm2e',y:486,root:'hbm', cos:[['sk',50],['samsung',30],['micron',20]], con:'估算'},
+ {id:'hbm3', y:552,root:'hbm', cos:[['sk',55],['samsung',35],['micron',10],['cxmt',2]], con:'估算 · 长鑫 2026 爬坡<3%'},
+ {id:'hbm3e',y:618,root:'hbm', cos:[['sk',58],['samsung',21],['micron',21]], con:'Counterpoint 1Q26'},
+ {id:'hbm4', y:684,root:'hbm', cos:[['sk',70],['samsung',30],['micron',2]], con:'Rubin 订单（SemiAnalysis）'}
+];
+/* build nodes */
+const nodes=[],edges=[];
+const N={add(n){nodes.push(n);return nodes.length-1}};
+const rootIdx={};
+/* roots */
+const rDDR=N.add({type:'root',id:'ddr',x:96,y:216,w:104,h:46,col:FC.ddr,name:'DDR 系'});
+const rHBM=N.add({type:'root',id:'hbm',x:96,y:552,w:104,h:46,col:FC.hbm,name:'HBM 系'});
+rootIdx.ddr=rDDR; rootIdx.hbm=rHBM;
+const CO_X=[700,798,890,962];
+GDEF.forEach(g=>{
+  const d=DATA.find(x=>x.id===g.id);
+  g.ni=N.add({type:'gen',id:g.id,x:346,y:g.y,w:96,h:32,col:FC[d.f],name:d.g,ref:g});
+  edges.push({a:rootIdx[g.root],b:g.ni,kind:'fam',col:FC[d.f]});
+  g.yi=N.add({type:'year',id:g.id+'_y',x:520,y:g.y,w:66,h:22,name:d.y,ref:g,gen:g.ni});
+  edges.push({a:g.ni,b:g.yi,kind:'meta'});
+  g.cos.forEach((c,i)=>{
+    const ci=N.add({type:'co',id:g.id+'_'+c[0],x:CO_X[i],y:g.y,r:5+Math.sqrt(c[1])*2.4,co:c[0],share:c[1],ref:g,name:CO[c[0]].name});
+    edges.push({a:g.ni,b:ci,kind:'co'});
+  });
+});
+/* view transform */
+let scale=1,ox=0,oy=0,sel=-1,hov=-1;
+function fit(){
+  if(W<720){
+    /* 移动端：放大聚焦左半区（根节点+各代+年代），公司列可向右平移查看 */
+    const s=Math.min(W/620,H/H0)*0.98;
+    scale=s;ox=W*0.5-425*s;oy=H/2-370*s;
+  }else{
+    const s=Math.min(W/W0,H/H0)*0.98;scale=s;ox=W/2-500*s;oy=H/2-370*s;
+  }
+}
+function resize(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);if(!resize._i){fit();resize._i=1}draw()}
+function world(px,py){return{x:(px-ox)/scale,y:(py-oy)/scale}}
+function toScr(x,y){return{x:x*scale+ox,y:y*scale+oy}}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+/* linked set for highlight */
+function linkedSet(i){
+  const s=new Set([i]);
+  edges.forEach(e=>{if(e.a===i)s.add(e.b);if(e.b===i)s.add(e.a)});
+  /* extend one hop for gen<->root<->gens chain clarity */
+  return s;
+}
+/* draw */
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.save();ctx.translate(ox,oy);ctx.scale(scale,scale);
+  const hot=sel>=0?sel:hov;
+  const linked=hot>=0?linkedSet(hot):null;
+  /* edges */
+  edges.forEach(e=>{
+    const A=nodes[e.a],B=nodes[e.b];
+    const isHot=linked&&(linked.has(e.a)&&linked.has(e.b));
+    ctx.globalAlpha=linked?(isHot?0.95:0.05):(e.kind==='fam'?0.5:0.3);
+    ctx.strokeStyle=e.kind==='fam'?e.col:'rgba(140,160,195,.6)';
+    ctx.lineWidth=e.kind==='fam'?(isHot?3:2):1;
+    ctx.beginPath();
+    if(e.kind==='fam'){
+      const mx=(A.x+B.x)/2;
+      ctx.moveTo(A.x+A.w/2,A.y);
+      ctx.bezierCurveTo(mx,A.y,mx,B.y,B.x-B.w/2,B.y);
+    }else{
+      const x1=A.x+(A.w?A.w/2:0),x2=B.x-(B.w?B.w/2:B.r||0);
+      ctx.moveTo(x1,A.y);ctx.lineTo(x2,B.y);
+    }
+    ctx.stroke();
+  });
+  ctx.globalAlpha=1;
+  /* nodes */
+  nodes.forEach((n,i)=>{
+    const dim=linked&&!linked.has(i);
+    ctx.globalAlpha=dim?0.12:1;
+    if(n.type==='root'||n.type==='gen'){
+      const hotN=i===hot;
+      rr(n.x-n.w/2,n.y-n.h/2,n.w,n.h,n.h/2);
+      ctx.fillStyle=n.col;ctx.fill();
+      if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
+      ctx.fillStyle='#0a0e15';
+      ctx.font=(n.type==='root'?'900 15px':'800 13px')+' sans-serif';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(n.name,n.x,n.y+1);
+    }else if(n.type==='year'){
+      rr(n.x-n.w/2,n.y-n.h/2,n.w,n.h,11);
+      ctx.fillStyle='#1c2740';ctx.fill();
+      ctx.strokeStyle='rgba(140,160,195,.4)';ctx.lineWidth=1;ctx.stroke();
+      ctx.fillStyle='#8fa0b8';ctx.font='10px sans-serif';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(n.name,n.x,n.y+1);
+    }else{/* company */
+      const c=CO[n.co],hotN=i===hot;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,7);
+      ctx.fillStyle=c.col;ctx.fill();
+      if(c.cn){ctx.setLineDash([4,3]);ctx.strokeStyle='#f0b45b';ctx.lineWidth=2;
+        ctx.beginPath();ctx.arc(n.x,n.y,n.r+4,0,7);ctx.stroke();ctx.setLineDash([])}
+      if(hotN){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(n.x,n.y,n.r+2,0,7);ctx.stroke()}
+      if(n.r>=13){ctx.fillStyle='rgba(10,14,21,.85)';ctx.font='800 10px sans-serif';
+        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n.share+'%',n.x,n.y+1)}
+      ctx.fillStyle='rgba(232,237,245,.92)';ctx.font='11px sans-serif';
+      ctx.textAlign='center';ctx.textBaseline='top';
+      ctx.fillText(c.name,n.x,n.y+n.r+5);
+    }
+  });
+  ctx.globalAlpha=1;
+  ctx.restore();
+}
+/* hit test */
+function hit(px,py){
+  const p=world(px,py);
+  for(let i=nodes.length-1;i>=0;i--){
+    const n=nodes[i];
+    if(n.type==='co'){const dx=p.x-n.x,dy=p.y-n.y;if(dx*dx+dy*dy<=(n.r+6)*(n.r+6))return i}
+    else{if(Math.abs(p.x-n.x)<=n.w/2+4&&Math.abs(p.y-n.y)<=n.h/2+4)return i}
+  }
+  return -1;
+}
+/* panel */
+function showPanel(i){
+  const n=nodes[i];let html='';
+  if(n.type==='root'){
+    const isDdr=n.id==='ddr';
+    html=`<h4><span style="color:${n.col}">●</span> ${n.name}</h4>
+    <div class="gp-sub">${isDdr?'通用内存 + 图形显存路线':'高带宽内存路线'}</div>
+    <div class="gp-kv">${isDdr?'DIMM 模组 / 板载颗粒，走多通道与高频率路线。覆盖 DDR4、DDR5 两代主内存与 GDDR6/6X/7 三代显存。<br><br><b>长鑫状态：</b>DDR4/DDR5 已量产（份额 7.7%），GDDR 全线空白。':'TSV 3D 堆叠 + 2.5D 封装，位宽 1024→2048，AI 算力的内存答案。覆盖 HBM2 到 HBM4 五代。<br><br><b>长鑫状态：</b>HBM3 2026 年量产爬坡（占比 <3%），HBM3E 在研，HBM4 空白。'}</div>`;
+  }else if(n.type==='gen'||n.type==='year'){
+    const g=n.ref,d=DATA.find(x=>x.id===g.id);
+    html=`<h4><span style="color:${FC[d.f]}">●</span> ${d.g}</h4>
+    <div class="gp-sub">${d.y} · ${d.f.toUpperCase()} 家族</div>
+    <div class="gp-row"><span>带宽</span><b>${d.bw}</b></div>
+    <div class="gp-row"><span>单引脚速率</span><b>${d.pin}</b></div>
+    <div class="gp-row"><span>位宽</span><b>${d.bus}</b></div>
+    <div class="gp-row"><span>容量</span><b>${d.cap}</b></div>
+    <div class="gp-row"><span>供应商</span><b>${d.sup}</b></div>
+    <div class="gp-row"><span>长鑫状态</span><b style="color:${STC[d.cx]}">${d.cxt}</b></div>
+    <button class="gp-btn" id="gpSpec">查看完整参数 →</button>`;
+  }else{
+    const c=CO[n.co],g=n.ref,d=DATA.find(x=>x.id===g.id);
+    html=`<h4><span style="color:${c.col}">●</span> ${c.name}${c.cn?' <span style="font-size:10px;border:1px solid var(--green);color:var(--green);border-radius:99px;padding:1px 7px">中国</span>':''}</h4>
+    <div class="gp-sub">${d.g} 领域 · ${g.con}</div>
+    <div style="font-size:30px;font-weight:900;color:${c.col};margin:6px 0">${n.share}%</div>
+    <div class="gp-kv">${c.cn?(g.id==='hbm3'?'2026 年启动 HBM3 量产爬坡，全球 HBM 产能占比不足 3%——这是中国在高端段唯一的 foothold。':'通用 DRAM 份额 7.7%（全球第四），但全部位于通用段。'):(g.con.includes('独家')?'该代为美光×英伟达私有 PAM4 方案，美光独家供应。':'该领域主要供应商之一。')}</div>`;
+  }
+  panel.innerHTML=html+'<button class="gp-x" id="gpX">✕</button>';
+  panel.classList.add('show');
+  document.getElementById('gpX').onclick=()=>{panel.classList.remove('show');sel=-1;draw()};
+  const bs=document.getElementById('gpSpec');
+  if(bs)bs.onclick=()=>{panel.classList.remove('show');sel=-1;draw();openSpec(n.ref?n.ref.id:n.id)};
+}
+function focusNode(i,zoom){
+  const n=nodes[i];
+  const ts=Math.min(2.2,Math.max(1.1,zoom||1.3));
+  const tox=W/2-n.x*ts,toy=H/2-n.y*ts;
+  const from={s:scale,x:ox,y:oy},to={s:ts,x:tox,y:toy},t0=performance.now();
+  (function anim(){
+    const p=Math.min((performance.now()-t0)/450,1),e=1-Math.pow(1-p,3);
+    scale=from.s+(to.s-from.s)*e;ox=from.x+(to.x-from.x)*e;oy=from.y+(to.y-from.y)*e;
+    draw();if(p<1)requestAnimationFrame(anim);
+  })();
+}
+window.graphFocus=function(genId){
+  document.getElementById('graph').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    const g=GDEF.find(x=>x.id===genId);if(!g)return;
+    sel=g.ni;showPanel(sel);focusNode(sel);
+  },500);
+};
+/* events */
+let dragging=false,lx=0,ly=0,moved=0;
+const pointers=new Map();
+cv.addEventListener('pointerdown',e=>{
+  cv.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  dragging=true;lx=e.clientX;ly=e.clientY;moved=0;
+});
+cv.addEventListener('pointermove',e=>{
+  if(pointers.has(e.pointerId))pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pointers.size===2){
+    const pts=[...pointers.values()];
+    const d1=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+    if(cv._pd){const f=d1/cv._pd;zoomAt(W/2,H/2,f)}
+    cv._pd=d1;moved=10;return;
+  }
+  if(dragging){
+    const dx=e.clientX-lx,dy=e.clientY-ly;
+    if(Math.abs(dx)+Math.abs(dy)>3)moved+=Math.abs(dx)+Math.abs(dy);
+    ox+=dx;oy+=dy;lx=e.clientX;ly=e.clientY;draw();
+  }else{
+    const r=cv.getBoundingClientRect();
+    const i=hit(e.clientX-r.left,e.clientY-r.top);
+    if(i!==hov){hov=i;draw()}
+  }
+});
+function endPointer(e){
+  pointers.delete(e.pointerId);cv._pd=null;
+  if(pointers.size===0){
+    dragging=false;
+    if(moved<6){
+      const r=cv.getBoundingClientRect();
+      const i=hit(e.clientX-r.left,e.clientY-r.top);
+      if(i>=0){sel=i;showPanel(i);draw()}
+      else{sel=-1;panel.classList.remove('show');draw()}
+    }
+    moved=0;
+  }
+}
+cv.addEventListener('pointerup',endPointer);
+cv.addEventListener('pointercancel',endPointer);
+cv.addEventListener('pointerleave',e=>{if(!dragging&&hov>=0){hov=-1;draw()}});
+function zoomAt(px,py,f){
+  const ns=Math.min(3,Math.max(0.4,scale*f));
+  const w=world(px,py);
+  scale=ns;ox=px-w.x*scale;oy=py-w.y*scale;draw();
+}
+cv.addEventListener('wheel',e=>{e.preventDefault();const r=cv.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,e.deltaY<0?1.12:0.89)},{passive:false});
+cv.addEventListener('dblclick',e=>{
+  const r=cv.getBoundingClientRect();const i=hit(e.clientX-r.left,e.clientY-r.top);
+  if(i>=0){sel=i;showPanel(i);focusNode(i)}else fit(),draw();
+});
+document.getElementById('gzIn').onclick=()=>zoomAt(W/2,H/2,1.3);
+document.getElementById('gzOut').onclick=()=>zoomAt(W/2,H/2,0.77);
+document.getElementById('gzReset').onclick=()=>{fit();sel=-1;panel.classList.remove('show');draw()};
+document.getElementById('gzFs').onclick=()=>{
+  wrap.classList.toggle('fs');
+  setTimeout(resize,50);
+};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&wrap.classList.contains('fs')){wrap.classList.remove('fs');setTimeout(resize,50)}});
+addEventListener('resize',resize);
+/* legend */
+document.getElementById('glegend').innerHTML=
+ '<span><i style="background:#38bdf8"></i>三星</span><span><i style="background:#818cf8"></i>SK海力士</span><span><i style="background:#fb7185"></i>美光</span><span><i style="background:#5bb98c"></i>长鑫（金边虚线）</span><span>圆大小 ∝ 该代市占率 · GDDR 细分为估算</span>';
+resize();
+})();
+</script>
+<script>
 /* ================= chrome ================= */
-const prog=document.getElementById('progress'),nav=document.querySelector('nav'),toTop=document.getElementById('toTop');
+const prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
 addEventListener('scroll',()=>{
   const h=document.documentElement;
   prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';

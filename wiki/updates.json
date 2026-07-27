@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-27",
+      "title": "DRAM科普 v3：新增产业图谱 + 市占率高低端拆分 + 参数总览格",
+      "title_en": "DRAM 101 v3: industry graph, high/low-end share split, spec grid",
+      "topic": "内存技术全景对比",
+      "body": "新增「产业图谱」板块：以 DDR/HBM 为双起点向右展开十代产品，各代连接首发年代与供应商，圆圈大小=该代市占率，支持拖动/缩放/点选详情（借鉴凡人 Wiki 关系图谱交互）。DRAM 总盘重做「份额×高低端分段图」：长鑫 7.7% 全部位于通用段（DDR/LPDDR），占盘子约 23% 的高端段（HBM+GDDR）中国份额为 0——份额第四≠高端入局。参数表改为十宫格总览+点击弹详情，删除晶圆产能图与 hero 数据条，推荐位移至页尾。",
+      "body_en": "New industry graph section: DDR/HBM roots branching to 10 generations, each linked to its debut year and vendors with node size proportional to segment share (drag/zoom/tap interactions). The DRAM share chart is rebuilt as share × high/low-end segments: CXMT's 7.7% sits entirely in commodity DDR/LPDDR while the high-end segment (~23% of the market: HBM+GDDR) has zero Chinese share. Spec table becomes a compact grid with tap-to-open details; capacity chart and hero stats removed."
+    },
+    {
+      "date": "2026-07-27",
       "title": "DRAM科普议题升级 v2：更名「ssy给你做DRAM科普」+ 移动端重构 + 市占率与巨头布局",
       "title_en": "DRAM topic v2: renamed, mobile-first rebuild, market share & company roadmaps",
       "topic": "内存技术全景对比",
