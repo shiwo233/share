@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <!-- 2x2 dot-matrix logo: cyan pixels, bottom-right dot lit brighter -->
+  <circle cx="18" cy="18" r="9" fill="#22D3EE" fill-opacity="0.35"/>
+  <circle cx="46" cy="18" r="9" fill="#22D3EE" fill-opacity="0.35"/>
+  <circle cx="18" cy="46" r="9" fill="#22D3EE" fill-opacity="0.35"/>
+  <circle cx="46" cy="46" r="13" fill="#22D3EE" fill-opacity="0.18"/>
+  <circle cx="46" cy="46" r="9" fill="#22D3EE"/>
+</svg>

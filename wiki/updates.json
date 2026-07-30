@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-07-30",
+      "title": "新议题上线：LED PICK · 大型LED显示屏选购指南（三入口向导+链路表+术语词墙）",
+      "title_en": "New topic: LED PICK — Large LED Display Buying Guide (3-entry wizard, link matrix, glossary wall)",
+      "topic": "LED PICK · 大型LED显示屏选购指南",
+      "body": "面向小白的LED显示屏选购指南网站上线：支持从场景（18个）、产品类型（12类）、行业（10个）任一入口进入智能选型向导，2-3步输出推荐点间距/亮度/预算；招牌交互含18×12场景类型链路表与36术语词墙；另有点间距滑块实验室、七步方法论（含点间距/分辨率/功耗三个计算器）、14条避坑清单与8项验收量化指标。",
+      "body_en": "A beginner-friendly LED display buying guide is live: pick from 18 scenarios, 12 product types or 10 industries in a step-by-step wizard to get recommended pixel pitch, brightness and budget; signature interactions include an 18x12 scenario-to-type link matrix and a 36-term glossary wall, plus a pixel-pitch lab, a 7-step methodology with three calculators, and a 14-item pitfalls checklist."
+    },
+    {
       "date": "2026-07-29",
       "title": "「六小虎」分化加剧：阶跃星辰发布AI手机STEPX Neo，智谱/MiniMax股价较峰值大幅回调，月之暗面被曝拟赴港IPO",
       "topic": "中国大模型六小虎深度研究",
