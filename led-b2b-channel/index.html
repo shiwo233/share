@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>洲明科技 · LED 显示线上 B2B 采购平台拓展研究</title>
+<style>
+:root{
+  --bg:#0a0e15; --bg2:#101623; --card:#141c2b; --line:#22304a;
+  --txt:#e8edf5; --sub:#8fa0b8; --acc:#5b8cff; --acc2:#f0b45b;
+  --grad:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);
+  --ok:#5bb98c; --warn:#f0b45b; --bad:#e38a8a;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--acc);color:#fff}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(10,14,21,.85);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+nav .inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:0 18px;height:58px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap;text-decoration:none;color:var(--txt)}
+nav .logo .mark{width:28px;height:28px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+nav .logo .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+nav .spacer{flex:1;min-width:8px}
+nav .sep{width:1px;height:20px;background:var(--line);flex-shrink:0}
+nav a.nl{color:var(--sub);text-decoration:none;font-size:13px;white-space:nowrap;padding:7px 12px;border-radius:9px;transition:.25s}
+nav a.nl:hover{color:var(--txt);background:rgba(91,140,255,.15)}
+nav a.nl.on{color:#fff;background:rgba(91,140,255,.2)}
+nav a.home{color:var(--acc);font-weight:700}
+/* hero */
+header{padding:120px 22px 46px;text-align:center;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;width:70vw;height:70vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(91,140,255,.2),transparent 65%);top:-25%;left:-18%}
+header::after{content:"";position:absolute;width:60vw;height:60vw;max-width:520px;max-height:520px;border-radius:50%;background:radial-gradient(circle,rgba(240,180,91,.12),transparent 65%);bottom:-30%;right:-12%}
+.kicker{font-size:12px;letter-spacing:.4em;color:var(--acc);text-transform:uppercase;margin-bottom:16px;position:relative;z-index:1}
+h1.hero{font-size:clamp(28px,7.5vw,50px);font-weight:900;line-height:1.25;position:relative;z-index:1}
+h1.hero em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{margin:16px auto 0;color:var(--sub);font-size:clamp(13.5px,3.8vw,16px);max-width:680px;position:relative;z-index:1}
+/* static stat band */
+.stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:38px auto 0;max-width:1000px;position:relative;z-index:1}
+.stat{background:rgba(20,28,43,.7);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:128px;flex:1 1 128px;max-width:220px}
+.stat b{display:block;font-size:clamp(19px,5vw,26px);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.stat span{font-size:11.5px;color:var(--sub);display:block;margin-top:3px;line-height:1.5}
+/* sections */
+section{max-width:1080px;margin:0 auto;padding:56px 20px 26px;scroll-margin-top:70px}
+.sec-tag{font-size:12px;letter-spacing:.3em;color:var(--acc);margin-bottom:10px}
+h2{font-size:clamp(22px,6vw,32px);font-weight:800;margin-bottom:12px;line-height:1.3}
+h3{font-size:clamp(16px,4.5vw,19px);font-weight:800;margin:30px 0 12px;color:var(--txt)}
+h3 .no{color:var(--acc2);margin-right:8px}
+.sec-desc{color:var(--sub);font-size:14px;max-width:760px;margin-bottom:24px}
+.sec-desc b{color:var(--txt)}
+p.body{color:var(--sub);font-size:14px;max-width:860px;margin-bottom:14px}
+p.body b{color:var(--txt)}
+.analysis{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:0 14px 14px 0;padding:16px 18px;margin:18px 0 6px;color:var(--sub);font-size:13.5px}
+.analysis b{color:var(--txt)}
+.analysis .tag{display:inline-block;font-size:11px;letter-spacing:.15em;color:var(--acc);font-weight:700;margin-bottom:6px}
+/* dense tables */
+.bx{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:var(--card);margin-bottom:16px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:760px;font-size:12.5px;line-height:1.55}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--acc);font-size:12px;letter-spacing:.04em;white-space:nowrap;background:rgba(91,140,255,.07);position:sticky;top:0}
+td{color:var(--sub)}
+td:first-child{color:var(--txt);font-weight:700;white-space:nowrap}
+tbody tr:hover td{background:rgba(91,140,255,.045)}
+tr:last-child td{border-bottom:none}
+td .src{display:block;font-size:10.5px;color:#5f7089;margin-top:2px}
+/* fit badges */
+.fit{display:inline-block;border-radius:999px;padding:1px 9px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.fit.y{color:var(--ok);background:rgba(91,185,140,.13)}
+.fit.p{color:var(--warn);background:rgba(240,180,91,.13)}
+.fit.n{color:var(--bad);background:rgba(227,138,138,.13)}
+.lv{display:inline-block;border-radius:999px;padding:1px 9px;font-size:11.5px;font-weight:800;white-space:nowrap}
+.lv.h{color:var(--bad);background:rgba(227,138,138,.14)}
+.lv.m{color:var(--warn);background:rgba(240,180,91,.14)}
+.lv.l{color:var(--ok);background:rgba(91,185,140,.14)}
+.pri{color:var(--acc2);font-weight:800;white-space:nowrap}
+.tbl-note{font-size:11.5px;color:#5f7089;margin:-8px 0 18px;line-height:1.6}
+/* nextup */
+.nextup{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;position:relative;overflow:hidden;max-width:1080px;margin:26px auto 0}
+.nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.nextup .nu-kicker{font-size:11px;letter-spacing:.25em;color:var(--acc2);font-weight:700;margin-bottom:8px}
+.nextup h4{font-size:15.5px;line-height:1.45;margin-bottom:6px}
+.nextup p{font-size:12.5px;color:var(--sub);line-height:1.65}
+.nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11.5px;color:var(--sub);flex-wrap:wrap}
+.nextup .nu-tag{border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.nextup .nu-all{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--acc);text-decoration:none}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;text-align:center;color:var(--sub);font-size:12.5px;line-height:1.9}
+#toTop{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:80;cursor:pointer}
+#toTop.show{opacity:1;pointer-events:auto}
+@media(max-width:640px){
+  section{padding:44px 14px 20px}
+  table{font-size:12px;min-width:720px}
+  th,td{padding:8px 10px}
+  .stats{gap:8px}
+  .stat{min-width:calc(50% - 8px);max-width:none}
+}
+</style>
+</head>
+<body>
+<nav><div class="inner">
+  <a class="nl" href="#intro">科普</a><a class="nl" href="#platforms">平台总表</a><a class="nl" href="#matrix">匹配矩阵</a><a class="nl" href="#conflict">冲突分析</a><a class="nl" href="#model">三层模型</a><a class="nl" href="#rivals">竞对</a><a class="nl" href="#mode">入驻模式</a><a class="nl" href="#roadmap">路线图</a><a class="nl" href="#sku">SKU策略</a><a class="nl" href="#guide">操作指南</a>
+  <span class="spacer"></span>
+  <span class="sep"></span>
+  <a class="nl home" href="../wiki/">主页</a>
+  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
+</div></nav>
+
+<header>
+  <div class="kicker">UNILUMIN B2B CHANNEL REPORT · 2026.07</div>
+  <h1 class="hero">洲明科技 LED 显示产品<br><em>线上 B2B 采购平台</em>拓展研究</h1>
+  <p class="hero-sub">政企采购平台 2025 年交易规模预计 5.9 万亿元、LED 显示屏已成政采标准品目（A02021103）。<br>结论：可行，且是确定性增量——关键在按三层渠道逻辑卡位资格、用混合架构分配入驻主体、以双品牌隔离价盘。</p>
+  <div class="stats">
+    <div class="stat"><b>5.9 万亿元</b><span>2025 政企采购平台交易规模（预计）· dim04-2</span></div>
+    <div class="stat"><b>20%+</b><span>政企采购平台年均复合增速 · dim04-2</span></div>
+    <div class="stat"><b>75.5%</b><span>洲明经销收入占比（2024）· dim06-67</span></div>
+    <div class="stat"><b>23,924 元/㎡</b><span>海康 P1.86 政企商城含安装明码价 · dim06-47</span></div>
+    <div class="stat"><b>140 亿元</b><span>国铁商城 2023 在线交易额 · dim05-19</span></div>
+    <div class="stat"><b>3 → 5+ 省</b><span>12 个月省级框架入围目标 · 第 7 章</span></div>
+  </div>
+</header>
+
+<aside class="nextup" id="nextup">
+  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+  <h4>LED 显示屏选购指南：从点间距到 COB/MiP 的决策手册 🖥️</h4>
+  <p>小间距怎么选、COB 与 SMD 差在哪、会议室与指挥中心的配置清单——面向采购人的通俗版技术指南。</p>
+  <div class="nu-meta">
+    <span class="nu-tag">💼 工作相关报告</span>
+    <span class="nu-tag">🖥️ LED 显示</span>
+  </div>
+  <a class="nu-all" href="../led-display-guide/">阅读：LED 显示屏选购指南 →</a>
+</aside>
+
+<section id="intro">
+  <div class="sec-tag">PRIMER · 电商类型科普</div>
+  <h2>先分清七种"电商"：同一个词，七套交易逻辑</h2>
+  <p class="sec-desc">LED 厂商面对的不是"要不要上电商"一个问题，而是七套互不相同的交易逻辑——货架比价、兴趣种草、拼团低价、批发询盘、集采入池、央企入库、政采入围。分类的依据不是平台名气，而是<b>买家是谁、价格是否公开、厂商卖的是商品还是资格</b>。（依据报告第 1 章、第 8.1 节）</p>
+  <div class="bx"><table>
+    <thead><tr><th>类别</th><th>定义 / 一句话理解</th><th>代表平台</th><th>交易逻辑</th><th>平台特点</th></tr></thead>
+    <tbody>
+      <tr><td>一类电商<br>（货架电商）</td><td>"人找货"：买家带着明确需求搜索、比价、下单，店铺是运营主体，决策偏理性</td><td>京东（自营/POP）、天猫、淘宝</td><td>搜索 → 比价 → 下单，价格全网公开可比</td><td>开放平台或自营；比价透明、适合标品；是标品主阵地，也是渠道价格冲突的最大风险源<span class="src">dim10-1 · dim10-2</span></td></tr>
+      <tr><td>二类电商<br>（兴趣/内容电商）</td><td>"货找人"：用户刷内容时被种草、冲动下单，运营主体是单品而非店铺</td><td>抖音、快手、小红书、视频号</td><td>信息流推荐 → 内容种草 → 冲动转化</td><td>冲动消费、内容种草、适合低客单标品；对 LED 厂商价值在品牌曝光与标品带货，工程屏基本不适用<span class="src">dim10-1 · dim10-3</span></td></tr>
+      <tr><td>社交/拼购电商</td><td>拼团裂变的低价流量逻辑，靠社交关系链拉新</td><td>拼多多</td><td>低价拼团 → 社交裂变 → 规模化走量</td><td>低价拼团、白牌为主；与高客单、强 B2B 属性的 LED 主业匹配度最低，建议不入<span class="src">第 8.1 节 · dim10-4</span></td></tr>
+      <tr><td>B2B 批发平台</td><td>面向批发商、工程商、经销商的在线批发市场</td><td>1688</td><td>对公结算、批量议价、定制询盘</td><td>工厂直供、起批量；经销商进货主通道；会员从诚信通（6,688 元/年）到实力商家（36,800 元/年）逐级递进；LED 模组/箱体/配件的线上批发主通道<span class="src">dim10-4 · dim10-5</span></td></tr>
+      <tr><td>政企数字化<br>集采平台</td><td>把企业/政府的合规采购流程搬到线上：目录内下单、对公开票、账期结算、全程留痕</td><td>京东慧采、齐心云采、晨光科力普、得力集实、苏宁易采云、欧菲斯</td><td>框架协议 + 对公账期（30–60 天）+ 留痕合规；平台自营购销、向上游招募品牌厂商供货入池</td><td>封闭价格体系（会员价不对 C 端公开）；平台是"集成供应商"，品牌商是供货方；标品进入央国企集采目录的关键通道<span class="src">dim10-6 · dim10-48</span></td></tr>
+      <tr><td>行业央企商城</td><td>央企集团把内部采购商城搬到线上，供应商经征集审核入库后方可上架</td><td>国铁商城（95306）、中石化易派客、国能 e 购、电能 e 购、国网商城</td><td>系统内阳光集采 + 供应商征集入库 + 信用/质量评价体系</td><td>供应商征集制、资格重于销量；货架边界窄，真正价值是"资格入口"——入库身份是参与行业大屏项目招标的前提<span class="src">dim10-9 · dim10-10 · dim10-61</span></td></tr>
+      <tr><td>政府采购平台</td><td>政府小额高频采购电子化：电子卖场直购 + 封闭式框架协议两阶段采购</td><td>政采云系 18 省电子卖场、央采电子卖场、各省 LED 框架协议</td><td>财政部 110 号令：公开征集入围 → 采购人直接选定或二次竞价；按品目（A02021103）分包限价</td><td>入围资格锁定"生产厂家或其唯一授权供应商"；按品目设最高限价；封闭框架 1–2 年周期，错过窗口即锁定一个周期<span class="src">dim04-29 · dim10-11 · dim10-12</span></td></tr>
+      <tr><td>专业弱电音视频<br>平台（补充）</td><td>面向工程商/集成商的行业垂直采购与商机平台，交易多在线下完成</td><td>河姆渡、DAV 数字音视工程网</td><td>认证会员分级价（批发价只给认证工程商看）+ 项目报备 + 询报价 + 账期授信</td><td>河姆渡年 GMV 超百亿、50 万+ 工程商会员、价格不向业主开放；DAV 输出招标线索；承接工程与总包场景<span class="src">dim10-14 · dim10-17 · dim10-19</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="analysis"><span class="tag">关键洞察</span><br>
+    七类平台中，<b>一线 LED 品牌厂商主体实际只出现在四类半</b>——一类电商旗舰店、政企集采、央企商城、政采框架，以及专业平台的供货端；1688/拼多多上一线品牌本体几乎缺位（1688 模组主力卖家是白牌工厂与省级代理）。这不是疏忽，而是渠道理性：价格公开的 C 端与批发端与工程报价体系天然冲突，厂商选择让经销商去承接。<b>入驻主体的选择与平台类别同样重要</b>——这是后文冲突分析（8.3）的出发点。<span style="color:#5f7089">（dim09-32 · 第 8.1 节）</span>
+  </div>
+</section>
+
+<section id="platforms">
+  <div class="sec-tag">PLATFORM INDEX · 平台总表</div>
+  <h2>38 家平台总表：规模、竞品、门槛、优先级一表览尽</h2>
+  <p class="sec-desc">按渠道层分四张密集大表。排序依据是<b>"类目适配 × 客户清单 × 账期"的组合与征集窗口先后</b>，而非体量大小。规模数据口径不一（营收/GMV/客户采购量），仅作量级参考，不可直接横向比较。表格可左右滑动。</p>
+
+  <h3><span class="no">A</span>办公与企业集采层（15 家 · 报告第 2 章）</h3>
+  <div class="bx"><table>
+    <thead><tr><th>平台</th><th>规模口径</th><th>LED 类目现状与在售竞品</th><th>入驻模式与门槛</th><th>优先级</th><th>洲明现状</th></tr></thead>
+    <tbody>
+      <tr><td>晨光科力普</td><td>营收 150.5 亿（2025），GMV 约 170 亿<span class="src">dim01-40</span></td><td>类目约 1603 件；洲明 USF1.25、利亚德（P1.5 套装 12.78 万）、海康 P1.86（23,924 元/㎡ 含安装）、MAXHUB 均在售<span class="src">dim01-33 · dim06-47</span></td><td>自营采销、框架协议约 2 年；vendor.colipu.com 注册；需质检报告/认证/品牌授权<span class="src">dim01-28 · dim01-38</span></td><td><span class="pri">高（第一动作）</span></td><td>USF1.25 已在售；拟确认供货主体、升级厂商直签并按"元/㎡含安装"扩品</td></tr>
+      <tr><td>苏宁易采云</td><td>客户年采购规模 1950 亿（2024，客户口径）<span class="src">dim02-5</span></td><td>利亚德智能显示旗舰店、MAXHUB 自营旗舰店；部分利亚德 SKU 活跃度待核实<span class="src">dim02-12 · dim02-13</span></td><td>云链商城开放入驻 + 战略品牌直采双路径；青云计划申报<span class="src">dim02-4 · dim02-2</span></td><td><span class="pri">高</span></td><td>未入驻；以云链商城为主路径，锁定 T+1 结算（全章最优账期）</td></tr>
+      <tr><td>得力集实</td><td>交易额破 100 亿（2021 旧口径）<span class="src">dim01-25</span></td><td>利亚德在售、洲明空缺；得力自有 MK 会议平板需避开<span class="src">dim01-21</span></td><td>公开招商三模式：区域供应商/自营供应商/POP<span class="src">dim01-23</span></td><td><span class="pri">中高</span></td><td>空缺；拟走"自营供应商合作"品牌直供补位</td></tr>
+      <tr><td>齐心云采</td><td>营收 113.97 亿（2024）<span class="src">dim01-1</span></td><td>艾比森 CP1.5 按 100×100cm 平米标品在售（页面销量 37 件）<span class="src">dim06-20</span></td><td>自营采销为主，无公开入口，商务对接品类采购团队<span class="src">dim01-8</span></td><td><span class="pri">中高</span></td><td>未入驻；进入即与艾比森同屏比价，须带价值分层报价</td></tr>
+      <tr><td>欧菲斯</td><td>营收 82.78 亿（2023）<span class="src">dim01-51</span></td><td>类目兼容，在售证据缺失（商城定向展示）<span class="src">dim01-46</span></td><td>备货采购 + 合作商直送；官网供应商入口<span class="src">dim01-48</span></td><td>中</td><td>未入驻；主打"含安装"套餐，借 4000+ 属地合作商履约</td></tr>
+      <tr><td>怡亚通（政企平台）</td><td>政企平台营收 23.24 亿（2025，+27%）<span class="src">dim03-65</span></td><td>八大品类明确列"商用设备"，类目口径最匹配<span class="src">dim03-65</span></td><td>自营购销，品牌供货入池<span class="src">dim03-66</span></td><td><span class="pri">中高（二梯队首位）</span></td><td>未入驻；警惕净利率极薄，账期条款须合同锁定</td></tr>
+      <tr><td>领先未来</td><td>未披露；2025 营收 +21%<span class="src">dim03-40</span></td><td>"智能办公"板块契合会议设备；央企框架中标密度最高<span class="src">dim03-41 · dim03-42</span></td><td>自营购销 + 品牌战略合作，厂商专属分级商品池<span class="src">dim03-39</span></td><td><span class="pri">中高（二梯队首位）</span></td><td>未入驻；北京 12,000㎡ 体验中心可作展示窗口</td></tr>
+      <tr><td>阳采集团</td><td>产值破 100 亿（2023，集团口径）<span class="src">dim03-53</span></td><td>能源/轨交行业产品库，已中标中石油"中油惠服"<span class="src">dim03-56 · dim03-58</span></td><td>自营主导 + 品牌授权<span class="src">dim03-54</span></td><td>中（线索跟进）</td><td>有能源/轨交线索时按项目入库</td></tr>
+      <tr><td>云中鹤</td><td>未披露<span class="src">dim03-19</span></td><td>数码电器第一品类；中标国网智联、南网个人商城<span class="src">dim03-20 · dim03-24</span></td><td>自营购销 + 定制包销<span class="src">dim03-20</span></td><td>中（福利场景）</td><td>会议平板可进银行/电网福利内购清单</td></tr>
+      <tr><td>企事通</td><td>未披露<span class="src">dim03-50</span></td><td>办公物资挂靠；国网 2025 办公框架在履约<span class="src">dim03-51</span></td><td>自营购销<span class="src">dim03-50</span></td><td>低-中</td><td>作框架清单跟随渠道</td></tr>
+      <tr><td>一线达通</td><td>未披露<span class="src">dim03-27</span></td><td>数码/办公设备；千余家落地服务机构<span class="src">dim03-28 · dim03-29</span></td><td>自营 + 云商城供应商入驻<span class="src">dim03-28</span></td><td>低-中（华北补充）</td><td>华北"含安装"订单可借其属地网络履约</td></tr>
+      <tr><td>博之挚选（史泰博）</td><td>未披露；招行/农行/国网连续中标<span class="src">dim02-38 · dim02-40</span></td><td>办公设备类目兼容会议平板/商显一体机<span class="src">dim02-36</span></td><td>SRM 开放申请：供应商（类自营）/合作伙伴（抽佣）双模式<span class="src">dim02-34</span></td><td>中</td><td>未入驻；与得力集实同一集团，可打包评估</td></tr>
+      <tr><td>西域</td><td>交易额约 50 亿（2024，第三方估算）<span class="src">dim02-20</span></td><td>皓丽 M5、飞利浦商用显示器在售<span class="src">dim02-22</span></td><td>自营购销；须制造商或一级授权，5 个工作日审批<span class="src">dim02-23</span></td><td>中（MRO 补充）</td><td>会议平板标品可进，LED 工程屏不匹配</td></tr>
+      <tr><td>鑫方盛</td><td>营收超 100 亿（2024，官方口径）<span class="src">dim02-24</span></td><td>皓丽 M7 会议平板在售<span class="src">dim02-27</span></td><td>自营 + 工品云链；抽佣约 12% 有实证<span class="src">dim02-29</span></td><td>低-中</td><td>列为西域之后备选；客户以施工/制造/能源为主</td></tr>
+      <tr><td>震坤行</td><td>GMV 101.33 亿、营收 89.88 亿（2025）<span class="src">dim02-15</span></td><td>LED/商显在售实证缺失<span class="src">dim02-11</span></td><td>自营差价 M90 / 平台佣金 M60 + 保证金 1–3 万<span class="src">dim02-11</span></td><td>低（不投入资源）</td><td>不投入；仅经电能 e 购等央企商城角色间接触达</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">落地顺序建议（第 2.4 节）：第一波（0–3 个月）科力普直签升级 + 苏宁云链入驻 + 得力自营供应商申请；第二波（3–6 个月）齐心商务对接 + 怡亚通/领先未来入池；第三波（6 个月后）欧菲斯、博之挚选资质包复制。</p>
+
+  <h3><span class="no">B</span>政府采购层（9 条通道 · 报告第 3 章）</h3>
+  <div class="bx"><table>
+    <thead><tr><th>通道</th><th>覆盖范围与规模</th><th>采购模式 / LED 品目形态</th><th>入驻模式与门槛</th><th>优先级</th><th>洲明现状</th></tr></thead>
+    <tbody>
+      <tr><td>河北省级框架<br>（2026–2027）</td><td>全省党政机关/事业单位/团体；协议期至 2027-04<span class="src">dim04-11</span></td><td>封闭式框架 26 包，按点间距分包、按㎡限价 3500–8700 元；全品类（P10 单色至 P0.9 COB）<span class="src">dim04-11 · dim04-12</span></td><td>厂商或唯一授权供应商响应征集<span class="src">dim04-11</span></td><td><span class="pri">已卡位</span></td><td>洲明已直接入围 9–11、12–14 包；蓝普视讯经代理商入围 24–26 包<span class="src">dim04-13 · dim04-15</span></td></tr>
+      <tr><td>山东省级框架<br>（2026 年度）</td><td>全省；LED 小额零星采购统一走框架<span class="src">dim04-18 · dim04-19</span></td><td>封闭式框架，按"配置包"一揽子限价（含处理器/配电/安装），12 个配置包<span class="src">dim04-17</span></td><td>厂商直接响应</td><td><span class="pri">已卡位</span></td><td>洲明已直接入围（UMini W1.2，入围价 18,500 元/㎡）<span class="src">dim04-17</span></td></tr>
+      <tr><td>山西省级框架<br>（2024–2025）</td><td>全省</td><td>封闭式框架，模组组/箱体组分别限价<span class="src">dim04-28</span></td><td>厂商或唯一授权供应商</td><td><span class="pri">已卡位</span></td><td>蓝普以厂商身份直接入围（P1.25 模组 11,600 元/㎡ 等）；洲明主品牌经代理商博念入围；关注 2026 续期<span class="src">dim04-28</span></td></tr>
+      <tr><td>江苏省级联动框架<br>（2026 年度）</td><td>全省联动</td><td>LED 显示屏等 10 品目由网上商城调整为全省联动框架协议<span class="src">dim04-26 · dim04-27</span></td><td>2025-12 已发征求意见稿，征集即将启动<span class="src">dim04-26</span></td><td><span class="pri">P0：最近的确定性窗口</span></td><td>尚未入围；立即响应、厂商直投</td></tr>
+      <tr><td>深圳市框架</td><td>市区两级预算单位<span class="src">dim04-20</span></td><td>封闭式框架；证书型号一致性审查严格，有否决先例<span class="src">dim04-21 · dim04-22</span></td><td>厂商或唯一授权供应商</td><td><span class="pri">P1</span></td><td>2024–2025 年度利亚德等入围、未见洲明记录；总部所在地，下一期必须响应<span class="src">dim04-22</span></td></tr>
+      <tr><td>央采电子卖场/<br>协议供货</td><td>中央预算单位；LED 曾为协议供货款数第一品目（811 款）<span class="src">dim04-35</span></td><td>"厂商入围产品 + 经销商/电商报价"三层结构，直购/议价/反拍<span class="src">dim04-33 · dim04-34</span></td><td>资格入围法，签框架协议后上架；每款产品至少 1 家代理商供货方可展示<span class="src">dim04-34</span></td><td><span class="pri">P1</span></td><td>大额项目经集成商中标（气象局 337.9 万）；卖场产品库未见入围记录<span class="src">dim04-39</span></td></tr>
+      <tr><td>政采云系 18 省<br>电子卖场</td><td>18 省 1600+ 县市区；2024 全平台 8613 亿、卖场约 1900 亿（企业自述口径）<span class="src">dim04-1</span></td><td>网超直购 + 反向竞价 + 属地框架二次竞价；标准品目（模组/箱体/一体机）<span class="src">dim04-43</span></td><td>承诺入驻/注册入库，一次入驻全平台有效，零费用<span class="src">dim04-5 · dim04-9</span></td><td><span class="pri">P2</span></td><td>未见系统铺货；低成本铺蓝普标准 SKU</td></tr>
+      <tr><td>广东智慧云平台</td><td>全省</td><td>LED 未列集采商城标准品目，走"定制化服务"定点议价/竞价<span class="src">dim04-23 · dim04-24</span></td><td>承诺准入，厂商需品牌商标注册证<span class="src">dim04-23</span></td><td>P3</td><td>未见定点入围记录；扶持本地集成商入围定点，洲明授权供货</td></tr>
+      <tr><td>高校/医院属地通道</td><td>部属高校自建竞价平台；地方院校走属地政采云/框架二次竞价<span class="src">dim04-41 · dim04-43</span></td><td>小额竞价 + 大额招标/磋商<span class="src">dim04-44</span></td><td>属地平台注册即可，不单独入驻</td><td>P4</td><td>不单独投入，由省级框架代理商网络自然承接</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">拓展排序（第 3.3.2 节）：①省级框架滚动复制（江苏是当前唯一"正在开闸"窗口）；②央采产品库入围 + 经销商报价网络；③政采云 18 省承诺入驻铺蓝普标品；④广东定点通道授权供货；⑤高校/医院随框架覆盖。前置动作：政采专属价盘与京东慧采等商用价盘硬隔离。</p>
+
+  <h3><span class="no">C</span>行业央企层（12 家 · 报告第 4 章）</h3>
+  <div class="bx"><table>
+    <thead><tr><th>平台</th><th>交易规模（口径/年份）</th><th>LED 场景与类目</th><th>入驻门槛要点</th><th>优先级</th><th>洲明现状/路径</th></tr></thead>
+    <tbody>
+      <tr><td>军队采购网/<br>自行采购平台</td><td>未公开总额；单个 LED 通用物资项目限价百万级<span class="src">dim05-6</span></td><td>LED 列入通用物资品目；超市货架排除拼接大屏，大屏走项目招标<span class="src">dim05-7</span></td><td>生产型净资产 ≥100 万；成立 3 年；非外资控股；通用 LED 无需保密资质<span class="src">dim05-1 · dim05-2</span></td><td><span class="pri">★★★★ 第一梯队</span></td><td>供应商库入库＋项目投标专岗；军方招标已点名一线品牌，洲明同属该梯队<span class="src">dim05-45</span></td></tr>
+      <tr><td>国铁商城</td><td>2023 在线交易约 140 亿；平台整体约 2500 亿<span class="src">dim05-19 · dim05-20</span></td><td>电子产品类目可上架；车站/调度大屏走招标<span class="src">dim05-21 · dim05-60</span></td><td>注册资本 1000 万/实缴 500 万/R 标三星热度/保证金 8 万；生产商可直驻；招商窗口每年 5–7 月约 15 天<span class="src">dim05-17 · dim05-18</span></td><td><span class="pri">★★★★ 第一梯队</span></td><td>品牌直接入驻＋车站大屏投标；P1.53 自营 SKU 2000+ 评价满足热度条款</td></tr>
+      <tr><td>国家电网<br>（ECP2.0＋国网商城）</td><td>集采 6000 亿+/年；供应链平台约 1.3 万亿<span class="src">dim05-13</span></td><td>货架仅 27 寸以下通用显示器；大屏走 ECP 招标<span class="src">dim05-8 · dim05-10</span></td><td>品牌入标准库需品牌审核（2025-12 一批次 79 报 21 过）；电商铺货商须框架入围<span class="src">dim05-9 · dim05-11</span></td><td>★★★☆ 第二梯队</td><td>品牌入标准库＋借京东慧采等框架电商履约</td></tr>
+      <tr><td>易派客（中石化）</td><td>2022 年 5578 亿；2024 年 2254 亿（口径调整）<span class="src">dim05-22 · dim05-23</span></td><td>泛工业品货架；指挥中心大屏走招标</td><td>法人信用认证＋产品质量评价，生产商可开店<span class="src">dim05-23 · dim05-24</span></td><td>★★★☆ 第二梯队</td><td>直接入驻铺货商显标准品</td></tr>
+      <tr><td>国能 e 购（国家能源）</td><td>年采购额 200 亿+<span class="src">dim05-25 · dim05-26</span></td><td>集控室/会议室 LED 项目高频；允许代理商持原厂授权投标<span class="src">dim05-27</span></td><td>品类铺货资格预审＋谈判（淘汰 ≥20%），签 2 年协议<span class="src">dim05-26</span></td><td>★★★☆ 第二梯队</td><td>征集期申报铺货＋授权集成商投标</td></tr>
+      <tr><td>电能 e 购（国家电投）</td><td>早期年交易 5 亿+，目标千亿级<span class="src">dim05-32</span></td><td>办公设备品类可覆盖显示设备</td><td>公开征集制、生产商优先；ISO 三体系＋2 个同类业绩；每两年复审<span class="src">dim05-32 · dim05-33</span></td><td>★★★☆ 第二梯队</td><td>下一批征集申报办公/显示设备品类</td></tr>
+      <tr><td>大唐犀维</td><td>平台年成交额超 500 亿<span class="src">dim05-30</span></td><td>工业品货架 60 万种；已引 ABB、宁德时代等品牌<span class="src">dim05-30 · dim05-31</span></td><td>开放引入核心供应商</td><td>★★★ 第三梯队</td><td>主动对接洽谈商显品类上架</td></tr>
+      <tr><td>南方电网商城</td><td>2025–26 两年框架概算 36 亿<span class="src">dim05-14</span></td><td>通用信息设备大类；大屏走项目招标<span class="src">dim05-15</span></td><td>无品牌直驻通道；协议电商须 ICP/EDI＋80% SPU 覆盖＋80 万保证金<span class="src">dim05-14</span></td><td>★★☆ 第三梯队（间接）</td><td>进入齐心/京东货盘间接供货；国产品牌须制造商本人签约<span class="src">dim05-16 · dim08-25</span></td></tr>
+      <tr><td>华能商城</td><td>渠道商框架（2024–2027）<span class="src">dim05-28 · dim05-29</span></td><td>经渠道商商品池触达</td><td>渠道商门槛：年营收 15 亿＋2.5 亿授信＋90 天账期<span class="src">dim05-28</span></td><td>★★ 第三梯队（间接）</td><td>入京东/齐心等渠道商商品池</td></tr>
+      <tr><td>云筑网（中建）</td><td>累计履约 7.9 万亿<span class="src">dim05-36</span></td><td>LED 以弱电/智能化工程招采为主</td><td>免费注册入库<span class="src">dim05-35</span></td><td>★★★ 第三梯队</td><td>入库＋联合集成商投标</td></tr>
+      <tr><td>鲁班网（中铁）</td><td>覆盖 46 家二级集团<span class="src">dim05-38 · dim05-39</span></td><td>机电/弱电项目采购</td><td>免费入库（警惕代办收费）<span class="src">dim05-38</span></td><td>★★★ 第三梯队</td><td>入库＋项目投标</td></tr>
+      <tr><td>交建云商（中交）</td><td>28 万余家供应商<span class="src">dim05-41 · dim05-42</span></td><td>框架协议"定品定价"模式可复制<span class="src">dim05-43</span></td><td>免费注册入库<span class="src">dim05-44</span></td><td>★★★ 第三梯队</td><td>入库＋争取进入框架清单</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">结构性规律（第 4.6 节）：入驻模式与平台所有制强相关——铁路、军队、易派客/电能 e 购/国能 e 购接受生产商直驻，电网双寡头与华能只向"平台型供应商"开放；门槛高低与价值不呈线性（军队入库门槛仅 100 万净资产，卡位价值最高）；所有平台的大屏成交最终都收敛到项目投标。</p>
+
+  <h3><span class="no">D</span>消费电商、批发与行业垂直层（6 条通道 · 报告第 8/9 章）</h3>
+  <div class="bx"><table>
+    <thead><tr><th>平台</th><th>规模口径</th><th>LED 类目现状与在售竞品</th><th>入驻模式与门槛</th><th>优先级</th><th>洲明现状</th></tr></thead>
+    <tbody>
+      <tr><td>京东自营（商城）</td><td>LED 直显类目头部 SKU 评价 2000+ 条级<span class="src">dim09-9</span></td><td>利亚德双自营店（MG018 爆料价 9,999 元）、艾比森自营专卖店（KL2.5 II 约 1.7 万）、海康工业品自营店<span class="src">dim09-1 · dim09-5 · dim09-11</span></td><td>邀约制对接采销；保证金 5–10 万、毛保扣点 15%–30%；约 20 个工作日<span class="src">dim10-33 · dim10-37</span></td><td><span class="pri">已入驻</span></td><td>洲明 P1.53 会议屏 SKU 2000+ 评价，类目头部爆款之一；续约扩品<span class="src">dim09-9</span></td></tr>
+      <tr><td>京东慧采</td><td>政企 B 端通道（无公开店铺/销量口径）<span class="src">dim09-83</span></td><td>"没有店铺概念、不需要入围"，厂商可对授权供应商体系化管理（海康制）<span class="src">dim09-83</span></td><td>定向邀约；保证金 3–10 万、扣点 5%–15%、账期 30/45/60 天；约 20 个工作日<span class="src">dim10-42 · dim10-38</span></td><td><span class="pri">已入驻</span></td><td>洲明主体开店＋授权代运营；拟建慧采授权供应商台账（海康制）<span class="src">表 9-2</span></td></tr>
+      <tr><td>京东 POP/旗舰店</td><td>—</td><td>联建旗舰店 POP 弱运营（SKU/销量无公开数据）——弱运营约等于没有旗舰店<span class="src">dim09-17</span></td><td>保证金 0.5–1 万（高风险 3–5 万）、扣点 1.5%–5%；审核 3–5 个工作日<span class="src">dim10-30 · dim10-32</span></td><td><span class="pri">拟入驻（蓝普）</span></td><td>蓝普主体开店承接模组与流通款标品，与主品牌 SKU 物理区隔<span class="src">表 9-2</span></td></tr>
+      <tr><td>1688</td><td>P2.5 白牌成交价锚定 1,800–3,300 元/㎡<span class="src">dim06-82 · dim06-83</span></td><td>模组主力卖家为白牌工厂与省级代理，一线品牌本体几乎缺位；强力巨彩线上全靠经销商店铺<span class="src">dim09-32 · dim09-27</span></td><td>诚信通 6,688 元/年＋履约保证金 3,000–5,000 元；实力商家 36,800 元/年<span class="src">dim10-39 · dim10-4 · dim10-5</span></td><td><span class="pri">拟入驻（蓝普）</span></td><td>蓝普诚信通店铺，模组"元/张"阶梯批发价；同步开放经销商分销位<span class="src">表 9-2 · 8.3</span></td></tr>
+      <tr><td>河姆渡</td><td>年 GMV 超百亿；50 万+ 工程商/集成商会员<span class="src">dim10-14</span></td><td>音视频等 12 大类约 15 万种商品；会员分级价只给认证工程商看、不向业主开放<span class="src">dim10-17</span></td><td>品牌厂商/总代供货；工程商与集成商采购</td><td>低冲突跟进</td><td>本质是渠道数字化而非渠道替代；以厂商/总代身份供货</td></tr>
+      <tr><td>DAV 数字音视工程网</td><td>—</td><td>"垂直媒体＋商机撮合"，提供项目与招标线索<span class="src">dim10-19 · dim10-20</span></td><td>—</td><td>线索通道</td><td>招标线索导入报备制即可</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="matrix">
+  <div class="sec-tag">MATRIX · 产品 × 渠道匹配矩阵</div>
+  <h2>三类产品 × 七类平台：只标适配度</h2>
+  <p class="sec-desc">基本原则：<b>产品标准化程度越高、决策链越短，越适配价格公开的货架与集采类平台；定制化程度越高、越依赖方案与资质，越只能把线上当作资格入口与线索通道。</b>（报告表 8-2 的适配度判断；渠道冲突的逐格分析见下一章）</p>
+  <div class="bx"><table>
+    <thead><tr><th>产品类型</th><th>①一类电商<br>（货架）</th><th>②二类电商<br>（兴趣）</th><th>③社交/批发</th><th>④政企集采</th><th>⑤央企商城</th><th>⑥政采平台</th><th>⑦专业音视频<br>平台</th></tr></thead>
+    <tbody>
+      <tr><td>LED 工程定制大屏<br><span style="font-weight:400;color:#5f7089">指挥调度/异形屏/按项目定制</span></td>
+        <td><span class="fit n">不适配</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">仅品牌案例曝光</span></td>
+        <td><span class="fit n">不适配</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">慧采可走单开票</span></td>
+        <td><span class="fit y">适配（资格入口）</span><span class="src">入库=投标前提</span></td>
+        <td><span class="fit y">适配（框架入围）</span></td>
+        <td><span class="fit y">适配（线索）</span><span class="src">DAV 线索+河姆渡报备</span></td></tr>
+      <tr><td>音视频总包订单<br><span style="font-weight:400;color:#5f7089">集成商打包多品牌设备交付</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">看价比价入口</span></td>
+        <td><span class="fit n">不适配</span></td>
+        <td><span class="fit p">部分适配（1688）</span><span class="src">模组线材批量补货</span></td>
+        <td><span class="fit y">适配</span><span class="src">B 端封闭价，走单开票</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">系统内项目配套</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">二阶段履约归入围代理商</span></td>
+        <td><span class="fit y">适配</span><span class="src">会员价不向业主开放</span></td></tr>
+      <tr><td>标品<br><span style="font-weight:400;color:#5f7089">模组/一体机/成品屏</span></td>
+        <td><span class="fit y">适配</span><span class="src">全网可比价，跑量主阵地</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">标品直播带货</span></td>
+        <td><span class="fit y">适配（1688）</span><span class="src">蓝普批发走量</span></td>
+        <td><span class="fit y">适配</span><span class="src">供货入池</span></td>
+        <td><span class="fit y">适配（标品货架）</span></td>
+        <td><span class="fit y">适配</span><span class="src">分包入围/卖场铺货</span></td>
+        <td><span class="fit p">部分适配</span><span class="src">标准模组可走量</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="analysis"><span class="tag">三条读法（第 8.2 节）</span><br>
+    ① <b>标品是唯一能铺满全行的产品</b>，但每进一格都要付一次冲突管理成本；工程大屏恰恰相反，线上动作越少越好，只做资格与线索。② <b>音视频总包是被低估的一行</b>：买家本身就是渠道商（集成商），平台做的是渠道生意的线上化而非绕开渠道，应是洲明线上化阻力最小的切入点。③ 行业实务即"京东/天猫看价、1688/河姆渡走量、慧采走单开票"（dim10-21）。
+  </div>
+</section>
+
+<section id="conflict">
+  <div class="sec-tag">CONFLICT ANALYSIS · 招牌分析</div>
+  <h2>洲明主体入驻的渠道冲突分析</h2>
+  <p class="sec-desc">洲明 2024 年经销收入 58.73 亿元、占比 75.55%（dim06-67）——销售命脉在渠道商。任何一个线上直营动作，都要先回答"这动了谁的蛋糕"。下表只评估<b>适合以洲明（或蓝普）主体直接入驻/入围的渠道</b>，逐条评估与现有经销商渠道的冲突（依据报告表 5-2、第 8.3 节、表 9-2）。</p>
+  <div class="bx"><table>
+    <thead><tr><th>渠道平台</th><th>主体入驻方式</th><th>与渠道商的冲突场景</th><th>冲突等级</th><th>化解机制</th></tr></thead>
+    <tbody>
+      <tr><td>京东自营 / 京东慧采</td><td>洲明主体开店＋授权代运营；对核心代理商发放慧采授权（复制海康授权供应商制）<span class="src">表 5-2 · dim09-83 · dim08-64</span></td><td>标品全网可比价，直接压缩工程商项目报备的议价空间；慧采订单若厂商直发会截留属地经销商生意</td><td><span class="lv h">高</span></td><td>线上只售专供 SKU、与工程型号物理级区隔；只挂零售指导价、批发价不上网；代运营按 GMV＋价格合规双指标考核；慧采授权按"平台＋区域＋SKU"三维切分登记台账，每季度按价格合规复核<span class="src">8.3 · dim10-72 · 表 9-2</span></td></tr>
+      <tr><td>政采省级框架<br>（厂商直投）</td><td>洲明主体直接入围为默认动作；未响应省份由核心代理商以"唯一授权"补位；蓝普独立投模组包<span class="src">表 5-2 · dim04-29</span></td><td>厂商直营上架与已授权属地经销商直接争单；厂商直营空降会击穿"报备确权"的渠道信任</td><td><span class="lv h">高</span></td><td>厂商持卡位、经销商做履约：厂商掌入围价与申报价并约束代理商维护价上限，第二阶段录入属地授权代理商接单交付；授权按"省＋分包"切分，不出具平台级排他授权；已有强势经销商省份优先由经销商入围、厂商出具唯一授权；二阶段线索回流报备体系，成交归原报备工程商<span class="src">8.3 · dim04-31 · dim07-19</span></td></tr>
+      <tr><td>政采云系 18 省<br>电子卖场</td><td>洲明主体＋蓝普主体分别注册（承诺准入、零费用、一次注册多省复用），双品牌铺标品<span class="src">表 5-2 · dim04-5</span></td><td>网超直购/反向竞价与属地经销商小额单争单；上架价被要求挂主流电商同款链接作市场价依据，低价挂网反噬全网价盘</td><td><span class="lv m">中</span></td><td>双品牌 SKU 区隔；上架价与消费电商价盘联动管理；经销商可入驻同场承接履约，避免"厂商抢经销商的线上单"<span class="src">表 5-2 · dim08-13 · dim09-34</span></td></tr>
+      <tr><td>央采电子卖场</td><td>洲明主体（厂商角色）维护产品库，经销商/电商经厂商审核授权后报价；厂商可将自己添加为代理商保留直售通道<span class="src">表 5-2 · dim04-33 · dim04-34</span></td><td>厂商自加为代理商后与授权经销商同场报价争单</td><td><span class="lv m">中</span></td><td>经销商经厂商审核授权后选品报价；厂商直售限于战略客户；大额项目保留自行投标或授权集成商投标双轨<span class="src">dim04-34 · 3.1.2</span></td></tr>
+      <tr><td>国铁商城</td><td>洲明主体品牌直驻（生产商可直接入驻）；店铺运营可外包<span class="src">表 5-2 · dim05-17</span></td><td>封闭系统内采购，价格受"≤主流电商 95 折"上限约束但不对市场公开，与线下经销商几乎无交集</td><td><span class="lv l">低</span></td><td>专供 SKU 上架；车站大屏等专用项目另走招标，授权集成商投标<span class="src">8.3 · dim10-61</span></td></tr>
+      <tr><td>军队采购网入库</td><td>洲明主体供应商库注册入库（生产型净资产 100 万门槛）＋项目投标专岗<span class="src">dim05-1 · 4.1</span></td><td>超市货架明确排除 LED 拼接大屏，货架与经销商无争单面；大屏项目招标中厂商直投与授权集成商并存</td><td><span class="lv l">低</span></td><td>大屏不设货架预期；项目级授权书（"针对本项目"），厂商保留同一项目自行投标权，杜绝互斥投标双输<span class="src">dim08-20 · dim08-24</span></td></tr>
+      <tr><td>电能 e 购 / 国能 e 购 /<br>易派客</td><td>洲明主体直接入驻（生产商友好型平台）：公开征集申报 / 品类铺货预审 / 认证后开店<span class="src">表 5-2 · dim05-32 · dim05-26 · dim05-23</span></td><td>系统内封闭价格，基本无冲突；大屏项目允许代理商持原厂授权投标，存在授权管理面</td><td><span class="lv l">低</span></td><td>大屏项目以"原厂授权＋售后承诺"支持集成商投标；授权按项目出具、登记台账<span class="src">dim05-27 · 表 5-2</span></td></tr>
+      <tr><td>科力普厂商直签</td><td>洲明主体厂商直供入池（由分销上架升级为厂商直签），不开自营店<span class="src">表 9-2 · dim01-33</span></td><td>平台价格承诺函要求供货价 ≤ 主流电商，倒逼全网价盘统一；集采订单属地履约若绕过当地经销商会引发区域反弹</td><td><span class="lv m">中</span></td><td>供货价＋返利间接约束；专供 SKU 防跨平台比价；线上订单按收货地转交属地工程商安装售后、按公示比例分账（服务分账）<span class="src">8.3 · dim10-49 · dim10-75</span></td></tr>
+      <tr><td>苏宁云链商城</td><td>洲明主体入驻＋同步申报战略品牌直采<span class="src">dim02-4 · 表 9-2</span></td><td>上架价对 B 端客户透明；T+1 账期友好但低价 SKU 可能成为全网价格锚点</td><td><span class="lv m">中</span></td><td>纳入全网价格梯度统筹，上架顺序从高锚点平台向低锚点平台推进<span class="src">表 9-2 解读 · dim10-49</span></td></tr>
+      <tr><td>蓝普 1688 批发店</td><td>蓝普主体诚信通店铺，模组"元/张"阶梯批发价<span class="src">表 9-2 · dim10-39</span></td><td>与线下渠道商的批发业务直接重叠——但买家仍是工程商与广告店，属"渠道生意的线上化"而非绕开渠道</td><td><span class="lv m">中</span></td><td>线上专供规格/包装的 SKU 区隔＋阶梯批发价；蓝普本体入场同时开放经销商分销位，避免厂商抢经销商线上单<span class="src">8.3 · dim09-27 · dim09-79</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="analysis"><span class="tag">表后分析 · 哪些先建护栏再进，哪些天然低冲突</span><br>
+    <b>必须先建价格护栏再进的（高冲突）</b>：京东自营/慧采与省级框架厂商直投。前者价格全网公开，后者厂商直营会与属地经销商争同一采购人——两者是矩阵中仅有的高冲突格。进入前必须完成三道闸门：政采专属价盘与商用价盘硬隔离、线上专供 SKU 与工程型号物理级区隔、"申报价上限＋委托属地代理商履约"的组织安排，否则一价穿透将引发全线价盘失守。<br><br>
+    <b>天然低冲突、可直接进的</b>：国铁商城、军队采购网入库、电能 e 购/国能 e 购/易派客。三者同为封闭系统内采购，价格有上限约束但不对市场公开，与线下渠道几乎无交集——其代价只是入库硬门槛与年度征集窗口，应按"资格卡位成本"编制预算、尽早卡位。<br><br>
+    <b>中冲突、靠机制化解的</b>：政采云电子卖场、央采电子卖场、科力普厂商直签、苏宁云链商城、蓝普 1688。共同解法是"双品牌 SKU 区隔＋服务分账"——把线上订单按收货地分派属地工程商履约分账，让线上化每推进一步，线下渠道在账上多一笔收入而非少一块地盘。资源投放顺序随之清晰：<b>先进入零/低冲突的封闭价格体系建立线上收入基本盘，再以双品牌区隔为前提推进政采框架与一类电商，二类电商只做曝光不做交易。</b><span style="color:#5f7089">（第 8.3 节 · 第 5.3 节）</span>
+  </div>
+</section>
+
+<section id="model">
+  <div class="sec-tag">FRAMEWORK · 三层渠道模型</div>
+  <h2>三层渠道模型：每层"卖的东西"根本不同</h2>
+  <p class="sec-desc">办公集采层卖<b>货架商品池里的标准品</b>，行业央企层卖<b>协议供货资格与品牌入库</b>，政府采购层卖<b>框架协议入围资格</b>。铺 20 个平台不如每层打通 2–3 个关键节点。（报告表 1-1）</p>
+  <div class="bx"><table>
+    <thead><tr><th>维度</th><th>办公集采层（货架商品池）</th><th>行业央企层（协议供货资格）</th><th>政府采购层（框架入围资格）</th></tr></thead>
+    <tbody>
+      <tr><td>代表平台</td><td>京东慧采、齐心云采、得力集实、科力普、欧菲斯、苏宁易采云</td><td>国铁商城、国网商城、南网商城、易派客、国能 e 购、军队采购网</td><td>政采云系电子卖场、央采电子卖场、省级 LED 框架协议</td></tr>
+      <tr><td>采购逻辑</td><td>平台自营购销，品牌供货入池</td><td>品牌入库/铺货资格＝项目投标前提</td><td>110 号令锁定厂商或唯一授权供应商入围<span class="src">dim04-29</span></td></tr>
+      <tr><td>LED 适配品类</td><td>会议一体机、小间距成品屏、标准模组</td><td>27 寸以下显示/会议设备上货架；大屏走招标</td><td>按点间距分包的全系列屏体、模组（元/㎡ 限价）</td></tr>
+      <tr><td>厂商角色</td><td>供货商，可经平台自营或代理商触达</td><td>部分平台直接入驻，部分借势协议电商</td><td>厂商主体直接入围，再委托代理商履约</td></tr>
+      <tr><td>大屏交易方式</td><td>不适用（工程不走该层）</td><td>项目招标/框架协议，商城仅资格入口</td><td>大额走公开招标，小额走框架二次竞价</td></tr>
+      <tr><td>准入窗口</td><td>常年招商，入池谈判</td><td>年度征集/预审窗口（错过等一年）</td><td>封闭框架 1–2 年周期，滚动征集</td></tr>
+      <tr><td>洲明现状</td><td>已入驻京东慧采/京东商城/京东工业；科力普有 USF1.25 在售</td><td>部分可借京东慧采履约进入</td><td>洲明入围河北、山东；蓝普入围山西<span class="src">dim04-13 · dim04-17 · dim04-28</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">三条推论（第 1.3 节）：办公集采层拼 SKU 标品化与供货稳定性、见效最快；行业央企层拼资质与窗口卡位、回报滞后但壁垒高；政府采购层拼厂商身份的合规卡位、资格不可转让越早入围复利越强。层间联动：进入齐心、京东等协议电商商品池＝同时进入南网、华能等间接通道，办公集采层是杠杆最长的一层。</p>
+</section>
+
+<section id="rivals">
+  <div class="sec-tag">BENCHMARK · 竞对入驻主体模式</div>
+  <h2>五家竞对怎么进：主体模式对比</h2>
+  <p class="sec-desc">判定方法：以"店铺性质（自营/POP/第三方）＋框架入围主体（厂商/经销商）"双证据交叉验证。没有一家竞对把政企通道资格交给代理商——<b>"厂商持资格"是行业底线而非可选项</b>。（报告表 9-1）</p>
+  <div class="bx"><table>
+    <thead><tr><th>品牌</th><th>主体模式</th><th>关键证据</th><th>判定（置信度）</th><th>对洲明启示</th></tr></thead>
+    <tbody>
+      <tr><td>利亚德</td><td>京东双自营店；河北/山东/山西/深圳框架均以"利亚德光电股份"厂商主体入围；苏宁旗舰店厂商体系运营</td><td>京东自营店；框架厂商主体入围；2025 年报直销 48.93%/经销 50.22%；行业唯一将"电子商务"写入销售模式三分法<span class="src">dim09-1 · dim09-45 · dim09-75 · dim09-76</span></td><td>厂商直营为主（高）</td><td>直营可行性的行业标杆；可学电商定位，不必学其"直渠融合"分公司制组织形态</td></tr>
+      <tr><td>海康威视</td><td>京东工业品自营旗舰店厂商直营；各框架厂商主体入围；京东慧采走"厂商授权供应商"制；线下区域经销商分销</td><td>自营店；官方明示慧采授权申请机制；河北/山东/山西/天津框架厂商入围<span class="src">dim09-11 · dim09-83 · dim09-45 · dim09-55</span></td><td>厂商直营＋授权体系双轨（高）</td><td>慧采授权制是管控与覆盖的最优解：厂商控盘、授权供应商跑单，洲明可直接复制</td></tr>
+      <tr><td>艾比森</td><td>京东自营专卖店厂商直营；山西/荆门框架经经销商入围；齐心/得力平台在售</td><td>京东自营店；山西致和晟瑞、湖北爱视顿两家经销商入围<span class="src">dim09-5 · dim09-52 · dim09-54</span></td><td>直营＋政采经销商落地（中高）</td><td>与洲明现状同构，证明"电商直营＋政采属地代理"混合制可持续运行</td></tr>
+      <tr><td>强力巨彩</td><td>京东/淘宝在售全部为第三方"总代理"店铺，无官方电商店公开证据；政采框架则以厂商主体直接入围</td><td>京东第三方店；淘宝各地总代理店铺；河北/山东/山西/荆门框架厂商主体；"泰山大屏"三层分销<span class="src">dim09-15 · dim09-27 · dim09-45 · dim09-79</span></td><td>政企厂商直营＋零售全靠经销商（中高）</td><td>反面镜鉴：放弃官方零售货架导致线上价格形象失控（云南红色预警，挂价超电商均价 28.92%）；蓝普承接线上标品时不能复制此模式<span class="src">dim09-34</span></td></tr>
+      <tr><td>联建光电</td><td>京东旗舰店 POP 性质、弱运营；河北框架经经销商入围</td><td>京东旗舰店；河北石龙数码入围；2025 年报经销占比 50.46%（同比 +59.91%）<span class="src">dim09-17 · dim09-45 · dim09-82</span></td><td>POP 弱运营＋经销商入围（中）</td><td>弱运营旗舰店约等于没有旗舰店——开店的价值在运营投入而非主体本身</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">洲明的正确位置（第 9.2 节）：比强力巨彩多一段自营标品货架（蓝普承接），比利亚德少一层直营组织负担（以授权代运营替代自建大团队），与"厂商主体＋授权代运营＋专供 SKU 区隔"的折中结构完全对齐。</p>
+</section>
+
+<section id="mode">
+  <div class="sec-tag">ENTRY MODE · 入驻模式决策</div>
+  <h2>代理商入驻 vs 洲明主体入驻 vs 折中方案</h2>
+  <p class="sec-desc">结论：<b>不是二选一，而是按渠道类型分配</b>——政采与央企通道"资格在厂商"，办公集采通道"货入池即可"。推荐混合架构：资格向左（厂商主体沉淀政采与央企资格资产），流量向右（代理商与平台自营放大办公集采货架）。（报告表 5-1）</p>
+  <div class="bx"><table>
+    <thead><tr><th>维度</th><th>方案 A：代理商主体入驻</th><th>方案 B：洲明主体入驻</th><th>折中：厂商主体＋授权代运营</th></tr></thead>
+    <tbody>
+      <tr><td>平台规则符合性</td><td>办公集采/慧采允许（须完整授权链）；政采框架仅限"唯一授权"且与厂商互斥；南网"制造商直签"场景不可行<span class="src">dim08-25 · dim08-26</span></td><td>全部平台通行；政采与央企招标的唯一合规选择<span class="src">dim04-29</span></td><td>主体合规性同 B</td></tr>
+      <tr><td>直接费用</td><td>代理商承担，品牌方付出厂价折让</td><td>保证金 5–10 万/平台＋扣点 5%–15%<span class="src">dim08-7 · dim08-15</span></td><td>同 B，另加代运营费 48–160 万/年量级<span class="src">dim08-30</span></td></tr>
+      <tr><td>资金占用</td><td>账期风险转嫁代理商</td><td>账期 30–90 天＋保证金占用自有资金<span class="src">dim08-18 · dim08-19</span></td><td>同 B，可用平台供应链金融对冲</td></tr>
+      <tr><td>运营人力</td><td>近零</td><td>自建团队约 80–160 万/年<span class="src">dim08-30</span></td><td>运营外包，即买即用</td></tr>
+      <tr><td>价格与品牌管控</td><td>弱：反垄断禁止限定转售价，只能间接约束<span class="src">dim08-50 · dim08-51</span></td><td>强：定价自由，与工程价盘统筹</td><td>较强：定价权在厂商，代运营仅执行</td></tr>
+      <tr><td>客户资产归属</td><td>沉淀在代理商，更换即流失<span class="src">dim08-39</span></td><td>自有</td><td>自有（约定账号资产归厂商）<span class="src">dim08-64</span></td></tr>
+      <tr><td>核心风险</td><td>飞单表见代理、乱价反噬全网、授权瑕疵致投标无效、税务失控<span class="src">dim08-36 · dim08-29</span></td><td>投入爬坡慢、多平台运营能力短板</td><td>代运营商甄选与考核成本</td></tr>
+      <tr><td>与洲明战略一致性</td><td>与"准直销向代理商转变"同向<span class="src">dim08-31</span></td><td>与经销占比 75.5% 的渠道结构存在张力<span class="src">dim08-57</span></td><td>兼容：渠道做项目、电商资格归厂商</td></tr>
+      <tr><td>最适用平台</td><td>齐心/得力/欧菲斯自营购销平台、POP 店铺</td><td>政采框架、央采卖场、央企协议、京东慧采</td><td>京东慧采、国铁商城等品牌主体店铺</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">折中方案四要点（第 5.3.2 节）：①主体与资产归属前端锁死，代运营商公开招标甄选（海信模式）；②授权链按"平台＋区域＋SKU"三维切分，投标一律项目级授权书；③专供 SKU 区隔防比价，但不做"减配专供款"（喜临门教训）；④价格治理只走间接工具——供货价梯度、返利、一物一码溯源＋阶梯处罚，严禁限定转售价格协议（长安福特 1.628 亿元罚单为鉴）。</p>
+</section>
+
+<section id="roadmap">
+  <div class="sec-tag">ROADMAP · 12 个月行动计划</div>
+  <h2>12 个月路线图（2026.8–2027.7）</h2>
+  <p class="sec-desc">排序依据必须是<b>"征集窗口的先后"而非"平台体量的大小"</b>——政企渠道不是常年开放的流量场，而是周期性开闸的资格市场，错过一次开闸即被锁在门外一至两年。2026H2–2027 是省级框架征集/到期、央企商城征集、集采平台框架续约三重周期的交汇点。（报告表 7-1）</p>
+  <div class="bx"><table>
+    <thead><tr><th>阶段</th><th>关键动作</th><th>责任方</th><th>验收标准</th><th>涉及渠道</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="7">一<br>2026.8–10<br><span style="font-weight:400;color:#5f7089">资格响应与集采第一波</span></td><td>江苏 2026 年度 LED 框架征集响应，厂商直投、证书型号一致性预检</td><td>政企电商组+法务</td><td>入围结果公告含洲明主体</td><td>政采-省级框架<span class="src">dim04-26</span></td></tr>
+      <tr><td>科力普升级为厂商直签，按"元/㎡含安装"扩品</td><td>商务组+产品线</td><td>直签协议签订；新增 SKU≥10 个；P1.86 定价锚定 23,924 元/㎡ 上限</td><td>办公集采-科力普<span class="src">dim01-33 · dim06-47</span></td></tr>
+      <tr><td>苏宁云链商城入驻上架，同步申报战略品牌直采</td><td>平台运营组</td><td>首批 SKU 上架；T+1 结算写入合同</td><td>办公集采-苏宁<span class="src">dim02-4</span></td></tr>
+      <tr><td>得力集实自营供应商申请</td><td>商务组</td><td>进入自营供应商名录并完成首单</td><td>办公集采-得力<span class="src">dim01-23</span></td></tr>
+      <tr><td>军队供应商库注册入库</td><td>政企电商组</td><td>入库审核通过；会议平板进入超市品目</td><td>行业央企-军队<span class="src">dim05-1</span></td></tr>
+      <tr><td>央采电子卖场厂商产品库入库，组建经销商报价网络</td><td>政企电商组+渠道部</td><td>产品信息上架；授权报价经销商≥3 家</td><td>政采-央采<span class="src">dim04-33 · dim04-34</span></td></tr>
+      <tr><td>政企电商团队到位；政采专属价盘签发；蓝普专供 SKU 清单定型</td><td>电商负责人+财务+法务</td><td>价盘文件发布；SKU 区隔表经合规审核</td><td>全渠道</td></tr>
+      <tr><td rowspan="5">二<br>2026.11–2027.1<br><span style="font-weight:400;color:#5f7089">复制与体系建设</span></td><td>齐心云采商务对接，价值分层报价进入</td><td>商务组</td><td>供货协议签订、首批 SKU 入池</td><td>办公集采-齐心<span class="src">dim01-8 · dim06-20</span></td></tr>
+      <tr><td>怡亚通、领先未来供应商入池</td><td>商务组</td><td>进入商品池并完成首单</td><td>办公集采-二梯队<span class="src">dim03-65 · dim03-39</span></td></tr>
+      <tr><td>政采云系 18 省电子卖场蓝普标品铺货</td><td>蓝普运营组</td><td>≥10 省网超上架；承接首笔反向竞价订单</td><td>政采-电子卖场<span class="src">dim04-5 · dim04-9</span></td></tr>
+      <tr><td>国网标准商品信息库品牌申报</td><td>政企电商组</td><td>通过品牌审核、进入框架电商推送清单</td><td>行业央企-国网<span class="src">dim05-9</span></td></tr>
+      <tr><td>服务分账机制首批签约；山西框架续期响应（蓝普）</td><td>渠道部+财务；蓝普运营组</td><td>分账工程商≥20 家；山西续期入围</td><td>全渠道；政采-山西<span class="src">dim07-281 · dim04-28</span></td></tr>
+      <tr><td rowspan="4">三<br>2027.2–7<br><span style="font-weight:400;color:#5f7089">央企卡位与框架续期</span></td><td>河北框架到期（2027-04）续期响应</td><td>政企电商组</td><td>续期入围且入围价不劣于上期</td><td>政采-河北<span class="src">dim04-11</span></td></tr>
+      <tr><td>国铁商城 5–7 月招商窗口品牌直驻（材料 2 月底备齐）</td><td>政企电商组</td><td>完成入驻、SKU≤200 上架、缴纳 8 万保证金</td><td>行业央企-国铁<span class="src">dim05-17 · dim05-18</span></td></tr>
+      <tr><td>电能 e 购/国能 e 购征集申报；易派客入驻</td><td>政企电商组</td><td>完成申报或入驻</td><td>行业央企-能源<span class="src">dim05-32 · dim05-26 · dim05-23</span></td></tr>
+      <tr><td>深圳框架下一期征集响应；欧菲斯/博之挚选资质包复制入驻</td><td>政企电商组；商务组</td><td>深圳入围；两平台完成入驻</td><td>政采-深圳；办公集采<span class="src">dim04-21 · dim01-48</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">验收口径（第 7.3 节）：12 个月后检验的不是线上 GMV，而是资格资产清单——省级框架入围省份数（3 省→5 省以上）、央企商城入库数（军队/国铁/国网标准库/能源平台至少 3 项）、直签集采平台数（≥5 家）、分账签约工程商数（≥20 家）。组织：设政企电商运营组 6–8 人（自建多平台运营团队约 80–160 万元/年，dim08-30）；央企层按"资格卡位成本"编制预算。</p>
+</section>
+
+<section id="sku">
+  <div class="sec-tag">DUAL BRAND · 双品牌与 SKU 三层策略</div>
+  <h2>蓝普打标品、洲明守工程；线上货架分三层</h2>
+  <p class="sec-desc">线上标品低价透明与洲明主品牌工程报价体系天然冲突。蓝普（洲明全资，定位"渠道批发领域赚钱品牌"，主打 320×160mm 标准模组）是现成的隔离墙，且已以生产厂家身份直接入围山西框架。两品牌 <b>SKU 完全区隔</b>：防窜货只能做"物理隔离"，不能做"价格锁定"（反垄断红线）。（报告第 6 章）</p>
+  <h3><span class="no">A</span>双品牌分工</h3>
+  <div class="bx"><table>
+    <thead><tr><th>维度</th><th>洲明（主品牌）</th><th>蓝普（全资子品牌）</th></tr></thead>
+    <tbody>
+      <tr><td>定位</td><td>工程定制与政企框架资格，坚守中高端</td><td>渠道批发与线上标品，"打造渠道批发领域赚钱品牌"<span class="src">dim06-73</span></td></tr>
+      <tr><td>主打品类</td><td>工程定制大屏、高配置包、高端小间距分包</td><td>320×160 标准模组、流通款成品屏、入门款一体机</td></tr>
+      <tr><td>线上承接渠道</td><td>京东自营/慧采一体机与会议屏、政采框架、央企商城</td><td>京东 POP、1688 批发店、政采云卖场铺货、框架模组包</td></tr>
+      <tr><td>已验证资格</td><td>厂商身份直接入围河北、山东框架<span class="src">dim04-13 · dim04-17</span></td><td>生产厂家身份直接入围山西封闭框架（P1.25 模组 11,600 元/㎡ 等）<span class="src">dim04-28</span></td></tr>
+      <tr><td>区隔纪律</td><td colspan="2" style="white-space:normal">线上专供型号独立命名、独立配置组合（灯珠/IC/扫描数分档），与线下工程型号不存在一对一可比关系；配置分层须在商品页明示——把区隔做成"看得见的配置差"，而非"看不见的品质差"（喜临门 AB 货教训）<span class="src">dim08-42 · 6.2.2</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3><span class="no">B</span>线上 SKU 三层货架</h3>
+  <div class="bx"><table>
+    <thead><tr><th>层级</th><th>品类</th><th>主打平台</th><th>承接品牌</th><th>定价逻辑</th><th>渠道冲突管控</th></tr></thead>
+    <tbody>
+      <tr><td>第一层（跑量）</td><td>会议一体机/LED 一体机整机</td><td>京东自营+慧采、苏宁易采云、科力普、齐心云采</td><td>洲明（中高端）/蓝普（入门款）</td><td>整机明码标价，对标 MAXHUB/皓丽价格带，10 万级为主力锚点</td><td>线下不售同型号；工程商承接安装获服务佣金</td></tr>
+      <tr><td>第二层（跟进）</td><td>小间距成品屏（按㎡/100×100cm）、320×160 标准模组</td><td>1688、京东工业、政企商城（元/㎡ 含安装上架）</td><td>蓝普为主</td><td>模组"元/张"阶梯批发价；成品屏"元/㎡ 含安装"，对标海康 23,924 元/㎡ 上限锚<span class="src">dim06-47</span></td><td>与工程型号配置区隔；一物一码溯源防窜货</td></tr>
+      <tr><td>第三层（资格）</td><td>工程定制大屏、异形/指挥调度场景</td><td>政采框架、央企商城资格入口</td><td>洲明</td><td>不上货架、不明码；仅入围资格+线索获取，报价走项目制</td><td>报备确权+唯一授权名额，线索转化归原报备工程商</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">服务分账机制（第 6.3.2 节）：①报价分离——线上标品一律"屏体价+服务费"两段报价（P2.5 项目屏体 3,500–4,000 元/㎡、辅材约 1,000 元/㎡ 的分拆报价已是通行做法，dim07-281）；②分账确权——线上订单按收货地自动指派属地工程商执行安装售后，服务费按公示比例分账，与订单绑定而非与报备绑定；③对标落地——海康"云商+互联"双平台、MAXHUB 千店服务网已验证"标品线上卖、服务线下做"。洲明 2,330 余名认证技能人员与"三小时快速响应服务圈"是现成底座（dim08-31）。</p>
+</section>
+
+<section id="guide">
+  <div class="sec-tag">PLAYBOOK · 入驻资料清单与流程</div>
+  <h2>入驻操作指南：母版资料 + 分平台类型手册</h2>
+  <p class="sec-desc">先备一套<b>母版资料</b>，可覆盖所有平台约八成材料要求：营业执照（注册满 2 年、注册资本 100 万以上；国铁商城要求 1000 万）、一般纳税人资格（13% 增值税专票）、银行开户许可证、法定代表人身份证、商标 R 标注册证（国铁不收 TM 标与纯图形商标）、CMA/CNAS 质检报告与 3C 认证、信用中国无失信记录截图；政采场景另需社保缴纳明细与政府采购注册声明，央企商城另需 CA 数字证书与实缴/财务审计证明。（报告第 9.3 节，dim10-52/53/59/61）</p>
+  <div class="bx"><table>
+    <thead><tr><th>平台类型</th><th>差异资料</th><th>流程主线</th><th>费用与周期</th></tr></thead>
+    <tbody>
+      <tr><td>京东自营<br>（VC 供应商）</td><td>母版＋R 标商标及授权书＋带 CNAS 的质检报告<span class="src">dim10-33</span></td><td>邀约制对接类目采销 → 洽谈合同要点（毛保/账期/退换货/保证金）→ 填 VMS 信息表生成供应商简码 → 注册绑定后台 → 上传资质开产品线 → 网签合同 → 缴保证金 → 备货入仓上架<span class="src">dim10-34 · dim10-35</span></td><td>约 20 个工作日；保证金一般 5 万（工业品 10 万），毛保扣点 15%–30%<span class="src">dim10-33 · dim10-37</span></td></tr>
+      <tr><td>京东 POP/旗舰店<br>（蓝普承接）</td><td>母版＋每款单品质检报告＋商标注册证或受理通知书<span class="src">dim10-30 · dim10-31</span></td><td>注册商家账号 → 填报主体与店铺信息 → 资质初审＋招商复审（3–5 个工作日）→ 在线签协议 → 缴保证金与平台使用费 → 上架运营<span class="src">dim10-30</span></td><td>1–2 周；保证金常规 0.5–1 万（高风险 3–5 万），扣点 1.5%–5%<span class="src">dim10-30 · dim10-32</span></td></tr>
+      <tr><td>京东慧采</td><td>母版＋R 标或完整授权链＋品牌介绍 PPT 与产品清单；年销售额 100 万+ 线下合同、政府/央企采购记录为加分项<span class="src">dim10-43 · dim10-44</span></td><td>定向邀约：采销/官方服务商提交评估 → 填 VMS 信息 → 系统审核获简码 → 品牌资质人工审核 → 毛保/账期/履约模式（B2B 自营/FBP/IBS）达成一致 → 签电子合同 → 商品入 EP 池销售<span class="src">dim10-45 · dim10-41</span></td><td>约 20 个工作日；保证金 3–10 万、扣点 5%–15%（办公类约 5%–8%）、账期 30/45/60 天；IBS 直发另付约 1,000 元/月<span class="src">dim10-42 · dim10-38</span></td></tr>
+      <tr><td>政采云/电子卖场/<br>框架协议</td><td>母版＋社保证明＋政府采购注册声明；框架另需在售证明材料（型号一一对应）<span class="src">dim10-52 · dim10-53 · dim10-22</span></td><td>卖场：zcygov.cn 商家入驻 → 选省注册 → 上传盖章件 → 财政审核 3–5 个工作日 → 签网超协议 → 办本省 CA → 上架（吉林等省 1 个工作日确认）。框架：响应登记 → CA 签章投标 → 评审 → 入围公告（即视为签约）→ 维护最高限价 → 录入委托代理商 → 二阶段接单<span class="src">dim10-55 · dim10-56 · dim10-57 · dim10-58</span></td><td>卖场 3–7 个工作日、全程免费；框架依征集周期，错过一期锁定一年。深圳否决教训内置为检查项：型号一一对应、同一产品不得同时投多个包<span class="src">dim10-56 · dim10-22</span></td></tr>
+      <tr><td>办公集采平台<br>（科力普/得力/齐心/苏宁/欧菲斯）</td><td>母版＋近 1 年审计财报（或电子税务局报表截图）＋品牌授权/不侵权承诺函＋《信誉承诺函》＋价格承诺函（≤主流电商同类价）<span class="src">dim10-49 · dim10-50</span></td><td>关注供应商招募公告 → 递交响应文件 → 综合评审/比选 → 签框架/供货协议 → 商品池 API 或商品库导入上架<span class="src">dim10-49 · dim10-50</span></td><td>评审至签约通常 1–2 个月，随批次招募无固定窗口；账期 30–60 天。价格承诺函意味着上架前必须先设计好全网价格梯度<span class="src">dim10-49</span></td></tr>
+      <tr><td>央企商城<br>（国铁/易派客）</td><td>母版＋实缴/社保/审计报告＋R 标；国铁另需"三星级热度"（京东/天猫/苏宁旗舰店且热销商品评价数超 1,000）<span class="src">dim10-59 · dim10-61</span></td><td>国铁：征集窗口（常规 5–7 月、约 15 天）申报 → 审核 → 办 CA → 签协议缴保证金 → 上架（约 1–2 个月）。易派客：中标后 1 个月内申请法人信用认证与产品质量评价、3 个月内完成<span class="src">dim10-61 · dim10-62 · dim10-65 · dim10-66</span></td><td>国铁履约保证金 8 万/户、单店 SKU≤200、售价≤主流电商同款 95 折；易派客认证评价周期约 3 个月<span class="src">dim10-61 · dim10-65</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">三条操作纪律（表 9-2 解读）：①价格梯度先行——价格承诺函与"≤95 折"条款会把任一平台低价变成全网天花板，上架顺序从高锚点向低锚点推进；②授权三维切分并登记台账，慧采授权供应商每季度按价格合规复核；③评价资产经营——国铁"评价数>1000"条款与政采云红色预警机制从正反两面说明，消费端货架数据已成为政企通道的信用资产。入驻顺序：科力普直签升级、政采云双品牌注册、蓝普 POP 店当季完成；慧采代运营招标与国铁征集窗口按各自周期跟进；省级框架按第 3 章排序逐省复制。</p>
+</section>
+
+<footer>
+  数据来源：《洲明科技 LED 显示产品线上 B2B 采购平台拓展可行性研究报告》（2026 年 7 月编制，内部渠道战略研究，基于公开信息）<br>
+  表中 dim 编号为报告内引用索引；规模数据口径不一（营收/GMV/客户采购量/企业自述），仅作量级参考，不可直接横向比较<br>
+  本页为决策参考分析，不构成投资建议；平台规则以各官方最新公告为准
+</footer>
+
+<div id="toTop">↑</div>
+
+<script>
+// 回到顶部
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>{
+  toTop.classList.toggle('show',scrollY>600);
+},{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+// 锚点导航当前章节高亮
+const links=[...document.querySelectorAll('nav a.nl')].filter(a=>a.hash);
+const secs=links.map(a=>document.querySelector(a.hash));
+addEventListener('scroll',()=>{
+  let cur=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<120)cur=i});
+  links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+},{passive:true});
+</script>
+</body>
+</html>
