@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-08-02",
+      "title": "新议题上线：我眼中的西安——一座城与一个文明的千年往来（古籍书页式城市随笔）",
+      "title_en": "New topic: Xi'an in My Eyes — A City and a Millennium of Chinese Civilization (ancient-book-page essay)",
+      "topic": "我眼中的西安",
+      "body": "一份古籍书页式的城市随笔：从长安与西安的两个名字写起，经四塞之国的山河剧本、904年盛世退场、废墟沉淀出的诸多唯一、西北面食与秦腔的江湖，到'中庸之困'的四页账本与硬科技翻身——完整回答'西安究竟是一座怎样的城市'。署名 ssy，八月二深夜于深圳。",
+      "body_en": "An ancient-book-page-style city essay: from the two names (Chang'an and Xi'an), through the geography that scripted dynasties, the fall of 904 AD, the uniqueness gifted by ruins, the Northwest's soul in noodles and Qinqiang opera, to the four-page ledger of its middle-rank economy and the hard-tech comeback — a full answer to 'what kind of city is Xi'an'. Signed by ssy, late night of Aug 2, Shenzhen."
+    },
+    {
       "date": "2026-07-31",
       "title": "MiniMax发布首款开源全模态生成模型H3，支持15秒2K音视频生成",
       "title_en": "MiniMax releases H3, its first open-source omnimodal generative model with 15s 2K video/audio",
