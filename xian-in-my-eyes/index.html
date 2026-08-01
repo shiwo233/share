@@ -121,23 +121,35 @@
   }
   .seal span{display:block;width:2.2em;word-break:break-all;}
 
+  /* ===== 刻印落款（竖排压痕 + 手工小印） ===== */
   .sign{
-    margin-top:2.2em;
-    text-align:right;
-    font-size:.85rem;
-    letter-spacing:.22em;
-    color:var(--ink-soft);
+    position:absolute;left:46px;bottom:56px;z-index:2;
+    display:flex;flex-direction:column;align-items:center;gap:9px;
   }
-  .foot{margin-top:2.4em;display:flex;align-items:center;gap:16px;}
-  .foot .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(43,38,32,.28),transparent);}
-  .foot .no{font-size:.78rem;letter-spacing:.4em;color:var(--ink-soft);}
+  .sign-col{
+    writing-mode:vertical-rl;
+    font-size:.88rem;font-weight:700;letter-spacing:.38em;
+    color:#57493a;
+    text-shadow:0 1px 0 rgba(255,255,255,.85),0 -1px 1px rgba(43,38,32,.22);
+  }
+  .sign-stamp{
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#b03a2e,var(--cinnabar) 60%,#7d241d);
+    color:#f6f0e3;font-size:.62rem;font-weight:900;
+    border-radius:7px 5px 8px 4px;transform:rotate(-4deg);
+    box-shadow:inset 0 0 5px rgba(0,0,0,.28),0 2px 6px rgba(158,47,37,.3);
+    position:relative;overflow:hidden;
+  }
+  .sign-stamp::after{
+    content:"";position:absolute;inset:0;mix-blend-mode:multiply;opacity:.55;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='60' height='60' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
 
-  .corner{position:absolute;width:22px;height:22px;pointer-events:none;border:2px solid rgba(184,147,90,.5);}
-  .corner.tl{top:20px;left:20px;border-right:none;border-bottom:none;}
-  .corner.tr{top:20px;right:20px;border-left:none;border-bottom:none;}
-  .corner.bl{bottom:20px;left:20px;border-right:none;border-top:none;}
-  .corner.br{bottom:20px;right:20px;border-left:none;border-top:none;}
-
+  /* ===== 建筑线稿底纹 ===== */
+  .bgart{position:absolute;right:28px;bottom:80px;width:132px;opacity:.09;pointer-events:none;color:#33291f;z-index:0}
+  .cover-art{left:50%;right:auto;transform:translateX(-50%);bottom:56px;width:160px;opacity:.07}
+  .page > *:not(.bgart):not(.corner):not(.binding):not(.seal):not(.sign){position:relative;z-index:1}
+  .seal{z-index:2}
 
   /* ===== Wiki 同风格顶部导航（固定） ===== */
   #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);z-index:99;transition:width .1s linear}
@@ -155,6 +167,21 @@
   nav a.nl:hover{color:#e8edf5;background:rgba(91,140,255,.15)}
   nav a.home{color:#5b8cff;font-weight:700}
   @media (max-width:560px){
+    .bgart{width:96px;right:16px;bottom:88px}
+    .sign{left:22px;bottom:52px}
+  }
+
+  .foot{margin-top:2.4em;display:flex;align-items:center;gap:16px;}
+  .foot .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(43,38,32,.28),transparent);}
+  .foot .no{font-size:.78rem;letter-spacing:.4em;color:var(--ink-soft);}
+
+  .corner{position:absolute;width:22px;height:22px;pointer-events:none;border:2px solid rgba(184,147,90,.5);}
+  .corner.tl{top:20px;left:20px;border-right:none;border-bottom:none;}
+  .corner.tr{top:20px;right:20px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:20px;left:20px;border-right:none;border-top:none;}
+  .corner.br{bottom:20px;right:20px;border-left:none;border-top:none;}
+
+  @media (max-width:560px){
     .page{margin:4vh 12px;}
     .binding{left:13px;}
   }
@@ -171,10 +198,25 @@
 </div></nav>
 
 <!-- ============ 封面 ============ -->
-<section class="page cover" id="cover">
+<section class="page cover">
   <div class="corner tl"></div><div class="corner tr"></div>
   <div class="corner bl"></div><div class="corner br"></div>
   <div class="binding"></div>
+  <svg class="bgart cover-art" viewBox="0 0 160 170" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M80 6v10"/><circle cx="80" cy="6" r="2.5"/>
+  <path d="M80 16L48 46M80 16l32 30"/>
+  <path d="M44 48C64 38 96 38 116 48"/>
+  <path d="M44 48l-7 6M116 48l7 6"/>
+  <path d="M56 54v22h48V54"/>
+  <path d="M66 54v22M80 54v22M94 54v22"/>
+  <path d="M34 82C60 72 100 72 126 82"/>
+  <path d="M34 82l-8 6M126 82l8 6"/>
+  <path d="M48 88v24h64V88"/>
+  <path d="M60 88v24M72 88v24M88 88v24M100 88v24"/>
+  <path d="M22 112h116v46H22z"/>
+  <path d="M14 158h132"/>
+  <path d="M64 158v-24a16 16 0 0 1 32 0v24"/>
+</svg>
   <div class="tag">城 记 · 西 安</div>
   <h1>我眼中的西安</h1>
   <div class="sub">一座城与一个文明的千年往来</div>
@@ -183,9 +225,22 @@
 </section>
 
 <!-- ============ 壹 · 名字与山河 ============ -->
-<section class="page" id="p1">
+<section class="page">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><span class="juan">卷 壹</span><span class="title">名字与山河</span></div>
+  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 120 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="60" cy="4" r="2.5"/><path d="M60 6v6"/><path d="M52 14h16"/>
+  <path d="M44 16h32v20h5v5H39v-5h5z"/>
+  <path d="M40 41h40v19h5v5H35v-5h5z"/>
+  <path d="M36 65h48v18h5v5H31v-5h5z"/>
+  <path d="M32 88h56v17h5v5H27v-5h5z"/>
+  <path d="M28 110h64v16h5v5H23v-5h5z"/>
+  <path d="M24 131h72v15h5v5H19v-5h5z"/>
+  <path d="M20 151h80v14h5v5H15v-5h5z"/>
+  <path d="M12 170h96v10H12z"/>
+  <path d="M8 180h104"/><path d="M4 190h112"/>
+  <path d="M52 180v-8a8 8 0 0 1 16 0v8"/>
+</svg>
+  <span class="juan">卷 壹</span><span class="title">名字与山河</span></div>
 
   <h2 class="chapter">一、两个名字，一个中国</h2>
   <p>中国几乎没有第二座城市，需要两个名字才能说完。</p>
@@ -204,9 +259,20 @@
 </section>
 
 <!-- ============ 贰 · 退场与废墟 ============ -->
-<section class="page" id="p2">
+<section class="page">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><span class="juan">卷 贰</span><span class="title">退场与废墟</span></div>
+  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 120 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M46 26h28"/>
+  <path d="M46 26C40 60 30 120 24 172"/>
+  <path d="M74 26C80 60 90 120 96 172"/>
+  <path d="M44 40h32"/><path d="M42 56h36"/><path d="M40 72h40"/>
+  <path d="M37 88h46"/><path d="M34 104h52"/><path d="M31 120h58"/>
+  <path d="M28 136h64"/><path d="M26 152h68"/><path d="M24 166h72"/>
+  <path d="M18 172h84v12H18z"/>
+  <path d="M12 184h96"/>
+  <path d="M52 184v-9a8 8 0 0 1 16 0v9"/>
+</svg>
+  <span class="juan">卷 贰</span><span class="title">退场与废墟</span></div>
 
   <h2 class="chapter">三、盛世的退场</h2>
   <p>然而长安的故事，最动人的部分不是它如何登上巅峰，而是它如何<em>走下巅峰</em>。</p>
@@ -223,9 +289,22 @@
 </section>
 
 <!-- ============ 叁 · 西北之魂 ============ -->
-<section class="page" id="p3">
+<section class="page">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><span class="juan">卷 叁</span><span class="title">西北之魂</span></div>
+  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 170 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M58 26h54"/><path d="M58 26l-5-5M112 26l5-5"/>
+  <path d="M30 40C56 30 114 30 140 40"/>
+  <path d="M30 40l-7 6M140 40l7 6"/>
+  <path d="M44 40v20h82V40"/>
+  <path d="M60 40v20M78 40v20M96 40v20M112 40v20"/>
+  <path d="M22 68C50 60 120 60 148 68"/>
+  <path d="M22 68l-7 6M148 68l7 6"/>
+  <path d="M38 74v14h94V74"/>
+  <path d="M16 88h138v46H16z"/>
+  <path d="M10 134h150"/>
+  <path d="M70 134v-20a15 15 0 0 1 30 0v20"/>
+</svg>
+  <span class="juan">卷 叁</span><span class="title">西北之魂</span></div>
 
   <h2 class="chapter">五、西北之魂：一碗面里的江湖</h2>
   <p>如果说地下埋的是庙堂的中国，那么西安街头翻滚的，是<em>江湖的西北</em>。</p>
@@ -238,9 +317,23 @@
 </section>
 
 <!-- ============ 肆 · 中庸之困 ============ -->
-<section class="page" id="p4">
+<section class="page">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><span class="juan">卷 肆</span><span class="title">中庸之困</span></div>
+  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 170 140" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M64 18h42"/><path d="M64 18l-4-4M106 18l4-4"/>
+  <path d="M46 32C66 24 104 24 124 32"/>
+  <path d="M46 32l-6 5M124 32l6 5"/>
+  <path d="M58 32v16h54V32"/>
+  <path d="M70 32v16M84 32v16M98 32v16"/>
+  <path d="M40 54C62 47 108 47 130 54"/>
+  <path d="M40 54l-6 5M130 54l6 5"/>
+  <path d="M52 59v14h66V59"/>
+  <path d="M62 64h7M76 64h7M90 64h7M104 64h7"/>
+  <path d="M12 73h146v57H12z"/>
+  <path d="M22 73v-9h13v9h13v-9h13v9h13v-9h13v9h13v-9h13v9h13v-9h13v9"/>
+  <path d="M6 130h158"/>
+</svg>
+  <span class="juan">卷 肆</span><span class="title">中庸之困</span></div>
 
   <h2 class="chapter">六、那么，它为何拘于中庸？</h2>
   <p>这是西安叙事里最刺痛的一页，也是最值得诚实面对的一页。</p>
@@ -255,9 +348,24 @@
 </section>
 
 <!-- ============ 伍 · 账本未结 ============ -->
-<section class="page" id="p5">
+<section class="page">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><span class="juan">卷 伍</span><span class="title">账本未结</span></div>
+  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 160 170" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M80 6v10"/><circle cx="80" cy="6" r="2.5"/>
+  <path d="M80 16L48 46M80 16l32 30"/>
+  <path d="M44 48C64 38 96 38 116 48"/>
+  <path d="M44 48l-7 6M116 48l7 6"/>
+  <path d="M56 54v22h48V54"/>
+  <path d="M66 54v22M80 54v22M94 54v22"/>
+  <path d="M34 82C60 72 100 72 126 82"/>
+  <path d="M34 82l-8 6M126 82l8 6"/>
+  <path d="M48 88v24h64V88"/>
+  <path d="M60 88v24M72 88v24M88 88v24M100 88v24"/>
+  <path d="M22 112h116v46H22z"/>
+  <path d="M14 158h132"/>
+  <path d="M64 158v-24a16 16 0 0 1 32 0v24"/>
+</svg>
+  <span class="juan">卷 伍</span><span class="title">账本未结</span></div>
 
   <h2 class="chapter">七、账本尚未结清</h2>
   <p>但如果只看到错位，就低估了这座城的韧性，也读不懂它沉淀的真正用法。</p>
@@ -266,7 +374,10 @@
   <p>长安的账本，从来不是一年一结，而是千年一结。</p>
   <p>渭水仍在东流，城墙根下的秦腔每晚照常开吼，泡馍馆子里的老人仍在用二十分钟把一只馍掰成星辰。这座城见惯了盛世的开幕，也见惯了盛世的谢幕，它早已懂得：<em>巅峰是来过的地方，不是赖着不走的地方；真正的底气，是哪怕沉在中游，也依然压着一个文明板块的重量。</em></p>
 
-  <div class="sign">ssy · 八月二深夜 于深圳</div>
+  <div class="sign">
+    <span class="sign-col">八月二深夜于深圳</span>
+    <span class="sign-stamp">ssy</span>
+  </div>
   <div class="foot"><span class="line"></span><span class="no">第 伍 页 · 终</span><span class="line"></span></div>
   <div class="seal"><span>西安</span></div>
 </section>
