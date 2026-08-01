@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我眼中的西安 · 一座城与一个文明的千年往来</title>
+<style>
+  :root{
+    --paper:#f6f0e3;
+    --paper-deep:#efe6d2;
+    --ink:#2b2620;
+    --ink-soft:#5a5044;
+    --cinnabar:#9e2f25;
+    --gold:#b8935a;
+    --study:#171512;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    padding-top:60px;
+    font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
+    background:
+      radial-gradient(1200px 800px at 50% -10%, #26221b 0%, transparent 60%),
+      radial-gradient(900px 600px at 50% 115%, #211d17 0%, transparent 55%),
+      var(--study);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    position:relative;
+    max-width:720px;
+    margin:6vh auto;
+    padding:clamp(40px,7vw,66px) clamp(26px,6.5vw,62px) clamp(52px,8vw,78px);
+    background:
+      radial-gradient(140% 90% at 50% 0%, #fbf6ea 0%, var(--paper) 45%, var(--paper-deep) 100%);
+    border-radius:3px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.06),
+      0 30px 60px -18px rgba(0,0,0,.75),
+      0 12px 24px -12px rgba(0,0,0,.5);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(32px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .page.reveal{opacity:1;transform:none;}
+
+  .page::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events:none;
+    mix-blend-mode:multiply;
+  }
+  .page::after{
+    content:"";
+    position:absolute;
+    inset:13px;
+    border:1px solid rgba(43,38,32,.26);
+    outline:3px double rgba(43,38,32,.13);
+    outline-offset:5px;
+    pointer-events:none;
+  }
+  .binding{
+    position:absolute;top:0;bottom:0;left:24px;
+    border-left:1px dashed rgba(158,47,37,.32);
+    pointer-events:none;
+  }
+
+  .folio{display:flex;align-items:center;gap:12px;margin-bottom:1.8em;}
+  .folio .mark{width:5px;height:28px;background:linear-gradient(var(--cinnabar),#7d241d);border-radius:2px;}
+  .folio .juan{font-size:.82rem;letter-spacing:.5em;color:var(--cinnabar);font-weight:600;}
+  .folio .title{font-size:.88rem;letter-spacing:.26em;color:var(--ink-soft);}
+
+  h2.chapter{
+    font-size:clamp(1.12rem,3.4vw,1.4rem);
+    letter-spacing:.14em;
+    font-weight:700;
+    margin:1.8em 0 .9em;
+    line-height:1.6;
+  }
+  h2.chapter:first-of-type{margin-top:0;}
+
+  p{
+    font-size:clamp(.9rem,2.3vw,.97rem);
+    line-height:2.02;
+    letter-spacing:.05em;
+    color:var(--ink);
+    margin-bottom:1.1em;
+    text-align:justify;
+  }
+  p em{font-style:normal;color:var(--cinnabar);font-weight:600;}
+
+  .cover{
+    min-height:80vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+  }
+  .cover .tag{font-size:.8rem;letter-spacing:.6em;color:var(--cinnabar);margin-bottom:2.4em;text-indent:.6em;}
+  .cover h1{font-size:clamp(2rem,7.5vw,3.2rem);letter-spacing:.24em;text-indent:.24em;font-weight:900;line-height:1.4;margin-bottom:.55em;}
+  .cover .sub{font-size:clamp(.85rem,2.6vw,1rem);letter-spacing:.32em;text-indent:.32em;color:var(--ink-soft);margin-bottom:3em;}
+  .cover .hint{font-size:.72rem;letter-spacing:.4em;text-indent:.4em;color:var(--gold);animation:breathe 2.6s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{opacity:.45}50%{opacity:1}}
+
+  .seal{
+    position:absolute;
+    right:clamp(20px,5vw,40px);
+    bottom:clamp(22px,5vw,40px);
+    width:50px;height:50px;
+    background:linear-gradient(135deg,#b03a2e,var(--cinnabar) 60%,#7d241d);
+    color:#f6f0e3;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;font-weight:900;
+    letter-spacing:.08em;line-height:1.15;
+    text-align:center;
+    border-radius:6px;
+    transform:rotate(-3deg);
+    box-shadow:0 3px 10px rgba(158,47,37,.4);
+    opacity:.92;
+  }
+  .seal span{display:block;width:2.2em;word-break:break-all;}
+
+  .sign{
+    margin-top:2.2em;
+    text-align:right;
+    font-size:.85rem;
+    letter-spacing:.22em;
+    color:var(--ink-soft);
+  }
+  .foot{margin-top:2.4em;display:flex;align-items:center;gap:16px;}
+  .foot .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(43,38,32,.28),transparent);}
+  .foot .no{font-size:.78rem;letter-spacing:.4em;color:var(--ink-soft);}
+
+  .corner{position:absolute;width:22px;height:22px;pointer-events:none;border:2px solid rgba(184,147,90,.5);}
+  .corner.tl{top:20px;left:20px;border-right:none;border-bottom:none;}
+  .corner.tr{top:20px;right:20px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:20px;left:20px;border-right:none;border-top:none;}
+  .corner.br{bottom:20px;right:20px;border-left:none;border-top:none;}
+
+
+  /* ===== Wiki 同风格顶部导航（固定） ===== */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);z-index:99;transition:width .1s linear}
+  nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(10,14,21,.82);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid #22304a;transition:box-shadow .35s;font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif}
+  nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.35)}
+  nav .inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:0 18px;height:60px;overflow-x:auto;scrollbar-width:none}
+  nav .inner::-webkit-scrollbar{display:none}
+  nav .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap;text-decoration:none;color:#e8edf5}
+  nav .spacer{flex:1;min-width:8px}
+  nav .logo .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+  nav .logo .grad{background:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 7s ease infinite}
+  @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  nav .sep{width:1px;height:20px;background:#22304a;flex-shrink:0}
+  nav a.nl{color:#8fa0b8;text-decoration:none;font-size:13px;white-space:nowrap;padding:7px 12px;border-radius:9px;transition:.25s}
+  nav a.nl:hover{color:#e8edf5;background:rgba(91,140,255,.15)}
+  nav a.home{color:#5b8cff;font-weight:700}
+  /* ===== 下一篇推荐 ===== */
+  .nextup{background:#141c2b;border:1px solid #22304a;border-radius:18px;padding:18px;transition:.3s;position:relative;overflow:hidden;max-width:720px;margin:0 auto 6vh;font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif}
+  .nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(120deg,#5b8cff,#9d6bff 55%,#f0b45b)}
+  .nextup .nu-kicker{font-size:11px;letter-spacing:.25em;color:#f0b45b;font-weight:700;margin-bottom:8px}
+  .nextup h4{font-size:15.5px;line-height:1.45;margin-bottom:6px;color:#e8edf5}
+  .nextup p{font-size:12.5px;color:#8fa0b8;line-height:1.65;letter-spacing:0;text-align:left;margin-bottom:0}
+  .nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11.5px;color:#8fa0b8;flex-wrap:wrap}
+  .nextup .nu-tag{border:1px solid #22304a;border-radius:999px;padding:2px 9px}
+  .nextup .nu-all{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:#5b8cff;text-decoration:none}
+  @media(min-width:1200px){
+    .nextup{position:fixed;right:22px;top:84px;width:252px;z-index:70;box-shadow:0 14px 40px rgba(0,0,0,.45);margin:0}
+    .nextup:hover{border-color:#5b8cff;transform:translateY(-3px)}
+  }
+  @media (max-width:560px){
+    .page{margin:4vh 12px;}
+    .binding{left:13px;}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav><div class="inner">
+  <a class="nl" href="#cover">封面</a><a class="nl" href="#p1">名字与山河</a><a class="nl" href="#p2">退场与废墟</a><a class="nl" href="#p3">西北之魂</a><a class="nl" href="#p4">中庸之困</a><a class="nl" href="#p5">账本未结</a>
+  <span class="spacer"></span>
+  <span class="sep"></span>
+  <a class="nl home" href="../wiki/">主页</a>
+  <a class="logo" href="../wiki/"><span class="mark">W</span><span class="grad">Research Wiki</span></a>
+</div></nav>
+
+<!-- ============ 封面 ============ -->
+<section class="page cover" id="cover">
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="binding"></div>
+  <div class="tag">城 记 · 西 安</div>
+  <h1>我眼中的西安</h1>
+  <div class="sub">一座城与一个文明的千年往来</div>
+  <div class="hint">向 下 翻 页</div>
+  <div class="seal"><span>長安</span></div>
+</section>
+
+<aside class="nextup" id="nextup">
+  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+  <h4>洲明LED·线上B2B采购平台拓展可行性研究</h4>
+  <p>42通道平台密集总表、三类产品×七类平台适配矩阵、渠道冲突专项分析与12个月行动路线图。</p>
+  <div class="nu-meta"><span class="nu-tag">💼 工作相关报告</span></div>
+  <a class="nu-all" href="../led-b2b-channel/">阅读该报告 →</a>
+</aside>
+
+<!-- ============ 壹 · 名字与山河 ============ -->
+<section class="page" id="p1">
+  <div class="binding"></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 壹</span><span class="title">名字与山河</span></div>
+
+  <h2 class="chapter">一、两个名字，一个中国</h2>
+  <p>中国几乎没有第二座城市，需要两个名字才能说完。</p>
+  <p>一个叫<em>长安</em>。这个名字属于历史，属于青铜器上第一次出现的"中国"二字，属于未央宫的灯火、大明宫的牡丹，属于李白醉卧的酒肆和玄奘译经的雁塔。它是所有中国人精神地图上的原点——哪怕一个从未到过陕西的人，血脉里也住着一个长安。</p>
+  <p>另一个叫<em>西安</em>。这个名字属于当下，属于西北边陲的安定之意，属于明朝的城墙、民国的小住、新中国的工业布局，属于今天一千三百万人的地铁早高峰、高新区的写字楼和回民街的烟火。</p>
+  <p>长安是它的前世，西安是它的今生。<em>一座城要用两个名字，恰恰说明它承载的东西太多——多到单个时代的称谓装不下。</em></p>
+
+  <h2 class="chapter">二、山河替它写好了剧本</h2>
+  <p>西安的伟大，首先不是人选的，是<em>山河选的</em>。</p>
+  <p>打开地图，它躺在关中平原的正中央，南枕秦岭——那道划分中国南北的巨龙；北依黄土高原，渭河如一条玉带穿城而过。四面各有一扇门：东有潼关与函谷关锁黄河，西有大散管控陈仓古道，南有武关通荆楚，北有萧关望塞北。古人称之为"四塞之国"，说这里是"金城千里，天府之国"——请注意，"天府之国"这个词，<em>最初说的是关中，不是四川</em>。</p>
+  <p>这意味着什么？意味着在冷兵器时代，这里是全中国性价比最高的王座：关上门，八百里秦川的粮食养得活一支大军；推开门，顺黄河而下可逐鹿中原。进可攻，退可守，富可养，险可依。司马迁写《史记》时说，关中之地占天下三分之一，人口占十分之三，财富却占十分之六。</p>
+  <p>于是历史像被引力牵引一般，一次又一次地把都城安放在这里。周人从岐山走来，在沣水之滨建镐京，定下礼乐与宗法——那是"礼仪之邦"的源代码；秦人自西陲崛起，在渭河北岸筑咸阳，书同文、车同轨、郡县天下——那是此后两千年中国治理框架的初版；汉承秦制，在渭河南岸起长安城，"汉族""汉字""汉语"从此有了名字；到了唐代，这座城抵达了人类古代城市文明的极值：百万人口的国际化都会，朱雀大街宽一百五十米，波斯商人、日本遣唐使、粟特乐队、天竺僧侣摩肩接踵，全世界诗歌的产量或许有一半诞生于此。</p>
+  <p>周之礼、秦之制、汉之魂、唐之韵——中华文明的四根主梁，全部浇铸在这同一片黄土之下。说一座城承载了半个华夏文明，是修辞；但说<em>中华文明的"制度源代码"和"巅峰样板"都写在这座城里</em>，是史实。</p>
+
+  <div class="foot"><span class="line"></span><span class="no">第 壹 页</span><span class="line"></span></div>
+</section>
+
+<!-- ============ 贰 · 退场与废墟 ============ -->
+<section class="page" id="p2">
+  <div class="binding"></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 贰</span><span class="title">退场与废墟</span></div>
+
+  <h2 class="chapter">三、盛世的退场</h2>
+  <p>然而长安的故事，最动人的部分不是它如何登上巅峰，而是它如何<em>走下巅峰</em>。</p>
+  <p>公元 904 年，朱温挟唐昭宗东迁洛阳，拆毁长安宫室民宅，木料投入渭河漂运而下。自此，这座做了十一百年的京师，永远地失去了首都的位置。此后的一千年里，中国的政治中心一路向东、向北——开封、北京、南京——再没有人回头。</p>
+  <p>西安的后半生，是一场漫长的退潮。宋元时它是西北重镇，明清时它是陕西府城，名字从"京兆"降为"奉元"，再降为"西安"——连名字里"长治久安"的帝王气象，都换成了"安定西陲"的戍边口吻。曾经万国来朝的朱雀大街，变成了麦田；曾经的大明宫，碎成夯土；只有城墙、钟鼓楼和大小雁塔，像几个不肯离席的老人，守着满城的旧梦。</p>
+  <p>但正是这场退潮，造就了西安今天最独特的东西：<em>沉淀</em>。政治的光环撤走了，文明的重量却渗进了黄土。别处是"日新月异"，这里是"层累积淀"——两米厚的现代路面之下，压着汉唐；修一条地铁，能惊动上千座古墓；农民犁地，能犁出国家的镇馆之宝。<em>全世界找不到第二座城市，它的地下比地上更辽阔，它的昨天比今天更庞大。</em></p>
+
+  <h2 class="chapter">四、它的唯一性，是废墟给的</h2>
+  <p>所以西安的诸多"唯一"，本质上都是同一场盛世的遗产：</p>
+  <p>它是中国建都时间最长、历经朝代最多的古都，前后十三朝、一千一百年；它脚下的兵马俑，被称作世界第八大奇迹，两千年前的军阵仍保持着出发的姿态；它的明城墙，是全球保存最完整的古代城垣，十四公里的城圈至今圈着整座老城的天际线；它是丝绸之路的起点，东西方文明第一次大规模握手的握手处；它还是唐诗的首都、秦腔的原乡、汉字的祖庭——小篆在这里被钦定为国家标准字体。</p>
+  <p>这些"唯一"有一个共同点：它们不来自建设，而来自<em>时间的淘汰</em>。一千年的京师岁月像一场超大规模的沉积，盛世一层层死去，精华一层层留下，最终把这座城市变成了一座露天的文明档案馆。</p>
+
+  <div class="foot"><span class="line"></span><span class="no">第 贰 页</span><span class="line"></span></div>
+</section>
+
+<!-- ============ 叁 · 西北之魂 ============ -->
+<section class="page" id="p3">
+  <div class="binding"></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 叁</span><span class="title">西北之魂</span></div>
+
+  <h2 class="chapter">五、西北之魂：一碗面里的江湖</h2>
+  <p>如果说地下埋的是庙堂的中国，那么西安街头翻滚的，是<em>江湖的西北</em>。</p>
+  <p>这座城是整个大西北的文化总阀门。甘肃的骆驼客、宁夏的回族商贩、青海的牧民、新疆的烤包子师傅，千百年来沿着丝路和驿道汇入这里，把五省区的方言、腔调、口味、性情，倒进同一个锅里熬煮。你走在西安，等于站在整个西北的十字路口。</p>
+  <p>最好的例子是<em>面食</em>。西北人把对土地的全部理解，都揉进了面里：关中的 biangbiang 面，宽如裤带，一个字五十八画，写尽秦人的生猛倔强；油泼面一勺滚油泼在辣子面上，"刺啦"一声，是黄土高原的脾气；牛羊肉泡馍要亲手把馍掰成黄豆大小，一千年的丝路贸易史——中原的馍遇见西域的羊——全在这一碗里握手言和；岐山臊子面"薄筋光、酸辣香"，是周原礼乐在舌尖上的余韵；凉皮配肉夹馍加一瓶冰峰，西安人称之为"三秦套餐"，是这座城日常的圣餐。</p>
+  <p>还有秦腔——中国戏曲最古老的声腔之一，吼出来的，不是唱出来的。黄土高原太辽阔了，温柔的小调传不过沟峁，只有用尽全力的一声吼，才能把悲欢离合送到对面山上。西安人把这种声音当乡音，整个西北把这种声音当母语。</p>
+  <p>于是你会发现：西北五省区的人，无论来自兰州、银川、西宁还是乌鲁木齐，走进西安都不会觉得出了远门。这里的机场吞吐量抵得上西北其他省会之和，这里的医院、高校、商圈服务着半个西北，这里的夜市上同时飘着新疆的孜然、宁夏的滩羊和甘肃的酿皮。<em>西安之于西北，正如长安之于盛唐——不是省会，是首府；不是一城之中心，是一片文明板块的心脏。</em></p>
+
+  <div class="foot"><span class="line"></span><span class="no">第 叁 页</span><span class="line"></span></div>
+</section>
+
+<!-- ============ 肆 · 中庸之困 ============ -->
+<section class="page" id="p4">
+  <div class="binding"></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 肆</span><span class="title">中庸之困</span></div>
+
+  <h2 class="chapter">六、那么，它为何拘于中庸？</h2>
+  <p>这是西安叙事里最刺痛的一页，也是最值得诚实面对的一页。</p>
+  <p>它的历史地位是世界级的，它的战略地位是国家级的，而它的经济地位，只是全国二十名左右的强二线——GDP 约一点四万亿，人均数字在万亿城市里靠后，年轻人抱怨工资的声音从未停过。<em>一个曾经做过一千年世界第一都市的地方，如今在自己的国度里排不进前十五。</em>为什么？</p>
+  <p>答案不是"老东西没褪去"这么简单。真实的账本有四页。</p>
+  <p><em>第一页：时代换了赛道，它的天赋从王牌变成了普通牌。</em>西安的地理禀赋——关中平原的粮、四塞之国的险、丝绸之路的起点——是农业文明与陆权时代的王炸。但公元九百年后经济重心南移，1840 年后全球贸易转向海洋，海运打败陆运的那一刻，西安的地理禀赋就从资产变成了负债。深居内陆、远离港口、水资源短缺，这是它经济天花板低的物理原因——不是不努力，是牌变了。</p>
+  <p><em>第二页：它最硬的家底，不计入它的账簿。</em>西安的另一重身份是国家的军工心脏：阎良的运-20、航天城的火箭发动机、占全国举足轻重份额的航空与兵器工业。但军工产值大量不计入地方 GDP 统计口径，且军工产业链封闭，不外溢为本地消费和民营经济。国之重器从它的天空飞过，壮的是国威，留不下税源。西安是典型的<em>"国家很强、城市不富"</em>。</p>
+  <p><em>第三页：它种桃树，别人摘桃。</em>63 所高校、85 万在校大学生、70 位两院院士——这是全国前五的科教家底。但长期以来，西安培养的工程师批量流向深圳、上海、杭州。它像一位倾尽家财供孩子读书的西北父亲，孩子成才后去了别人的城市交税。科教与产业之间的转化断裂，是它错位最深的一道裂缝。</p>
+  <p><em>第四页：才是你说的"厚重"。</em>是的，厚重本身也是成本。修地铁要为古墓让路，盖高楼要过文物审批，旧城改造束手束脚；千年帝都的气质渗在骨子里，让这座城自带一种见过世面的从容——或者说，迟缓。长安城的人不急，因为祖上什么都见过。这种从容滋养了它的文化气韵，也确实拖慢过它的市场反应。</p>
+
+  <div class="foot"><span class="line"></span><span class="no">第 肆 页</span><span class="line"></span></div>
+</section>
+
+<!-- ============ 伍 · 账本未结 ============ -->
+<section class="page" id="p5">
+  <div class="binding"></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 伍</span><span class="title">账本未结</span></div>
+
+  <h2 class="chapter">七、账本尚未结清</h2>
+  <p>但如果只看到错位，就低估了这座城的韧性，也读不懂它沉淀的真正用法。</p>
+  <p>厚重不是枷锁，是<em>备用金</em>。当沿海模式遭遇瓶颈，国家向内寻找战略纵深时，西安那些"不计入 GDP"的资产突然被重新定价：军工变成硬科技，丝路起点变成中欧班列"长安号"的全国第一的集结中心，十三朝古都变成一年三亿多人次奔赴的文旅宇宙，"双中心"的牌子——全国第四个、内陆唯一——郑重地挂在了它的城门上。新能源汽车从这里下线，存储芯片从这里出厂，这座两千岁的城市，正在用硬科技重新翻译自己的天赋。</p>
+  <p>它或许永远回不到长安的相对高度了——那个全世界一半诗歌诞生于此的时代，不会再有。但它正在证明另一件事：<em>一座真正的文明级城市，跌得再久，也跌不出历史的牌桌。</em>因为它的筹码不是 GDP，而是不可替代性——中国可以有很多个经济强市，但能让人一眼认出"这里是中华文明源头"的地方，只有两座；能让整个西北五千万人视为共同首府的，只有一座。</p>
+  <p>长安的账本，从来不是一年一结，而是千年一结。</p>
+  <p>渭水仍在东流，城墙根下的秦腔每晚照常开吼，泡馍馆子里的老人仍在用二十分钟把一只馍掰成星辰。这座城见惯了盛世的开幕，也见惯了盛世的谢幕，它早已懂得：<em>巅峰是来过的地方，不是赖着不走的地方；真正的底气，是哪怕沉在中游，也依然压着一个文明板块的重量。</em></p>
+
+  <div class="sign">ssy · 八月二深夜 于深圳</div>
+  <div class="foot"><span class="line"></span><span class="no">第 伍 页 · 终</span><span class="line"></span></div>
+  <div class="seal"><span>西安</span></div>
+</section>
+
+<script>
+  const prog=document.getElementById('progress'), navEl=document.querySelector('nav');
+  addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    navEl.classList.toggle('scrolled',h.scrollTop>40);
+  },{passive:true});
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.page').forEach(p=>io.observe(p));
+</script>
+</body>
+</html>
