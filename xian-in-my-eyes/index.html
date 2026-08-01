@@ -121,19 +121,20 @@
   }
   .seal span{display:block;width:2.2em;word-break:break-all;}
 
-  /* ===== 刻印落款（竖排压痕 + 手工小印） ===== */
+  /* ===== 刻印落款（文末竖排压痕题款 + 手工小印） ===== */
   .sign{
-    position:absolute;left:46px;bottom:56px;z-index:2;
-    display:flex;flex-direction:column;align-items:center;gap:9px;
+    margin-top:1.6em;
+    display:flex;justify-content:flex-end;align-items:flex-end;gap:12px;
   }
   .sign-col{
-    writing-mode:vertical-rl;
+    writing-mode:vertical-rl;height:9.2em;
     font-size:.88rem;font-weight:700;letter-spacing:.38em;
     color:#57493a;
     text-shadow:0 1px 0 rgba(255,255,255,.85),0 -1px 1px rgba(43,38,32,.22);
   }
   .sign-stamp{
-    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
     background:linear-gradient(135deg,#b03a2e,var(--cinnabar) 60%,#7d241d);
     color:#f6f0e3;font-size:.62rem;font-weight:900;
     border-radius:7px 5px 8px 4px;transform:rotate(-4deg);
@@ -146,7 +147,7 @@
   }
 
   /* ===== 建筑线稿底纹 ===== */
-  .bgart{position:absolute;right:28px;bottom:80px;width:132px;opacity:.09;pointer-events:none;color:#33291f;z-index:0}
+  .bgart{position:absolute;right:28px;bottom:84px;width:138px;opacity:.115;pointer-events:none;color:#33291f;z-index:0}
   .cover-art{left:50%;right:auto;transform:translateX(-50%);bottom:56px;width:160px;opacity:.07}
   .page > *:not(.bgart):not(.corner):not(.binding):not(.seal):not(.sign){position:relative;z-index:1}
   .seal{z-index:2}
@@ -227,7 +228,7 @@
 <!-- ============ 壹 · 名字与山河 ============ -->
 <section class="page" id="p1">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 120 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="bgart" viewBox="0 0 120 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <circle cx="60" cy="4" r="2.5"/><path d="M60 6v6"/><path d="M52 14h16"/>
   <path d="M44 16h32v20h5v5H39v-5h5z"/>
   <path d="M40 41h40v19h5v5H35v-5h5z"/>
@@ -240,7 +241,7 @@
   <path d="M8 180h104"/><path d="M4 190h112"/>
   <path d="M52 180v-8a8 8 0 0 1 16 0v8"/>
 </svg>
-  <span class="juan">卷 壹</span><span class="title">名字与山河</span></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 壹</span><span class="title">名字与山河</span></div>
 
   <h2 class="chapter">一、两个名字，一个中国</h2>
   <p>中国几乎没有第二座城市，需要两个名字才能说完。</p>
@@ -261,7 +262,7 @@
 <!-- ============ 贰 · 退场与废墟 ============ -->
 <section class="page" id="p2">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 120 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="bgart" viewBox="0 0 120 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M46 26h28"/>
   <path d="M46 26C40 60 30 120 24 172"/>
   <path d="M74 26C80 60 90 120 96 172"/>
@@ -272,7 +273,7 @@
   <path d="M12 184h96"/>
   <path d="M52 184v-9a8 8 0 0 1 16 0v9"/>
 </svg>
-  <span class="juan">卷 贰</span><span class="title">退场与废墟</span></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 贰</span><span class="title">退场与废墟</span></div>
 
   <h2 class="chapter">三、盛世的退场</h2>
   <p>然而长安的故事，最动人的部分不是它如何登上巅峰，而是它如何<em>走下巅峰</em>。</p>
@@ -291,7 +292,7 @@
 <!-- ============ 叁 · 西北之魂 ============ -->
 <section class="page" id="p3">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 170 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="bgart" viewBox="0 0 170 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M58 26h54"/><path d="M58 26l-5-5M112 26l5-5"/>
   <path d="M30 40C56 30 114 30 140 40"/>
   <path d="M30 40l-7 6M140 40l7 6"/>
@@ -304,7 +305,7 @@
   <path d="M10 134h150"/>
   <path d="M70 134v-20a15 15 0 0 1 30 0v20"/>
 </svg>
-  <span class="juan">卷 叁</span><span class="title">西北之魂</span></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 叁</span><span class="title">西北之魂</span></div>
 
   <h2 class="chapter">五、西北之魂：一碗面里的江湖</h2>
   <p>如果说地下埋的是庙堂的中国，那么西安街头翻滚的，是<em>江湖的西北</em>。</p>
@@ -319,7 +320,7 @@
 <!-- ============ 肆 · 中庸之困 ============ -->
 <section class="page" id="p4">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 170 140" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="bgart" viewBox="0 0 170 140" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M64 18h42"/><path d="M64 18l-4-4M106 18l4-4"/>
   <path d="M46 32C66 24 104 24 124 32"/>
   <path d="M46 32l-6 5M124 32l6 5"/>
@@ -333,7 +334,7 @@
   <path d="M22 73v-9h13v9h13v-9h13v9h13v-9h13v9h13v-9h13v9h13v-9h13v9"/>
   <path d="M6 130h158"/>
 </svg>
-  <span class="juan">卷 肆</span><span class="title">中庸之困</span></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 肆</span><span class="title">中庸之困</span></div>
 
   <h2 class="chapter">六、那么，它为何拘于中庸？</h2>
   <p>这是西安叙事里最刺痛的一页，也是最值得诚实面对的一页。</p>
@@ -350,7 +351,7 @@
 <!-- ============ 伍 · 账本未结 ============ -->
 <section class="page" id="p5">
   <div class="binding"></div>
-  <div class="folio"><span class="mark"></span><svg class="bgart" viewBox="0 0 160 170" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="bgart" viewBox="0 0 160 170" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M80 6v10"/><circle cx="80" cy="6" r="2.5"/>
   <path d="M80 16L48 46M80 16l32 30"/>
   <path d="M44 48C64 38 96 38 116 48"/>
@@ -365,7 +366,7 @@
   <path d="M14 158h132"/>
   <path d="M64 158v-24a16 16 0 0 1 32 0v24"/>
 </svg>
-  <span class="juan">卷 伍</span><span class="title">账本未结</span></div>
+  <div class="folio"><span class="mark"></span><span class="juan">卷 伍</span><span class="title">账本未结</span></div>
 
   <h2 class="chapter">七、账本尚未结清</h2>
   <p>但如果只看到错位，就低估了这座城的韧性，也读不懂它沉淀的真正用法。</p>
@@ -375,8 +376,8 @@
   <p>渭水仍在东流，城墙根下的秦腔每晚照常开吼，泡馍馆子里的老人仍在用二十分钟把一只馍掰成星辰。这座城见惯了盛世的开幕，也见惯了盛世的谢幕，它早已懂得：<em>巅峰是来过的地方，不是赖着不走的地方；真正的底气，是哪怕沉在中游，也依然压着一个文明板块的重量。</em></p>
 
   <div class="sign">
-    <span class="sign-col">八月二深夜于深圳</span>
     <span class="sign-stamp">ssy</span>
+    <span class="sign-col">八月二深夜于深圳</span>
   </div>
   <div class="foot"><span class="line"></span><span class="no">第 伍 页 · 终</span><span class="line"></span></div>
   <div class="seal"><span>西安</span></div>
