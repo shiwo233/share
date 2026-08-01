@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-07-31",
+      "title": "MiniMax发布首款开源全模态生成模型H3，支持15秒2K音视频生成",
+      "title_en": "MiniMax releases H3, its first open-source omnimodal generative model with 15s 2K video/audio",
+      "topic": "中国大模型六小虎深度研究",
+      "body": "7月31日，MiniMax正式发布通用全模态生成模型H3，首次统一文本、图像、视频、音频的理解与生成，支持原生双声道音视频输出，最高15秒2K分辨率。在Artificial Analysis视频模型榜单中，H3视频编辑能力项排名全球第一。2K分辨率下每秒生成成本不到主流模型的1/3，公司计划未来数天内开源模型权重。发布当日MiniMax股价早盘一度涨超20%。",
+      "body_en": "MiniMax launched H3, a unified omnimodal generative model that understands and generates text, image, video and audio in a single framework. It outputs native stereo audio plus video up to 15 seconds at 2K, and ranked #1 globally on Artificial Analysis's video-editing benchmark. At 2K it costs under one-third per second versus mainstream models; MiniMax plans to open-source the weights within days. The stock rose over 20% in early trading."
+    },
+    {
+      "date": "2026-07-31",
       "title": "新议题上线：洲明LED·线上B2B采购平台拓展可行性研究（30+平台数据库+匹配矩阵+12个月路线图）",
       "title_en": "New topic: Unilumin LED B2B Procurement Platform Expansion Study (30+ platform database, fit matrix, 12-month roadmap)",
       "topic": "洲明LED·线上B2B采购平台拓展可行性研究",
@@ -45,6 +53,18 @@
       "title": "《凡人修仙传》新年番「慕兰之战」开播，78万同时在线创B站国创历史新高",
       "topic": "凡人修仙传全脉络Wiki",
       "body": "6月13日，《凡人修仙传》动画年番第五季「慕兰之战」在B站独家开播，首日两集连放，非会员首集同时在线人数突破78万，创B站国创动画历史新高。截至6月中旬动画总播放量超65亿，追番人数超1699万，豆瓣评分9.6。同期真人剧第二季官宣启动，院线电影《凡人修仙传之瀚海迷踪》也已立项。"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "MiniMax完成160亿港元配售及可转债发行，CEO闫俊杰承诺AGI前零薪酬",
+      "topic": "中国大模型六小虎深度研究",
+      "body": "7月16日，MiniMax公告完成配售3560万股A类股份及65亿港元可转债发行，合计募资160亿港元。配售价格268港元/股，可转债换股价335港元（溢价25%），由摩根士丹利及瑞银联席安排。CEO闫俊杰同日发布内部信，承诺实现AGI前不再领取薪酬，并将个人名下4%公司股份用于激励团队、1%设立开源社区基金。"
+    },
+    {
+      "date": "2026-07-13",
+      "title": "智谱完成314亿港元配售融资，IPO募资半年已动用超93%",
+      "topic": "中国大模型六小虎深度研究",
+      "body": "7月9日智谱公告配售1978万股H股，配售价1588港元/股，募资总额314亿港元，7月13日完成交割。此次募资用于模型研发、算力基础设施建设及战略投资。截至6月30日，智谱IPO募资净额约48.96亿港元已动用45.88亿港元（占比超93%），显示大模型研发对资金的强劲消耗。"
     },
     {
       "date": "2026-07-27",
@@ -123,7 +143,7 @@
       "title": "新议题入库：《内存技术全景对比：DDR / GDDR / HBM 与长鑫能力地图》",
       "title_en": "New topic: DRAM Tech Map — DDR/GDDR/HBM & CXMT Capability",
       "topic": "内存技术全景对比",
-      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≤5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
+      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
       "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
     },
     {
