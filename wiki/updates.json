@@ -1,6 +1,18 @@
 {
   "updates": [
     {
+      "date": "2026-08-06",
+      "title": "MiniMax正式纳入港股通，首日股价大涨22.77%市值重回千亿港元",
+      "topic": "中国大模型六小虎深度研究",
+      "body": "8月6日，MiniMax（00100.HK）正式纳入港股通，当日股价高开5.52%，盘间涨幅最高22.77%，触及311.6港元/股，市值重回千亿港元大关。此前公司于8月3日正式开源全模态生成模型H3，该模型在Artificial Analysis视频编辑评测榜与Arena图生视频排行榜均位列全球第一，并在Hugging Face热度登顶。"
+    },
+    {
+      "date": "2026-08-05",
+      "title": "月之暗面G轮（Pre-IPO）融资正式启动，估值达500亿美元",
+      "topic": "中国大模型六小虎深度研究",
+      "body": "8月5日，月之暗面Kimi G轮（Pre-IPO）融资正式启动，本轮估值达500亿美元。因Kimi K3发布后投资额度骤然紧俏，参与方需在8月15日前完成打款，若按单轮稀释约10%计算募资规模将接近60亿美元。从2025年底43亿美元估值至今，月之暗面在约8个月内实现超11倍估值增长。"
+    },
+    {
       "date": "2026-08-02",
       "title": "新议题上线：我眼中的西安——一座城与一个文明的千年往来（古籍书页式城市随笔）",
       "title_en": "New topic: Xi'an in My Eyes — A City and a Millennium of Chinese Civilization (ancient-book-page essay)",
@@ -58,21 +70,19 @@
     },
     {
       "date": "2026-07-28",
-      "title": "《凡人修仙传》新年番「慕兰之战」开播，78万同时在线创B站国创历史新高",
+      "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
+      "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
+      "topic": "锅气计划外卖模式评估",
+      "body": "对7个原始设想逐条对照已有模式下结论：仪式感包装（+1.5-2元/单）、错峰分时定价、供应商公示经得起验证；师傅海选、私域App、租用后厨需合规修正。核心章给出单份成本瀑布（保本点日均310单、净利率5.5%）、28-35元定价带推导与客群承接度验证。基于10个维度约600条公开来源交叉调研。",
+      "body_en": "All 7 original assumptions benchmarked against live models: ritual unboxing (+¥1.5-2/order), off-peak time-based pricing and supplier transparency hold up; chef auditions, private-domain app and shared-kitchen leasing need compliance fixes. Core chapter delivers a per-order cost waterfall (break-even at 310 orders/day, 5.5% net margin), ¥28-35 pricing band and customer acceptance analysis. Cross-verified across 10 research dimensions and ~600 public sources."
+    },
+    {
+      "date": "2026-07-28",
+      "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
+      "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
       "topic": "凡人修仙传全脉络Wiki",
-      "body": "6月13日，《凡人修仙传》动画年番第五季「慕兰之战」在B站独家开播，首日两集连放，非会员首集同时在线人数突破78万，创B站国创动画历史新高。截至6月中旬动画总播放量超65亿，追番人数超1699万，豆瓣评分9.6。同期真人剧第二季官宣启动，院线电影《凡人修仙传之瀚海迷踪》也已立项。"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "MiniMax完成160亿港元配售及可转债发行，CEO闫俊杰承诺AGI前零薪酬",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "7月16日，MiniMax公告完成配售3560万股A类股份及65亿港元可转债发行，合计募资160亿港元。配售价格268港元/股，可转债换股价335港元（溢价25%），由摩根士丹利及瑞银联席安排。CEO闫俊杰同日发布内部信，承诺实现AGI前不再领取薪酬，并将个人名下4%公司股份用于激励团队、1%设立开源社区基金。"
-    },
-    {
-      "date": "2026-07-13",
-      "title": "智谱完成314亿港元配售融资，IPO募资半年已动用超93%",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "7月9日智谱公告配售1978万股H股，配售价1588港元/股，募资总额314亿港元，7月13日完成交割。此次募资用于模型研发、算力基础设施建设及战略投资。截至6月30日，智谱IPO募资净额约48.96亿港元已动用45.88亿港元（占比超93%），显示大模型研发对资金的强劲消耗。"
+      "body": "凡人流开山之作全考据：主线三书45篇章时间线、三界15境界与韩立14次破境年表、86件宝物图鉴、81人物七类群像与111条关系边图谱；227条目统一ID、交叉引用一一对应，存疑49处皆标印章。",
+      "body_en": "Complete compendium of the genre-founding xianxia novel: 45-arc timeline across 3 books, 15 realms with Han Li's 14 breakthroughs, 86 treasures, 81 characters and a 111-edge relationship graph; 227 entries with unified IDs and full cross-referencing, 49 doubtful points explicitly marked."
     },
     {
       "date": "2026-07-27",
@@ -140,11 +150,19 @@
     },
     {
       "date": "2026-07-27",
-      "title": "DRAM科普议题升级 v2：更名「ssy给你做DRAM科普」+ 移动端重构 + 市占率与巨头布局",
-      "title_en": "DRAM topic v2: renamed, mobile-first rebuild, market share & company roadmaps",
+      "title": "DRAM科普 v2：移动端重构 + 市占率与巨头布局",
+      "title_en": "DRAM topic v2: mobile-first rebuild, market share & company roadmaps",
       "topic": "内存技术全景对比",
       "body": "移动端全面重构：一屏速览结论、路线/参数/布局全部改为折叠展开卡片。新增三大板块：三条路线简介与演变路程；1Q26 市占率（三星40.5%/海力士29.6%/美光19.9%/长鑫7.7%居第四，HBM 海力士≈56%，英伟达 HBM4 订单海力士≈70%/三星≈30%）；四家未来布局（HBM4E 2027 赛点：海力士绑台积电3nm、三星押自研2nm、美光弃自研投台积电、长鑫 HBM3E 目标2027）。",
       "body_en": "Full mobile rebuild: one-screen overview, accordions for roadmaps/specs/roadmaps. Three new sections: route intros & evolution; 1Q26 market share (Samsung 40.5% / SK hynix 29.6% / Micron 19.9% / CXMT 7.7% No.4; SK hynix ≈56% of HBM and ≈70% of NVIDIA HBM4 orders); four company roadmaps heading into the 2027 HBM4E race."
+    },
+    {
+      "date": "2026-07-27",
+      "title": "DRAM科普 v1：十代内存全参数横评与长鑫能力地图",
+      "title_en": "DRAM 101 v1: 10-gen spec comparison & CXMT capability map",
+      "topic": "内存技术全景对比",
+      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
+      "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
     },
     {
       "date": "2026-07-27",
@@ -161,22 +179,6 @@
       "topic": "凡人修仙传全脉络Wiki",
       "body": "新增「总表速览」板块：篇章/破境/宝物/人物四表支持排序、筛选、行展开收起；全局展开收起按钮；人物关系图谱升级缩放控件、边类型筛选、搜索定位与详情面板。",
       "body_en": "New tables section: arcs/breakthroughs/treasures/characters tables with sorting, filtering, expandable rows; global expand/collapse; relationship graph upgraded with zoom controls, edge-type filters, search-locate and detail panel."
-    },
-    {
-      "date": "2026-07-26",
-      "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
-      "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
-      "topic": "锅气计划外卖模式评估",
-      "body": "对7个原始设想逐条对照已有模式下结论：仪式感包装（+1.5-2元/单）、错峰分时定价、供应商公示经得起验证；师傅海选、私域App、租用后厨需合规修正。核心章给出单份成本瀑布（保本点日均310单、净利率5.5%）、28-35元定价带推导与客群承接度验证。基于10个维度约600条公开来源交叉调研。",
-      "body_en": "All 7 original assumptions benchmarked against live models: ritual unboxing (+¥1.5-2/order), off-peak time-based pricing and supplier transparency hold up; chef auditions, private-domain app and shared-kitchen leasing need compliance fixes. Core chapter delivers a per-order cost waterfall (break-even at 310 orders/day, 5.5% net margin), ¥28-35 pricing band and customer acceptance analysis. Cross-verified across 10 research dimensions and ~600 public sources."
-    },
-    {
-      "date": "2026-07-26",
-      "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
-      "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
-      "topic": "凡人修仙传全脉络Wiki",
-      "body": "凡人流开山之作全考据：主线三书45篇章时间线、三界15境界与韩立14次破境年表、86件宝物图鉴、81人物七类群像与111条关系边图谱；227条目统一ID、交叉引用一一对应，存疑49处皆标印章。",
-      "body_en": "Complete compendium of the genre-founding xianxia novel: 45-arc timeline across 3 books, 15 realms with Han Li's 14 breakthroughs, 86 treasures, 81 characters and a 111-edge relationship graph; 227 entries with unified IDs and full cross-referencing, 49 doubtful points explicitly marked."
     },
     {
       "date": "2026-07-26",
