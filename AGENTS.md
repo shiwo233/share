@@ -32,7 +32,7 @@
 
 当主人完成一份新研究报告时：
 
-1. 在仓库根目录新建 `<议题英文名>/index.html`（移动端优先的深色交互网页，风格参照 `/six-tigers-report/index.html`）。每篇报告**必须包含**：① 与 Wiki 主页同风格的顶部导航栏（布局：**本报告章节锚点居左，「主页」链接 + W logo 居右**，均链接 `../wiki/`）；② 「下一篇推荐」模块（桌面端右上角悬浮 / 移动端顶部横幅，样式参照 six-tigers-report 的 `.nextup`）。
+1. 在仓库根目录新建 `<议题英文名>/index.html`（移动端优先的深色交互网页，风格参照 `/six-tigers-report/index.html`）。每篇报告**必须包含**：① 与 Wiki 主页同风格的顶部导航栏（布局：**本报告章节锚点居左，「主页」链接 + W logo 居右**，均链接 `../wiki/`）；② 「下一篇推荐」模块（**整体置于页面底部、footer 之前**，通栏样式参照 `.nextup`；2026-08-12 起主人确认改为页底布局，不再使用桌面端右上角悬浮 / 移动端顶部横幅）。
 2. 在 `wiki/index.html` 的 `TOPICS` 数组中追加该议题（cat/url/icon/date/hot + 中/英双语的 title/desc/watch/tags/**toc 目录数组**——悬停预览会显示目录）。
 3. 在 `wiki/updates.json` 最前追加入库动态（含 title_en/body_en 英文字段）。
 4. 提交并推送，确认 GitHub Pages 可访问。

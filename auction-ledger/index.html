@@ -72,7 +72,9 @@ h2{font-size:clamp(24px,6.5vw,36px);font-weight:800;margin-bottom:14px;line-heig
 /* bar rows */
 .bar-row{display:grid;grid-template-columns:1fr;gap:6px;padding:15px 0;border-bottom:1px solid var(--line)}
 @media(min-width:760px){.bar-row{grid-template-columns:200px 1fr 150px;align-items:center;gap:20px}}
-.bar-name{font-size:14px;color:var(--txt);font-weight:600}
+.bar-name{font-size:14px;color:var(--txt);font-weight:600;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ic{width:30px;height:30px;border-radius:7px;image-rendering:pixelated;flex-shrink:0;border:1px solid var(--line)}
+td .ic{width:26px;height:26px;vertical-align:-8px;margin-right:9px}
 .bar-name .tag{display:inline-block;font-size:10px;color:var(--acc2);border:1px solid var(--line);border-radius:999px;padding:1px 8px;margin-left:8px;vertical-align:1px;letter-spacing:.08em}
 .bar-track{height:18px;background:#1c2740;border-radius:99px;overflow:hidden}
 .bar-fill{height:100%;width:0;border-radius:99px;background:var(--grad);transition:width 1.2s cubic-bezier(.22,1,.36,1)}
@@ -111,6 +113,18 @@ tfoot td{color:var(--acc2);font-weight:800;background:rgba(240,180,91,.06);borde
 .insight h3{font-size:15px;color:var(--acc2);margin-bottom:8px}
 .insight p{font-size:13.5px;color:var(--sub)}
 .insight p b{color:var(--txt)}
+/* screenshots */
+.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:760px){.shot-grid{grid-template-columns:repeat(3,1fr)}}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:zoom-in;transition:.3s;position:relative}
+.shot:hover{border-color:var(--acc);transform:translateY(-2px)}
+.shot img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;object-position:top}
+.shot .cap{padding:9px 13px;font-size:12px;color:var(--sub);display:flex;justify-content:space-between}
+.shot .cap b{color:var(--acc2);font-weight:600}
+#lightbox{position:fixed;inset:0;background:rgba(4,7,12,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+#lightbox.on{display:flex}
+#lightbox img{max-width:100%;max-height:92vh;border-radius:10px;border:1px solid var(--line)}
+#lightbox .lb-cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:12.5px;color:var(--sub)}
 /* next-up recommendation */
 .nextup{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;transition:.3s;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;color:inherit}
 .nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
@@ -120,13 +134,8 @@ tfoot td{color:var(--acc2);font-weight:800;background:rgba(240,180,91,.06);borde
 .nextup .nu-meta{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11.5px;color:var(--sub);flex-wrap:wrap}
 .nextup .nu-tag{border:1px solid var(--line);border-radius:999px;padding:2px 9px}
 .nextup .nu-all{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--acc);text-decoration:none}
-@media(min-width:1100px){
-  .nextup{position:fixed;right:22px;top:84px;width:252px;z-index:70;box-shadow:0 14px 40px rgba(0,0,0,.45)}
-  .nextup:hover{border-color:var(--acc);transform:translateY(-3px)}
-}
-@media(max-width:1099px){
-  .nextup{max-width:1000px;margin:18px auto 0}
-}
+.nu-wrap{max-width:1000px;margin:0 auto;padding:64px 20px 0}
+.nextup:hover{border-color:var(--acc);transform:translateY(-3px)}
 /* footer */
 footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;text-align:center;color:var(--sub);font-size:12.5px}
 #toTop{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:80;cursor:pointer}
@@ -136,7 +145,7 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <body>
 <div id="progress"></div>
 <nav id="nav"><div class="inner">
-  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a>
+  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#records">凭证</a>
   <span class="spacer"></span>
   <span class="sep"></span>
   <a class="nl home" href="../wiki/">主页</a>
@@ -158,17 +167,6 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
     <div class="stat"><b>82%</b><span>收益已落袋比例</span></div>
   </div>
 </header>
-
-<a class="nextup" href="../xian-in-my-eyes/">
-  <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
-  <h4>我眼中的西安 · 一座城与一个文明的千年往来</h4>
-  <p>古籍书页式城市随笔：从长安的两个名字写起，经山河剧本、盛世退场，到硬科技翻身的未结账本。</p>
-  <div class="nu-meta">
-    <span class="nu-tag">🏯 城市随笔</span>
-    <span class="nu-tag">2026-08-02</span>
-  </div>
-  <span class="nu-all">浏览全部议题 →</span>
-</a>
 
 <!-- ===================== OVERVIEW ===================== -->
 <section id="overview">
@@ -293,10 +291,32 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
   </div>
 </section>
 
+<!-- ===================== 07 RECORDS ===================== -->
+<section id="records">
+  <div class="sec-tag rv">07 / RECORDS</div>
+  <h2 class="rv">原始成交凭证</h2>
+  <p class="sec-desc rv">全部统计口径来自以下 9 张拍卖行截图（成交记录第 1–7 页 + 在售挂单 2 页），点击可放大核对。</p>
+  <div class="shot-grid rv" id="shot-grid"></div>
+</section>
+
+<div class="nu-wrap">
+  <a class="nextup" href="../xian-in-my-eyes/">
+    <div class="nu-kicker">NEXT UP · 下一篇推荐</div>
+    <h4>我眼中的西安 · 一座城与一个文明的千年往来</h4>
+    <p>古籍书页式城市随笔：从长安的两个名字写起，经山河剧本、盛世退场，到硬科技翻身的未结账本。</p>
+    <div class="nu-meta">
+      <span class="nu-tag">🏯 城市随笔</span>
+      <span class="nu-tag">2026-08-02</span>
+    </div>
+    <span class="nu-all">浏览全部议题 →</span>
+  </a>
+</div>
+
 <footer>
   数据来源：游戏拍卖行交易记录截图（2026-08-12，第 1–7 页 / 共 26 页）<br>
   手续费 5% ｜ 下架费 2,000 金/件 ｜ 统计截至 2026-08-12 ｜ 仅作个人记账用途
 </footer>
+<div id="lightbox" onclick="this.classList.remove('on')"><img id="lbImg" alt=""><div class="lb-cap" id="lbCap"></div></div>
 <div id="toTop" onclick="scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <script>
@@ -316,12 +336,20 @@ const sold = [
 sold.forEach(d=>{ d.net=d.gross*0.95; d.tcost=d.qty*d.cost; d.roi=d.tcost>0?d.net/d.tcost:0; });
 const fmt = n => Math.round(n).toLocaleString("en-US");
 
+const ICON = {
+  "宠物增益自动技能":"pet-skill","蝙蝠怪":"bat","简朴婚礼券":"wedding","皇家理发券":"royal-hair",
+  "皇家整容券":"royal-face","万能高级染发卡":"dye-card","一次性隐形眼镜（综合）":"contact-lens",
+  "不拣取特定道具技能":"no-pickup","自动服用血量药水技能":"hp-potion","洗1转技能点卷轴":"sp-reset",
+  "万能护肤券":"skin-coupon","怪猫的眼":"cat-eye"
+};
+const ic = (name,cls="ic") => ICON[name]?`<img class="${cls}" src="assets/icons/${ICON[name]}.png" alt="${name}">`:"";
+
 /* revenue bars */
 const revMax = Math.max(...sold.map(d=>d.net));
 document.getElementById("revenue-bars").innerHTML =
   sold.slice().sort((a,b)=>b.net-a.net).map(d=>`
   <div class="bar-row">
-    <div class="bar-name">${d.name}${d.tag?`<span class="tag">${d.tag}</span>`:""}</div>
+    <div class="bar-name">${ic(d.name)}<span>${d.name}${d.tag?`<span class="tag">${d.tag}</span>`:""}</span></div>
     <div class="bar-track"><div class="bar-fill" data-w="${(d.net/revMax*100).toFixed(2)}"></div></div>
     <div class="bar-num">${fmt(d.net)} 金<small>${d.qty} 件 · 成本 ${d.tcost.toFixed(1)} 元</small></div>
   </div>`).join("");
@@ -331,7 +359,7 @@ const roiList = sold.filter(d=>d.tcost>0).sort((a,b)=>b.roi-a.roi);
 const roiMax = Math.max(...roiList.map(d=>d.roi));
 document.getElementById("roi-bars").innerHTML = roiList.map(d=>`
   <div class="bar-row">
-    <div class="bar-name">${d.name}${d.tag?`<span class="tag">${d.tag}</span>`:""}</div>
+    <div class="bar-name">${ic(d.name)}<span>${d.name}${d.tag?`<span class="tag">${d.tag}</span>`:""}</span></div>
     <div class="bar-track"><div class="bar-fill ${d.roi<14100?"dim":""}" data-w="${(d.roi/roiMax*100).toFixed(2)}"></div></div>
     <div class="bar-num">${fmt(d.roi)} 金/元<small>净收入 ${fmt(d.net)} 金</small></div>
   </div>`).join("");
@@ -340,7 +368,7 @@ document.getElementById("roi-bars").innerHTML = roiList.map(d=>`
 document.getElementById("detail-body").innerHTML =
   sold.slice().sort((a,b)=>b.net-a.net).map(d=>`
   <tr>
-    <td>${d.name}</td><td>${d.qty}</td>
+    <td>${ic(d.name)}${d.name}</td><td>${d.qty}</td>
     <td>${d.cost?d.cost.toFixed(1):"—"}</td><td>${d.tcost.toFixed(1)}</td>
     <td>${fmt(d.gross)}</td><td class="neg">${fmt(d.gross*0.05)}</td>
     <td>${fmt(d.net)}</td><td class="${d.roi>=14100?"pos":""}">${d.tcost>0?fmt(d.roi):"—"}</td>
@@ -357,9 +385,33 @@ const inv = [
 ];
 document.getElementById("inv-body").innerHTML = inv.map(d=>`
   <tr>
-    <td>${d.name}</td><td>${d.loc}</td><td>${d.qty}</td><td>${d.cost.toFixed(1)}</td>
+    <td>${ic(d.name)}${d.name}</td><td>${d.loc}</td><td>${d.qty}</td><td>${d.cost.toFixed(1)}</td>
     <td>${fmt(d.gross)}</td><td>${fmt(d.gross*0.95)}</td><td class="pos">${fmt(d.gross*0.95/d.cost)}</td>
   </tr>`).join("");
+
+/* screenshots */
+const SHOTS = [
+  ["01","成交记录 · 第 1 页","护肤券/隐形眼镜/婚礼券/宠物技能"],
+  ["02","成交记录 · 第 2 页","宠物技能/不拣取技能/蝙蝠怪"],
+  ["03","成交记录 · 第 3 页","宠物技能/皇家整容券/血药技能"],
+  ["04","成交记录 · 第 4 页","宠物技能/染发卡/皇家理发券"],
+  ["05","成交记录 · 第 5 页","洗点卷轴/蝙蝠怪/婚礼券"],
+  ["06","成交记录 · 第 6 页","皇家整容券/理发券/宠物技能"],
+  ["07","成交记录 · 第 7 页","宠物增益自动技能 ×3"],
+  ["08","在售挂单 · 第 1 页","婚礼券/不拣取/血药/宠物技能"],
+  ["09","在售挂单 · 第 2 页","宠物增益自动技能 ×2"],
+];
+document.getElementById("shot-grid").innerHTML = SHOTS.map(([f,t,d])=>`
+  <div class="shot" onclick="openLb('${f}','${t}')">
+    <img src="assets/shots/${f}.png" alt="${t}" loading="lazy">
+    <div class="cap"><b>${t}</b><span>${d}</span></div>
+  </div>`).join("");
+function openLb(f,t){
+  document.getElementById("lbImg").src=`assets/shots/${f}.png`;
+  document.getElementById("lbCap").textContent=t+" ｜ 点击任意处关闭";
+  document.getElementById("lightbox").classList.add("on");
+}
+addEventListener("keydown",e=>{if(e.key==="Escape")document.getElementById("lightbox").classList.remove("on")});
 
 /* progress + nav + reveal */
 const nav=document.getElementById("nav"),toTop=document.getElementById("toTop");
