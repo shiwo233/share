@@ -113,6 +113,45 @@ tfoot td{color:var(--acc2);font-weight:800;background:rgba(240,180,91,.06);borde
 .insight h3{font-size:15px;color:var(--acc2);margin-bottom:8px}
 .insight p{font-size:13.5px;color:var(--sub)}
 .insight p b{color:var(--txt)}
+.sub-h{font-size:17px;font-weight:700;color:var(--acc2);margin:34px 0 14px}
+/* round 2 */
+const sold2 = [
+  {name:"简朴婚礼券",       qty:4,  cost:30,   gross:1917531},
+  {name:"宠物增益自动技能", qty:3,  cost:22.8, gross:1000781},
+  {name:"小白雪人",         qty:2,  cost:29.8, gross:884888},
+  {name:"不拣取特定道具技能",qty:4, cost:8,    gross:601885},
+  {name:"蝙蝠怪",           qty:1,  cost:38,   gross:558666},
+  {name:"洗能力点卷轴",     qty:28, cost:1,    gross:440377},
+  {name:"洗1转技能点卷轴",  qty:5,  cost:4,    gross:315954},
+  {name:"自动服用血量药水技能",qty:1,cost:8.8, gross:131888},
+];
+sold2.forEach(d=>{ d.net=d.gross*0.95; d.tcost=d.qty*d.cost; d.roi=d.net/d.tcost; });
+const R2_AVG = 14833;
+const r2revMax = Math.max(...sold2.map(d=>d.net));
+document.getElementById("r2-revenue").innerHTML =
+  sold2.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}</span></div>
+    <div class="bar-track"><div class="bar-fill" data-w="${(d.net/r2revMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.net)} 金<small>${d.qty} 件 · 成本 ${d.tcost.toFixed(1)} 元</small></div>
+  </div>`).join("");
+const r2roiMax = Math.max(...sold2.map(d=>d.roi));
+document.getElementById("r2-roi").innerHTML =
+  sold2.slice().sort((a,b)=>b.roi-a.roi).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}</span></div>
+    <div class="bar-track"><div class="bar-fill ${d.roi<R2_AVG?"dim":""}" data-w="${(d.roi/r2roiMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.roi)} 金/元<small>净收入 ${fmt(d.net)} 金</small></div>
+  </div>`).join("");
+document.getElementById("r2-detail").innerHTML =
+  sold2.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <tr>
+    <td>${ic(d.name)}${d.name}</td><td>${d.qty}</td>
+    <td>${d.cost.toFixed(1)}</td><td>${d.tcost.toFixed(1)}</td>
+    <td>${fmt(d.gross)}</td><td class="neg">${fmt(d.gross*0.05)}</td>
+    <td>${fmt(d.net)}</td><td class="${d.roi>=R2_AVG?"pos":""}">${fmt(d.roi)}</td>
+  </tr>`).join("");
+
 /* screenshots */
 .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:760px){.shot-grid{grid-template-columns:repeat(3,1fr)}}
@@ -145,7 +184,7 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <body>
 <div id="progress"></div>
 <nav id="nav"><div class="inner">
-  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#records">凭证</a>
+  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#round2">二轮</a><a class="nl" href="#records">凭证</a>
   <span class="spacer"></span>
   <span class="sep"></span>
   <a class="nl home" href="../wiki/">主页</a>
@@ -291,11 +330,56 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
   </div>
 </section>
 
+<!-- ===================== ROUND 2 ===================== -->
+<section id="round2">
+  <div class="sec-tag rv">ROUND 02 · 2026-08-13</div>
+  <h2 class="rv">第二轮：卷轴走量，券类走强</h2>
+  <p class="sec-desc rv">新增成本口径：洗能力点卷轴 1 元/张、小白雪人 29.8 元/只。药水、矿石等 9 种任务道具零成本，不计入核算（税后白捡约 4.3 万金）；3 张回城卷为「中标」买入（共 6,820 金），不属于卖出。</p>
+  <div class="ov rv">
+    <div class="ov-cell">
+      <div class="lab">本轮进货成本</div>
+      <div class="val">374.8<small>元</small></div>
+      <div class="note">8 种道具 · 48 件成交</div>
+    </div>
+    <div class="ov-cell">
+      <div class="lab">本轮税后净收入</div>
+      <div class="val">5,559,372<small>金</small></div>
+      <div class="note">毛额 5,851,970，手续费 292,599</div>
+    </div>
+    <div class="ov-cell hot">
+      <div class="lab">本轮产出效率</div>
+      <div class="val">14,833<small>金/元</small></div>
+      <div class="note">高于首轮的 14,100 金/元</div>
+    </div>
+    <div class="ov-cell">
+      <div class="lab">任务道具额外收入</div>
+      <div class="val">+43,387<small>金</small></div>
+      <div class="note">9 种任务道具 · 零成本白捡</div>
+    </div>
+  </div>
+  <h3 class="sub-h rv">各道具净收入（税后）</h3>
+  <div id="r2-revenue" class="rv"></div>
+  <h3 class="sub-h rv">每元成本产出效率</h3>
+  <div id="r2-roi" class="rv"></div>
+  <h3 class="sub-h rv">明细核算</h3>
+  <div class="bx rv">
+    <table>
+      <thead>
+        <tr><th>道具名称</th><th>件数</th><th>单位成本(元)</th><th>总成本(元)</th><th>毛收入(金)</th><th>手续费(金)</th><th>净收入(金)</th><th>金/元</th></tr>
+      </thead>
+      <tbody id="r2-detail"></tbody>
+      <tfoot>
+        <tr><td>合计</td><td>48</td><td>—</td><td>374.8</td><td>5,851,970</td><td>292,599</td><td>5,559,372</td><td>14,833</td></tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
 <!-- ===================== 07 RECORDS ===================== -->
 <section id="records">
   <div class="sec-tag rv">07 / RECORDS</div>
   <h2 class="rv">原始成交凭证</h2>
-  <p class="sec-desc rv">全部统计口径来自以下 9 张拍卖行截图（成交记录第 1–7 页 + 在售挂单 2 页），点击可放大核对。</p>
+  <p class="sec-desc rv">全部统计口径来自以下 17 张拍卖行截图（第一轮 9 张 + 第二轮 8 张，含 08-13 记录），点击可放大核对。</p>
   <div class="shot-grid rv" id="shot-grid"></div>
 </section>
 
@@ -340,7 +424,7 @@ const ICON = {
   "宠物增益自动技能":"pet-skill","蝙蝠怪":"bat","简朴婚礼券":"wedding","皇家理发券":"royal-hair",
   "皇家整容券":"royal-face","万能高级染发卡":"dye-card","一次性隐形眼镜（综合）":"contact-lens",
   "不拣取特定道具技能":"no-pickup","自动服用血量药水技能":"hp-potion","洗1转技能点卷轴":"sp-reset",
-  "万能护肤券":"skin-coupon","怪猫的眼":"cat-eye"
+  "万能护肤券":"skin-coupon","怪猫的眼":"cat-eye","洗能力点卷轴":"ap-reset","小白雪人":"snowman"
 };
 const ic = (name,cls="ic") => ICON[name]?`<img class="${cls}" src="assets/icons/${ICON[name]}.png" alt="${name}">`:"";
 
@@ -389,6 +473,44 @@ document.getElementById("inv-body").innerHTML = inv.map(d=>`
     <td>${fmt(d.gross)}</td><td>${fmt(d.gross*0.95)}</td><td class="pos">${fmt(d.gross*0.95/d.cost)}</td>
   </tr>`).join("");
 
+/* round 2 */
+const sold2 = [
+  {name:"简朴婚礼券",       qty:4,  cost:30,   gross:1917531},
+  {name:"宠物增益自动技能", qty:3,  cost:22.8, gross:1000781},
+  {name:"小白雪人",         qty:2,  cost:29.8, gross:884888},
+  {name:"不拣取特定道具技能",qty:4, cost:8,    gross:601885},
+  {name:"蝙蝠怪",           qty:1,  cost:38,   gross:558666},
+  {name:"洗能力点卷轴",     qty:28, cost:1,    gross:440377},
+  {name:"洗1转技能点卷轴",  qty:5,  cost:4,    gross:315954},
+  {name:"自动服用血量药水技能",qty:1,cost:8.8, gross:131888},
+];
+sold2.forEach(d=>{ d.net=d.gross*0.95; d.tcost=d.qty*d.cost; d.roi=d.net/d.tcost; });
+const R2_AVG = 14833;
+const r2revMax = Math.max(...sold2.map(d=>d.net));
+document.getElementById("r2-revenue").innerHTML =
+  sold2.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}</span></div>
+    <div class="bar-track"><div class="bar-fill" data-w="${(d.net/r2revMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.net)} 金<small>${d.qty} 件 · 成本 ${d.tcost.toFixed(1)} 元</small></div>
+  </div>`).join("");
+const r2roiMax = Math.max(...sold2.map(d=>d.roi));
+document.getElementById("r2-roi").innerHTML =
+  sold2.slice().sort((a,b)=>b.roi-a.roi).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}</span></div>
+    <div class="bar-track"><div class="bar-fill ${d.roi<R2_AVG?"dim":""}" data-w="${(d.roi/r2roiMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.roi)} 金/元<small>净收入 ${fmt(d.net)} 金</small></div>
+  </div>`).join("");
+document.getElementById("r2-detail").innerHTML =
+  sold2.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <tr>
+    <td>${ic(d.name)}${d.name}</td><td>${d.qty}</td>
+    <td>${d.cost.toFixed(1)}</td><td>${d.tcost.toFixed(1)}</td>
+    <td>${fmt(d.gross)}</td><td class="neg">${fmt(d.gross*0.05)}</td>
+    <td>${fmt(d.net)}</td><td class="${d.roi>=R2_AVG?"pos":""}">${fmt(d.roi)}</td>
+  </tr>`).join("");
+
 /* screenshots */
 const SHOTS = [
   ["01","成交记录 · 第 1 页","护肤券/隐形眼镜/婚礼券/宠物技能"],
@@ -400,6 +522,14 @@ const SHOTS = [
   ["07","成交记录 · 第 7 页","宠物增益自动技能 ×3"],
   ["08","在售挂单 · 第 1 页","婚礼券/不拣取/血药/宠物技能"],
   ["09","在售挂单 · 第 2 页","宠物增益自动技能 ×2"],
+  ["10","二轮 · 页 1/29","宠物技能/回城卷中标×3/洗能力"],
+  ["11","二轮 · 页 2/29","洗能力×7/不拣取/洗1转"],
+  ["12","二轮 · 页 3/29","蝙蝠怪未售/洗能力×8"],
+  ["13","二轮 · 页 4/29","婚礼券/小白雪人/洗能力×6/宠物技能"],
+  ["14","二轮 · 08-13","洗能力/小白雪人/洗1转×3"],
+  ["15","二轮 · 08-12","洗1转/婚礼券/蝙蝠怪 55.9万"],
+  ["16","二轮 · 08-12","婚礼券×2/宠物技能/不拣取"],
+  ["17","二轮 · 页 7/29","祖母绿/青蛙/不拣取/血药"],
 ];
 document.getElementById("shot-grid").innerHTML = SHOTS.map(([f,t,d])=>`
   <div class="shot" onclick="openLb('${f}','${t}')">

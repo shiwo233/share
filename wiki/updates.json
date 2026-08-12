@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-08-13",
+      "title": "拍卖行收支总账第二轮核算上线：48件成交税后净入556万金，洗能力卷轴走量、婚礼券走强",
+      "title_en": "Auction Ledger Round 2: 5.56M mesos net from 48 sales — ability-reset scrolls drive volume, wedding coupons strengthen",
+      "topic": "冒险岛拍卖行收支总账",
+      "body": "第二轮（含 2026-08-13 记录）核算：进货成本 374.8 元（新增口径：洗能力点卷轴 1 元/张、小白雪人 29.8 元/只），48 件成交毛收入 585.2 万金、税后净入 555.9 万金，混合效率 14,833 金/元，高于首轮的 14,100。不拣取技能以 17,868 金/元领跑效率榜；婚礼券 4 张成交均价升至 47.9 万；洗能力卷轴 28 张走量贡献 41.8 万净额。另有 3 张回城卷为中标买入（6,820 金），任务道具零成本白捡 4.3 万金。原始截图凭证更新至 17 张。",
+      "body_en": "Round 2 accounting (incl. 2026-08-13 records): cost ¥374.8 (new cost bases: ability-reset scroll ¥1, Snowman ¥29.8), 48 sales grossed 5.85M mesos and netted 5.56M after fees, blended yield 14,833 mesos/¥1 — above Round 1's 14,100. No-pickup skill leads efficiency at 17,868/¥1; wedding coupons averaged 479K across 4 sales; 28 ability-reset scrolls added 418K net. Three town-scroll bids (6,820 mesos) are purchases, not sales; task items added 43K free. Source screenshots now total 17."
+    },
+    {
       "date": "2026-08-12",
       "title": "拍卖行收支总账页面更新：新增原始成交凭证区（9张截图+12物品图标），「下一篇推荐」模块改为页底通栏",
       "title_en": "Auction Ledger page update: original-records section added (9 screenshots + 12 item icons); next-up module moved to page bottom",
