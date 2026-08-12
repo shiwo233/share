@@ -2,6 +2,14 @@
   "updates": [
     {
       "date": "2026-08-12",
+      "title": "新议题上线：冒险岛拍卖行收支总账——54笔成交税后净入1,421万金，综合产出14,297金/元",
+      "title_en": "New topic: MapleStory Auction House Ledger — 14.21M mesos net from 54 sales, 14,297 mesos per ¥1",
+      "topic": "冒险岛拍卖行收支总账",
+      "body": "2026-08-12 交易快照全口径核算：总投入 1,213.2 元（已售 1,007.2 + 库存 206），54 笔已成交毛收入 1,495.5 万金，扣 5% 手续费后净入 1,420.8 万金；在售挂单 8 件与背包 2 件全部变现预计再入 313.7 万金，总盘子约 1,734 万金。宠物增益自动技能贡献近八成收入；四件套中皇家理发券每元产出 31,485 金居首，一次性隐形眼镜仅 283 金几乎纯亏。",
+      "body_en": "Full-scope accounting of the 2026-08-12 trading snapshot: total cost ¥1,213.2 (¥1,007.2 sold + ¥206 inventory); 54 completed sales grossed 14.96M mesos, netting 14.21M after the 5% fee; 8 active listings plus 2 bag items are expected to add another 3.14M, bringing the portfolio to ~17.34M mesos. Pet buff auto-skill contributes nearly 80% of revenue; within the 4-item set, Royal Hair Coupon leads at 31,485 mesos per ¥1 while disposable contact lenses return merely 283."
+    },
+    {
+      "date": "2026-08-12",
       "title": "炒菜机器人国标GB/T 46718-2025将于11月1日实施，外卖新规已正式施行",
       "topic": "锅气计划外卖模式评估",
       "body": "我国首个《商用智能炒菜机》国家标准（GB/T 46718-2025）将于2026年11月1日正式实施，标准首次系统规定温控精度、翻炒均匀性、油烟控制、物联网协议等12项核心指标，标志着行业告别'野蛮生长'。与此同时，《网络餐饮服务经营者落实食品安全主体责任监督管理规定》（国家市场监督管理总局令第123号）已于2026年6月1日施行，要求平台对商户资质进行实质性审查，无堂食店铺须在主页面显著标注'无堂食'标识。"
