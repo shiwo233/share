@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-08-15",
+      "title": "金价监控上线：漂漂猪金价5天贬值49.3%至0.6333元/万金，直接买金性价比已反超搬砖",
+      "title_en": "Gold-price watch live: Piaopiaozhu rate fell 49.3% in 5 days to ¥0.6333/10K mesos — buying gold now beats farming",
+      "topic": "冒险岛拍卖行收支总账",
+      "body": "接入 mxdc.dvg.cn 金价数据：漂漂猪 8-10 至 8-15 从 1.25 元/万金跌至 0.6333 元/万金（-49.3%），全五区同步腰斩 43%–55%。关键对比：两轮搬砖混合效率 14,297 金/元，08-12 当天市场买金仅 12,143 金/元（搬砖划算），而 08-15 市场已达 15,789 金/元（买金反超搬砖）。已落袋 1,976 万金币按最新金价折合约 1,252 元，较 08-12 口径蒸发约 375 元。议题页新增金价走势图与五区对比表。",
+      "body_en": "Connected to mxdc.dvg.cn gold data: Piaopiaozhu fell from ¥1.25/10K mesos (08-10) to ¥0.6333 (08-15), -49.3%, with all five servers crashing 43-55%. Key benchmark: two farming rounds blended 14,297 mesos/¥1 vs market 12,143 on 08-12 (farming won) but 15,789 on 08-15 (buying gold now wins). The 19.76M mesos already cashed out is worth ≈¥1,252 at the latest rate — about ¥375 evaporated vs the 08-12 valuation. Topic page gained a gold-price trend chart and a five-server comparison table."
+    },
+    {
       "date": "2026-08-12",
       "title": "大和首次覆盖智谱给予买入评级，目标价1500港元；智谱ZCode升级用户数破百万",
       "title_en": "Daiwa initiates coverage on Z.ai with Buy rating and HK$1,500 target; ZCode upgrades, users exceed 1M",
