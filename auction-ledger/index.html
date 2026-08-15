@@ -424,6 +424,57 @@ body{padding-top:98px}
 .cmp-card .cv.bad{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.3)}
 .cmp-card .cv.mid{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
 
+/* ===== v7 流水悬浮终端 ===== */
+.flowterm{position:fixed;right:12px;bottom:12px;z-index:71;width:478px;max-width:94vw;
+  background:rgba(6,10,18,.95);border:1px solid rgba(52,211,153,.32);border-radius:10px;backdrop-filter:blur(10px);
+  box-shadow:0 16px 50px rgba(0,0,0,.62);font-family:var(--mono)}
+@media(min-width:1500px){.flowterm{right:298px}}
+.ft-head{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+.ft-dots{flex:none}
+.ft-dots i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;background:#33415e}
+.ft-dots i:first-child{background:var(--red)} .ft-dots i:nth-child(2){background:var(--amber)} .ft-dots i:nth-child(3){background:var(--mint)}
+.ft-head b{font-size:10.5px;letter-spacing:.16em;color:var(--mint)}
+.ft-sub{font-size:8.5px;color:var(--tx3);margin-left:auto}
+.ft-pause{display:none;color:var(--amber);font-size:8.5px}
+.flowterm:hover .ft-pause{display:inline}
+.ft-body{height:258px;overflow-y:auto;padding:8px 12px;font-size:10px;line-height:1.8}
+.flowterm.min .ft-body{display:none}
+.ft-l{white-space:nowrap;animation:ftin .25s ease-out}
+@keyframes ftin{from{opacity:0;transform:translateY(4px)}}
+.ft-t{color:var(--tx3)} .ft-m{color:var(--cyan);font-weight:700} .ft-ok{color:var(--mint)} .ft-c{color:#4d5d7d}
+.ft-j{color:#9db4d8} .ft-j b{color:var(--amber);font-weight:500}
+.ft-j .neg{color:var(--red)} .ft-j .pos{color:var(--mint)}
+.ft-caret{display:inline-block;width:7px;height:12px;background:var(--mint);vertical-align:-2px;animation:blink 1s infinite}
+/* ===== v7 推荐榜行折叠 ===== */
+.tier tr.xr{display:none}
+.tier.xopen tr.xr{display:table-row}
+.xr-toggle{width:100%;margin:2px 0 10px;padding:7px;border:1px dashed var(--line);border-radius:8px;background:transparent;
+  color:var(--tx2);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;cursor:pointer;transition:.2s}
+.xr-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
+/* ===== v7 导航沙盘 CTA + 弹窗 ===== */
+.nav-cta{position:relative;z-index:1;padding:7px 15px;border-radius:99px;border:1px solid rgba(251,191,36,.55);
+  background:rgba(251,191,36,.13);color:var(--amber);font-size:12.5px;cursor:pointer;white-space:nowrap;
+  font-family:var(--cn);animation:ctapulse 2.6s ease-in-out infinite;transition:.2s}
+.nav-cta:hover{background:rgba(251,191,36,.24);transform:translateY(-1px)}
+@keyframes ctapulse{50%{box-shadow:0 0 16px rgba(251,191,36,.45)}}
+.sb-modal{position:fixed;inset:0;z-index:85;background:rgba(3,6,12,.74);backdrop-filter:blur(7px);
+  display:none;align-items:center;justify-content:center}
+.sb-modal.on{display:flex}
+.sb-modal-box{width:min(1080px,95vw);max-height:88vh;overflow-y:auto;background:#0a101d;
+  border:1px solid rgba(251,191,36,.4);border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.7);
+  animation:sbpop .32s cubic-bezier(.3,1.3,.5,1)}
+@keyframes sbpop{from{transform:scale(.93) translateY(14px);opacity:0}}
+.sb-modal-head{display:flex;align-items:center;gap:12px;padding:13px 20px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:#0a101d;z-index:2}
+.sb-modal-head b{font-size:14.5px}
+.sb-modal-head .dim{font-family:var(--mono);font-size:9px;color:var(--tx3)}
+.sb-modal-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--tx2);
+  width:26px;height:26px;cursor:pointer;font-size:13px}
+.sb-modal-head button:hover{color:var(--red);border-color:var(--red)}
+.sb-modal-body{padding:16px 20px 20px}
+.sb-modal .sb-out{grid-template-columns:repeat(2,1fr)}
+.sb-modal .sandbox{grid-template-columns:400px 1fr}
+
 </style></head>
 <body>
 <div class="ctip" id="ctip"></div>
@@ -444,6 +495,7 @@ body{padding-top:98px}
   <a data-s="sec-recs">推荐榜<span class="n">03</span></a>
   <a data-s="sec-gold">金价<span class="n">04</span></a>
   <a data-s="sec-analysis">耦合<span class="n">05</span></a>
+  <button class="nav-cta" id="navSandbox">⌘ 沙盘推演</button>
   <a data-s="sec-sandbox">沙盘<span class="n">06</span></a>
   <a data-s="sec-trades">台账<span class="n">07</span></a>
   <a data-s="sec-rules">纪律<span class="n">08</span></a>
@@ -466,6 +518,24 @@ body{padding-top:98px}
   <div class="feed"><div class="feed-in" id="feedIn"></div></div>
   <div class="lb-foot" id="lbFoot">market/item.php · AES-GCM payload → trend[].c</div>
 </aside>
+
+<!-- ================= 流水悬浮终端 ================= -->
+<div class="flowterm" id="flowTerm">
+  <div class="ft-head" id="ftHead">
+    <span class="ft-dots"><i></i><i></i><i></i></span><b>FLOW TERMINAL</b>
+    <span class="livedot"></span><span class="ft-pause">⏸ 已暂停</span>
+    <span class="ft-sub">采集流水 69 条 · 循环 · 点我收起</span>
+  </div>
+  <div class="ft-body" id="ftBody"></div>
+</div>
+
+<!-- ================= 沙盘快捷弹窗 ================= -->
+<div class="sb-modal" id="sbModal">
+  <div class="sb-modal-box">
+    <div class="sb-modal-head"><b>数据沙盘 · 盈亏推演器</b><span class="dim">快捷呼出 · Esc / 点击空白关闭</span><button id="sbModalX">✕</button></div>
+    <div class="sb-modal-body" id="sbModalBody"></div>
+  </div>
+</div>
 
 <!-- ================= 台账抽屉 ================= -->
 <div class="ldg-tab" id="ldgTab">台账速览</div>
@@ -528,23 +598,17 @@ body{padding-top:98px}
 <!-- ================= 02 采集流水 ================= -->
 <section class="sec" id="sec-flow">
   <div class="sec-head">
-    <span class="no">02</span><h2>采集流水 · 多次查询结果</h2>
-    <span class="sub">同一物品的历次实盘查询全留痕 · 点击行联动大盘卡片与耦合分析 · 价格单位：金币</span>
+    <span class="no">02</span><h2>采集流水</h2>
+    <span class="sub">69 条实盘查询留痕（05:00 复核 / 05:07 监控 / 06:39 补缺）· 已收进右下角悬浮终端 FLOW TERMINAL 循环播放 · 悬停暂停</span>
     <span class="right">QUERY LOG</span>
   </div>
   <div class="srcbar">
     <span class="src-cap">数据来源</span>
     <span>检索 <span class="code">GET /tools/market/?server=4&amp;q=…</span>（按 itemid 精确匹配）</span>
     <span>明细 <span class="code">GET /tools/market/item.php?id=…&amp;server=4</span> → <span class="code">#auction-market-payload</span> AES-256-GCM 解密</span>
-    <span>三轮留痕：05:00 实盘复核 · 05:07 监控批次 · 06:4x 补缺采集</span>
+    <span>悬浮终端 <span class="code">FLOW TERMINAL</span> · 代码形式快速滚动 · 点标题栏可收起</span>
   </div>
   <div class="flow-meta" id="flowMeta"></div>
-  <div class="chart-box tbl-wrap" style="padding:6px 10px">
-    <table><thead><tr>
-      <th>物品</th><th>组别</th><th>查询时刻</th><th class="num">当前最低</th><th class="num">中位收盘</th>
-      <th class="num">较上次</th><th class="num">日均成交</th><th class="num">税后金/元</th><th>原始请求</th>
-    </tr></thead><tbody id="flowBody"></tbody></table>
-  </div>
   <div class="mq"><div class="mq-view"><div class="mq-track" id="mqTrack"></div></div></div>
   <div class="note cyan" style="margin-top:12px"><b>流水判读：</b>同物品多次查询价差即「真实波动带宽」——监控批次显示洗能力券 +29%、乖仔裤 +45%、上班族眼镜 +55.9% 的单轮跳价，挂单窗口期极短；补缺采集确认低价消耗品（食物类）中位锁定 2~4 万区间、日均成交不足 3 件，<b>流动性差且无弹性，维持避坑</b>。</div>
 </section>
@@ -650,6 +714,7 @@ body{padding-top:98px}
     <span class="sub">拖杆即算 · 基于实盘快照中位价的确定性演算（非预测）· 税费 5% 已计入，下架费按批次均摊</span>
     <span class="right">SIMULATOR</span>
   </div>
+  <div id="sbHome"><div id="sbMove">
   <div class="sandbox">
     <div class="sb-panel">
       <div class="sb-ctl">
@@ -694,6 +759,7 @@ body{padding-top:98px}
       </div>
     </div>
   </div>
+  </div></div>
   <div class="note amber" style="margin-top:12px"><b>沙盘用法：</b>把金价滑杆往左拖（0.40 档）即可看到——绝大多数品种税后金/元仍在买金线上方（金价越跌，卖金回款越少，但倒货的金/元产出不变），<b>真正被金价下跌杀死的是「囤货等涨」的人，不是快进快出的人</b>。挂价拉满 160% 再拖批量，能看到流动性差的品种批次盈亏全是纸面富贵。</div>
 </section>
 
@@ -1139,9 +1205,9 @@ selectItem('5190010', false);
     <div class="tier-cap" onclick="this.parentElement.classList.toggle('open')"><h3>${t} 级<span class="tri">▶</span></h3><span class="cnt">${list.length} 种 · 点击${t==='S'?'收起':'展开'}</span><p>${desc}</p></div>
     <div class="tier-bd"><div class="tbl-wrap"><table>
       <thead><tr><th>物品</th><th class="num">成本元</th><th class="num">中位(金)</th><th class="num">当前最低</th><th class="num">税后金/元</th><th class="num">盈亏/件@0.525</th><th class="num">日均成交</th><th>建议批量 / 策略</th></tr></thead>
-      <tbody>${list.map(it=>{
+      <tbody>${list.map((it,ri)=>{
         const [,nClr,nTag] = liqInfo(it.an);
-        return `<tr data-id="${it.id}" style="cursor:pointer" onclick="selectItem('${it.id}',true)">
+        return `<tr data-id="${it.id}" class="${ri>=4?'xr':''}" style="cursor:pointer" onclick="selectItem('${it.id}',true)">
         <td>${it.n}${mine.has(it.n)?' <span class="tag amber">我常卖</span>':''}</td>
         <td class="num">${it.cost}</td><td class="num">${fmt(it.med)}</td>
         <td class="num ${it.low?'':'dim'}">${it.low?fmt(it.low):'—'}</td>
@@ -1149,7 +1215,9 @@ selectItem('5190010', false);
         <td class="num ${it.profit>=0?'up':'down'}">${it.profit>=0?'+':''}${it.profit.toFixed(2)} 元</td>
         <td class="num"><span class="tag ${nClr}">${nTag}</span></td>
         <td style="font-size:11.5px"><b class="mono">${it.batch}</b> · <span class="dim">${it.note}</span></td></tr>`;
-      }).join('')}</tbody></table></div></div></div>`;
+      }).join('')}</tbody></table></div>
+      ${list.length>4?`<button class="xr-toggle" data-n="${list.length-4}" onclick="var t=this.closest('.tier'),o=t.classList.toggle('xopen');this.textContent=o?'收起 ▴':'展开其余 '+this.dataset.n+' 种 ▾'">展开其余 ${list.length-4} 种 ▾</button>`:''}
+    </div></div>`;
   }).join('');
   /* 避坑 */
   const avoidExtra = [
@@ -1158,11 +1226,13 @@ selectItem('5190010', false);
     {n:"皇家整容券",id:"5152053",cost:3.2,med:66666,yld:19791,an:14,note:"高于买金线但商城已不单卖（仅整容包）——存量卖完即止"},
   ];
   const vlist = ITEMS.filter(x=>x.g==='V'&&x.g!=='M');
-  const rows = [...avoidExtra, ...ITEMS.filter(x=>x.g==='V')].map(it=>`<tr data-id="${it.id}" style="cursor:pointer" onclick="selectItem('${it.id}',true)">
+  const vrows = [...avoidExtra, ...ITEMS.filter(x=>x.g==='V')].map((it,ri)=>`<tr data-id="${it.id}" class="${ri>=4?'xr':''}" style="cursor:pointer" onclick="selectItem('${it.id}',true)">
     <td>${it.n}</td><td class="num">${it.cost}</td><td class="num">${fmt(it.med)}</td>
     <td class="num down">${fmt(it.yld)}</td><td class="num">${it.an??'—'}</td>
     <td style="font-size:11.5px" class="dim">${it.note}</td></tr>`).join('');
-  $('avoidBody').innerHTML = rows;
+  $('avoidBody').innerHTML = vrows;
+  $('avoidTier').querySelector('.tier-bd').insertAdjacentHTML('beforeend',
+    `<button class="xr-toggle" data-n="${avoidExtra.length+ITEMS.filter(x=>x.g==='V').length-4}" onclick="var t=this.closest('.tier'),o=t.classList.toggle('xopen');this.textContent=o?'收起 ▴':'展开其余 '+this.dataset.n+' 种 ▾'">展开其余 ${avoidExtra.length+ITEMS.filter(x=>x.g==='V').length-4} 种 ▾</button>`);
 })();
 /* ================= 台账表格 ================= */
 (function(){
@@ -1317,38 +1387,52 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
     const lb=$('lbFoot'); if(lb) lb.textContent='LAST '+f.t+' · '+f.name+' → OK · queue '+ptr+'/'+FEED.length;
   },60000);
 })();
-/* ================= 采集流水 ================= */
+/* ================= 采集流水（统计 + 跑马灯 + 悬浮终端） ================= */
 (function(){
-  const byId={}; ITEMS.forEach(it=>byId[it.id]=it);
-  $('flowBody').innerHTML = FLOW.map(r=>{
-    const it=byId[r.iid]; if(!it) return '';
-    const g=GRP[it.g];
-    const yld=(r.med||r.low)?Math.round((r.med||r.low)*0.95/it.cost):null;
-    const ok=yld!=null&&yld>=GOLD.line;
-    return `<tr data-iid="${r.iid}">
-      <td><b>${it.n}</b></td>
-      <td><span class="tag ${g[1]}">${g[0]}</span></td>
-      <td class="mono dim">${r.t} <span class="tag gray">${r.round}</span></td>
-      <td class="num mono">${r.low!=null?fmt(r.low):'<span class="dim">暂无在售</span>'}</td>
-      <td class="num mono">${r.med!=null?fmt(r.med):'—'}</td>
-      <td class="num mono ${r.chg>0?'up':r.chg<0?'down':'dim'}">${r.chg!=null?(r.chg>0?'+':'')+r.chg+'%':'—'}</td>
-      <td class="num mono ${r.n!=null&&r.n<3?'down':''}">${r.n!=null?r.n+'/日':'—'}</td>
-      <td class="num mono ${ok?'up':yld!=null?'down':''}">${yld!=null?fmt(yld):'—'}</td>
-      <td><a class="flink" href="https://mxdc.dvg.cn${r.url}" target="_blank" rel="noopener">item.php?id=${r.iid} ↗</a></td></tr>`;
-  }).join('');
   const uniq=new Set(FLOW.map(r=>r.iid)).size;
   $('flowMeta').innerHTML=`<span>记录 <b style="color:var(--cyan)">${FLOW.length}</b> 条</span>
     <span>覆盖物品 <b style="color:var(--cyan)">${uniq}</b> / 43 种</span>
     <span>查询轮次 <b style="color:var(--cyan)">3</b>（05:00 / 05:07 / 06:39）</span>
-    <span>HTTP <b style="color:var(--mint)">200</b> · 限流 <b style="color:var(--mint)">0</b> 次</span>`;
-  document.querySelectorAll('#flowBody tr[data-iid]').forEach(tr=>
-    tr.addEventListener('click',e=>{ if(e.target.closest('a'))return; selectItem(tr.dataset.iid,true); }));
+    <span>HTTP <b style="color:var(--mint)">200</b> · 限流 <b style="color:var(--mint)">0</b> 次</span>
+    <span>终端 <b style="color:var(--mint)">FLOW TERMINAL</b> 滚动播放中</span>`;
   /* 数据跑马灯 */
   const chips=ITEMS.map(it=>{
     const p=it.low??it.med, c=it.chg>0?'up':it.chg<0?'down':'dim';
     return `<span class="mq-chip"><b>${it.n}</b> ${p!=null?fmt(p):'—'} <span class="${c}">${it.chg!=null?(it.chg>0?'▲+':it.chg<0?'▼':'')+it.chg+'%':''}</span></span>`;
   }).join('');
   $('mqTrack').innerHTML=chips+chips;
+  /* 悬浮终端：代码形式快速滚动 */
+  const term=$('ftBody');
+  const byId={}; ITEMS.forEach(it=>byId[it.id]=it);
+  const lines=[];
+  const sec=()=>String(Math.floor(Math.random()*60)).padStart(2,'0');
+  const G1={t:'04:00',v:'0.5990',note:'较基准 −5.4% · 警报触发'},G2={t:'05:00',v:'0.5250',note:'48h −36% · 买金线 19,048'};
+  [G1,G2].forEach(g=>{
+    lines.push(`<div class="ft-l"><span class="ft-t">[2026-08-16 ${g.t}:${sec()}]</span> <span class="ft-m">GET</span> /tools/price-trend/ <span class="ft-c"># 金价 · 漂漂猪</span></div>`);
+    lines.push(`<div class="ft-l"><span class="ft-ok">← 200 OK</span> <span class="ft-j">{ wan_gold_to_yuan: <b>${g.v}</b>, note: "${g.note}" }</span></div>`);
+  });
+  FLOW.forEach(r=>{
+    const it=byId[r.iid]; if(!it) return;
+    const low=r.low!=null?`low: <b>${r.low.toLocaleString()}</b>`:'low: <b>null</b> /* 暂无在售 */';
+    const med=r.med!=null?`med: <b>${r.med.toLocaleString()}</b>`:'med: null';
+    const chg=r.chg!=null?`chg: <span class="${r.chg>=0?'pos':'neg'}">"${r.chg>0?'+':''}${r.chg}%"</span>`:'chg: null';
+    const nn=r.n!=null?`n_day: <b>${r.n}</b>`:'n_day: null';
+    lines.push(`<div class="ft-l"><span class="ft-t">[2026-08-16 ${r.t}:${sec()}]</span> <span class="ft-m">GET</span> /tools/market/item.php?id=${r.iid}&amp;server=4 <span class="ft-c"># ${it.n} · ${r.round}</span></div>`);
+    lines.push(`<div class="ft-l"><span class="ft-ok">← 200 OK</span> <span class="ft-j">{ ${low}, ${med}, ${chg}, ${nn} }</span></div>`);
+  });
+  let li=0, paused=false;
+  term.addEventListener('mouseenter',()=>paused=true);
+  term.addEventListener('mouseleave',()=>paused=false);
+  for(let k=0;k<10;k++){ term.insertAdjacentHTML('beforeend', lines[li%lines.length]); li++; }
+  term.insertAdjacentHTML('beforeend','<div class="ft-l" id="ftCaret"><span class="ft-t">[~]</span> <span class="ft-caret"></span></div>');
+  setInterval(()=>{
+    if(paused) return;
+    const caret=$('ftCaret');
+    caret.insertAdjacentHTML('beforebegin', lines[li%lines.length]); li++;
+    while(term.children.length>70) term.firstElementChild.remove();
+    term.scrollTop=term.scrollHeight;
+  },550);
+  $('ftHead').addEventListener('click',()=>$('flowTerm').classList.toggle('min'));
 })();
 /* ================= 数据沙盘 ================= */
 (function(){
@@ -1413,6 +1497,7 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
       <text x="${P+2}" y="${Y(mn)-3}" fill="#f87171" font-size="9" font-family="JetBrains Mono">${mn.toFixed(0)}</text>`;
   }
   sel.addEventListener('change',calc);
+  window.sbRecalc=calc;
   calc();
 })();
 
@@ -1506,6 +1591,17 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
   $('cmpClear').addEventListener('click',()=>{
     CMP.clear(); document.querySelectorAll('.t-cmp.on').forEach(x=>x.classList.remove('on')); renderCmp();
   });
+})();
+
+/* ================= v7 沙盘快捷呼出 ================= */
+(function(){
+  const modal=$('sbModal'), move=$('sbMove'), home=$('sbHome');
+  function openSb(){ $('sbModalBody').appendChild(move); modal.classList.add('on'); if(window.sbRecalc) sbRecalc(); }
+  function closeSb(){ home.appendChild(move); modal.classList.remove('on'); }
+  $('navSandbox').addEventListener('click',e=>{e.stopPropagation();openSb();});
+  $('sbModalX').addEventListener('click',closeSb);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeSb(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape') closeSb(); });
 })();
 mountOdoAnim();
 </script>
