@@ -231,8 +231,8 @@ td.l{white-space:normal;min-width:200px;line-height:1.55}
   </div>
   <div class="stats">
     <div class="stat"><b>62 种</b><span>监控物品</span></div>
-    <div class="stat"><b>29 种</b><span>推荐倒货</span></div>
-    <div class="stat"><b>95,000</b><span>当前最高效率（金/元）· 缩地石</span></div>
+    <div class="stat"><b>27 种</b><span>推荐倒货</span></div>
+    <div class="stat"><b>29,100</b><span>当前最高效率（金/元）· 乌龟背壳</span></div>
     <div class="stat"><b>0.6333</b><span>漂漂猪金价（元/万金）</span></div>
   </div>
 </header>
@@ -241,7 +241,7 @@ td.l{white-space:normal;min-width:200px;line-height:1.55}
 <section id="recs">
   <div class="sec-tag rv">RECOMMEND · 倒货推荐榜</div>
   <h2 class="rv">倒货推荐榜</h2>
-  <p class="sec-desc rv">点券进货 → 拍卖行卖出，按「税后金/元」效率分三级。数据：商城点券价 + 拍卖中位成交价（mxdc.dvg.cn），成交热度来自 2026-08-16 行情录屏抽样。</p>
+  <p class="sec-desc rv">点券进货 → 拍卖行卖出，按「税后金/元」效率分三级。数据：商城点券价 + 拍卖中位成交价（mxdc.dvg.cn，2026-08-16 已逐种复核实测），成交热度来自 2026-08-16 行情录屏抽样。</p>
   <div class="recs-note rv">参考线：当日市场直接买金 ≈ <b>15,789 金/元</b>（漂漂猪 0.6333 元/万金）——税后金/元高于此线才值得倒，低于此线不如直接买金。</div>
   <div id="recs-groups"></div>
 </section>
@@ -624,49 +624,49 @@ const ic = (name,cls="ic") => ICON[name]?`<img class="${cls}" src="assets/icons/
 
 /* ===== 倒货推荐榜 / 避坑 / 走势（数据：goldwatch rec-data.json & market-watch.json，2026-08-16） ===== */
 const RECS = [
-  {name:"缩地石",yuan:1.0,med:100000,freq:23,tier:"S",batch:"20-50个/批",note:"1元店道具卖出10万金，产出约为买金的6倍；消耗品复购快，挂9.5-10万秒出",yld:95000,profit:5.02,icon:"i5040000.png"},
-  {name:"红喇叭",yuan:0.1,med:3999,freq:17,tier:"S",batch:"50-100个/批",note:"0.1元成本近4千金，全站最高倍率；薄利多销走量",yld:37990,profit:0.14,icon:"i5071000.png"},
-  {name:"原地复活术",yuan:2.1,med:44000,freq:17,tier:"S",batch:"20-30个/批",note:"副本刚需消耗品，复购稳定，挂4.2-4.4万",yld:19905,profit:0.55,icon:"i5510000.png"},
-  {name:"生命水",yuan:10.0,med:199888,freq:10,tier:"S",batch:"10-20个/批",note:"宠物续命刚需，税后约19万金/件，单件净赚≈2元",yld:18989,profit:2.03,icon:"i5689014.png"},
+  {name:"乌龟背壳",yuan:7.8,med:238888,freq:2,tier:"S",batch:"1-2个试水",note:"29,100金/元全场第一，但成交样本仅2笔，先挂1-2个探路",yld:29100,profit:6.57,icon:"i1102020.png"},
+  {name:"乖仔裤",yuan:5.8,med:150000,freq:12,tier:"S",batch:"5-8个/批",note:"24,569金/元，当前挂价已涨到15万(+45%)，低价快走",yld:24569,profit:3.23,icon:"i1060067.png"},
+  {name:"自动服用血量药水技能",yuan:8.8,med:220849,freq:8,tier:"S",batch:"5-10个/批",note:"23,842金/元，宠物技能里效率第一",yld:23842,profit:4.49,icon:"i5190001.png"},
+  {name:"上班族眼镜",yuan:6.8,med:155550,freq:23,tier:"S",batch:"5-8个/批",note:"中位15.6万且当前挂价188,645(+55.9%)仍在冲，外观类黑马",yld:21730,profit:2.54,icon:"i1022019.png"},
+  {name:"乖仔衣",yuan:6.8,med:148800,freq:17,tier:"S",batch:"3-5个/批",note:"20,794金/元，与乖仔裤配套上架",yld:20794,profit:2.15,icon:"i1040078.png"},
+  {name:"恐龙公主",yuan:25.8,med:533333,freq:4,tier:"S",batch:"1-2个试水",note:"中位53.3万，单件净赚≈6.3元，样本少",yld:19638,profit:6.31,icon:"i5000010.png"},
+  {name:"一枝玫瑰",yuan:6.8,med:140550,freq:7,tier:"S",batch:"2-4个/批",note:"19,638金/元，近期收盘持续走高",yld:19638,profit:1.65,icon:"i1012006.png"},
+  {name:"五月花环",yuan:8.8,med:179996,freq:13,tier:"S",batch:"2-4个/批",note:"19,431金/元，当前挂价194,989",yld:19431,profit:2.03,icon:"i1002506.png"},
+  {name:"褐色小猫",yuan:19.9,med:399999,freq:1,tier:"S",batch:"1-2个试水",note:"真实中位约40万——你第三轮268,775卖出其实是卖飞了约7元",yld:19095,profit:4.21,icon:"i5000000.png"},
+  {name:"黑小猪",yuan:24.8,med:496000,freq:6,tier:"S",batch:"1-2个/批",note:"19,000金/元，中位49.6万",yld:19000,profit:5.07,icon:"i5000007.png"},
   {name:"洗能力点卷轴",yuan:1.0,med:19789,freq:17,tier:"S",batch:"30-50张/批",note:"你走量基本盘，小时级周转；挂价贴市场中位即可",yld:18800,profit:0.19,icon:"i5050000.png"},
   {name:"洗1转技能点卷轴",yuan:4.0,med:77444,freq:35,tier:"S",batch:"20-30张/批",note:"成交最热卷轴，税后7.36万/张，单件净赚≈0.66元",yld:18393,profit:0.66,icon:"i5050001.png"},
-  {name:"洗2转技能点卷轴",yuan:6.0,med:115589,freq:18,tier:"S",batch:"15-25张/批",note:"新晋高频，税后约11万/张，净赚≈0.97元",yld:18302,profit:0.95,icon:"i5050002.png"},
-  {name:"自动服用血量药水技能",yuan:8.8,med:220849,freq:8,tier:"S",batch:"5-10个/批",note:"23,842金/元，宠物技能里效率第一",yld:23842,profit:4.49,icon:"i5190001.png"},
-  {name:"自动服用魔量药水技能",yuan:15.8,med:297450,freq:24,tier:"S",batch:"5-10个/批",note:"高频+高效（17,885），尽快补货",yld:17885,profit:2.1,icon:"i5190006.png"},
+  {name:"黑色小猫",yuan:19.9,med:385000,freq:3,tier:"S",batch:"1-2个试水",note:"18,381金/元，样本少先试水",yld:18381,profit:3.27,icon:"i5000004.png"},
+  {name:"恐龙王子",yuan:25.8,med:498875,freq:1,tier:"S",batch:"1个试水",note:"18,364金/元，样本极少",yld:18364,profit:4.23,icon:"i5000009.png"},
+  {name:"猴子",yuan:25.8,med:498000,freq:30,tier:"S",batch:"2-3个/批",note:"高频+中位49.8万，当前挂价597,881(+41.6%)——你388,001卖的那只卖飞了",yld:18337,profit:4.19,icon:"i5000011.png"},
+  {name:"熊猫",yuan:22.8,med:438000,freq:8,tier:"S",batch:"2-3个/批",note:"18,250金/元，当前挂价438,000(+12.3%)",yld:18250,profit:3.56,icon:"i5000008.png"},
+  {name:"乖猫猫双肩包",yuan:10.8,med:198443,freq:14,tier:"S",batch:"3-5个/批",note:"17,455金/元，当前挂价288,888(+34.4%)冲高",yld:17455,profit:1.15,icon:"i1102186.png"},
+  {name:"雪犬",yuan:24.8,med:450000,freq:16,tier:"S",batch:"1-2个/批",note:"17,238金/元，当前挂价466,666(+19.7%)",yld:17238,profit:2.29,icon:"i5000006.png"},
   {name:"宠物增益自动技能",yuan:22.8,med:409888,freq:27,tier:"S",batch:"5-8个/批",note:"你的招牌货，税后38.9万/件，净赚≈1.85元",yld:17079,profit:1.86,icon:"i5190010.png"},
+  {name:"小白虎",yuan:26.8,med:480000,freq:15,tier:"S",batch:"1-2个/批",note:"17,015金/元，当前挂价566,666(+24.8%)",yld:17015,profit:2.08,icon:"i5000012.png"},
+  {name:"生命水",yuan:10.0,med:176997,freq:10,tier:"A",batch:"10-20个/批",note:"宠物续命刚需，当前挂价219,901，按中位算净赚≈0.65元/件",yld:16815,profit:0.65,icon:"i5689014.png"},
   {name:"天使的翅膀",yuan:16.0,med:275999,freq:26,tier:"A",batch:"3-5个/批",note:"16,387金/元+高频，披风类首选",yld:16387,profit:0.61,icon:"i1802034.png"},
-  {name:"小企鹅王",yuan:16.0,med:259700,freq:29,tier:"A",batch:"3-5个/批",note:"宠物类成交王之一，15,420金/元",yld:15420,profit:-0.38,icon:"i1802026.png"},
+  {name:"蝙蝠怪斗士套装",yuan:16.0,med:273888,freq:14,tier:"A",batch:"2-4个/批",note:"16,262金/元，比裸蝙蝠怪（12,792）划算得多",yld:16262,profit:0.49,icon:"i1802033.png"},
   {name:"小白雪人",yuan:29.8,med:503000,freq:55,tier:"A",batch:"2-4个/批",note:"全场最热（55笔）但金价折¥仅微利0.46元——跑量可以，囤别多",yld:16035,profit:0.46,icon:"i5000020.png"},
-  {name:"上班族眼镜",yuan:6.8,med:119888,freq:23,tier:"A",batch:"5-8个/批",note:"16,749金/元，外观类黑马",yld:16749,profit:0.41,icon:"i1022019.png"},
-  {name:"蝙蝠怪斗士套装",yuan:16.0,med:268844,freq:14,tier:"A",batch:"2-4个/批",note:"15,963金/元，比裸蝙蝠怪（12,792）划算得多",yld:15963,profit:0.17,icon:"i1802033.png"},
-  {name:"乖猫猫双肩包",yuan:10.8,med:177222,freq:14,tier:"A",batch:"3-5个/批",note:"15,589金/元稳定",yld:15589,profit:-0.14,icon:"i1102186.png"},
-  {name:"熊猫",yuan:22.8,med:379000,freq:8,tier:"A",batch:"2-3个/批",note:"15,792金/元",yld:15792,profit:0.0,icon:"i5000008.png"},
-  {name:"乖仔裤",yuan:5.8,med:95833,freq:12,tier:"A",batch:"5-8个/批",note:"15,697金/元，低价快走",yld:15697,profit:-0.03,icon:"i1060067.png"},
-  {name:"黑色小猫",yuan:19.9,med:349991,freq:3,tier:"A",batch:"1-2个试水",note:"16,708金/元但样本少",yld:16708,profit:1.16,icon:"i5000004.png"},
-  {name:"乌龟背壳",yuan:7.8,med:176600,freq:2,tier:"A",batch:"1-2个试水",note:"21,509金/元，频次低先试水",yld:21509,profit:2.82,icon:"i1102020.png"},
-  {name:"猴子",yuan:25.8,med:391616,freq:30,tier:"B",batch:"1-2个/批",note:"高频但14,420金/元低于买金线，谨慎补货",yld:14420,profit:-2.24,icon:"i5000011.png"},
-  {name:"雪犬",yuan:24.8,med:374443,freq:16,tier:"B",batch:"1-2个/批",note:"14,344金/元，边缘",yld:14344,profit:-2.27,icon:"i5000006.png"},
-  {name:"小白虎",yuan:26.8,med:420077,freq:15,tier:"B",batch:"1-2个/批",note:"14,891金/元，边缘",yld:14891,profit:-1.53,icon:"i5000012.png"},
-  {name:"乖仔衣",yuan:6.8,med:105511,freq:17,tier:"B",batch:"3-5个/批",note:"14,741金/元，量大利薄",yld:14741,profit:-0.45,icon:"i1040078.png"},
-  {name:"五月花环",yuan:8.8,med:128000,freq:13,tier:"B",batch:"2-4个/批",note:"13,818金/元",yld:13818,profit:-1.1,icon:"i1002506.png"},
-  {name:"黑小猪",yuan:24.8,med:383999,freq:6,tier:"B",batch:"1-2个/批",note:"14,710金/元",yld:14710,profit:-1.7,icon:"i5000007.png"},
-  {name:"恐龙公主",yuan:25.8,med:425000,freq:4,tier:"B",batch:"1-2个试水",note:"15,649金/元，样本少",yld:15649,profit:-0.23,icon:"i5000010.png"},
-  {name:"恐龙王子",yuan:25.8,med:439999,freq:1,tier:"B",batch:"1个试水",note:"16,202金/元，样本极少",yld:16202,profit:0.67,icon:"i5000009.png"},
-  {name:"一枝玫瑰",yuan:6.8,med:110000,freq:7,tier:"B",batch:"2-4个/批",note:"15,368金/元",yld:15368,profit:-0.18,icon:"i1012006.png"},
+  {name:"自动服用魔量药水技能",yuan:15.8,med:257553,freq:24,tier:"B",batch:"5-10个/批",note:"中位25.8万略低于买金线，但当前挂价298,898已回升到17,965——按现价挂可倒",yld:15487,profit:-0.31,icon:"i5190006.png"},
+  {name:"小企鹅王",yuan:16.0,med:259700,freq:29,tier:"B",batch:"3-5个/批",note:"宠物类高频，15,420金/元贴着买金线，金价回暖即转正",yld:15420,profit:-0.38,icon:"i1802026.png"},
+  {name:"洗2转技能点卷轴",yuan:6.0,med:91887,freq:18,tier:"B",batch:"10-15张/批",note:"中位9.2万略亏，但涨势凶猛（当前116,000→18,367）——按11.5万+挂，别挂9万以下",yld:14549,profit:-0.48,icon:"i5050002.png"},
 ];
 const AVOID = [
-  {name:"蝙蝠怪",yuan:38.0,med:511700,freq:75,yld:12792,note:"全场最热但税后仅12,792金/元，按当前金价每只净亏约7元——立即停止补货，库存降价清",icon:"i5000024.png"},
-  {name:"褐色小猫",yuan:19.9,med:268775,freq:1,yld:12831,note:"12,831金/元低于买金线",icon:"i5000000.png"},
+  {name:"蝙蝠怪",yuan:38.0,med:511700,freq:75,yld:12792,note:"全场最热但税后仅12,792金/元（当前挂价588,888折算也只有14,730）——按当前金价每只净亏约7元，停止补货，库存降价清",icon:"i5000024.png"},
+  {name:"万能宠物食物",yuan:3.5,med:30000,freq:33,yld:8143,note:"成交33笔的热货，但真实中位仅3万金，税后8,143金/元，每罐亏约1.7元——别被销量迷惑"},
+  {name:"缩地石",yuan:1.0,med:11999,freq:23,yld:11399,note:"此前视频误读为10万金，真实中位约1.2万。波动极烈（1万~2.7万）：常态价别碰，只有在挂价≥1.7万时才有赚头，可囤几颗等峰值挂2万+",icon:"i5040000.png"},
   {name:"万能高级染发卡",yuan:9.8,med:93000,freq:27,yld:9015,note:"9,015金/元，热但亏",icon:"i5151036.png"},
-  {name:"皇家整容券",yuan:3.2,med:66666,freq:27,yld:19791,note:"商城已不单卖（仅整容包），存量卖完即止"},
-  {name:"皇家理发券",yuan:3.2,med:125900,freq:29,yld:37377,note:"商城已不单卖（仅发型包），存量卖完即止"},
+  {name:"原地复活术",yuan:2.1,med:7200,freq:17,yld:3257,note:"真实中位约7,200金，每个净亏≈1.67元，别碰",icon:"i5510000.png"},
+  {name:"红喇叭",yuan:0.1,med:240,freq:17,yld:2280,note:"真实价仅约240金（视频数字误读），每吹一个亏0.09元；100点券版同款同样不值",icon:"i5071000.png"},
+  {name:"皇家整容券",yuan:3.2,med:66666,freq:27,yld:19791,note:"效率其实高于买金线，但商城已不单卖（仅整容包），存量卖完即止"},
+  {name:"皇家理发券",yuan:3.2,med:125900,freq:29,yld:37377,note:"效率很高，但商城已不单卖（仅发型包），存量卖完即止"},
   {name:"水果雪糕",yuan:28.0,med:39999,freq:23,yld:1357,note:"1,357金/元，巨亏（礼包货勿单买）",icon:"i5240007.png"},
   {name:"新鲜香蕉",yuan:28.0,med:28444,freq:12,yld:965,note:"965金/元，巨亏",icon:"i5240000.png"},
   {name:"新鲜肉",yuan:28.0,med:110000,freq:10,yld:3732,note:"3,732金/元，亏",icon:"i5240006.png"},
   {name:"骨头",yuan:28.0,med:20000,freq:7,yld:679,note:"679金/元，巨亏",icon:"i5240002.png"},
   {name:"万能护肤券",yuan:4.8,med:2500,freq:8,yld:495,note:"495金/元，巨亏",icon:"i5153015.png"},
   {name:"一次性隐形眼镜（综合）",yuan:5.0,med:503,freq:2,yld:96,note:"96金/元，巨亏",icon:"i5152111.png"},
-  {name:"红喇叭(100点券版)",yuan:1.0,med:3999,freq:17,yld:3799,note:"同款有10点券版，别买贵"},
 ];
 const TREND = [
   {n:"宠物增益自动技能",ic:"pet-skill.png",low:391000,chg:"+28.4% 较上次",dir:"is-up",c:[229993,221998,331866,326600,304444,391000]},
@@ -687,7 +687,7 @@ const MINE = new Set(["宠物增益自动技能","洗能力点卷轴","洗1转�
 const TIERS = [
   ["S","闭眼倒：效率全面碾压买金线","s0"],
   ["A","稳定赚：效率高于买金线","t1"],
-  ["B","边缘：量大利薄或样本少","t2"]
+  ["B","边缘：中位略低于买金线，按当前挂价择机可倒","t2"]
 ];
 const recCard = (r,cls) => `
   <div class="rec ${cls}">
