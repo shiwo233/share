@@ -124,8 +124,7 @@ tfoot td{color:var(--acc2);font-weight:800;background:rgba(240,180,91,.06);borde
 .gnote .gv small{font-size:.6em;color:var(--sub);font-weight:400}
 .gnote .gs{font-size:12px;color:var(--sub);margin-top:6px}
 .gnote.warn{border-color:rgba(224,122,106,.5)}
-.gnote.warn .gv{color:var(--red)}
-/* screenshots */
+.gnote.warn .gv{color:var(--red)}/* screenshots */
 .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:760px){.shot-grid{grid-template-columns:repeat(3,1fr)}}
 .shot{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:zoom-in;transition:.3s;position:relative}
@@ -157,7 +156,7 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <body>
 <div id="progress"></div>
 <nav id="nav"><div class="inner">
-  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#gold">金价</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#round2">二轮</a><a class="nl" href="#records">凭证</a>
+  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#gold">金价</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#round2">二轮</a><a class="nl" href="#round3">三轮</a><a class="nl" href="#records">凭证</a>
   <span class="spacer"></span>
   <span class="sep"></span>
   <a class="nl home" href="../wiki/">主页</a>
@@ -167,16 +166,16 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <header>
   <div class="kicker">AUCTION LEDGER · 2026.08</div>
   <h1 class="hero">拍卖行<br><em>收支总账</em></h1>
-  <p class="hero-sub">2026-08-12 交易快照：54 笔已成交 · 8 件在售挂单 · 2 件背包未上架<br>已计入 5% 交易手续费，下架费 2,000 金/件另计</p>
+  <p class="hero-sub">三轮合计：419 件已成交 · 第一轮 08-12 截图 · 第二轮 08-13 截图 · 第三轮 08-13~16 录屏（40 页）<br>已计入 5% 交易手续费与 2,000 金/件下架费</p>
   <div class="hero-cta">
     <a class="btn pri" href="#overview">查看总账</a>
     <a class="btn" href="#insights">直接看结论</a>
   </div>
   <div class="stats">
-    <div class="stat"><b>1,213.2 元</b><span>总投入成本（含库存）</span></div>
-    <div class="stat"><b>1,421 万金</b><span>已售税后净收入</span></div>
-    <div class="stat"><b>14,297</b><span>每元综合产出（金）</span></div>
-    <div class="stat"><b>82%</b><span>收益已落袋比例</span></div>
+    <div class="stat"><b>3,050.9 元</b><span>三轮总投入成本</span></div>
+    <div class="stat"><b>4,237 万金</b><span>三轮已售税后净收入</span></div>
+    <div class="stat"><b>13,887</b><span>每元综合产出（金）</span></div>
+    <div class="stat"><b>419 件</b><span>三轮累计成交件数</span></div>
   </div>
 </header>
 
@@ -184,27 +183,27 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 <section id="overview">
   <div class="sec-tag rv">OVERVIEW</div>
   <h2 class="rv">总账一览</h2>
-  <p class="sec-desc rv">成本按进货价核算（四件套 12.8 元摊入理发/整容/染发/隐形四件），收入均已扣除 5% 手续费。</p>
+  <p class="sec-desc rv">三轮合计口径：成本按进货价/商城点券价核算（100 点券 = 1 元），收入均已扣除 5% 手续费与下架费。</p>
   <div class="ov rv">
     <div class="ov-cell">
-      <div class="lab">总投入成本</div>
-      <div class="val">1,213.2<small>元</small></div>
-      <div class="note">已售 1,007.2 + 库存 206</div>
+      <div class="lab">三轮总投入成本</div>
+      <div class="val">3,050.9<small>元</small></div>
+      <div class="note">一轮 1,213.2 + 二轮 374.8 + 三轮 1,462.9</div>
     </div>
     <div class="ov-cell">
-      <div class="lab">已售净收入</div>
-      <div class="val">14,207,634<small>金</small></div>
-      <div class="note">毛额 14,955,404，手续费 747,770</div>
+      <div class="lab">三轮已售净收入</div>
+      <div class="val">42,366,869<small>金</small></div>
+      <div class="note">一轮 14,207,634 + 二轮 5,559,372 + 三轮 22,599,863</div>
     </div>
     <div class="ov-cell">
-      <div class="lab">库存变现预期</div>
+      <div class="lab">一轮库存变现预期</div>
       <div class="val">3,137,407<small>金</small></div>
       <div class="note">在售 2,352,074 + 背包约 785,333（税后）</div>
     </div>
     <div class="ov-cell hot">
       <div class="lab">综合产出效率</div>
-      <div class="val">14,297<small>金/元</small></div>
-      <div class="note">全部变现后预计净额约 1,734 万金</div>
+      <div class="val">13,887<small>金/元</small></div>
+      <div class="note">效率逐轮提升：14,100 → 14,833 → 15,387</div>
     </div>
   </div>
 </section>
@@ -381,11 +380,75 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
   </div>
 </section>
 
+<!-- ===================== ROUND 3 ===================== -->
+<section id="round3">
+  <div class="sec-tag rv">ROUND 03 · 2026-08-16</div>
+  <h2 class="rv">第三轮：宠物军团入场，效率三连升</h2>
+  <p class="sec-desc rv">数据来源：08-16 00:37 拍卖行录屏（成交记录第 1–40 页，第 40 页末笔属第二轮已剔除）。进货价按商城在售清单核算（100 点券 = 1 元），新货源：小企鹅王 16 元、天使的翅膀 16 元、猴子 25.8 元、褐色小猫 19.9 元。紫矿石母矿 / 黑郁金香 / 莩咒娃娃 / 拳甲攻击卷轴10% 为非商城掉落，不计成本。</p>
+  <p class="sec-desc rv" style="color:var(--acc2)">⚠️ 录屏在两次快速翻页中跳过了 2 页（约 18 笔，按相邻页推断多为洗能力点卷轴），本轮实际总额预计比下表高约 28 万金，待补录后校正。</p>
+  <div class="ov rv">
+    <div class="ov-cell">
+      <div class="lab">本轮进货成本</div>
+      <div class="val">1,462.9<small>元</small></div>
+      <div class="note">10 种商城道具 · 313 件成交</div>
+    </div>
+    <div class="ov-cell">
+      <div class="lab">本轮税后净收入</div>
+      <div class="val">22,509,180<small>金</small></div>
+      <div class="note">毛额 23,746,505，手续费 1,187,325 + 下架费 50,000</div>
+    </div>
+    <div class="ov-cell hot">
+      <div class="lab">本轮产出效率</div>
+      <div class="val">15,387<small>金/元</small></div>
+      <div class="note">三连升：14,100 → 14,833 → 15,387</div>
+    </div>
+    <div class="ov-cell">
+      <div class="lab">非商城额外收入</div>
+      <div class="val">+90,683<small>金</small></div>
+      <div class="note">4 种掉落道具 · 零成本白捡（税后）</div>
+    </div>
+  </div>
+  <h3 class="sub-h rv">各道具净收入（税后 · 含下架费扣减）</h3>
+  <div id="r3-revenue" class="rv"></div>
+  <h3 class="sub-h rv">每元成本产出效率</h3>
+  <div id="r3-roi" class="rv"></div>
+  <h3 class="sub-h rv">明细核算</h3>
+  <div class="bx rv">
+    <table>
+      <thead>
+        <tr><th>道具名称</th><th>成交/未售</th><th>单位成本(元)</th><th>总成本(元)</th><th>毛收入(金)</th><th>手续费+下架费(金)</th><th>净收入(金)</th><th>金/元</th></tr>
+      </thead>
+      <tbody id="r3-detail"></tbody>
+      <tfoot>
+        <tr><td>商城道具合计</td><td>313 / 25</td><td>—</td><td>1,462.9</td><td>23,746,505</td><td>1,237,325</td><td>22,509,180</td><td>15,387</td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="insights rv" style="margin-top:26px">
+    <div class="insight">
+      <h3>新货源全线正收益</h3>
+      <p>四种宠物/披风新品多数跑赢综合线：不拣取技能 <b>17,434</b> 金/元居首，天使的翅膀 <b>15,523</b>、小企鹅王 <b>15,014</b> 紧随；猴子 <b>14,209</b> 与褐色小猫 <b>12,630</b> 低于本轮综合线，进货优先级靠后。</p>
+    </div>
+    <div class="insight">
+      <h3>下架费开始咬人</h3>
+      <p>本轮 25 件手动下架吞掉 <b>5 万金</b>（不拣取 6 件、婚礼券 4 件、宠物增益 4 件为主）。婚礼券 9 售 4 退、天使的翅膀 2 售 2 退——定价偏高的品类宁愿降价 5% 挂着重卖，也别反复下架。</p>
+    </div>
+    <div class="insight">
+      <h3>卷轴是现金流基本盘</h3>
+      <p>洗能力点 208 张 + 洗1转 53 张贡献 <b>661 万金</b> 净收入（占本轮 29%），周转以小时计；金价贬值周期里，快周转卷轴比囤高价宠物更抗跌。</p>
+    </div>
+    <div class="insight">
+      <h3>人民币口径仍在水下</h3>
+      <p>本轮净收入按 08-15 金价（0.6333 元/万金）折 <b>≈1,426 元</b>，对 1,462.9 元成本仍差约 37 元回本；三轮合计净额 4,237 万金 ≈ 2,683 元，距 3,050.9 元总成本还差约 368 元——金价不止跌，账面难转正。</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== 07 RECORDS ===================== -->
 <section id="records">
   <div class="sec-tag rv">07 / RECORDS</div>
   <h2 class="rv">原始成交凭证</h2>
-  <p class="sec-desc rv">全部统计口径来自以下 17 张拍卖行截图（第一轮 9 张 + 第二轮 8 张，含 08-13 记录），点击可放大核对。</p>
+  <p class="sec-desc rv">全部统计口径来自 17 张拍卖行截图（第一轮 9 张 + 第二轮 8 张）与第三轮录屏的 6 张关键帧（完整 40 页，其中 2 页因翻页过快缺失），点击可放大核对。</p>
   <div class="shot-grid rv" id="shot-grid"></div>
 </section>
 
@@ -403,8 +466,8 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 </div>
 
 <footer>
-  数据来源：游戏拍卖行交易记录截图（2026-08-12，第 1–7 页 / 共 26 页）<br>
-  手续费 5% ｜ 下架费 2,000 金/件 ｜ 统计截至 2026-08-12 ｜ 仅作个人记账用途
+  数据来源：游戏拍卖行交易记录截图（第一、二轮）与 2026-08-16 录屏（第三轮，40 页）｜ 商城进货价：mxdc.dvg.cn 在售清单<br>
+  手续费 5% ｜ 下架费 2,000 金/件 ｜ 统计截至 2026-08-16 ｜ 仅作个人记账用途
 </footer>
 <div id="lightbox" onclick="this.classList.remove('on')"><img id="lbImg" alt=""><div class="lb-cap" id="lbCap"></div></div>
 <div id="toTop" onclick="scrollTo({top:0,behavior:'smooth'})">↑</div>
@@ -430,7 +493,9 @@ const ICON = {
   "宠物增益自动技能":"pet-skill","蝙蝠怪":"bat","简朴婚礼券":"wedding","皇家理发券":"royal-hair",
   "皇家整容券":"royal-face","万能高级染发卡":"dye-card","一次性隐形眼镜（综合）":"contact-lens",
   "不拣取特定道具技能":"no-pickup","自动服用血量药水技能":"hp-potion","洗1转技能点卷轴":"sp-reset",
-  "万能护肤券":"skin-coupon","怪猫的眼":"cat-eye","洗能力点卷轴":"ap-reset","小白雪人":"snowman"
+  "万能护肤券":"skin-coupon","怪猫的眼":"cat-eye","洗能力点卷轴":"ap-reset","小白雪人":"snowman",
+  "小企鹅王":"penguin-king","天使的翅膀":"angel-wing","猴子":"monkey","褐色小猫":"brown-cat",
+  "紫矿石母矿":"violet-ore","黑郁金香":"black-tulip","拳甲攻击卷轴10%":"glove-atk10","莩咒娃娃":"voodoo-doll"
 };
 const ic = (name,cls="ic") => ICON[name]?`<img class="${cls}" src="assets/icons/${ICON[name]}.png" alt="${name}">`:"";
 
@@ -558,33 +623,85 @@ document.getElementById("r2-detail").innerHTML =
     <td>${fmt(d.net)}</td><td class="${d.roi>=R2_AVG?"pos":""}">${fmt(d.roi)}</td>
   </tr>`).join("");
 
+/* round 3 */
+const sold3 = [
+  {name:"宠物增益自动技能", qty:14, unsold:4, cost:22.8, gross:5065199},
+  {name:"简朴婚礼券",       qty:9,  unsold:4, cost:30,   gross:4452825},
+  {name:"洗1转技能点卷轴",  qty:53, unsold:3, cost:4,    gross:3665820},
+  {name:"洗能力点卷轴",     qty:208,unsold:1, cost:1,    gross:3297855},
+  {name:"蝙蝠怪",           qty:4,  unsold:1, cost:38,   gross:2240752},
+  {name:"不拣取特定道具技能",qty:14,unsold:6, cost:8,    gross:2067983},
+  {name:"小企鹅王",         qty:7,  unsold:1, cost:16,   gross:1772207},
+  {name:"天使的翅膀",       qty:2,  unsold:2, cost:16,   gross:527088},
+  {name:"猴子",             qty:1,  unsold:1, cost:25.8, gross:388001},
+  {name:"褐色小猫",         qty:1,  unsold:2, cost:19.9, gross:268775},
+  {name:"黑郁金香",         qty:1,  unsold:0, cost:0,    gross:78888,  tag:"非商城"},
+  {name:"拳甲攻击卷轴10%",  qty:1,  unsold:0, cost:0,    gross:15433,  tag:"非商城"},
+  {name:"莩咒娃娃",         qty:1,  unsold:0, cost:0,    gross:960,    tag:"非商城"},
+  {name:"紫矿石母矿",       qty:1,  unsold:0, cost:0,    gross:175,    tag:"非商城"},
+];
+sold3.forEach(d=>{ d.fees=Math.round(d.gross*0.05)+d.unsold*2000; d.net=d.gross-d.fees; d.tcost=d.qty*d.cost; d.roi=d.tcost>0?d.net/d.tcost:0; });
+const R3_AVG = 15387;
+const r3revMax = Math.max(...sold3.map(d=>d.net));
+document.getElementById("r3-revenue").innerHTML =
+  sold3.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}${d.tag?`<span class="tag">${d.tag}</span>`:""}</span></div>
+    <div class="bar-track"><div class="bar-fill" data-w="${(d.net/r3revMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.net)} 金<small>售 ${d.qty} 件${d.unsold?` · 下架 ${d.unsold}`:""}${d.tcost?` · 成本 ${d.tcost.toFixed(1)} 元`:" · 零成本"}</small></div>
+  </div>`).join("");
+const r3roiList = sold3.filter(d=>d.tcost>0);
+const r3roiMax = Math.max(...r3roiList.map(d=>d.roi));
+document.getElementById("r3-roi").innerHTML =
+  r3roiList.slice().sort((a,b)=>b.roi-a.roi).map(d=>`
+  <div class="bar-row">
+    <div class="bar-name">${ic(d.name)}<span>${d.name}</span></div>
+    <div class="bar-track"><div class="bar-fill ${d.roi<R3_AVG?"dim":""}" data-w="${(d.roi/r3roiMax*100).toFixed(2)}"></div></div>
+    <div class="bar-num">${fmt(d.roi)} 金/元<small>净收入 ${fmt(d.net)} 金</small></div>
+  </div>`).join("");
+document.getElementById("r3-detail").innerHTML =
+  sold3.slice().sort((a,b)=>b.net-a.net).map(d=>`
+  <tr>
+    <td>${ic(d.name)}${d.name}${d.tag?` <span class="tag">${d.tag}</span>`:""}</td><td>${d.qty} / ${d.unsold}</td>
+    <td>${d.cost?d.cost.toFixed(1):"—"}</td><td>${d.tcost?d.tcost.toFixed(1):"—"}</td>
+    <td>${fmt(d.gross)}</td><td class="neg">${fmt(d.fees)}</td>
+    <td>${fmt(d.net)}</td><td class="${d.roi>=R3_AVG?"pos":""}">${d.tcost>0?fmt(d.roi):"—"}</td>
+  </tr>`).join("");
+
+
 /* screenshots */
 const SHOTS = [
-  ["01","成交记录 · 第 1 页","护肤券/隐形眼镜/婚礼券/宠物技能"],
-  ["02","成交记录 · 第 2 页","宠物技能/不拣取技能/蝙蝠怪"],
-  ["03","成交记录 · 第 3 页","宠物技能/皇家整容券/血药技能"],
-  ["04","成交记录 · 第 4 页","宠物技能/染发卡/皇家理发券"],
-  ["05","成交记录 · 第 5 页","洗点卷轴/蝙蝠怪/婚礼券"],
-  ["06","成交记录 · 第 6 页","皇家整容券/理发券/宠物技能"],
-  ["07","成交记录 · 第 7 页","宠物增益自动技能 ×3"],
-  ["08","在售挂单 · 第 1 页","婚礼券/不拣取/血药/宠物技能"],
-  ["09","在售挂单 · 第 2 页","宠物增益自动技能 ×2"],
-  ["10","二轮 · 页 1/29","宠物技能/回城卷中标×3/洗能力"],
-  ["11","二轮 · 页 2/29","洗能力×7/不拣取/洗1转"],
-  ["12","二轮 · 页 3/29","蝙蝠怪未售/洗能力×8"],
-  ["13","二轮 · 页 4/29","婚礼券/小白雪人/洗能力×6/宠物技能"],
-  ["14","二轮 · 08-13","洗能力/小白雪人/洗1转×3"],
-  ["15","二轮 · 08-12","洗1转/婚礼券/蝙蝠怪 55.9万"],
-  ["16","二轮 · 08-12","婚礼券×2/宠物技能/不拣取"],
-  ["17","二轮 · 页 7/29","祖母绿/青蛙/不拣取/血药"],
+  ["01.png","成交记录 · 第 1 页","护肤券/隐形眼镜/婚礼券/宠物技能"],
+  ["02.png","成交记录 · 第 2 页","宠物技能/不拣取技能/蝙蝠怪"],
+  ["03.png","成交记录 · 第 3 页","宠物技能/皇家整容券/血药技能"],
+  ["04.png","成交记录 · 第 4 页","宠物技能/染发卡/皇家理发券"],
+  ["05.png","成交记录 · 第 5 页","洗点卷轴/蝙蝠怪/婚礼券"],
+  ["06.png","成交记录 · 第 6 页","皇家整容券/理发券/宠物技能"],
+  ["07.png","成交记录 · 第 7 页","宠物增益自动技能 ×3"],
+  ["08.png","在售挂单 · 第 1 页","婚礼券/不拣取/血药/宠物技能"],
+  ["09.png","在售挂单 · 第 2 页","宠物增益自动技能 ×2"],
+  ["10.png","二轮 · 页 1/29","宠物技能/回城卷中标×3/洗能力"],
+  ["11.png","二轮 · 页 2/29","洗能力×7/不拣取/洗1转"],
+  ["12.png","二轮 · 页 3/29","蝙蝠怪未售/洗能力×8"],
+  ["13.png","二轮 · 页 4/29","婚礼券/小白雪人/洗能力×6/宠物技能"],
+  ["14.png","二轮 · 08-13","洗能力/小白雪人/洗1转×3"],
+  ["15.png","二轮 · 08-12","洗1转/婚礼券/蝙蝠怪 55.9万"],
+  ["16.png","二轮 · 08-12","婚礼券×2/宠物技能/不拣取"],
+  ["17.png","二轮 · 页 7/29","祖母绿/青蛙/不拣取/血药"],
+  ["18.jpg","三轮 · 页 40/45","洗1转×5/洗能力×2/未售1笔"],
+  ["19.jpg","三轮 · 页 31/45","婚礼券/不拣取/黑郁金香/宠物技能"],
+  ["20.jpg","三轮 · 页 20/45","猴子 38.8万/洗能力×4"],
+  ["21.jpg","三轮 · 页 12/45","拳甲攻击卷轴/洗能力×6/洗1转×2"],
+  ["22.jpg","三轮 · 页 5/45","宠物增益×5/婚礼券/洗1转×2"],
+  ["23.jpg","三轮 · 页 1/45","婚礼券 54.9万/洗1转×8"],
 ];
 document.getElementById("shot-grid").innerHTML = SHOTS.map(([f,t,d])=>`
   <div class="shot" onclick="openLb('${f}','${t}')">
-    <img src="assets/shots/${f}.png" alt="${t}" loading="lazy">
+    <img src="assets/shots/${f}" alt="${t}" loading="lazy">
     <div class="cap"><b>${t}</b><span>${d}</span></div>
   </div>`).join("");
 function openLb(f,t){
-  document.getElementById("lbImg").src=`assets/shots/${f}.png`;
+  document.getElementById("lbImg").src=`assets/shots/${f}`;
   document.getElementById("lbCap").textContent=t+" ｜ 点击任意处关闭";
   document.getElementById("lightbox").classList.add("on");
 }
