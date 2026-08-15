@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>拍卖行收支总账 · 游戏搬砖收益核算</title>
+<title>倒货推荐系统 · RMT ARBITRAGE · 漂漂猪拍卖行</title>
 <style>
 :root{
   --bg:#0a0e15; --bg2:#101623; --card:#141c2b; --line:#22304a;
@@ -151,12 +151,70 @@ tfoot td{color:var(--acc2);font-weight:800;background:rgba(240,180,91,.06);borde
 footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;text-align:center;color:var(--sub);font-size:12.5px}
 #toTop{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:80;cursor:pointer}
 #toTop.show{opacity:1;pointer-events:auto}
+/* recs / avoid / timing / trend */
+.recs-note{background:rgba(240,180,91,.08);border:1px solid rgba(240,180,91,.4);border-radius:14px;padding:14px 18px;font-size:13.5px;color:var(--sub);margin-bottom:8px}
+.recs-note b{color:var(--acc2)}
+.avoid-note{background:rgba(224,122,106,.08);border:1px solid rgba(224,122,106,.4);border-radius:14px;padding:14px 18px;font-size:13.5px;color:var(--sub);margin-bottom:22px}
+.avoid-note b{color:var(--red)}
+.tier-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:30px 0 14px}
+.tier-h .tg{font-size:19px;font-weight:900;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tier-h .tg.s{background:rgba(240,180,91,.16);color:var(--acc2);border:1px solid rgba(240,180,91,.5)}
+.tier-h .tg.a{background:rgba(91,140,255,.14);color:var(--acc);border:1px solid rgba(91,140,255,.45)}
+.tier-h .tg.b{background:rgba(157,107,255,.14);color:var(--pur);border:1px solid rgba(157,107,255,.45)}
+.tier-h h3{font-size:17px;font-weight:800}
+.tier-h p{font-size:12.5px;color:var(--sub);width:100%}
+.rec-grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:560px){.rec-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.rec-grid{grid-template-columns:1fr 1fr 1fr}}
+.rec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;transition:.3s}
+.rec:hover{border-color:var(--acc);transform:translateY(-2px)}
+.rec.s0{border-color:rgba(240,180,91,.45)}
+.rec-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rec-ic{width:34px;height:34px;border-radius:8px;image-rendering:pixelated;border:1px solid var(--line);flex-shrink:0}
+.rec-noimg{width:34px;height:34px;border-radius:8px;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--sub);flex-shrink:0}
+.rec-name{font-size:14px;font-weight:700;line-height:1.35}
+.rec-name .mine{display:inline-block;font-size:10px;color:var(--acc2);border:1px solid rgba(240,180,91,.5);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:1px;letter-spacing:.05em}
+.rec-yld{font-size:clamp(19px,4.5vw,23px);font-weight:900;line-height:1.2;font-variant-numeric:tabular-nums}
+.rec-yld small{font-size:.48em;color:var(--sub);font-weight:400;margin-left:4px}
+.rec.s0 .rec-yld{color:var(--acc2)}
+.rec.t1 .rec-yld{color:var(--acc)}
+.rec.t2 .rec-yld{color:var(--txt)}
+.rec-meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--sub);margin-top:8px}
+.rec-meta b{color:var(--txt);font-weight:600}
+.rec-profit{font-weight:700}
+.freq{display:flex;align-items:center;gap:8px;margin:8px 0 2px;font-size:11.5px;color:var(--sub)}
+.freq .ft{flex:1;height:6px;background:#1c2740;border-radius:99px;overflow:hidden}
+.freq .ff{height:100%;border-radius:99px;background:var(--grad)}
+.freq b{color:var(--txt)}
+.rec-note{font-size:12px;color:var(--sub);border-top:1px solid var(--line);padding-top:8px;margin-top:8px;line-height:1.6}
+th.l,td.l{text-align:left}
+td.l{white-space:normal;min-width:200px;line-height:1.55}
+.noimg-t{display:inline-block;width:26px;height:26px;vertical-align:-8px;margin-right:9px;border:1px dashed var(--line);border-radius:7px;text-align:center;line-height:24px;font-size:11px;color:var(--sub)}
+/* trend cards */
+.tw-grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:620px){.tw-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.tw-grid{grid-template-columns:1fr 1fr 1fr}}
+.tw{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;transition:.3s}
+.tw:hover{border-color:var(--acc);transform:translateY(-2px)}
+.tw-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tw-name{font-size:13.5px;font-weight:700;line-height:1.3}
+.tw-low{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
+.tw-low small{font-size:.58em;color:var(--sub);font-weight:400;margin-left:4px}
+.tw-chg{font-size:12px;font-weight:700;margin-left:8px}
+.tw-chg.is-up{color:var(--green)}
+.tw-chg.is-down{color:var(--red)}
+.tw svg{width:100%;height:auto;display:block;margin-top:8px}
+/* my-sales divider */
+.mytag{max-width:1000px;margin:0 auto;padding:70px 20px 0;text-align:center}
+.mytag .sec-tag{margin-bottom:8px}
+.mytag h2{margin-bottom:8px}
+.mytag p{color:var(--sub);font-size:13.5px;max-width:560px;margin:0 auto}
 </style>
 </head>
 <body>
 <div id="progress"></div>
 <nav id="nav"><div class="inner">
-  <a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#gold">金价</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#round2">二轮</a><a class="nl" href="#round3">三轮</a><a class="nl" href="#records">凭证</a>
+  <a class="nl" href="#recs">推荐榜</a><a class="nl" href="#avoid">避坑</a><a class="nl" href="#timing">时机</a><a class="nl" href="#trend">走势</a><a class="nl" href="#gold">金价</a><a class="nl" href="#overview">总览</a><a class="nl" href="#revenue">净收入</a><a class="nl" href="#roi">效率</a><a class="nl" href="#assets">结构</a><a class="nl" href="#detail">明细</a><a class="nl" href="#inventory">库存</a><a class="nl" href="#insights">洞察</a><a class="nl" href="#round2">二轮</a><a class="nl" href="#round3">三轮</a><a class="nl" href="#records">凭证</a>
   <span class="spacer"></span>
   <span class="sep"></span>
   <a class="nl home" href="../wiki/">主页</a>
@@ -164,20 +222,117 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 </div></nav>
 
 <header>
-  <div class="kicker">AUCTION LEDGER · 2026.08</div>
-  <h1 class="hero">拍卖行<br><em>收支总账</em></h1>
-  <p class="hero-sub">三轮合计：419 件已成交 · 第一轮 08-12 截图 · 第二轮 08-13 截图 · 第三轮 08-13~16 录屏（40 页）<br>已计入 5% 交易手续费与 2,000 金/件下架费</p>
+  <div class="kicker">RMT ARBITRAGE · 漂漂猪 · 2026.08</div>
+  <h1 class="hero">倒货推荐系统<br><em>RMT ARBITRAGE</em></h1>
+  <p class="hero-sub">商业模式：商城点券进货（100 点券 = 1 元）→ 拍卖行金币卖出 → 金币卖给玩家赚差价<br>服务器：漂漂猪 ｜ 已计入 5% 交易手续费与 2,000 金/件下架费</p>
   <div class="hero-cta">
-    <a class="btn pri" href="#overview">查看总账</a>
-    <a class="btn" href="#insights">直接看结论</a>
+    <a class="btn pri" href="#recs">看倒货推荐榜</a>
+    <a class="btn" href="#overview">我的售卖分析</a>
   </div>
   <div class="stats">
-    <div class="stat"><b>3,050.9 元</b><span>三轮总投入成本</span></div>
-    <div class="stat"><b>4,237 万金</b><span>三轮已售税后净收入</span></div>
-    <div class="stat"><b>13,887</b><span>每元综合产出（金）</span></div>
-    <div class="stat"><b>419 件</b><span>三轮累计成交件数</span></div>
+    <div class="stat"><b>62 种</b><span>监控物品</span></div>
+    <div class="stat"><b>29 种</b><span>推荐倒货</span></div>
+    <div class="stat"><b>95,000</b><span>当前最高效率（金/元）· 缩地石</span></div>
+    <div class="stat"><b>0.6333</b><span>漂漂猪金价（元/万金）</span></div>
   </div>
 </header>
+
+<!-- ===================== RECS ===================== -->
+<section id="recs">
+  <div class="sec-tag rv">RECOMMEND · 倒货推荐榜</div>
+  <h2 class="rv">倒货推荐榜</h2>
+  <p class="sec-desc rv">点券进货 → 拍卖行卖出，按「税后金/元」效率分三级。数据：商城点券价 + 拍卖中位成交价（mxdc.dvg.cn），成交热度来自 2026-08-16 行情录屏抽样。</p>
+  <div class="recs-note rv">参考线：当日市场直接买金 ≈ <b>15,789 金/元</b>（漂漂猪 0.6333 元/万金）——税后金/元高于此线才值得倒，低于此线不如直接买金。</div>
+  <div id="recs-groups"></div>
+</section>
+
+<!-- ===================== AVOID ===================== -->
+<section id="avoid">
+  <div class="sec-tag rv">AVOID · 避坑名单</div>
+  <h2 class="rv">避坑名单</h2>
+  <div class="avoid-note rv">这些物品税后效率低于买金线（<b>15,789 金/元</b>）——其中<b>蝙蝠怪</b>是全场成交王（75 笔）但每只净亏约 7 元，立即停止补货，库存降价清。</div>
+  <div class="bx rv">
+    <table>
+      <thead>
+        <tr><th>道具名称</th><th>成本(元)</th><th>拍卖中位(金)</th><th>税后金/元</th><th>成交热度</th><th class="l">避坑原因</th></tr>
+      </thead>
+      <tbody id="avoid-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== TIMING ===================== -->
+<section id="timing">
+  <div class="sec-tag rv">TIMING · 买卖时机</div>
+  <h2 class="rv">买卖时机策略</h2>
+  <p class="sec-desc rv">金价下行周期里的四条操作纪律。</p>
+  <div class="insights rv">
+    <div class="insight">
+      <h3>何时买入</h3>
+      <p><b>金价贬值期 = 倒货黄金期</b>：点券成本固定，拍卖金币价随通胀上行，价差自然拉大。卷轴/消耗品随时补；宠物外观类分批小补，别一次梭哈。</p>
+    </div>
+    <div class="insight">
+      <h3>何时卖出</h3>
+      <p>挂单价锚定<b>市场中位价 ±3%</b>，宁可小降也不下架（下架费 2,000 金/次）。成交后金币<b>尽快卖给玩家</b>——持金每天都在缩水。</p>
+    </div>
+    <div class="insight">
+      <h3>买多少个</h3>
+      <p>S 级卷轴 <b>20-50 张/批</b>、S 级技能 <b>5-10 个/批</b>、A 级 <b>2-5 个/批</b>、B 级 <b>1-2 个试水</b>；单品种资金占用不超过总预算 <b>15%</b>。</p>
+    </div>
+    <div class="insight">
+      <h3>风控线</h3>
+      <p>税后金/元 <b>低于当日买金汇率即停补</b>；某品种连续 2 次未成交，<b>降 3-5% 重挂</b>而非下架——下架费是纯亏损。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TREND ===================== -->
+<section id="trend">
+  <div class="sec-tag rv">MARKET WATCH · 价格走势</div>
+  <h2 class="rv">重点物品价格走势</h2>
+  <p class="sec-desc rv">我常卖的 13 种物品：当前最低售价、较上次涨跌，以及近 6 日最低成交参考价走势（数据：mxdc.dvg.cn，截至 2026-08-15）。</p>
+  <div class="tw-grid rv" id="tw-grid"></div>
+</section>
+
+<!-- ===================== GOLD PRICE ===================== -->
+<section id="gold">
+  <div class="sec-tag rv">GOLD PRICE · 金价监控</div>
+  <h2 class="rv">漂漂猪金价走势</h2>
+  <p class="sec-desc rv">数据源：mxdc.dvg.cn（每小时同步，第三方交易平台最低在售口径）。漂漂猪金价 5 天从 1.25 元/万金跌至 0.6333 元/万金，<b style="color:var(--red)">累计贬值 49.3%</b>（全五区同步腰斩 43%–55%）——持金在缩水，搬砖性价比的锚也在移动。</p>
+  <div class="gold-chart rv">
+    <svg id="gold-svg" viewBox="0 0 960 320" role="img" aria-label="漂漂猪金价走势"></svg>
+  </div>
+  <div class="gold-note rv">
+    <div class="gnote warn">
+      <div class="gl">漂漂猪最新金价（08-15）</div>
+      <div class="gv">0.6333<small> 元/万金</small></div>
+      <div class="gs">即 1 元可买 1.58 万金；五区仍是最贵的金价</div>
+    </div>
+    <div class="gnote">
+      <div class="gl">你的搬砖效率 vs 市场买金</div>
+      <div class="gv">14,297<small> 金/元（两轮混合）</small></div>
+      <div class="gs">08-12 市场仅 12,143 金/元 → 当时搬砖划算；08-15 市场 15,789 金/元 → 直接买金已反超</div>
+    </div>
+    <div class="gnote">
+      <div class="gl">已落袋金币的人民币口径</div>
+      <div class="gv">≈ 1,252<small> 元</small></div>
+      <div class="gs">两轮税后 1,976 万金 × 0.6333；若按 08-12 金价口径则为 1,627 元——5 天蒸发约 375 元</div>
+    </div>
+  </div>
+  <div class="bx rv" style="margin-top:14px">
+    <table>
+      <thead><tr><th>区服</th><th>最新（元/万金）</th><th>较 08-10 涨跌</th><th>在售笔数</th></tr></thead>
+      <tbody id="gold-servers"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== MY SALES DIVIDER ===================== -->
+<div class="mytag rv">
+  <div class="sec-tag">MY SALES · 我的售卖分析</div>
+  <h2>三轮售卖核算存档</h2>
+  <p>以下为个人三轮倒货实录：419 件成交、总成本 3,050.9 元、税后净收入 4,237 万金——推荐榜策略的实盘验证。</p>
+</div>
 
 <!-- ===================== OVERVIEW ===================== -->
 <section id="overview">
@@ -238,39 +393,6 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
     <span><i style="background:#f0b45b"></i>已售实收 14,207,634（82.0%）</span>
     <span><i style="background:#5b8cff"></i>在售成交预期 2,352,074（13.6%）</span>
     <span><i style="background:#9d6bff"></i>背包估值 785,333（4.5%）</span>
-  </div>
-</section>
-
-<!-- ===================== GOLD PRICE ===================== -->
-<section id="gold">
-  <div class="sec-tag rv">GOLD PRICE · 金价监控</div>
-  <h2 class="rv">漂漂猪金价走势</h2>
-  <p class="sec-desc rv">数据源：mxdc.dvg.cn（每小时同步，第三方交易平台最低在售口径）。漂漂猪金价 5 天从 1.25 元/万金跌至 0.6333 元/万金，<b style="color:var(--red)">累计贬值 49.3%</b>（全五区同步腰斩 43%–55%）——持金在缩水，搬砖性价比的锚也在移动。</p>
-  <div class="gold-chart rv">
-    <svg id="gold-svg" viewBox="0 0 960 320" role="img" aria-label="漂漂猪金价走势"></svg>
-  </div>
-  <div class="gold-note rv">
-    <div class="gnote warn">
-      <div class="gl">漂漂猪最新金价（08-15）</div>
-      <div class="gv">0.6333<small> 元/万金</small></div>
-      <div class="gs">即 1 元可买 1.58 万金；五区仍是最贵的金价</div>
-    </div>
-    <div class="gnote">
-      <div class="gl">你的搬砖效率 vs 市场买金</div>
-      <div class="gv">14,297<small> 金/元（两轮混合）</small></div>
-      <div class="gs">08-12 市场仅 12,143 金/元 → 当时搬砖划算；08-15 市场 15,789 金/元 → 直接买金已反超</div>
-    </div>
-    <div class="gnote">
-      <div class="gl">已落袋金币的人民币口径</div>
-      <div class="gv">≈ 1,252<small> 元</small></div>
-      <div class="gs">两轮税后 1,976 万金 × 0.6333；若按 08-12 金价口径则为 1,627 元——5 天蒸发约 375 元</div>
-    </div>
-  </div>
-  <div class="bx rv" style="margin-top:14px">
-    <table>
-      <thead><tr><th>区服</th><th>最新（元/万金）</th><th>较 08-10 涨跌</th><th>在售笔数</th></tr></thead>
-      <tbody id="gold-servers"></tbody>
-    </table>
   </div>
 </section>
 
@@ -466,7 +588,7 @@ footer{border-top:1px solid var(--line);margin-top:50px;padding:36px 22px 60px;t
 </div>
 
 <footer>
-  数据来源：游戏拍卖行交易记录截图（第一、二轮）与 2026-08-16 录屏（第三轮，40 页）｜ 商城进货价：mxdc.dvg.cn 在售清单<br>
+  数据来源：商城点券价与拍卖行情 mxdc.dvg.cn ｜ 成交频次：2026-08-16 行情录屏（107 页抽样 873 笔）｜ 三轮售卖核算：拍卖行截图（第一、二轮）+ 08-16 录屏（第三轮，40 页）<br>
   手续费 5% ｜ 下架费 2,000 金/件 ｜ 统计截至 2026-08-16 ｜ 仅作个人记账用途
 </footer>
 <div id="lightbox" onclick="this.classList.remove('on')"><img id="lbImg" alt=""><div class="lb-cap" id="lbCap"></div></div>
@@ -498,6 +620,127 @@ const ICON = {
   "紫矿石母矿":"violet-ore","黑郁金香":"black-tulip","拳甲攻击卷轴10%":"glove-atk10","莩咒娃娃":"voodoo-doll"
 };
 const ic = (name,cls="ic") => ICON[name]?`<img class="${cls}" src="assets/icons/${ICON[name]}.png" alt="${name}">`:"";
+
+/* ===== 倒货推荐榜 / 避坑 / 走势（数据：goldwatch rec-data.json & market-watch.json，2026-08-16） ===== */
+const RECS = [
+  {name:"缩地石",yuan:1.0,med:100000,freq:23,tier:"S",batch:"20-50个/批",note:"1元店道具卖出10万金，产出约为买金的6倍；消耗品复购快，挂9.5-10万秒出",yld:95000,profit:5.02,icon:"i5040000.png"},
+  {name:"红喇叭",yuan:0.1,med:3999,freq:17,tier:"S",batch:"50-100个/批",note:"0.1元成本近4千金，全站最高倍率；薄利多销走量",yld:37990,profit:0.14,icon:"i5071000.png"},
+  {name:"原地复活术",yuan:2.1,med:44000,freq:17,tier:"S",batch:"20-30个/批",note:"副本刚需消耗品，复购稳定，挂4.2-4.4万",yld:19905,profit:0.55,icon:"i5510000.png"},
+  {name:"生命水",yuan:10.0,med:199888,freq:10,tier:"S",batch:"10-20个/批",note:"宠物续命刚需，税后约19万金/件，单件净赚≈2元",yld:18989,profit:2.03,icon:"i5689014.png"},
+  {name:"洗能力点卷轴",yuan:1.0,med:19789,freq:17,tier:"S",batch:"30-50张/批",note:"你走量基本盘，小时级周转；挂价贴市场中位即可",yld:18800,profit:0.19,icon:"i5050000.png"},
+  {name:"洗1转技能点卷轴",yuan:4.0,med:77444,freq:35,tier:"S",batch:"20-30张/批",note:"成交最热卷轴，税后7.36万/张，单件净赚≈0.66元",yld:18393,profit:0.66,icon:"i5050001.png"},
+  {name:"洗2转技能点卷轴",yuan:6.0,med:115589,freq:18,tier:"S",batch:"15-25张/批",note:"新晋高频，税后约11万/张，净赚≈0.97元",yld:18302,profit:0.95,icon:"i5050002.png"},
+  {name:"自动服用血量药水技能",yuan:8.8,med:220849,freq:8,tier:"S",batch:"5-10个/批",note:"23,842金/元，宠物技能里效率第一",yld:23842,profit:4.49,icon:"i5190001.png"},
+  {name:"自动服用魔量药水技能",yuan:15.8,med:297450,freq:24,tier:"S",batch:"5-10个/批",note:"高频+高效（17,885），尽快补货",yld:17885,profit:2.1,icon:"i5190006.png"},
+  {name:"宠物增益自动技能",yuan:22.8,med:409888,freq:27,tier:"S",batch:"5-8个/批",note:"你的招牌货，税后38.9万/件，净赚≈1.85元",yld:17079,profit:1.86,icon:"i5190010.png"},
+  {name:"天使的翅膀",yuan:16.0,med:275999,freq:26,tier:"A",batch:"3-5个/批",note:"16,387金/元+高频，披风类首选",yld:16387,profit:0.61,icon:"i1802034.png"},
+  {name:"小企鹅王",yuan:16.0,med:259700,freq:29,tier:"A",batch:"3-5个/批",note:"宠物类成交王之一，15,420金/元",yld:15420,profit:-0.38,icon:"i1802026.png"},
+  {name:"小白雪人",yuan:29.8,med:503000,freq:55,tier:"A",batch:"2-4个/批",note:"全场最热（55笔）但金价折¥仅微利0.46元——跑量可以，囤别多",yld:16035,profit:0.46,icon:"i5000020.png"},
+  {name:"上班族眼镜",yuan:6.8,med:119888,freq:23,tier:"A",batch:"5-8个/批",note:"16,749金/元，外观类黑马",yld:16749,profit:0.41,icon:"i1022019.png"},
+  {name:"蝙蝠怪斗士套装",yuan:16.0,med:268844,freq:14,tier:"A",batch:"2-4个/批",note:"15,963金/元，比裸蝙蝠怪（12,792）划算得多",yld:15963,profit:0.17,icon:"i1802033.png"},
+  {name:"乖猫猫双肩包",yuan:10.8,med:177222,freq:14,tier:"A",batch:"3-5个/批",note:"15,589金/元稳定",yld:15589,profit:-0.14,icon:"i1102186.png"},
+  {name:"熊猫",yuan:22.8,med:379000,freq:8,tier:"A",batch:"2-3个/批",note:"15,792金/元",yld:15792,profit:0.0,icon:"i5000008.png"},
+  {name:"乖仔裤",yuan:5.8,med:95833,freq:12,tier:"A",batch:"5-8个/批",note:"15,697金/元，低价快走",yld:15697,profit:-0.03,icon:"i1060067.png"},
+  {name:"黑色小猫",yuan:19.9,med:349991,freq:3,tier:"A",batch:"1-2个试水",note:"16,708金/元但样本少",yld:16708,profit:1.16,icon:"i5000004.png"},
+  {name:"乌龟背壳",yuan:7.8,med:176600,freq:2,tier:"A",batch:"1-2个试水",note:"21,509金/元，频次低先试水",yld:21509,profit:2.82,icon:"i1102020.png"},
+  {name:"猴子",yuan:25.8,med:391616,freq:30,tier:"B",batch:"1-2个/批",note:"高频但14,420金/元低于买金线，谨慎补货",yld:14420,profit:-2.24,icon:"i5000011.png"},
+  {name:"雪犬",yuan:24.8,med:374443,freq:16,tier:"B",batch:"1-2个/批",note:"14,344金/元，边缘",yld:14344,profit:-2.27,icon:"i5000006.png"},
+  {name:"小白虎",yuan:26.8,med:420077,freq:15,tier:"B",batch:"1-2个/批",note:"14,891金/元，边缘",yld:14891,profit:-1.53,icon:"i5000012.png"},
+  {name:"乖仔衣",yuan:6.8,med:105511,freq:17,tier:"B",batch:"3-5个/批",note:"14,741金/元，量大利薄",yld:14741,profit:-0.45,icon:"i1040078.png"},
+  {name:"五月花环",yuan:8.8,med:128000,freq:13,tier:"B",batch:"2-4个/批",note:"13,818金/元",yld:13818,profit:-1.1,icon:"i1002506.png"},
+  {name:"黑小猪",yuan:24.8,med:383999,freq:6,tier:"B",batch:"1-2个/批",note:"14,710金/元",yld:14710,profit:-1.7,icon:"i5000007.png"},
+  {name:"恐龙公主",yuan:25.8,med:425000,freq:4,tier:"B",batch:"1-2个试水",note:"15,649金/元，样本少",yld:15649,profit:-0.23,icon:"i5000010.png"},
+  {name:"恐龙王子",yuan:25.8,med:439999,freq:1,tier:"B",batch:"1个试水",note:"16,202金/元，样本极少",yld:16202,profit:0.67,icon:"i5000009.png"},
+  {name:"一枝玫瑰",yuan:6.8,med:110000,freq:7,tier:"B",batch:"2-4个/批",note:"15,368金/元",yld:15368,profit:-0.18,icon:"i1012006.png"},
+];
+const AVOID = [
+  {name:"蝙蝠怪",yuan:38.0,med:511700,freq:75,yld:12792,note:"全场最热但税后仅12,792金/元，按当前金价每只净亏约7元——立即停止补货，库存降价清",icon:"i5000024.png"},
+  {name:"褐色小猫",yuan:19.9,med:268775,freq:1,yld:12831,note:"12,831金/元低于买金线",icon:"i5000000.png"},
+  {name:"万能高级染发卡",yuan:9.8,med:93000,freq:27,yld:9015,note:"9,015金/元，热但亏",icon:"i5151036.png"},
+  {name:"皇家整容券",yuan:3.2,med:66666,freq:27,yld:19791,note:"商城已不单卖（仅整容包），存量卖完即止"},
+  {name:"皇家理发券",yuan:3.2,med:125900,freq:29,yld:37377,note:"商城已不单卖（仅发型包），存量卖完即止"},
+  {name:"水果雪糕",yuan:28.0,med:39999,freq:23,yld:1357,note:"1,357金/元，巨亏（礼包货勿单买）",icon:"i5240007.png"},
+  {name:"新鲜香蕉",yuan:28.0,med:28444,freq:12,yld:965,note:"965金/元，巨亏",icon:"i5240000.png"},
+  {name:"新鲜肉",yuan:28.0,med:110000,freq:10,yld:3732,note:"3,732金/元，亏",icon:"i5240006.png"},
+  {name:"骨头",yuan:28.0,med:20000,freq:7,yld:679,note:"679金/元，巨亏",icon:"i5240002.png"},
+  {name:"万能护肤券",yuan:4.8,med:2500,freq:8,yld:495,note:"495金/元，巨亏",icon:"i5153015.png"},
+  {name:"一次性隐形眼镜（综合）",yuan:5.0,med:503,freq:2,yld:96,note:"96金/元，巨亏",icon:"i5152111.png"},
+  {name:"红喇叭(100点券版)",yuan:1.0,med:3999,freq:17,yld:3799,note:"同款有10点券版，别买贵"},
+];
+const TREND = [
+  {n:"宠物增益自动技能",ic:"pet-skill.png",low:391000,chg:"+28.4% 较上次",dir:"is-up",c:[229993,221998,331866,326600,304444,391000]},
+  {n:"蝙蝠怪",ic:"bat.png",low:588888,chg:"+15% 较上次",dir:"is-up",c:[515555,511888,588888]},
+  {n:"简朴婚礼券",ic:"wedding.png",low:588711,chg:"+33.8% 较上次",dir:"is-up",c:[289996,297998,479988,440000,439967,588711]},
+  {n:"皇家理发券",ic:"royal-hair.png",low:138000,chg:"+13.9% 较上次",dir:"is-up",c:[78000,87988,138955,100000,121212,138000]},
+  {n:"皇家整容券",ic:"royal-face.png",low:84999,chg:"+1.2% 较上次",dir:"is-up",c:[57555,51999,99000,69999,83999,84999]},
+  {n:"万能高级染发卡",ic:"dye-card.png",low:93550,chg:"+18.4% 较上次",dir:"is-up",c:[54888,41996,66000,55555,79000,93550]},
+  {n:"一次性隐形眼镜（综合）",ic:"contact-lens.png",low:1100,chg:"+10.1% 较上次",dir:"is-up",c:[1997,990,1199,998,999,1100]},
+  {n:"不拣取特定道具技能",ic:"no-pickup.png",low:144400,chg:"-1.5% 较上次",dir:"is-down",c:[111110,111110,158000,154666,146601,144400]},
+  {n:"自动服用血量药水技能",ic:"hp-potion.png",low:220999,chg:"+84.2% 较上次",dir:"is-up",c:[109961,82900,131888,125798,120001,220999]},
+  {n:"洗1转技能点卷轴",ic:"sp-reset.png",low:76999,chg:"+46.5% 较上次",dir:"is-up",c:[42797,40000,60855,60000,52554,76999]},
+  {n:"洗能力点卷轴",ic:"ap-reset.png",low:17222,chg:"+14.8% 较上次",dir:"is-up",c:[9997,10700,13887,15000,15000,17222]},
+  {n:"万能护肤券",ic:"skin-coupon.png",low:2900,chg:"+190% 较上次",dir:"is-up",c:[3500,1799,3900,1100,1000,2900]},
+  {n:"小白雪人",ic:"snowman.png",low:555555,chg:"+42% 较上次",dir:"is-up",c:[392999,391100,555555]},
+];
+const MINE = new Set(["宠物增益自动技能","洗能力点卷轴","洗1转技能点卷轴","自动服用血量药水技能","小白雪人"]);
+const TIERS = [
+  ["S","闭眼倒：效率全面碾压买金线","s0"],
+  ["A","稳定赚：效率高于买金线","t1"],
+  ["B","边缘：量大利薄或样本少","t2"]
+];
+const recCard = (r,cls) => `
+  <div class="rec ${cls}">
+    <div class="rec-top">
+      ${r.icon?`<img class="rec-ic" src="assets/icons/${r.icon}" alt="${r.name}" loading="lazy">`:`<span class="rec-noimg">${r.name[0]}</span>`}
+      <div class="rec-name">${r.name}${MINE.has(r.name)?`<span class="mine">我常卖</span>`:""}</div>
+    </div>
+    <div class="rec-yld">${fmt(r.yld)}<small>税后金/元</small></div>
+    <div class="rec-meta">
+      <span>成本 <b>${r.yuan} 元</b></span>
+      <span>中位 <b>${fmt(r.med)} 金</b></span>
+      <span class="rec-profit ${r.profit>=0?"pos":"neg"}">${r.profit>=0?"+":""}${r.profit.toFixed(2)} 元/件</span>
+    </div>
+    <div class="freq"><span>热度</span><div class="ft"><div class="ff" style="width:${Math.min(100,r.freq/75*100).toFixed(0)}%"></div></div><b>${r.freq}</b></div>
+    <div class="rec-meta"><span>建议批量 <b>${r.batch}</b></span></div>
+    <div class="rec-note">${r.note}</div>
+  </div>`;
+document.getElementById("recs-groups").innerHTML = TIERS.map(([t,desc,cls])=>{
+  const list = RECS.filter(r=>r.tier===t);
+  return `<div class="tier-h rv"><span class="tg ${t.toLowerCase()}">${t}</span><h3>${t} 级 · ${list.length} 种</h3><p>${desc}</p></div>
+  <div class="rec-grid rv">${list.map(r=>recCard(r,cls)).join("")}</div>`;
+}).join("");
+
+/* 避坑名单 */
+document.getElementById("avoid-body").innerHTML = AVOID.map(a=>`
+  <tr>
+    <td>${a.icon?`<img class="ic" src="assets/icons/${a.icon}" alt="${a.name}" loading="lazy">`:`<span class="noimg-t">${a.name[0]}</span>`}${a.name}</td>
+    <td>${a.yuan.toFixed(1)}</td><td>${fmt(a.med)}</td>
+    <td class="neg">${fmt(a.yld)}</td><td>${a.freq}</td>
+    <td class="l">${a.note}</td>
+  </tr>`).join("");
+
+/* 价格走势迷你折线 */
+function spark(cs){
+  const W=260,H=60,PT=18,PB=8,PL=6,PR=6;
+  const vmin=Math.min(...cs),vmax=Math.max(...cs);
+  const X=i=>PL+(W-PL-PR)*(cs.length>1?i/(cs.length-1):0.5);
+  const Y=v=>PT+(H-PT-PB)*(1-(vmax>vmin?(v-vmin)/(vmax-vmin):0.5));
+  const pts=cs.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="近6日价格走势">
+    <polyline points="${pts}" fill="none" stroke="#5b8cff" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="${X(0).toFixed(1)}" cy="${Y(cs[0]).toFixed(1)}" r="2.6" fill="#5b8cff"/>
+    <circle cx="${X(cs.length-1).toFixed(1)}" cy="${Y(cs[cs.length-1]).toFixed(1)}" r="2.6" fill="#5b8cff"/>
+    <text x="${(X(0)+5).toFixed(1)}" y="${(Y(cs[0])-6).toFixed(1)}" fill="#8fa0b8" font-size="9">${fmt(cs[0])}</text>
+    <text x="${(X(cs.length-1)-5).toFixed(1)}" y="${(Y(cs[cs.length-1])-6).toFixed(1)}" fill="#e8edf5" font-size="9" font-weight="700" text-anchor="end">${fmt(cs[cs.length-1])}</text>
+  </svg>`;
+}
+document.getElementById("tw-grid").innerHTML = TREND.map(t=>`
+  <div class="tw">
+    <div class="tw-top"><img class="rec-ic" src="assets/icons/${t.ic}" alt="${t.n}" loading="lazy"><span class="tw-name">${t.n}</span></div>
+    <div><span class="tw-low">${fmt(t.low)}<small>金 · 当前最低</small></span><span class="tw-chg ${t.dir}">${t.chg}</span></div>
+    ${spark(t.c)}
+  </div>`).join("");
+
 
 /* revenue bars */
 const revMax = Math.max(...sold.map(d=>d.net));
