@@ -489,12 +489,12 @@ body{padding-top:98px}
 .ft-foot>span:last-child{border-right:none}
 .ft-foot b{color:var(--mint);font-weight:500}
 /* ===== v8 导航圆形沙盘 logo ===== */
-.nav-orb{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:68;
+.nav-orb{position:fixed;left:50%;top:104px;transform:translateX(-50%);z-index:68;
   width:118px;height:118px;border-radius:50%;border:none;cursor:pointer;
   background:radial-gradient(circle at 35% 28%,#26375a,#0a1120 72%);
   display:flex;align-items:center;justify-content:center;
   transition:transform .25s cubic-bezier(.3,1.4,.5,1);animation:orbbreath 3.2s ease-in-out infinite}
-.nav-orb:hover{transform:translate(-50%,-50%) scale(1.1)}
+.nav-orb:hover{transform:translateX(-50%) scale(1.1)}
 .nav-orb::before{content:'';position:absolute;inset:-7px;border-radius:50%;
   background:conic-gradient(from 0deg,transparent 0 30%,var(--amber) 44%,#fff3d6 50%,var(--amber) 56%,transparent 70% 100%);
   animation:orbspin 2.6s linear infinite}
