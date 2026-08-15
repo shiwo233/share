@@ -324,6 +324,106 @@ svg .hovdot{stroke:#050810;stroke-width:1.5}
 rect.vbar{transition:fill-opacity .15s}
 rect.vbar:hover{fill-opacity:.75}
 
+/* ===== v6 顶置行情条 ===== */
+body{padding-top:98px}
+@media(min-width:1500px){body{padding:98px 286px 0 0}}
+.ticker{position:fixed;top:0;left:0;right:0;z-index:65;margin-top:0;height:34px}
+@media(min-width:1500px){.ticker{right:286px}}
+.ticker::before{display:none}
+.ticker .ticker-track{padding-left:272px}
+.goldcap{position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;gap:9px;
+  padding:0 14px;background:linear-gradient(90deg,#111c33,#0c1220);border-right:1px solid rgba(251,191,36,.4)}
+.goldcap .gl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;color:var(--red);animation:blink 1.6s infinite}
+.goldcap .gv{font-family:var(--mono);font-size:16.5px;font-weight:700;color:var(--amber);animation:gglow 2.2s ease-in-out infinite;line-height:1}
+@keyframes gglow{50%{text-shadow:0 0 14px rgba(251,191,36,.8)}}
+.goldcap .gc{font-family:var(--mono);font-size:10px}
+.goldcap .gr{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;color:var(--tx3)}
+.goldcap .gr svg{animation:gspin 60s linear infinite}
+@keyframes gspin{to{transform:rotate(360deg)}}
+.goldcap.gflash .gv{animation:gflash .9s ease-out}
+@keyframes gflash{0%{color:#fff;text-shadow:0 0 20px rgba(251,191,36,1);transform:scale(1.15)}100%{}}
+.pillnav{top:46px}
+.livebar{top:34px}
+/* ===== 大盘：频率分色 + 折叠 ===== */
+.tile.fq-h{border-left:3px solid var(--mint)}
+.tile.fq-m{border-left:3px solid var(--amber)}
+.tile.fq-l{border-left:3px solid var(--red)}
+.tile.fq-u{border-left:3px solid #33415e}
+.fq-legend{display:flex;gap:12px;margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--tx3);align-items:center}
+.fq-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.board-clip{max-height:396px;overflow:hidden;position:relative;transition:max-height .55s cubic-bezier(.4,0,.2,1)}
+.board-clip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:96px;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(5,8,16,.97));transition:opacity .4s}
+.board-clip.open{max-height:8000px}
+.board-clip.open::after{opacity:0}
+.board-toggle{width:100%;margin-top:8px;padding:9px;border:1px dashed var(--line);border-radius:8px;background:transparent;
+  color:var(--tx2);font-family:var(--mono);font-size:11px;letter-spacing:.14em;cursor:pointer;transition:.2s}
+.board-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
+.t-cmp{position:absolute;right:8px;bottom:8px;z-index:2;width:23px;height:23px;border-radius:6px;border:1px solid var(--line);
+  background:rgba(12,18,32,.85);color:var(--tx3);font-size:12px;line-height:1;cursor:pointer;opacity:0;transition:.2s}
+.tile:hover .t-cmp{opacity:1}
+.t-cmp.on{opacity:1;color:var(--cyan);border-color:var(--cyan);background:rgba(34,211,238,.16)}
+.t-cmp:hover{color:var(--cyan);border-color:var(--cyan)}
+/* ===== 推荐榜：折叠 + 滚动 ===== */
+.tier-cap{cursor:pointer;user-select:none}
+.tier-cap h3 .tri{display:inline-block;font-size:9px;color:var(--tx3);margin-left:7px;transition:transform .25s}
+.tier:not(.open) .tier-bd{display:none}
+.tier:not(.open) .tier-cap h3 .tri{transform:rotate(-90deg)}
+.tier-bd{max-height:400px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;margin-bottom:6px}
+.tier-bd th{position:sticky;top:0;background:var(--panel2);z-index:1}
+/* ===== 台账抽屉 ===== */
+.ldg-tab{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:74;writing-mode:vertical-rl;
+  padding:18px 7px;background:var(--panel2);border:1px solid var(--line);border-left:none;border-radius:0 8px 8px 0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.34em;color:var(--amber);cursor:pointer;transition:.2s}
+.ldg-tab:hover{background:rgba(251,191,36,.14);padding-right:11px}
+.ldg{position:fixed;left:0;top:0;bottom:0;width:386px;max-width:94vw;z-index:76;background:#0a101df5;backdrop-filter:blur(10px);
+  border-right:1px solid var(--line);transform:translateX(-103%);transition:transform .38s cubic-bezier(.5,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:24px 0 70px rgba(0,0,0,.55)}
+.ldg.open{transform:none}
+.ldg-head{padding:16px 18px 12px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px}
+.ldg-head b{font-size:15px}
+.ldg-head span{font-family:var(--mono);font-size:9.5px;color:var(--tx3)}
+.ldg-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--tx2);
+  width:26px;height:26px;cursor:pointer;font-size:13px}
+.ldg-head button:hover{color:var(--red);border-color:var(--red)}
+.ldg-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.ldg-stat{background:var(--panel);padding:11px 14px}
+.ldg-stat .lb{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:var(--tx3)}
+.ldg-stat .vl{font-family:var(--mono);font-size:17px;font-weight:600;margin-top:2px}
+.ldg-cap{padding:10px 18px 6px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--tx3)}
+.ldg-list{flex:1;overflow-y:auto;padding:0 10px 10px}
+.ldg-row{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:8px;cursor:pointer;transition:.15s;border:1px solid transparent}
+.ldg-row:hover{background:rgba(34,211,238,.05);border-color:var(--line)}
+.ldg-row img{width:26px;height:26px;image-rendering:pixelated}
+.ldg-row .ln{flex:1;min-width:0;font-size:12.5px}
+.ldg-row .ln small{display:block;font-family:var(--mono);font-size:9px;color:var(--tx3)}
+.ldg-row .lv{font-family:var(--mono);font-size:11px;text-align:right}
+.ldg-more{padding:12px 18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--cyan);
+  text-decoration:none;display:block;letter-spacing:.08em}
+.ldg-more:hover{background:rgba(34,211,238,.06)}
+/* ===== 台账比对托盘 ===== */
+.cmp-tray{position:fixed;left:12px;right:12px;bottom:12px;z-index:72;background:rgba(10,16,29,.96);backdrop-filter:blur(12px);
+  border:1px solid rgba(34,211,238,.3);border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.6);
+  transform:translateY(130%);transition:transform .4s cubic-bezier(.5,0,.2,1);max-height:46vh;display:flex;flex-direction:column}
+@media(min-width:1500px){.cmp-tray{right:298px}}
+.cmp-tray.on{transform:none}
+.cmp-head{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.cmp-head .dim{font-family:var(--mono);font-size:9.5px;color:var(--tx3)}
+.cmp-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:14px;color:var(--tx2);
+  font-family:var(--mono);font-size:10px;padding:4px 12px;cursor:pointer}
+.cmp-head button:hover{color:var(--red);border-color:var(--red)}
+.cmp-cards{display:flex;gap:10px;overflow-x:auto;padding:12px 16px}
+.cmp-card{flex:0 0 240px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);padding:11px 13px;position:relative}
+.cmp-card .x{position:absolute;top:7px;right:9px;background:none;border:none;color:var(--tx3);cursor:pointer;font-size:13px}
+.cmp-card .x:hover{color:var(--red)}
+.cmp-card .cn{font-size:13px;font-weight:600;margin-bottom:7px;padding-right:18px}
+.cmp-card .cr{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;padding:3px 0;color:var(--tx2)}
+.cmp-card .cr b{font-size:11.5px}
+.cmp-card .cv{margin-top:7px;font-family:var(--mono);font-size:9.5px;padding:4px 8px;border-radius:5px;text-align:center;letter-spacing:.05em}
+.cmp-card .cv.good{background:rgba(52,211,153,.12);color:var(--mint);border:1px solid rgba(52,211,153,.3)}
+.cmp-card .cv.bad{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+.cmp-card .cv.mid{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
+
 </style></head>
 <body>
 <div class="ctip" id="ctip"></div>
@@ -350,7 +450,15 @@ rect.vbar:hover{fill-opacity:.75}
   <a data-s="sec-sys">系统<span class="n">09</span></a>
 </nav>
 
-<div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+<div class="ticker">
+  <div class="goldcap" id="goldCap">
+    <span class="gl">LIVE</span>
+    <span class="gv" id="goldCapV">0.5250</span>
+    <span class="gc down">▼17.1%</span>
+    <span class="gr"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 1 1-4.6 3" stroke="#8b9bb8" stroke-width="1.3"/><path d="M1.2 1.4v3h3" stroke="#8b9bb8" stroke-width="1.3"/></svg><span id="goldCd">60s</span></span>
+  </div>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
 <!-- ================= LIVE 采集竖栏 ================= -->
 <aside class="livebar" id="livebar">
   <div class="lb-head"><span class="livedot"></span>LIVE 采集终端<span class="lb-rate">60s/条</span></div>
@@ -358,6 +466,27 @@ rect.vbar:hover{fill-opacity:.75}
   <div class="feed"><div class="feed-in" id="feedIn"></div></div>
   <div class="lb-foot" id="lbFoot">market/item.php · AES-GCM payload → trend[].c</div>
 </aside>
+
+<!-- ================= 台账抽屉 ================= -->
+<div class="ldg-tab" id="ldgTab">台账速览</div>
+<aside class="ldg" id="ldg">
+  <div class="ldg-head"><b>我的交易台账</b><span>三轮全口径 · 08-12 ~ 08-16</span><button id="ldgX">✕</button></div>
+  <div class="ldg-stats">
+    <div class="ldg-stat"><div class="lb">三轮总成本</div><div class="vl">3,072.9 <small style="font-size:10px;color:var(--tx3)">元</small></div></div>
+    <div class="ldg-stat"><div class="lb">税后净入</div><div class="vl" style="color:var(--amber)">4,270 <small style="font-size:10px;color:var(--tx3)">万金</small></div></div>
+    <div class="ldg-stat"><div class="lb">综合产出</div><div class="vl" style="color:var(--cyan)">13,896 <small style="font-size:10px;color:var(--tx3)">金/元</small></div></div>
+    <div class="ldg-stat"><div class="lb">累计成交</div><div class="vl">428 <small style="font-size:10px;color:var(--tx3)">件</small></div></div>
+  </div>
+  <div class="ldg-cap">常卖组 · 已售均价 vs 当前最低（点行联动大盘）</div>
+  <div class="ldg-list" id="ldgList"></div>
+  <a class="ldg-more" id="ldgMore">查看完整台账 · 三轮明细 + 23 张成交凭证 ↓</a>
+</aside>
+
+<!-- ================= 台账比对托盘 ================= -->
+<div class="cmp-tray" id="cmpTray">
+  <div class="cmp-head"><b>台账比对</b><span class="dim">基准：我的综合产出 13,896 金/元 · 点大盘卡片右下角 ⇄ 增删比对</span><button id="cmpClear">清空</button></div>
+  <div class="cmp-cards" id="cmpCards"></div>
+</div>
 
 
 <!-- ================= 01 大盘 ================= -->
@@ -383,6 +512,7 @@ rect.vbar:hover{fill-opacity:.75}
     <div class="stat"><div class="lb">砸盘预警</div><div class="vl down" data-odo="4">4</div><div class="dl dim">常卖挂单超已售均价 +20%</div></div>
   </div>
   <div class="filterbar" id="filterbar">
+    <span class="fq-legend"><span><i style="background:var(--mint)"></i>高频 &gt;10/日</span><span><i style="background:var(--amber)"></i>中频 3–10/日</span><span><i style="background:var(--red)"></i>低频 &lt;3/日</span><span><i style="background:#33415e"></i>量待查</span></span>
     <button class="fbtn on" data-f="all">全部 43</button>
     <button class="fbtn" data-f="M">我常卖 10</button>
     <button class="fbtn" data-f="S">S 级 8</button>
@@ -390,7 +520,8 @@ rect.vbar:hover{fill-opacity:.75}
     <button class="fbtn" data-f="B">B 级 6</button>
     <button class="fbtn" data-f="V">避坑 11</button>
   </div>
-  <div class="board" id="board"></div>
+  <div class="board-clip" id="boardClip"><div class="board" id="board"></div></div>
+  <button class="board-toggle" id="boardToggle">展开全部 43 种 ▾</button>
   <div class="note cyan" style="margin-top:14px"><b>行情判读：</b>金价 48h 崩跌 36%（0.82→0.525），而常卖组 5 种挂单全面高于已售均价 20%+、推荐池多种单日 +13%~+56%——典型「币跌货涨」割裂盘：<b>这是出货窗口，不是补货时机</b>。追高 = 替别人解套。</div>
 </section>
 
@@ -430,11 +561,12 @@ rect.vbar:hover{fill-opacity:.75}
   </div>
   <div class="note red"><b>当前 regime：</b>买金线 19,048 金/元（0.525 元/万金）。税后效率高于此线才值得倒；低于此线不如直接买金。<b>币跌货涨背离期：出货优先、补货冻结</b>——S 级也只做流动性过关的品种。</div>
   <div id="recTables"></div>
-  <div class="tier-cap"><h3>避坑名单</h3><span class="cnt">14 种 · 低于买金线 / 渠道关闭 / 巨亏</span></div>
-  <div class="tbl-wrap"><table>
+  <div class="tier" id="avoidTier">
+  <div class="tier-cap" onclick="this.parentElement.classList.toggle('open')"><h3>避坑名单<span class="tri">▶</span></h3><span class="cnt">14 种 · 低于买金线 / 渠道关闭 / 巨亏 · 点击展开</span></div>
+  <div class="tier-bd"><div class="tbl-wrap"><table>
     <thead><tr><th>物品</th><th class="num">成本元</th><th class="num">中位(金)</th><th class="num">税后金/元</th><th class="num">日均成交</th><th>避坑原因</th></tr></thead>
     <tbody id="avoidBody"></tbody>
-  </table></div>
+  </table></div></div></div>
 </section>
 
 <!-- ================= 04 金价 ================= -->
@@ -819,6 +951,7 @@ function liqInfo(an){
   return [an+'/日','mint','流动性好'];
 }
 const GRP = {M:['我常卖','gm'],S:['S级','gs'],A:['A级','ga2'],B:['B级','gb2'],V:['避坑','gv']};
+const CMP = new Set();
 /* ================= BOARD ================= */
 let selId = null;
 function tileHTML(it, idx){
@@ -830,8 +963,11 @@ function tileHTML(it, idx){
     ? `<span class="t-chg ${it.dir>0?'up':(it.dir<0?'down':'dim')}">${it.dir>0?'▲':(it.dir<0?'▼':'—')} ${it.chg>0?'+':''}${it.chg}%</span>`
     : `<span class="t-chg dim">待查</span>`;
   const [nTxt,nClr,nTag] = liqInfo(it.an);
+  const fq = it.an==null?'fq-u':(it.an>10?'fq-h':(it.an>=3?'fq-m':'fq-l'));
+  const fqColor = {mint:'var(--mint)',amber:'var(--amber)',red:'var(--red)',gray:'var(--tx3)'}[nClr]||'var(--tx3)';
   const sparkColor = it.g==='V' ? '#f87171' : (it.dir<0?'#f87171':(warn?'#fbbf24':'#34d399'));
-  return `<div class="tile" data-id="${it.id}" data-g="${it.g}" style="animation-delay:${Math.min(idx*24,700)}ms">
+  return `<div class="tile ${fq}" data-id="${it.id}" data-g="${it.g}" style="animation-delay:${Math.min(idx*24,700)}ms">
+    <button class="t-cmp${CMP.has(it.id)?' on':''}" data-cmp="${it.id}" title="加入台账比对">⇄</button>
     ${warn?'<div class="t-flag"></div>':''}
     <div class="t-head">
       <div class="t-ico"><img src="https://mxdc.dvg.cn/dbsource/icon/item/${it.id}.png" alt="${it.n}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
@@ -840,7 +976,7 @@ function tileHTML(it, idx){
       <span class="t-grp ${gCls}">${gName}</span>
     </div>
     <div class="t-price mono" data-base="${price||''}">${price?fmt(price):'— —'}</div>
-    <div class="t-sub">${chgHtml}<span class="t-n">量 ${nTxt}</span></div>
+    <div class="t-sub">${chgHtml}<span class="t-n" style="color:${fqColor}">量 ${nTxt}·${nTag}</span></div>
     <div class="t-yld"><span style="color:var(--tx3)">税后金/元</span><b style="color:${above?'var(--mint)':'var(--red)'}">${fmt(it.yld)}</b></div>
     ${sparkSVG(it.tr,206,26,sparkColor)}
     <div class="t-bar" style="width:${it.an!=null?Math.min(it.an/50*100,100):4}%;${it.an!=null&&it.an<10?'background:var(--red)':(it.an!=null?'background:var(--mint)':'')}"></div>
@@ -852,9 +988,10 @@ function renderBoard(f){
   document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>selectItem(t.dataset.id, true)));
 }
 renderBoard('all');
-document.querySelectorAll('.fbtn').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+document.querySelectorAll('.fbtn[data-f]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.fbtn[data-f]').forEach(x=>x.classList.remove('on')); b.classList.add('on');
   renderBoard(b.dataset.f);
+  if(b.dataset.f!=='all'){ $('boardClip').classList.add('open'); $('boardToggle').textContent='收起 ▴'; }
 }));
 /* ================= 数字跳动 ================= */
 function pulse(){
@@ -998,8 +1135,9 @@ selectItem('5190010', false);
   const mine = new Set(ITEMS.filter(x=>x.g==='M').map(x=>x.n));
   $('recTables').innerHTML = tiers.map(([t,desc])=>{
     const list = ITEMS.filter(x=>x.tier===t).sort((a,b)=>b.yld-a.yld);
-    return `<div class="tier-cap"><h3>${t} 级</h3><span class="cnt">${list.length} 种</span><p>${desc}</p></div>
-    <div class="tbl-wrap"><table>
+    return `<div class="tier${t==='S'?' open':''}">
+    <div class="tier-cap" onclick="this.parentElement.classList.toggle('open')"><h3>${t} 级<span class="tri">▶</span></h3><span class="cnt">${list.length} 种 · 点击${t==='S'?'收起':'展开'}</span><p>${desc}</p></div>
+    <div class="tier-bd"><div class="tbl-wrap"><table>
       <thead><tr><th>物品</th><th class="num">成本元</th><th class="num">中位(金)</th><th class="num">当前最低</th><th class="num">税后金/元</th><th class="num">盈亏/件@0.525</th><th class="num">日均成交</th><th>建议批量 / 策略</th></tr></thead>
       <tbody>${list.map(it=>{
         const [,nClr,nTag] = liqInfo(it.an);
@@ -1011,7 +1149,7 @@ selectItem('5190010', false);
         <td class="num ${it.profit>=0?'up':'down'}">${it.profit>=0?'+':''}${it.profit.toFixed(2)} 元</td>
         <td class="num"><span class="tag ${nClr}">${nTag}</span></td>
         <td style="font-size:11.5px"><b class="mono">${it.batch}</b> · <span class="dim">${it.note}</span></td></tr>`;
-      }).join('')}</tbody></table></div>`;
+      }).join('')}</tbody></table></div></div></div>`;
   }).join('');
   /* 避坑 */
   const avoidExtra = [
@@ -1276,6 +1414,98 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
   }
   sel.addEventListener('change',calc);
   calc();
+})();
+
+/* ================= v6 金价 cap 刷新动效 ================= */
+(function(){
+  let cd=60;
+  const cdEl=$('goldCd'), cap=$('goldCap');
+  setInterval(()=>{
+    cd--; if(cd<=0){
+      cd=60;
+      cap.classList.remove('gflash'); void cap.offsetWidth; cap.classList.add('gflash');
+      /* 微扰末位，演示刷新 */
+      const v=$('goldCapV'); const base=GOLD.rate;
+      v.textContent=(base+(Math.random()*0.001-0.0005)).toFixed(4);
+      setTimeout(()=>{v.textContent=base.toFixed(4);},2600);
+    }
+    cdEl.textContent=cd+'s';
+  },1000);
+})();
+/* ================= v6 大盘折叠 ================= */
+(function(){
+  const clip=$('boardClip'), btn=$('boardToggle');
+  btn.addEventListener('click',()=>{
+    const open=clip.classList.toggle('open');
+    btn.textContent=open?'收起 ▴':'展开全部 43 种 ▾';
+    if(!open) $('sec-board').scrollIntoView({behavior:'smooth'});
+  });
+})();
+/* ================= v6 台账抽屉 ================= */
+(function(){
+  const dg=$('ldg');
+  $('ldgTab').addEventListener('click',()=>dg.classList.add('open'));
+  $('ldgX').addEventListener('click',()=>dg.classList.remove('open'));
+  addEventListener('keydown',e=>{if(e.key==='Escape')dg.classList.remove('open')});
+  $('ldgMore').addEventListener('click',()=>{dg.classList.remove('open'); $('sec-trades').scrollIntoView({behavior:'smooth'});});
+  $('ldgList').innerHTML = ITEMS.filter(it=>it.g==='M').map(it=>{
+    const d=(it.avg&&it.low)?((it.low/it.avg-1)*100):null;
+    return `<div class="ldg-row" data-id="${it.id}">
+      <img src="https://mxdc.dvg.cn/dbsource/icon/item/${it.id}.png" loading="lazy" onerror="this.style.display='none'"/>
+      <div class="ln"><b>${it.n}</b><small>已售均价 ${it.avg?fmt(it.avg):'—'} 金</small></div>
+      <div class="lv">现最低 <b>${it.low?fmt(it.low):'—'}</b><br><span class="${d==null?'dim':d>0?'up':'down'}">${d==null?'—':(d>0?'▲+':'▼')+d.toFixed(1)+'%'}</span></div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.ldg-row').forEach(r=>r.addEventListener('click',()=>{
+    dg.classList.remove('open'); selectItem(r.dataset.id,true);
+  }));
+})();
+/* ================= v6 台账比对托盘 ================= */
+(function(){
+  const BENCH=13896;
+  function cardHTML(it){
+    const price=it.low??it.med;
+    const avgD=(it.avg&&price)?((price/it.avg-1)*100):null;
+    const yldD=((it.yld/BENCH)-1)*100;
+    const ok=it.yld>=GOLD.line;
+    let verdict, vc;
+    if(it.avg&&avgD!=null&&avgD>20){ verdict='挂价超已售均价 +'+avgD.toFixed(0)+'% · 我卖得便宜了'; vc='bad'; }
+    else if(it.avg&&avgD!=null&&avgD<-10){ verdict='现价比我的已售均价低 '+(-avgD).toFixed(0)+'% · 熊市信号'; vc='mid'; }
+    else if(ok&&yldD>0){ verdict='效率超我的综合产出 +'+yldD.toFixed(0)+'% · 值得加仓'; vc='good'; }
+    else if(ok){ verdict='达买金线但低于我的产出 '+(-yldD).toFixed(0)+'%'; vc='mid'; }
+    else { verdict='低于买金线 '+fmt(GOLD.line)+' · 不如直接买金'; vc='bad'; }
+    return `<div class="cmp-card" data-id="${it.id}">
+      <button class="x" data-x="${it.id}">✕</button>
+      <div class="cn">${it.n}</div>
+      <div class="cr"><span>当前最低</span><b>${price?fmt(price):'—'}</b></div>
+      <div class="cr"><span>我的已售均价</span><b>${it.avg?fmt(it.avg):'台账无此品'}</b></div>
+      <div class="cr"><span>较我的均价</span><b class="${avgD==null?'dim':avgD>0?'up':'down'}">${avgD==null?'—':(avgD>0?'+':'')+avgD.toFixed(1)+'%'}</b></div>
+      <div class="cr"><span>税后金/元 vs 我</span><b class="${yldD>=0?'up':'down'}">${fmt(it.yld)} (${yldD>=0?'+':''}${yldD.toFixed(0)}%)</b></div>
+      <div class="cr"><span>单件盈亏@0.525</span><b class="${it.profit>=0?'up':'down'}">${it.profit>=0?'+':''}${it.profit}元</b></div>
+      <div class="cv ${vc}">${verdict}</div>
+    </div>`;
+  }
+  window.renderCmp=function(){
+    const tray=$('cmpTray');
+    tray.classList.toggle('on', CMP.size>0);
+    $('cmpCards').innerHTML=[...CMP].map(id=>{const it=ITEMS.find(x=>x.id===id);return it?cardHTML(it):''}).join('');
+    document.querySelectorAll('.cmp-card .x').forEach(b=>b.addEventListener('click',()=>{
+      CMP.delete(b.dataset.x);
+      document.querySelectorAll(`.t-cmp[data-cmp="${b.dataset.x}"]`).forEach(x=>x.classList.remove('on'));
+      renderCmp();
+    }));
+  };
+  $('board').addEventListener('click',e=>{
+    const btn=e.target.closest('.t-cmp'); if(!btn) return;
+    e.stopPropagation(); e.preventDefault();
+    const id=btn.dataset.cmp;
+    if(CMP.has(id)){CMP.delete(id);btn.classList.remove('on');}
+    else{CMP.add(id);btn.classList.add('on');}
+    renderCmp();
+  }, true);
+  $('cmpClear').addEventListener('click',()=>{
+    CMP.clear(); document.querySelectorAll('.t-cmp.on').forEach(x=>x.classList.remove('on')); renderCmp();
+  });
 })();
 mountOdoAnim();
 </script>
