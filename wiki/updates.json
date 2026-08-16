@@ -1,340 +1,345 @@
 {
-  "updates": [
-    {
-      "date": "2026-08-16",
-      "time": "05:30",
-      "title": "金价闪崩0.525：币跌货涨背离盘，出货优先、补货冻结",
-      "title_en": "Gold crashes to 0.525: sell-first, restock frozen",
-      "tag": "金价警报",
-      "body": "漂漂猪金价 48 小时崩跌 36% 至 0.525 元/万金（买金线升至 19,048 金/元），而 6/8 监控品种挂单价逆势上涨 14%-56%，呈「币跌货涨」背离。倒货推荐系统已按 0.525 全量重算：仅 9 种仍在买金线上（乌龟背壳/乖仔裤/自动喝血/上班族眼镜等），11 种贴近线按最新挂价出，7 种冻结补货。新增流动性三档规则：日均成交 <3 件压货高危不碰。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "title": "第三轮核算：宠物军团入场，321件成交净入2,284万金，效率三连升至15,384金/元",
-      "title_en": "Round 3: pet lineup debuts — 321 sales, 22.84M mesos net, yield rises to 15,384 mesos/¥1",
-      "topic": "冒险岛拍卖行收支总账",
-      "body": "数据来源升级为 08-16 拍卖行录屏（成交记录 40 页，逐帧提取 351 笔；第 28 页已补图校正，第 9/10 页附近仍缺约 9 笔）。进货成本改按商城在售清单核算（100 点券=1 元），新增四种货源：小企鹅王 16 元、天使的翅膀 16 元、猴子 25.8 元、褐色小猫 19.9 元。本轮商城道具售 321 件、下架 25 件（下架费吞 5 万金），毛入 2,409.8 万金、税后净入 2,284.4 万金，产出效率 15,384 金/元，三连升（14,100→14,833→15,384）；不拣取技能 17,434 金/元居首，褐色小猫 12,630 垫底。三轮合计：成本 3,072.9 元、净入 4,270 万金、综合 13,896 金/元；按 08-15 金价折算人民币仍差约 368 元回本。页面新增 8 枚物品图标与 6 张录屏关键帧凭证。",
-      "body_en": "Round 3 source upgraded to an 08-16 auction-house video (40 pages, 342 records extracted frame by frame; 2 pages lost to fast paging, ~18 records pending). Costs now use cash-shop list prices (100 NX = ¥1), with four new sources: Penguin King ¥16, Angel Wings ¥16, Monkey ¥25.8, Brown Cat ¥19.9. This round: 313 cash-item sales, 25 manual delistings (50K mesos in fees), gross 23.75M, net 22.51M mesos, yield 15,387 mesos/¥1 — third consecutive rise (14,100→14,833→15,387). Item-not-pickup skill leads at 17,434; Brown Cat trails at 12,630. Three-round totals: ¥3,050.9 cost, 42.37M mesos net, 13,887 blended; still ~¥368 short of breakeven at the 08-15 gold rate. Page adds 8 item icons and 6 video-frame records."
-    },
-    {
-      "date": "2026-08-15",
-      "title": "金价监控上线：漂漂猪金价5天贬值49.3%至0.6333元/万金，直接买金性价比已反超搬砖",
-      "title_en": "Gold-price watch live: Piaopiaozhu rate fell 49.3% in 5 days to ¥0.6333/10K mesos — buying gold now beats farming",
-      "topic": "冒险岛拍卖行收支总账",
-      "body": "接入 mxdc.dvg.cn 金价数据：漂漂猪 8-10 至 8-15 从 1.25 元/万金跌至 0.6333 元/万金（-49.3%），全五区同步腰斩 43%–55%。关键对比：两轮搬砖混合效率 14,297 金/元，08-12 当天市场买金仅 12,143 金/元（搬砖划算），而 08-15 市场已达 15,789 金/元（买金反超搬砖）。已落袋 1,976 万金币按最新金价折合约 1,252 元，较 08-12 口径蒸发约 375 元。议题页新增金价走势图与五区对比表。",
-      "body_en": "Connected to mxdc.dvg.cn gold data: Piaopiaozhu fell from ¥1.25/10K mesos (08-10) to ¥0.6333 (08-15), -49.3%, with all five servers crashing 43-55%. Key benchmark: two farming rounds blended 14,297 mesos/¥1 vs market 12,143 on 08-12 (farming won) but 15,789 on 08-15 (buying gold now wins). The 19.76M mesos already cashed out is worth ≈¥1,252 at the latest rate — about ¥375 evaporated vs the 08-12 valuation. Topic page gained a gold-price trend chart and a five-server comparison table."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "大和首次覆盖智谱给予买入评级，目标价1500港元；智谱ZCode升级用户数破百万",
-      "title_en": "Daiwa initiates coverage on Z.ai with Buy rating and HK$1,500 target; ZCode upgrades, users exceed 1M",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "8月12日，大和证券发布研报首次覆盖智谱（02513.HK），给予「买入」评级，目标价1,500港元。同日，智谱AI编程产品ZCode宣布全面升级，推出Goal、Subagents、Remote Control及闲时任务四大功能，用户数突破100万。受DeepSeek计划涨价及机构看好AI板块估值重构等消息影响，港股大模型概念股走强，智谱、MiniMax盘初双双拉升。",
-      "body_en": "On Aug 12, Daiwa Securities initiated coverage on Z.ai (02513.HK) with a Buy rating and HK$1,500 target. The same day, ZCode—Z.ai's AI-coding product—unveiled a major upgrade with Goal, Subagents, Remote Control and idle-task features, crossing 1 million users. Hong Kong AI stocks rallied as DeepSeek signaled price hikes and institutions turned bullish on valuation reconstruction."
-    },
-    {
-      "date": "2026-08-13",
-      "title": "拍卖行收支总账第二轮核算上线：48件成交税后净入556万金，洗能力卷轴走量、婚礼券走强",
-      "title_en": "Auction Ledger Round 2: 5.56M mesos net from 48 sales — ability-reset scrolls drive volume, wedding coupons strengthen",
-      "topic": "冒险岛拍卖行收支总账",
-      "body": "第二轮（含 2026-08-13 记录）核算：进货成本 374.8 元（新增口径：洗能力点卷轴 1 元/张、小白雪人 29.8 元/只），48 件成交毛收入 585.2 万金、税后净入 555.9 万金，混合效率 14,833 金/元，高于首轮的 14,100。不拣取技能以 17,868 金/元领跑效率榜；婚礼券 4 张成交均价升至 47.9 万；洗能力卷轴 28 张走量贡献 41.8 万净额。另有 3 张回城卷为中标买入（6,820 金），任务道具零成本白捡 4.3 万金。原始截图凭证更新至 17 张。",
-      "body_en": "Round 2 accounting (incl. 2026-08-13 records): cost ¥374.8 (new cost bases: ability-reset scroll ¥1, Snowman ¥29.8), 48 sales grossed 5.85M mesos and netted 5.56M after fees, blended yield 14,833 mesos/¥1 — above Round 1's 14,100. No-pickup skill leads efficiency at 17,868/¥1; wedding coupons averaged 479K across 4 sales; 28 ability-reset scrolls added 418K net. Three town-scroll bids (6,820 mesos) are purchases, not sales; task items added 43K free. Source screenshots now total 17."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "拍卖行收支总账页面更新：新增原始成交凭证区（9张截图+12物品图标），「下一篇推荐」模块改为页底通栏",
-      "title_en": "Auction Ledger page update: original-records section added (9 screenshots + 12 item icons); next-up module moved to page bottom",
-      "topic": "冒险岛拍卖行收支总账",
-      "body": "议题页新增「07 / 原始成交凭证」章节：收录成交记录第 1–7 页与在售挂单 2 页共 9 张原始截图，支持点击放大核对；净收入排行、效率榜与两张明细表中的 12 种道具均配上游戏内原始图标（自截图裁取）。同时按主人要求将「下一篇推荐」模块从右上角悬浮改为页面底部通栏，AGENTS.md 运营规范已同步修订，此后新报告一律采用页底布局。",
-      "body_en": "Added section '07 / Original Records' with 9 source screenshots (7 sales pages + 2 listing pages) in a click-to-zoom grid; all 12 items across rankings and detail tables now carry their in-game icons cropped from the screenshots. Per the owner's request, the next-up module moved from a floating top-right card to a full-width bottom block; AGENTS.md updated so all future reports follow the bottom layout."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "新议题上线：冒险岛拍卖行收支总账——54笔成交税后净入1,421万金，综合产出14,297金/元",
-      "title_en": "New topic: MapleStory Auction House Ledger — 14.21M mesos net from 54 sales, 14,297 mesos per ¥1",
-      "topic": "冒险岛拍卖行收支总账",
-      "body": "2026-08-12 交易快照全口径核算：总投入 1,213.2 元（已售 1,007.2 + 库存 206），54 笔已成交毛收入 1,495.5 万金，扣 5% 手续费后净入 1,420.8 万金；在售挂单 8 件与背包 2 件全部变现预计再入 313.7 万金，总盘子约 1,734 万金。宠物增益自动技能贡献近八成收入；四件套中皇家理发券每元产出 31,485 金居首，一次性隐形眼镜仅 283 金几乎纯亏。",
-      "body_en": "Full-scope accounting of the 2026-08-12 trading snapshot: total cost ¥1,213.2 (¥1,007.2 sold + ¥206 inventory); 54 completed sales grossed 14.96M mesos, netting 14.21M after the 5% fee; 8 active listings plus 2 bag items are expected to add another 3.14M, bringing the portfolio to ~17.34M mesos. Pet buff auto-skill contributes nearly 80% of revenue; within the 4-item set, Royal Hair Coupon leads at 31,485 mesos per ¥1 while disposable contact lenses return merely 283."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "炒菜机器人国标GB/T 46718-2025将于11月1日实施，外卖新规已正式施行",
-      "topic": "锅气计划外卖模式评估",
-      "body": "我国首个《商用智能炒菜机》国家标准（GB/T 46718-2025）将于2026年11月1日正式实施，标准首次系统规定温控精度、翻炒均匀性、油烟控制、物联网协议等12项核心指标，标志着行业告别'野蛮生长'。与此同时，《网络餐饮服务经营者落实食品安全主体责任监督管理规定》（国家市场监督管理总局令第123号）已于2026年6月1日施行，要求平台对商户资质进行实质性审查，无堂食店铺须在主页面显著标注'无堂食'标识。"
-    },
-    {
-      "date": "2026-08-08",
-      "title": "AI六小虎分水岭显现：智谱股价较发行价暴涨835%，MiniMax涨80%，高波动成常态",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "8月8日新浪财经发文指出AI六小虎已现分水岭。截至8月6日，智谱（02513.HK）报1087港元，较发行价116.2港元上涨约835%；MiniMax（00100.HK）报297.2港元，较发行价165港元上涨约80%。但高波动显著：智谱7月17日单日暴跌28.5%，MiniMax 7月28日单日下跌14.1%，市场对AI资产估值剧烈分化，'四小强+两垂直'格局进一步固化。"
-    },
-    {
-      "date": "2026-08-06",
-      "title": "MiniMax正式纳入港股通，首日股价大涨22.77%市值重回千亿港元",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "8月6日，MiniMax（00100.HK）正式纳入港股通，当日股价高开5.52%，盘间涨幅最高22.77%，触及311.6港元/股，市值重回千亿港元大关。此前公司于8月3日正式开源全模态生成模型H3，该模型在Artificial Analysis视频编辑评测榜与Arena图生视频排行榜均位列全球第一，并在Hugging Face热度登顶。"
-    },
-    {
-      "date": "2026-08-05",
-      "title": "月之暗面G轮（Pre-IPO）融资正式启动，估值达500亿美元",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "8月5日，月之暗面Kimi G轮（Pre-IPO）融资正式启动，本轮估值达500亿美元。因Kimi K3发布后投资额度骤然紧俏，参与方需在8月15日前完成打款，若按单轮稀释约10%计算募资规模将接近60亿美元。从2025年底43亿美元估值至今，月之暗面在约8个月内实现超11倍估值增长。"
-    },
-    {
-      "date": "2026-08-02",
-      "title": "新议题上线：我眼中的西安——一座城与一个文明的千年往来（古籍书页式城市随笔）",
-      "title_en": "New topic: Xi'an in My Eyes — A City and a Millennium of Chinese Civilization (ancient-book-page essay)",
-      "topic": "我眼中的西安",
-      "body": "一份古籍书页式的城市随笔：从长安与西安的两个名字写起，经四塞之国的山河剧本、904年盛世退场、废墟沉淀出的诸多唯一、西北面食与秦腔的江湖，到'中庸之困'的四页账本与硬科技翻身——完整回答'西安究竟是一座怎样的城市'。署名 ssy，八月二深夜于深圳。",
-      "body_en": "An ancient-book-page-style city essay: from the two names (Chang'an and Xi'an), through the geography that scripted dynasties, the fall of 904 AD, the uniqueness gifted by ruins, the Northwest's soul in noodles and Qinqiang opera, to the four-page ledger of its middle-rank economy and the hard-tech comeback — a full answer to 'what kind of city is Xi'an'. Signed by ssy, late night of Aug 2, Shenzhen."
-    },
-    {
-      "date": "2026-07-31",
-      "title": "MiniMax发布首款开源全模态生成模型H3，支持15秒2K音视频生成",
-      "title_en": "MiniMax releases H3, its first open-source omnimodal generative model with 15s 2K video/audio",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "7月31日，MiniMax正式发布通用全模态生成模型H3，首次统一文本、图像、视频、音频的理解与生成，支持原生双声道音视频输出，最高15秒2K分辨率。在Artificial Analysis视频模型榜单中，H3视频编辑能力项排名全球第一。2K分辨率下每秒生成成本不到主流模型的1/3，公司计划未来数天内开源模型权重。发布当日MiniMax股价早盘一度涨超20%。",
-      "body_en": "MiniMax launched H3, a unified omnimodal generative model that understands and generates text, image, video and audio in a single framework. It outputs native stereo audio plus video up to 15 seconds at 2K, and ranked #1 globally on Artificial Analysis's video-editing benchmark. At 2K it costs under one-third per second versus mainstream models; MiniMax plans to open-source the weights within days. The stock rose over 20% in early trading."
-    },
-    {
-      "date": "2026-07-31",
-      "title": "新议题上线：洲明LED·线上B2B采购平台拓展可行性研究（30+平台数据库+匹配矩阵+12个月路线图）",
-      "title_en": "New topic: Unilumin LED B2B Procurement Platform Expansion Study (30+ platform database, fit matrix, 12-month roadmap)",
-      "topic": "洲明LED·线上B2B采购平台拓展可行性研究",
-      "body": "基于10个维度深度研究（906条引用）的政企渠道战略报告：评估齐心云采/得力集实/科力普/苏宁易采云等15家办公集采平台、政采云与省级框架、军队/国网/国铁/能源央企商城；给出七类平台×三类产品匹配矩阵（标注渠道冲突）、五家竞对入驻主体模式判定、代理商vs洲明主体混合架构建议与12个月行动路线图。",
-      "body_en": "A 10-dimension deep-research channel strategy report (906 citations): evaluates 15 office procurement platforms, government procurement frameworks, and SOE malls (military, State Grid, China Railway, energy); delivers a 7-category × 3-product fit matrix with channel-conflict flags, competitor entry-mode verdicts, an agent-vs-principal hybrid architecture, and a 12-month roadmap."
-    },
-    {
-      "date": "2026-07-31",
-      "title": "月之暗面完成F轮融资超35亿美元，投后估值涨至350亿美元",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "7月29日，记者从相关人士处确认，月之暗面已完成F轮融资，融资金额超过35亿美元，本轮投后估值涨至350亿美元。因超目标金额数倍，本轮融资提前关闭。这较5月约20亿美元融资时超200亿美元的估值大幅提升，进一步巩固其在大模型创业公司中的头部地位。"
-    },
-    {
-      "date": "2026-07-30",
-      "title": "新议题上线：LED PICK · 大型LED显示屏选购指南（三入口向导+链路表+术语词墙）",
-      "title_en": "New topic: LED PICK — Large LED Display Buying Guide (3-entry wizard, link matrix, glossary wall)",
-      "topic": "LED PICK · 大型LED显示屏选购指南",
-      "body": "面向小白的LED显示屏选购指南网站上线：支持从场景（18个）、产品类型（12类）、行业（10个）任一入口进入智能选型向导，2-3步输出推荐点间距/亮度/预算；招牌交互含18×12场景类型链路表与36术语词墙；另有点间距滑块实验室、七步方法论（含点间距/分辨率/功耗三个计算器）、14条避坑清单与8项验收量化指标。",
-      "body_en": "A beginner-friendly LED display buying guide is live: pick from 18 scenarios, 12 product types or 10 industries in a step-by-step wizard to get recommended pixel pitch, brightness and budget; signature interactions include an 18x12 scenario-to-type link matrix and a 36-term glossary wall, plus a pixel-pitch lab, a 7-step methodology with three calculators, and a 14-item pitfalls checklist."
-    },
-    {
-      "date": "2026-07-29",
-      "title": "「六小虎」分化加剧：阶跃星辰发布AI手机STEPX Neo，智谱/MiniMax股价较峰值大幅回调，月之暗面被曝拟赴港IPO",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "7月14日阶跃星辰发布智能体操作系统及首款AI手机STEPX Neo，董事长印奇推进'底座-中台-终端'架构落地终端场景。7月中下旬智谱股价较6月22日历史高位2980港元跌超70%，MiniMax同步大幅回调，市场对AI资产估值进行剧烈修正。另据彭博报道，月之暗面已告知投资者准备最早六个月内赴港IPO；Kimi新模型K3上线后一度暂停新用户订阅。"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "凡人动画播放量破68亿，BW2026展台收官，年番「慕兰之战」持续热播",
-      "topic": "凡人修仙传全脉络Wiki",
-      "body": "7月初官方宣布动画总播放量突破68亿，较6月中旬的65亿继续攀升；追番人数维持高位。7月10-12日凡人动画参展BW2026（上海国家会展中心6.1H-6A13展台），主创亲临UP主舞台互动。年番「慕兰之战」每周六11:00 B站独家更新，截至7月下旬已持续播出至7月中旬。"
-    },
-    {
-      "date": "2026-07-28",
-      "title": "大模型「六小虎」格局重塑：智谱MiniMax上市，月之暗面估值破200亿美元，行业分化为「四小强+两垂直」",
-      "topic": "中国大模型六小虎深度研究",
-      "body": "2026年以来国产大模型创业阵营剧烈分化：智谱AI、MiniMax于1月先后登陆港交所，上市后股价暴涨数倍；月之暗面5月完成约20亿美元融资，投后估值超200亿美元，半年累计融资超39亿美元；阶跃星辰5月完成近25亿美元融资并推进港股上市。与此同时，百川智能全面转向AI医疗，零一万物解散预训练团队聚焦To B垂直赛道，「六小虎」正式演变为「四小强+两垂直」新格局。"
-    },
-    {
-      "date": "2026-07-28",
-      "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
-      "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
-      "topic": "锅气计划外卖模式评估",
-      "body": "对7个原始设想逐条对照已有模式下结论：仪式感包装（+1.5-2元/单）、错峰分时定价、供应商公示经得起验证；师傅海选、私域App、租用后厨需合规修正。核心章给出单份成本瀑布（保本点日均310单、净利率5.5%）、28-35元定价带推导与客群承接度验证。基于10个维度约600条公开来源交叉调研。",
-      "body_en": "All 7 original assumptions benchmarked against live models: ritual unboxing (+¥1.5-2/order), off-peak time-based pricing and supplier transparency hold up; chef auditions, private-domain app and shared-kitchen leasing need compliance fixes. Core chapter delivers a per-order cost waterfall (break-even at 310 orders/day, 5.5% net margin), ¥28-35 pricing band and customer acceptance analysis. Cross-verified across 10 research dimensions and ~600 public sources."
-    },
-    {
-      "date": "2026-07-28",
-      "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
-      "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
-      "topic": "凡人修仙传全脉络Wiki",
-      "body": "凡人流开山之作全考据：主线三书45篇章时间线、三界15境界与韩立14次破境年表、86件宝物图鉴、81人物七类群像与111条关系边图谱；227条目统一ID、交叉引用一一对应，存疑49处皆标印章。",
-      "body_en": "Complete compendium of the genre-founding xianxia novel: 45-arc timeline across 3 books, 15 realms with Han Li's 14 breakthroughs, 86 treasures, 81 characters and a 111-edge relationship graph; 227 entries with unified IDs and full cross-referencing, 49 doubtful points explicitly marked."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v7.3：球心连线全部产品 + 量子流动效果",
-      "title_en": "DRAM 101 v7.3: core links every generation, quantum-flow lines",
-      "topic": "内存技术全景对比",
-      "body": "球心 DRAM 的辐条从 3 条扩到 10 条——核心直连全部十代产品；连线加入「量子流动」效果：每条辐条上有发光粒子从球心持续流向各代产品（白芯+家族色辉光，两端渐隐），代际演进链改为行军虚线沿「老→新」方向流动，画布转为持续渲染（离屏自动暂停省电）。",
-      "body_en": "The DRAM core's spokes grew from 3 to 10 — it now links every one of the ten generations directly. Lines gained a quantum-flow effect: glowing particles (white core + family-color halo, fading at both ends) stream continuously from the core toward each generation, and generation chains became marching dashes flowing from old to new; the canvas now renders continuously, pausing automatically off-screen."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v7.2：删除「先问钱」板块 + 球心遮挡修正",
-      "title_en": "DRAM 101 v7.2: removed the money-teardown section, fixed core occlusion",
-      "topic": "内存技术全景对比",
-      "body": "开篇「先问钱 / FOLLOW THE MONEY」三层拆解板块整体移除，Hero 区只保留「看产业图谱」主按钮，页面从速览直接进入正题；3D 球网修正遮挡关系：球心 DRAM 恢复按深度排序绘制，作为最内层不再遮挡外层的三星/美光等公司节点。",
-      "body_en": "Removed the opening 'follow the money' three-layer teardown section; the hero now keeps a single primary 'View the industry graph' button. Fixed the 3D sphere's occlusion: the DRAM core is drawn in depth order again and, as the innermost layer, no longer covers outer vendor nodes like Samsung or Micron."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v7.1：首页按钮直达产业图谱",
-      "title_en": "DRAM 101 v7.1: hero button jumps straight to the industry graph",
-      "topic": "内存技术全景对比",
-      "body": "首页 Hero 区「直接看结论」按钮改为「看产业图谱」，点击直接跳转到下方的 3D 球网产业图谱（顶部导航栏本就有「图谱」锚点）。",
-      "body_en": "The hero 'skip to conclusion' button is now 'View the industry graph', jumping straight to the 3D sphere industry graph below (the top nav already had a graph anchor)."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v7：球心 DRAM + 年代壳层 + 快速导航与标签筛选",
-      "title_en": "DRAM 101 v7: DRAM core, year shells, quick nav & tag filters",
-      "topic": "内存技术全景对比",
-      "body": "3D 球网中心加入发光的 DRAM 原点，三条路线从球心沿扇区向外生长；十代产品按年代落在四层壳上——DDR4/HBM2 在最内层、HBM4/GDDR7 在最外层，壳层以虚线环+年份标注；公司节点改为纬度/半径双重交错分层，不再同处一层。新增「快速导航」（全景/HBM/DDR/GDDR/中国厂商，一键旋转直达并高亮）与「标签筛选」（三系家族 + 三巨头/中国厂商/台系利基，未选中项几乎隐去、选中项连线高亮）。",
-      "body_en": "A glowing DRAM core now sits at the sphere center with the three routes growing outward; the ten generations rest on four year shells (DDR4/HBM2 innermost, HBM4/GDDR7 outermost) marked by dashed rings and year labels; vendor nodes are staggered across latitude and radius instead of one layer. Added quick-nav chips (overview/HBM/DDR/GDDR/China vendors — one-tap rotate-and-highlight) and tag filters (three families plus big-3/China/Taiwan-niche groups — non-matches fade out, matching links highlight)."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v6：产业图谱改 3D 球网 + 公司饼图 + 10 家厂商",
-      "title_en": "DRAM 101 v6: 3D sphere industry graph, company pie nodes, 10 vendors",
-      "topic": "内存技术全景对比",
-      "body": "产业图谱重做为可拖动旋转的 3D 球网（自绘 Canvas 3D，无外部库）：三条技术路线盘踞三大发光扇区（HBM/DDR/GDDR 大字底纹），每家公司合并为一个饼图圆、饼块=产品结构（如海力士 HBM≈30/通用≈66），圆大小∝DRAM 总份额且反差拉大（三星≈5.7 倍于小厂），鼠标悬停显示占比明细；公司从 4 家扩到 10 家（新增南亚科/华邦/力积电/兆易创新/北京君正/东芯，利基厂份额标估算）；供货关系与代际演进全部改为球面弧线；产品图例挪到顶部并与公司图例穿插。",
-      "body_en": "Industry graph rebuilt as a draggable 3D sphere (hand-rolled canvas 3D, no libs): three routes occupy three glowing sectors with big HBM/DDR/GDDR watermarks; each vendor is a single pie-chart node showing its product mix (e.g. SK hynix HBM ~30 / commodity ~66), radius scaled by overall DRAM share with much stronger contrast, hover for the breakdown; vendor count up from 4 to 10 (added Nanya/Winbond/PSMC/GigaDevice/ISSI/Dosilicon, niche shares marked as estimates); supply links and generation chains redrawn as on-sphere arcs; family legend moved to the top and interleaved with vendor colors."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v5：产业图谱改中心扩散型 + 叙事改「先问钱」",
-      "title_en": "DRAM 101 v5: radial industry graph + follow-the-money narrative",
-      "topic": "内存技术全景对比",
-      "body": "产业图谱重做为中心扩散型：DRAM 居中，DDR/GDDR/HBM 三条路线向三个方向生长，每一环是一代产品、环外围绕该代供应商（圆大小=市占率），公司与产品交织成完整圆形，支持拖动/缩放/点选。叙事参考拆解类视频改为「先问钱」：新增开篇「万亿 AI 算力的钱被谁赚走了」三层拆解（整机→GPU 旁的 HBM→卖铲人三巨头：每季约 850 亿美元 DRAM 营收、九成归三家），结论区呼应「估值归英伟达、现金流归卖铲人」。",
-      "body_en": "Industry graph rebuilt as a radial layout: DRAM at the center, three route branches (DDR/GDDR/HBM) growing outward, each ring a generation surrounded by its vendors (node size = share), forming a full circle with drag/zoom/tap. Narrative restructured around the money question: a new opening teardown (board -> HBM around the GPU -> the shovel sellers taking 90% of ~$85B quarterly DRAM revenue), echoed in the conclusion."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v4：参数区改为路线展开图 + 行业构成图独立",
-      "title_en": "DRAM 101 v4: specs on route lanes, standalone industry-mix chart",
-      "topic": "内存技术全景对比",
-      "body": "十代参数区去卡片化：改为三条技术路线的演进线路图（DDR/GDDR/HBM 三条 lane，虚线框为下一代），点击任意一代在线路图下方展开完整参数介绍，并可一键跳转产业图谱；新增「高亮长鑫能做」开关。市占区拆分为两个独立图表：「行业构成：盘子由什么组成」（通用≈77%/HBM≈18%/GDDR≈5%）与「DRAM 总盘：份额×高低端分段」，不再混排。",
-      "body_en": "Spec section rebuilt as three route-evolution lanes (DDR/GDDR/HBM, dashed ghost nodes for next-gen): tap any generation to expand its full spec sheet below the lane, with one-click jump to the industry graph; added a 'highlight CXMT-capable' toggle. Share section split into two standalone charts: industry mix (commodity ≈77% / HBM ≈18% / GDDR ≈5%) and vendor share × high/low-end segments."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v3：新增产业图谱 + 市占率高低端拆分 + 参数总览格",
-      "title_en": "DRAM 101 v3: industry graph, high/low-end share split, spec grid",
-      "topic": "内存技术全景对比",
-      "body": "新增「产业图谱」板块：以 DDR/HBM 为双起点向右展开十代产品，各代连接首发年代与供应商，圆圈大小=该代市占率，支持拖动/缩放/点选详情（借鉴凡人 Wiki 关系图谱交互）。DRAM 总盘重做「份额×高低端分段图」：长鑫 7.7% 全部位于通用段（DDR/LPDDR），占盘子约 23% 的高端段（HBM+GDDR）中国份额为 0——份额第四≠高端入局。参数表改为十宫格总览+点击弹详情，删除晶圆产能图与 hero 数据条，推荐位移至页尾。",
-      "body_en": "New industry graph section: DDR/HBM roots branching to 10 generations, each linked to its debut year and vendors with node size proportional to segment share (drag/zoom/tap interactions). The DRAM share chart is rebuilt as share × high/low-end segments: CXMT's 7.7% sits entirely in commodity DDR/LPDDR while the high-end segment (~23% of the market: HBM+GDDR) has zero Chinese share. Spec table becomes a compact grid with tap-to-open details; capacity chart and hero stats removed."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v2：移动端重构 + 市占率与巨头布局",
-      "title_en": "DRAM topic v2: mobile-first rebuild, market share & company roadmaps",
-      "topic": "内存技术全景对比",
-      "body": "移动端全面重构：一屏速览结论、路线/参数/布局全部改为折叠展开卡片。新增三大板块：三条路线简介与演变路程；1Q26 市占率（三星40.5%/海力士29.6%/美光19.9%/长鑫7.7%居第四，HBM 海力士≈56%，英伟达 HBM4 订单海力士≈70%/三星≈30%）；四家未来布局（HBM4E 2027 赛点：海力士绑台积电3nm、三星押自研2nm、美光弃自研投台积电、长鑫 HBM3E 目标2027）。",
-      "body_en": "Full mobile rebuild: one-screen overview, accordions for roadmaps/specs/roadmaps. Three new sections: route intros & evolution; 1Q26 market share (Samsung 40.5% / SK hynix 29.6% / Micron 19.9% / CXMT 7.7% No.4; SK hynix ≈56% of HBM and ≈70% of NVIDIA HBM4 orders); four company roadmaps heading into the 2027 HBM4E race."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "DRAM科普 v1：十代内存全参数横评与长鑫能力地图",
-      "title_en": "DRAM 101 v1: 10-gen spec comparison & CXMT capability map",
-      "topic": "内存技术全景对比",
-      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
-      "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "新议题入库：《内存技术全景对比：DDR / GDDR / HBM 与长鑫能力地图》",
-      "title_en": "New topic: DRAM Tech Map — DDR/GDDR/HBM & CXMT Capability",
-      "topic": "内存技术全景对比",
-      "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
-      "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
-    },
-    {
-      "date": "2026-07-26",
-      "title": "凡人修仙传 Wiki 升级 v2：四张交互总表 + 图谱缩放控件",
-      "title_en": "Mortal's Journey Wiki v2: interactive tables + zoomable graph",
-      "topic": "凡人修仙传全脉络Wiki",
-      "body": "新增「总表速览」板块：篇章/破境/宝物/人物四表支持排序、筛选、行展开收起；全局展开收起按钮；人物关系图谱升级缩放控件、边类型筛选、搜索定位与详情面板。",
-      "body_en": "New tables section: arcs/breakthroughs/treasures/characters tables with sorting, filtering, expandable rows; global expand/collapse; relationship graph upgraded with zoom controls, edge-type filters, search-locate and detail panel."
-    },
-    {
-      "date": "2026-07-26",
-      "title": "新议题入库：《桶联 BinBot 全链路智能垃圾处理系统 PRD》",
-      "title_en": "New topic: BinBot fully-automated trash pipeline PRD",
-      "topic": "桶联 BinBot 智能垃圾系统",
-      "body": "产品设计概念稿：自动检测打包、腔内喷雾除味、推出交接机构、扫地机器人升降护栏运送与 12 项场景冗余；含 Word/Markdown 版 PRD 下载。",
-      "body_en": "Concept PRD: auto-seal detection, deodorizing spray, push-out handoff, robot-vacuum transport with lifting guardrail, and 12 redundancy scenarios; Word/Markdown PRD included."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Wiki 升级：深色/浅色、中英双语、分类板块、悬停预览",
-      "title_en": "Wiki upgraded: dark/light theme, CN-EN, categories, hover preview",
-      "topic": "系统",
-      "body": "新增四大分类（工作/个人兴趣/网游/视频总结）、主题与语言切换、导航栏及报告悬停预览。",
-      "body_en": "Added 4 categories, theme & language toggles, navbar, and hover previews for reports."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "知识图谱 Wiki 上线",
-      "title_en": "Wiki launched",
-      "topic": "系统",
-      "body": "首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。",
-      "body_en": "First topic \"Six LLM Tigers\" archived; update tracking activated."
-    },
-    {
-      "date": "2026-08-16",
-      "time": "06:55",
-      "title": "作战室升级：LIVE采集竖栏 + 采集流水 + 数据沙盘，10种缺价物品实盘补齐",
-      "title_en": "War room upgrade: live feed, query log, simulator; 10 price gaps crawled",
-      "tag": "系统升级",
-      "body": "大盘作战室四项升级上线：①右侧 LIVE 采集竖栏，每 60 秒推入一条真实采集记录（物品/请求URL/返回结果），持续滚动；②新增「采集流水」面板，69 条记录覆盖全部 43 种物品的三轮查询留痕（05:00 实盘复核 / 05:07 监控批次 / 06:39 补缺采集），附数据跑马灯；③全部缺价物品完成实盘爬取补齐——乖仔衣 148,800、恐龙公主 533,333、黑色小猫 385,000、恐龙王子 498,875、天使的翅膀 278,888、小企鹅王 278,900、水果雪糕 40,000、新鲜香蕉 29,999、新鲜肉 22,727（大幅下修）、骨头 20,000；④双轴图/柱状图/金价图全部支持十字线悬停读数，新增「数据沙盘」盈亏推演器（金价/挂价/批量三杆联动 + 敏感性曲线）。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:05",
-      "title": "作战室 v6：大盘折叠+频率分色、金条置顶、台账抽屉、点选比对",
-      "title_en": "War room v6: collapsible board, freq colors, sticky gold bar, ledger drawer, compare tray",
-      "tag": "系统升级",
-      "body": "交互大改版：①大盘默认折叠为两行（可展开全部 43 种），全部道具按出售频率分色——高频>10/日（绿）/ 中频 3–10（琥珀）/ 低频<3（红）；②倒货推荐榜 S/A/B/避坑四级均可折叠，表内滚动+表头吸顶；③情报滚动条悬浮常驻顶部，左侧金价专位 0.5250 醒目琥珀色，带 60 秒倒计时与刷新闪烁动效；④「我的交易台账」收进左侧常驻抽屉（台账速览），含三轮总成本 3,072.9 元 / 净入 4,270 万金 / 综合 13,896 金/元与常卖组已售均价对照；⑤新增台账比对托盘——点大盘卡片右下角 ⇄ 即可把任意道具与我的台账数据（已售均价、综合产出）并排比对并自动给出结论。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:20",
-      "title": "作战室 v7：流水改悬浮终端、推荐榜每级4行折叠、沙盘一键呼出",
-      "title_en": "War room v7: floating flow terminal, 4-row tiers, sandbox quick-launch",
-      "tag": "系统升级",
-      "body": "①采集流水从整页表格改为右下角悬浮终端 FLOW TERMINAL——69 条查询留痕以代码形式（GET 请求行 + 200 OK JSON 返回行）每 0.55 秒快速滚动循环播放，悬停暂停、点标题栏收起，含 2 条金价源记录；原栏位只留统计与数据跑马灯。②倒货推荐榜每个等级只显示前 4 种，其余折叠为「展开其余 N 种」（S 5 / A 9 / B 2 / 避坑 13 种收起）。③导航栏正中央新增琥珀呼吸「⌘ 沙盘推演」按钮，任意位置一键弹窗呼出推演器（Esc/点空白关闭，滑杆状态保留），正文沙盘模块仍在 06 栏。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:30",
-      "title": "作战室 v8：定名「SSY自制冒险岛交易辅助系统」· 60s 延迟全站标注",
-      "title_en": "War room v8: SSY branding, 60s-lag notices, orb launcher, terminal stats",
-      "tag": "系统升级",
-      "body": "①全站定名「SSY自制冒险岛交易辅助系统」（导航品牌/标题/页脚）。②七个数据板块标题旁统一加上琥珀呼吸徽章「数据均采集自游戏内交易行 · 延迟约 60s」，沙盘推演器内另有醒目横幅（弹窗模式同步显示）。③FLOW TERMINAL 新增底栏：COOKIE 取自 shiwo (UID 215769) · 平稳运行时长（自 05:00 起逐秒跳动）· 累计采集条目（随滚动实时递增）。④导航栏正中央的沙盘入口改为大圆形 logo——锥形渐变光环持续旋转 + 双层扩散光晕，点击即弹出演推器。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:42",
-      "title": "沙盘入口移至页面正中心并放大，流水终端高度减半",
-      "title_en": "Sandbox orb moved to viewport center; terminal halved",
-      "tag": "界面调整",
-      "body": "沙盘圆形 logo 从导航栏移出，118px 大圆钮固定于页面视口正中心（锥形光环旋转 + 双层扩散光晕 + 呼吸光效，悬停放大 1.1×，弹窗打开时自动隐藏）；FLOW TERMINAL 高度由 258px 收至 128px，不再遮挡内容。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:45",
-      "title": "沙盘圆钮定位：导航栏正下方 · 页面顶部中央",
-      "title_en": "Sandbox orb: below nav, top-center",
-      "tag": "界面调整",
-      "body": "按反馈将沙盘大圆钮从视口正中移至「导航栏正下方、页面顶部水平中央」（top:104px, 居中 840px），特效不变，点击弹窗正常。",
-      "link": "../auction-ledger/"
-    },
-    {
-      "date": "2026-08-16",
-      "time": "07:58",
-      "title": "沙盘圆钮嵌入导航栏中缝 · 可点标签流动灯条 · 台账整条侧栏",
-      "title_en": "Orb inside nav, flowing borders, full-height ledger tab",
-      "tag": "界面调整",
-      "body": "①沙盘圆形 logo 嵌回顶部导航栏正中，将导航分为左右两半（66px，光环特效保留，点击弹窗不变）。②全部可点选标签（全部/我常卖/S/A/B/避坑及沙盘预设按钮）加上锥形渐变流动灯条边框，光点沿边框循环流动提示可点。③「台账速览」拉长为左侧从上到下一整条悬浮按钮，竖排文字 + 边缘呼吸光 + 光带自上而下扫掠 +「◀ 点击展开」闪烁暗示。",
-      "link": "../auction-ledger/"
-    }
-  ]
+ "updates": [
+  {
+   "date": "2026-08-16",
+   "title": "作战室 v13：双半圆钮 + 新手引导",
+   "body": "导航中央圆形按钮一分为二：左半「推演系统」快捷呼出沙盘弹窗，右半「耦合分析」触发两步引导（提示在大盘点选道具→自动跳转耦合分析并联动）；新增全站新手引导，首次访问自动弹出五步导览（系统定位/大盘作战墙/推荐榜避坑/双钮用法/台账流水终端），页脚可随时重开。"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "05:30",
+   "title": "金价闪崩0.525：币跌货涨背离盘，出货优先、补货冻结",
+   "title_en": "Gold crashes to 0.525: sell-first, restock frozen",
+   "tag": "金价警报",
+   "body": "漂漂猪金价 48 小时崩跌 36% 至 0.525 元/万金（买金线升至 19,048 金/元），而 6/8 监控品种挂单价逆势上涨 14%-56%，呈「币跌货涨」背离。倒货推荐系统已按 0.525 全量重算：仅 9 种仍在买金线上（乌龟背壳/乖仔裤/自动喝血/上班族眼镜等），11 种贴近线按最新挂价出，7 种冻结补货。新增流动性三档规则：日均成交 <3 件压货高危不碰。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "title": "第三轮核算：宠物军团入场，321件成交净入2,284万金，效率三连升至15,384金/元",
+   "title_en": "Round 3: pet lineup debuts — 321 sales, 22.84M mesos net, yield rises to 15,384 mesos/¥1",
+   "topic": "冒险岛拍卖行收支总账",
+   "body": "数据来源升级为 08-16 拍卖行录屏（成交记录 40 页，逐帧提取 351 笔；第 28 页已补图校正，第 9/10 页附近仍缺约 9 笔）。进货成本改按商城在售清单核算（100 点券=1 元），新增四种货源：小企鹅王 16 元、天使的翅膀 16 元、猴子 25.8 元、褐色小猫 19.9 元。本轮商城道具售 321 件、下架 25 件（下架费吞 5 万金），毛入 2,409.8 万金、税后净入 2,284.4 万金，产出效率 15,384 金/元，三连升（14,100→14,833→15,384）；不拣取技能 17,434 金/元居首，褐色小猫 12,630 垫底。三轮合计：成本 3,072.9 元、净入 4,270 万金、综合 13,896 金/元；按 08-15 金价折算人民币仍差约 368 元回本。页面新增 8 枚物品图标与 6 张录屏关键帧凭证。",
+   "body_en": "Round 3 source upgraded to an 08-16 auction-house video (40 pages, 342 records extracted frame by frame; 2 pages lost to fast paging, ~18 records pending). Costs now use cash-shop list prices (100 NX = ¥1), with four new sources: Penguin King ¥16, Angel Wings ¥16, Monkey ¥25.8, Brown Cat ¥19.9. This round: 313 cash-item sales, 25 manual delistings (50K mesos in fees), gross 23.75M, net 22.51M mesos, yield 15,387 mesos/¥1 — third consecutive rise (14,100→14,833→15,387). Item-not-pickup skill leads at 17,434; Brown Cat trails at 12,630. Three-round totals: ¥3,050.9 cost, 42.37M mesos net, 13,887 blended; still ~¥368 short of breakeven at the 08-15 gold rate. Page adds 8 item icons and 6 video-frame records."
+  },
+  {
+   "date": "2026-08-15",
+   "title": "金价监控上线：漂漂猪金价5天贬值49.3%至0.6333元/万金，直接买金性价比已反超搬砖",
+   "title_en": "Gold-price watch live: Piaopiaozhu rate fell 49.3% in 5 days to ¥0.6333/10K mesos — buying gold now beats farming",
+   "topic": "冒险岛拍卖行收支总账",
+   "body": "接入 mxdc.dvg.cn 金价数据：漂漂猪 8-10 至 8-15 从 1.25 元/万金跌至 0.6333 元/万金（-49.3%），全五区同步腰斩 43%–55%。关键对比：两轮搬砖混合效率 14,297 金/元，08-12 当天市场买金仅 12,143 金/元（搬砖划算），而 08-15 市场已达 15,789 金/元（买金反超搬砖）。已落袋 1,976 万金币按最新金价折合约 1,252 元，较 08-12 口径蒸发约 375 元。议题页新增金价走势图与五区对比表。",
+   "body_en": "Connected to mxdc.dvg.cn gold data: Piaopiaozhu fell from ¥1.25/10K mesos (08-10) to ¥0.6333 (08-15), -49.3%, with all five servers crashing 43-55%. Key benchmark: two farming rounds blended 14,297 mesos/¥1 vs market 12,143 on 08-12 (farming won) but 15,789 on 08-15 (buying gold now wins). The 19.76M mesos already cashed out is worth ≈¥1,252 at the latest rate — about ¥375 evaporated vs the 08-12 valuation. Topic page gained a gold-price trend chart and a five-server comparison table."
+  },
+  {
+   "date": "2026-08-12",
+   "title": "大和首次覆盖智谱给予买入评级，目标价1500港元；智谱ZCode升级用户数破百万",
+   "title_en": "Daiwa initiates coverage on Z.ai with Buy rating and HK$1,500 target; ZCode upgrades, users exceed 1M",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "8月12日，大和证券发布研报首次覆盖智谱（02513.HK），给予「买入」评级，目标价1,500港元。同日，智谱AI编程产品ZCode宣布全面升级，推出Goal、Subagents、Remote Control及闲时任务四大功能，用户数突破100万。受DeepSeek计划涨价及机构看好AI板块估值重构等消息影响，港股大模型概念股走强，智谱、MiniMax盘初双双拉升。",
+   "body_en": "On Aug 12, Daiwa Securities initiated coverage on Z.ai (02513.HK) with a Buy rating and HK$1,500 target. The same day, ZCode—Z.ai's AI-coding product—unveiled a major upgrade with Goal, Subagents, Remote Control and idle-task features, crossing 1 million users. Hong Kong AI stocks rallied as DeepSeek signaled price hikes and institutions turned bullish on valuation reconstruction."
+  },
+  {
+   "date": "2026-08-13",
+   "title": "拍卖行收支总账第二轮核算上线：48件成交税后净入556万金，洗能力卷轴走量、婚礼券走强",
+   "title_en": "Auction Ledger Round 2: 5.56M mesos net from 48 sales — ability-reset scrolls drive volume, wedding coupons strengthen",
+   "topic": "冒险岛拍卖行收支总账",
+   "body": "第二轮（含 2026-08-13 记录）核算：进货成本 374.8 元（新增口径：洗能力点卷轴 1 元/张、小白雪人 29.8 元/只），48 件成交毛收入 585.2 万金、税后净入 555.9 万金，混合效率 14,833 金/元，高于首轮的 14,100。不拣取技能以 17,868 金/元领跑效率榜；婚礼券 4 张成交均价升至 47.9 万；洗能力卷轴 28 张走量贡献 41.8 万净额。另有 3 张回城卷为中标买入（6,820 金），任务道具零成本白捡 4.3 万金。原始截图凭证更新至 17 张。",
+   "body_en": "Round 2 accounting (incl. 2026-08-13 records): cost ¥374.8 (new cost bases: ability-reset scroll ¥1, Snowman ¥29.8), 48 sales grossed 5.85M mesos and netted 5.56M after fees, blended yield 14,833 mesos/¥1 — above Round 1's 14,100. No-pickup skill leads efficiency at 17,868/¥1; wedding coupons averaged 479K across 4 sales; 28 ability-reset scrolls added 418K net. Three town-scroll bids (6,820 mesos) are purchases, not sales; task items added 43K free. Source screenshots now total 17."
+  },
+  {
+   "date": "2026-08-12",
+   "title": "拍卖行收支总账页面更新：新增原始成交凭证区（9张截图+12物品图标），「下一篇推荐」模块改为页底通栏",
+   "title_en": "Auction Ledger page update: original-records section added (9 screenshots + 12 item icons); next-up module moved to page bottom",
+   "topic": "冒险岛拍卖行收支总账",
+   "body": "议题页新增「07 / 原始成交凭证」章节：收录成交记录第 1–7 页与在售挂单 2 页共 9 张原始截图，支持点击放大核对；净收入排行、效率榜与两张明细表中的 12 种道具均配上游戏内原始图标（自截图裁取）。同时按主人要求将「下一篇推荐」模块从右上角悬浮改为页面底部通栏，AGENTS.md 运营规范已同步修订，此后新报告一律采用页底布局。",
+   "body_en": "Added section '07 / Original Records' with 9 source screenshots (7 sales pages + 2 listing pages) in a click-to-zoom grid; all 12 items across rankings and detail tables now carry their in-game icons cropped from the screenshots. Per the owner's request, the next-up module moved from a floating top-right card to a full-width bottom block; AGENTS.md updated so all future reports follow the bottom layout."
+  },
+  {
+   "date": "2026-08-12",
+   "title": "新议题上线：冒险岛拍卖行收支总账——54笔成交税后净入1,421万金，综合产出14,297金/元",
+   "title_en": "New topic: MapleStory Auction House Ledger — 14.21M mesos net from 54 sales, 14,297 mesos per ¥1",
+   "topic": "冒险岛拍卖行收支总账",
+   "body": "2026-08-12 交易快照全口径核算：总投入 1,213.2 元（已售 1,007.2 + 库存 206），54 笔已成交毛收入 1,495.5 万金，扣 5% 手续费后净入 1,420.8 万金；在售挂单 8 件与背包 2 件全部变现预计再入 313.7 万金，总盘子约 1,734 万金。宠物增益自动技能贡献近八成收入；四件套中皇家理发券每元产出 31,485 金居首，一次性隐形眼镜仅 283 金几乎纯亏。",
+   "body_en": "Full-scope accounting of the 2026-08-12 trading snapshot: total cost ¥1,213.2 (¥1,007.2 sold + ¥206 inventory); 54 completed sales grossed 14.96M mesos, netting 14.21M after the 5% fee; 8 active listings plus 2 bag items are expected to add another 3.14M, bringing the portfolio to ~17.34M mesos. Pet buff auto-skill contributes nearly 80% of revenue; within the 4-item set, Royal Hair Coupon leads at 31,485 mesos per ¥1 while disposable contact lenses return merely 283."
+  },
+  {
+   "date": "2026-08-12",
+   "title": "炒菜机器人国标GB/T 46718-2025将于11月1日实施，外卖新规已正式施行",
+   "topic": "锅气计划外卖模式评估",
+   "body": "我国首个《商用智能炒菜机》国家标准（GB/T 46718-2025）将于2026年11月1日正式实施，标准首次系统规定温控精度、翻炒均匀性、油烟控制、物联网协议等12项核心指标，标志着行业告别'野蛮生长'。与此同时，《网络餐饮服务经营者落实食品安全主体责任监督管理规定》（国家市场监督管理总局令第123号）已于2026年6月1日施行，要求平台对商户资质进行实质性审查，无堂食店铺须在主页面显著标注'无堂食'标识。"
+  },
+  {
+   "date": "2026-08-08",
+   "title": "AI六小虎分水岭显现：智谱股价较发行价暴涨835%，MiniMax涨80%，高波动成常态",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "8月8日新浪财经发文指出AI六小虎已现分水岭。截至8月6日，智谱（02513.HK）报1087港元，较发行价116.2港元上涨约835%；MiniMax（00100.HK）报297.2港元，较发行价165港元上涨约80%。但高波动显著：智谱7月17日单日暴跌28.5%，MiniMax 7月28日单日下跌14.1%，市场对AI资产估值剧烈分化，'四小强+两垂直'格局进一步固化。"
+  },
+  {
+   "date": "2026-08-06",
+   "title": "MiniMax正式纳入港股通，首日股价大涨22.77%市值重回千亿港元",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "8月6日，MiniMax（00100.HK）正式纳入港股通，当日股价高开5.52%，盘间涨幅最高22.77%，触及311.6港元/股，市值重回千亿港元大关。此前公司于8月3日正式开源全模态生成模型H3，该模型在Artificial Analysis视频编辑评测榜与Arena图生视频排行榜均位列全球第一，并在Hugging Face热度登顶。"
+  },
+  {
+   "date": "2026-08-05",
+   "title": "月之暗面G轮（Pre-IPO）融资正式启动，估值达500亿美元",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "8月5日，月之暗面Kimi G轮（Pre-IPO）融资正式启动，本轮估值达500亿美元。因Kimi K3发布后投资额度骤然紧俏，参与方需在8月15日前完成打款，若按单轮稀释约10%计算募资规模将接近60亿美元。从2025年底43亿美元估值至今，月之暗面在约8个月内实现超11倍估值增长。"
+  },
+  {
+   "date": "2026-08-02",
+   "title": "新议题上线：我眼中的西安——一座城与一个文明的千年往来（古籍书页式城市随笔）",
+   "title_en": "New topic: Xi'an in My Eyes — A City and a Millennium of Chinese Civilization (ancient-book-page essay)",
+   "topic": "我眼中的西安",
+   "body": "一份古籍书页式的城市随笔：从长安与西安的两个名字写起，经四塞之国的山河剧本、904年盛世退场、废墟沉淀出的诸多唯一、西北面食与秦腔的江湖，到'中庸之困'的四页账本与硬科技翻身——完整回答'西安究竟是一座怎样的城市'。署名 ssy，八月二深夜于深圳。",
+   "body_en": "An ancient-book-page-style city essay: from the two names (Chang'an and Xi'an), through the geography that scripted dynasties, the fall of 904 AD, the uniqueness gifted by ruins, the Northwest's soul in noodles and Qinqiang opera, to the four-page ledger of its middle-rank economy and the hard-tech comeback — a full answer to 'what kind of city is Xi'an'. Signed by ssy, late night of Aug 2, Shenzhen."
+  },
+  {
+   "date": "2026-07-31",
+   "title": "MiniMax发布首款开源全模态生成模型H3，支持15秒2K音视频生成",
+   "title_en": "MiniMax releases H3, its first open-source omnimodal generative model with 15s 2K video/audio",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "7月31日，MiniMax正式发布通用全模态生成模型H3，首次统一文本、图像、视频、音频的理解与生成，支持原生双声道音视频输出，最高15秒2K分辨率。在Artificial Analysis视频模型榜单中，H3视频编辑能力项排名全球第一。2K分辨率下每秒生成成本不到主流模型的1/3，公司计划未来数天内开源模型权重。发布当日MiniMax股价早盘一度涨超20%。",
+   "body_en": "MiniMax launched H3, a unified omnimodal generative model that understands and generates text, image, video and audio in a single framework. It outputs native stereo audio plus video up to 15 seconds at 2K, and ranked #1 globally on Artificial Analysis's video-editing benchmark. At 2K it costs under one-third per second versus mainstream models; MiniMax plans to open-source the weights within days. The stock rose over 20% in early trading."
+  },
+  {
+   "date": "2026-07-31",
+   "title": "新议题上线：洲明LED·线上B2B采购平台拓展可行性研究（30+平台数据库+匹配矩阵+12个月路线图）",
+   "title_en": "New topic: Unilumin LED B2B Procurement Platform Expansion Study (30+ platform database, fit matrix, 12-month roadmap)",
+   "topic": "洲明LED·线上B2B采购平台拓展可行性研究",
+   "body": "基于10个维度深度研究（906条引用）的政企渠道战略报告：评估齐心云采/得力集实/科力普/苏宁易采云等15家办公集采平台、政采云与省级框架、军队/国网/国铁/能源央企商城；给出七类平台×三类产品匹配矩阵（标注渠道冲突）、五家竞对入驻主体模式判定、代理商vs洲明主体混合架构建议与12个月行动路线图。",
+   "body_en": "A 10-dimension deep-research channel strategy report (906 citations): evaluates 15 office procurement platforms, government procurement frameworks, and SOE malls (military, State Grid, China Railway, energy); delivers a 7-category × 3-product fit matrix with channel-conflict flags, competitor entry-mode verdicts, an agent-vs-principal hybrid architecture, and a 12-month roadmap."
+  },
+  {
+   "date": "2026-07-31",
+   "title": "月之暗面完成F轮融资超35亿美元，投后估值涨至350亿美元",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "7月29日，记者从相关人士处确认，月之暗面已完成F轮融资，融资金额超过35亿美元，本轮投后估值涨至350亿美元。因超目标金额数倍，本轮融资提前关闭。这较5月约20亿美元融资时超200亿美元的估值大幅提升，进一步巩固其在大模型创业公司中的头部地位。"
+  },
+  {
+   "date": "2026-07-30",
+   "title": "新议题上线：LED PICK · 大型LED显示屏选购指南（三入口向导+链路表+术语词墙）",
+   "title_en": "New topic: LED PICK — Large LED Display Buying Guide (3-entry wizard, link matrix, glossary wall)",
+   "topic": "LED PICK · 大型LED显示屏选购指南",
+   "body": "面向小白的LED显示屏选购指南网站上线：支持从场景（18个）、产品类型（12类）、行业（10个）任一入口进入智能选型向导，2-3步输出推荐点间距/亮度/预算；招牌交互含18×12场景类型链路表与36术语词墙；另有点间距滑块实验室、七步方法论（含点间距/分辨率/功耗三个计算器）、14条避坑清单与8项验收量化指标。",
+   "body_en": "A beginner-friendly LED display buying guide is live: pick from 18 scenarios, 12 product types or 10 industries in a step-by-step wizard to get recommended pixel pitch, brightness and budget; signature interactions include an 18x12 scenario-to-type link matrix and a 36-term glossary wall, plus a pixel-pitch lab, a 7-step methodology with three calculators, and a 14-item pitfalls checklist."
+  },
+  {
+   "date": "2026-07-29",
+   "title": "「六小虎」分化加剧：阶跃星辰发布AI手机STEPX Neo，智谱/MiniMax股价较峰值大幅回调，月之暗面被曝拟赴港IPO",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "7月14日阶跃星辰发布智能体操作系统及首款AI手机STEPX Neo，董事长印奇推进'底座-中台-终端'架构落地终端场景。7月中下旬智谱股价较6月22日历史高位2980港元跌超70%，MiniMax同步大幅回调，市场对AI资产估值进行剧烈修正。另据彭博报道，月之暗面已告知投资者准备最早六个月内赴港IPO；Kimi新模型K3上线后一度暂停新用户订阅。"
+  },
+  {
+   "date": "2026-07-29",
+   "title": "凡人动画播放量破68亿，BW2026展台收官，年番「慕兰之战」持续热播",
+   "topic": "凡人修仙传全脉络Wiki",
+   "body": "7月初官方宣布动画总播放量突破68亿，较6月中旬的65亿继续攀升；追番人数维持高位。7月10-12日凡人动画参展BW2026（上海国家会展中心6.1H-6A13展台），主创亲临UP主舞台互动。年番「慕兰之战」每周六11:00 B站独家更新，截至7月下旬已持续播出至7月中旬。"
+  },
+  {
+   "date": "2026-07-28",
+   "title": "大模型「六小虎」格局重塑：智谱MiniMax上市，月之暗面估值破200亿美元，行业分化为「四小强+两垂直」",
+   "topic": "中国大模型六小虎深度研究",
+   "body": "2026年以来国产大模型创业阵营剧烈分化：智谱AI、MiniMax于1月先后登陆港交所，上市后股价暴涨数倍；月之暗面5月完成约20亿美元融资，投后估值超200亿美元，半年累计融资超39亿美元；阶跃星辰5月完成近25亿美元融资并推进港股上市。与此同时，百川智能全面转向AI医疗，零一万物解散预训练团队聚焦To B垂直赛道，「六小虎」正式演变为「四小强+两垂直」新格局。"
+  },
+  {
+   "date": "2026-07-28",
+   "title": "新议题入库：《「锅气计划」标准化现炒外卖模式评估与成本定价分析》",
+   "title_en": "New topic: Project Wok-Hei — standardized fresh-stir-fry takeaway model assessment",
+   "topic": "锅气计划外卖模式评估",
+   "body": "对7个原始设想逐条对照已有模式下结论：仪式感包装（+1.5-2元/单）、错峰分时定价、供应商公示经得起验证；师傅海选、私域App、租用后厨需合规修正。核心章给出单份成本瀑布（保本点日均310单、净利率5.5%）、28-35元定价带推导与客群承接度验证。基于10个维度约600条公开来源交叉调研。",
+   "body_en": "All 7 original assumptions benchmarked against live models: ritual unboxing (+¥1.5-2/order), off-peak time-based pricing and supplier transparency hold up; chef auditions, private-domain app and shared-kitchen leasing need compliance fixes. Core chapter delivers a per-order cost waterfall (break-even at 310 orders/day, 5.5% net margin), ¥28-35 pricing band and customer acceptance analysis. Cross-verified across 10 research dimensions and ~600 public sources."
+  },
+  {
+   "date": "2026-07-28",
+   "title": "新议题入库：《凡人修仙传 · 全脉络 Wiki》",
+   "title_en": "New topic: A Record of a Mortal's Journey to Immortality — Complete Wiki",
+   "topic": "凡人修仙传全脉络Wiki",
+   "body": "凡人流开山之作全考据：主线三书45篇章时间线、三界15境界与韩立14次破境年表、86件宝物图鉴、81人物七类群像与111条关系边图谱；227条目统一ID、交叉引用一一对应，存疑49处皆标印章。",
+   "body_en": "Complete compendium of the genre-founding xianxia novel: 45-arc timeline across 3 books, 15 realms with Han Li's 14 breakthroughs, 86 treasures, 81 characters and a 111-edge relationship graph; 227 entries with unified IDs and full cross-referencing, 49 doubtful points explicitly marked."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v7.3：球心连线全部产品 + 量子流动效果",
+   "title_en": "DRAM 101 v7.3: core links every generation, quantum-flow lines",
+   "topic": "内存技术全景对比",
+   "body": "球心 DRAM 的辐条从 3 条扩到 10 条——核心直连全部十代产品；连线加入「量子流动」效果：每条辐条上有发光粒子从球心持续流向各代产品（白芯+家族色辉光，两端渐隐），代际演进链改为行军虚线沿「老→新」方向流动，画布转为持续渲染（离屏自动暂停省电）。",
+   "body_en": "The DRAM core's spokes grew from 3 to 10 — it now links every one of the ten generations directly. Lines gained a quantum-flow effect: glowing particles (white core + family-color halo, fading at both ends) stream continuously from the core toward each generation, and generation chains became marching dashes flowing from old to new; the canvas now renders continuously, pausing automatically off-screen."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v7.2：删除「先问钱」板块 + 球心遮挡修正",
+   "title_en": "DRAM 101 v7.2: removed the money-teardown section, fixed core occlusion",
+   "topic": "内存技术全景对比",
+   "body": "开篇「先问钱 / FOLLOW THE MONEY」三层拆解板块整体移除，Hero 区只保留「看产业图谱」主按钮，页面从速览直接进入正题；3D 球网修正遮挡关系：球心 DRAM 恢复按深度排序绘制，作为最内层不再遮挡外层的三星/美光等公司节点。",
+   "body_en": "Removed the opening 'follow the money' three-layer teardown section; the hero now keeps a single primary 'View the industry graph' button. Fixed the 3D sphere's occlusion: the DRAM core is drawn in depth order again and, as the innermost layer, no longer covers outer vendor nodes like Samsung or Micron."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v7.1：首页按钮直达产业图谱",
+   "title_en": "DRAM 101 v7.1: hero button jumps straight to the industry graph",
+   "topic": "内存技术全景对比",
+   "body": "首页 Hero 区「直接看结论」按钮改为「看产业图谱」，点击直接跳转到下方的 3D 球网产业图谱（顶部导航栏本就有「图谱」锚点）。",
+   "body_en": "The hero 'skip to conclusion' button is now 'View the industry graph', jumping straight to the 3D sphere industry graph below (the top nav already had a graph anchor)."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v7：球心 DRAM + 年代壳层 + 快速导航与标签筛选",
+   "title_en": "DRAM 101 v7: DRAM core, year shells, quick nav & tag filters",
+   "topic": "内存技术全景对比",
+   "body": "3D 球网中心加入发光的 DRAM 原点，三条路线从球心沿扇区向外生长；十代产品按年代落在四层壳上——DDR4/HBM2 在最内层、HBM4/GDDR7 在最外层，壳层以虚线环+年份标注；公司节点改为纬度/半径双重交错分层，不再同处一层。新增「快速导航」（全景/HBM/DDR/GDDR/中国厂商，一键旋转直达并高亮）与「标签筛选」（三系家族 + 三巨头/中国厂商/台系利基，未选中项几乎隐去、选中项连线高亮）。",
+   "body_en": "A glowing DRAM core now sits at the sphere center with the three routes growing outward; the ten generations rest on four year shells (DDR4/HBM2 innermost, HBM4/GDDR7 outermost) marked by dashed rings and year labels; vendor nodes are staggered across latitude and radius instead of one layer. Added quick-nav chips (overview/HBM/DDR/GDDR/China vendors — one-tap rotate-and-highlight) and tag filters (three families plus big-3/China/Taiwan-niche groups — non-matches fade out, matching links highlight)."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v6：产业图谱改 3D 球网 + 公司饼图 + 10 家厂商",
+   "title_en": "DRAM 101 v6: 3D sphere industry graph, company pie nodes, 10 vendors",
+   "topic": "内存技术全景对比",
+   "body": "产业图谱重做为可拖动旋转的 3D 球网（自绘 Canvas 3D，无外部库）：三条技术路线盘踞三大发光扇区（HBM/DDR/GDDR 大字底纹），每家公司合并为一个饼图圆、饼块=产品结构（如海力士 HBM≈30/通用≈66），圆大小∝DRAM 总份额且反差拉大（三星≈5.7 倍于小厂），鼠标悬停显示占比明细；公司从 4 家扩到 10 家（新增南亚科/华邦/力积电/兆易创新/北京君正/东芯，利基厂份额标估算）；供货关系与代际演进全部改为球面弧线；产品图例挪到顶部并与公司图例穿插。",
+   "body_en": "Industry graph rebuilt as a draggable 3D sphere (hand-rolled canvas 3D, no libs): three routes occupy three glowing sectors with big HBM/DDR/GDDR watermarks; each vendor is a single pie-chart node showing its product mix (e.g. SK hynix HBM ~30 / commodity ~66), radius scaled by overall DRAM share with much stronger contrast, hover for the breakdown; vendor count up from 4 to 10 (added Nanya/Winbond/PSMC/GigaDevice/ISSI/Dosilicon, niche shares marked as estimates); supply links and generation chains redrawn as on-sphere arcs; family legend moved to the top and interleaved with vendor colors."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v5：产业图谱改中心扩散型 + 叙事改「先问钱」",
+   "title_en": "DRAM 101 v5: radial industry graph + follow-the-money narrative",
+   "topic": "内存技术全景对比",
+   "body": "产业图谱重做为中心扩散型：DRAM 居中，DDR/GDDR/HBM 三条路线向三个方向生长，每一环是一代产品、环外围绕该代供应商（圆大小=市占率），公司与产品交织成完整圆形，支持拖动/缩放/点选。叙事参考拆解类视频改为「先问钱」：新增开篇「万亿 AI 算力的钱被谁赚走了」三层拆解（整机→GPU 旁的 HBM→卖铲人三巨头：每季约 850 亿美元 DRAM 营收、九成归三家），结论区呼应「估值归英伟达、现金流归卖铲人」。",
+   "body_en": "Industry graph rebuilt as a radial layout: DRAM at the center, three route branches (DDR/GDDR/HBM) growing outward, each ring a generation surrounded by its vendors (node size = share), forming a full circle with drag/zoom/tap. Narrative restructured around the money question: a new opening teardown (board -> HBM around the GPU -> the shovel sellers taking 90% of ~$85B quarterly DRAM revenue), echoed in the conclusion."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v4：参数区改为路线展开图 + 行业构成图独立",
+   "title_en": "DRAM 101 v4: specs on route lanes, standalone industry-mix chart",
+   "topic": "内存技术全景对比",
+   "body": "十代参数区去卡片化：改为三条技术路线的演进线路图（DDR/GDDR/HBM 三条 lane，虚线框为下一代），点击任意一代在线路图下方展开完整参数介绍，并可一键跳转产业图谱；新增「高亮长鑫能做」开关。市占区拆分为两个独立图表：「行业构成：盘子由什么组成」（通用≈77%/HBM≈18%/GDDR≈5%）与「DRAM 总盘：份额×高低端分段」，不再混排。",
+   "body_en": "Spec section rebuilt as three route-evolution lanes (DDR/GDDR/HBM, dashed ghost nodes for next-gen): tap any generation to expand its full spec sheet below the lane, with one-click jump to the industry graph; added a 'highlight CXMT-capable' toggle. Share section split into two standalone charts: industry mix (commodity ≈77% / HBM ≈18% / GDDR ≈5%) and vendor share × high/low-end segments."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v3：新增产业图谱 + 市占率高低端拆分 + 参数总览格",
+   "title_en": "DRAM 101 v3: industry graph, high/low-end share split, spec grid",
+   "topic": "内存技术全景对比",
+   "body": "新增「产业图谱」板块：以 DDR/HBM 为双起点向右展开十代产品，各代连接首发年代与供应商，圆圈大小=该代市占率，支持拖动/缩放/点选详情（借鉴凡人 Wiki 关系图谱交互）。DRAM 总盘重做「份额×高低端分段图」：长鑫 7.7% 全部位于通用段（DDR/LPDDR），占盘子约 23% 的高端段（HBM+GDDR）中国份额为 0——份额第四≠高端入局。参数表改为十宫格总览+点击弹详情，删除晶圆产能图与 hero 数据条，推荐位移至页尾。",
+   "body_en": "New industry graph section: DDR/HBM roots branching to 10 generations, each linked to its debut year and vendors with node size proportional to segment share (drag/zoom/tap interactions). The DRAM share chart is rebuilt as share × high/low-end segments: CXMT's 7.7% sits entirely in commodity DDR/LPDDR while the high-end segment (~23% of the market: HBM+GDDR) has zero Chinese share. Spec table becomes a compact grid with tap-to-open details; capacity chart and hero stats removed."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v2：移动端重构 + 市占率与巨头布局",
+   "title_en": "DRAM topic v2: mobile-first rebuild, market share & company roadmaps",
+   "topic": "内存技术全景对比",
+   "body": "移动端全面重构：一屏速览结论、路线/参数/布局全部改为折叠展开卡片。新增三大板块：三条路线简介与演变路程；1Q26 市占率（三星40.5%/海力士29.6%/美光19.9%/长鑫7.7%居第四，HBM 海力士≈56%，英伟达 HBM4 订单海力士≈70%/三星≈30%）；四家未来布局（HBM4E 2027 赛点：海力士绑台积电3nm、三星押自研2nm、美光弃自研投台积电、长鑫 HBM3E 目标2027）。",
+   "body_en": "Full mobile rebuild: one-screen overview, accordions for roadmaps/specs/roadmaps. Three new sections: route intros & evolution; 1Q26 market share (Samsung 40.5% / SK hynix 29.6% / Micron 19.9% / CXMT 7.7% No.4; SK hynix ≈56% of HBM and ≈70% of NVIDIA HBM4 orders); four company roadmaps heading into the 2027 HBM4E race."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "DRAM科普 v1：十代内存全参数横评与长鑫能力地图",
+   "title_en": "DRAM 101 v1: 10-gen spec comparison & CXMT capability map",
+   "topic": "内存技术全景对比",
+   "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
+   "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
+  },
+  {
+   "date": "2026-07-27",
+   "title": "新议题入库：《内存技术全景对比：DDR / GDDR / HBM 与长鑫能力地图》",
+   "title_en": "New topic: DRAM Tech Map — DDR/GDDR/HBM & CXMT Capability",
+   "topic": "内存技术全景对比",
+   "body": "DDR4/5、GDDR6/6X/7、HBM2/2E/3/3E/4 十代内存全参数横评（速率/位宽/带宽/容量/电压/封装），带宽天梯显示一颗 HBM4（3.3TB/s）≈20颗 GDDR7。能力地图结论：长鑫 DDR5/LPDDR5X 已量产（同代差距≈5%）、HBM3 于 2026.4 启动量产（中国首颗，全球产能占比<3%）；GDDR 全线与 HBM4（2048位、2.8–3.3TB/s）仍被三星/SK海力士/美光垄断。",
+   "body_en": "Full-spec comparison of 10 memory generations (DDR4/5, GDDR6/6X/7, HBM2–4): one HBM4 stack (3.3TB/s) matches ~20 GDDR7 chips. CXMT map: DDR5/LPDDR5X in mass production (within 5% of global peers), HBM3 ramp started Apr 2026 (China's first, <3% of global HBM capacity); the GDDR lineup and HBM4 (2048-bit, 2.8–3.3TB/s) remain a Samsung/SK hynix/Micron monopoly."
+  },
+  {
+   "date": "2026-07-26",
+   "title": "凡人修仙传 Wiki 升级 v2：四张交互总表 + 图谱缩放控件",
+   "title_en": "Mortal's Journey Wiki v2: interactive tables + zoomable graph",
+   "topic": "凡人修仙传全脉络Wiki",
+   "body": "新增「总表速览」板块：篇章/破境/宝物/人物四表支持排序、筛选、行展开收起；全局展开收起按钮；人物关系图谱升级缩放控件、边类型筛选、搜索定位与详情面板。",
+   "body_en": "New tables section: arcs/breakthroughs/treasures/characters tables with sorting, filtering, expandable rows; global expand/collapse; relationship graph upgraded with zoom controls, edge-type filters, search-locate and detail panel."
+  },
+  {
+   "date": "2026-07-26",
+   "title": "新议题入库：《桶联 BinBot 全链路智能垃圾处理系统 PRD》",
+   "title_en": "New topic: BinBot fully-automated trash pipeline PRD",
+   "topic": "桶联 BinBot 智能垃圾系统",
+   "body": "产品设计概念稿：自动检测打包、腔内喷雾除味、推出交接机构、扫地机器人升降护栏运送与 12 项场景冗余；含 Word/Markdown 版 PRD 下载。",
+   "body_en": "Concept PRD: auto-seal detection, deodorizing spray, push-out handoff, robot-vacuum transport with lifting guardrail, and 12 redundancy scenarios; Word/Markdown PRD included."
+  },
+  {
+   "date": "2026-07-24",
+   "title": "Wiki 升级：深色/浅色、中英双语、分类板块、悬停预览",
+   "title_en": "Wiki upgraded: dark/light theme, CN-EN, categories, hover preview",
+   "topic": "系统",
+   "body": "新增四大分类（工作/个人兴趣/网游/视频总结）、主题与语言切换、导航栏及报告悬停预览。",
+   "body_en": "Added 4 categories, theme & language toggles, navbar, and hover previews for reports."
+  },
+  {
+   "date": "2026-07-24",
+   "title": "知识图谱 Wiki 上线",
+   "title_en": "Wiki launched",
+   "topic": "系统",
+   "body": "首个议题《中国大模型六小虎深度研究》入库，更新追踪机制启动。",
+   "body_en": "First topic \"Six LLM Tigers\" archived; update tracking activated."
+  },
+  {
+   "date": "2026-08-16",
+   "time": "06:55",
+   "title": "作战室升级：LIVE采集竖栏 + 采集流水 + 数据沙盘，10种缺价物品实盘补齐",
+   "title_en": "War room upgrade: live feed, query log, simulator; 10 price gaps crawled",
+   "tag": "系统升级",
+   "body": "大盘作战室四项升级上线：①右侧 LIVE 采集竖栏，每 60 秒推入一条真实采集记录（物品/请求URL/返回结果），持续滚动；②新增「采集流水」面板，69 条记录覆盖全部 43 种物品的三轮查询留痕（05:00 实盘复核 / 05:07 监控批次 / 06:39 补缺采集），附数据跑马灯；③全部缺价物品完成实盘爬取补齐——乖仔衣 148,800、恐龙公主 533,333、黑色小猫 385,000、恐龙王子 498,875、天使的翅膀 278,888、小企鹅王 278,900、水果雪糕 40,000、新鲜香蕉 29,999、新鲜肉 22,727（大幅下修）、骨头 20,000；④双轴图/柱状图/金价图全部支持十字线悬停读数，新增「数据沙盘」盈亏推演器（金价/挂价/批量三杆联动 + 敏感性曲线）。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:05",
+   "title": "作战室 v6：大盘折叠+频率分色、金条置顶、台账抽屉、点选比对",
+   "title_en": "War room v6: collapsible board, freq colors, sticky gold bar, ledger drawer, compare tray",
+   "tag": "系统升级",
+   "body": "交互大改版：①大盘默认折叠为两行（可展开全部 43 种），全部道具按出售频率分色——高频>10/日（绿）/ 中频 3–10（琥珀）/ 低频<3（红）；②倒货推荐榜 S/A/B/避坑四级均可折叠，表内滚动+表头吸顶；③情报滚动条悬浮常驻顶部，左侧金价专位 0.5250 醒目琥珀色，带 60 秒倒计时与刷新闪烁动效；④「我的交易台账」收进左侧常驻抽屉（台账速览），含三轮总成本 3,072.9 元 / 净入 4,270 万金 / 综合 13,896 金/元与常卖组已售均价对照；⑤新增台账比对托盘——点大盘卡片右下角 ⇄ 即可把任意道具与我的台账数据（已售均价、综合产出）并排比对并自动给出结论。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:20",
+   "title": "作战室 v7：流水改悬浮终端、推荐榜每级4行折叠、沙盘一键呼出",
+   "title_en": "War room v7: floating flow terminal, 4-row tiers, sandbox quick-launch",
+   "tag": "系统升级",
+   "body": "①采集流水从整页表格改为右下角悬浮终端 FLOW TERMINAL——69 条查询留痕以代码形式（GET 请求行 + 200 OK JSON 返回行）每 0.55 秒快速滚动循环播放，悬停暂停、点标题栏收起，含 2 条金价源记录；原栏位只留统计与数据跑马灯。②倒货推荐榜每个等级只显示前 4 种，其余折叠为「展开其余 N 种」（S 5 / A 9 / B 2 / 避坑 13 种收起）。③导航栏正中央新增琥珀呼吸「⌘ 沙盘推演」按钮，任意位置一键弹窗呼出推演器（Esc/点空白关闭，滑杆状态保留），正文沙盘模块仍在 06 栏。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:30",
+   "title": "作战室 v8：定名「SSY自制冒险岛交易辅助系统」· 60s 延迟全站标注",
+   "title_en": "War room v8: SSY branding, 60s-lag notices, orb launcher, terminal stats",
+   "tag": "系统升级",
+   "body": "①全站定名「SSY自制冒险岛交易辅助系统」（导航品牌/标题/页脚）。②七个数据板块标题旁统一加上琥珀呼吸徽章「数据均采集自游戏内交易行 · 延迟约 60s」，沙盘推演器内另有醒目横幅（弹窗模式同步显示）。③FLOW TERMINAL 新增底栏：COOKIE 取自 shiwo (UID 215769) · 平稳运行时长（自 05:00 起逐秒跳动）· 累计采集条目（随滚动实时递增）。④导航栏正中央的沙盘入口改为大圆形 logo——锥形渐变光环持续旋转 + 双层扩散光晕，点击即弹出演推器。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:42",
+   "title": "沙盘入口移至页面正中心并放大，流水终端高度减半",
+   "title_en": "Sandbox orb moved to viewport center; terminal halved",
+   "tag": "界面调整",
+   "body": "沙盘圆形 logo 从导航栏移出，118px 大圆钮固定于页面视口正中心（锥形光环旋转 + 双层扩散光晕 + 呼吸光效，悬停放大 1.1×，弹窗打开时自动隐藏）；FLOW TERMINAL 高度由 258px 收至 128px，不再遮挡内容。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:45",
+   "title": "沙盘圆钮定位：导航栏正下方 · 页面顶部中央",
+   "title_en": "Sandbox orb: below nav, top-center",
+   "tag": "界面调整",
+   "body": "按反馈将沙盘大圆钮从视口正中移至「导航栏正下方、页面顶部水平中央」（top:104px, 居中 840px），特效不变，点击弹窗正常。",
+   "link": "../auction-ledger/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "07:58",
+   "title": "沙盘圆钮嵌入导航栏中缝 · 可点标签流动灯条 · 台账整条侧栏",
+   "title_en": "Orb inside nav, flowing borders, full-height ledger tab",
+   "tag": "界面调整",
+   "body": "①沙盘圆形 logo 嵌回顶部导航栏正中，将导航分为左右两半（66px，光环特效保留，点击弹窗不变）。②全部可点选标签（全部/我常卖/S/A/B/避坑及沙盘预设按钮）加上锥形渐变流动灯条边框，光点沿边框循环流动提示可点。③「台账速览」拉长为左侧从上到下一整条悬浮按钮，竖排文字 + 边缘呼吸光 + 光带自上而下扫掠 +「◀ 点击展开」闪烁暗示。",
+   "link": "../auction-ledger/"
+  }
+ ]
 }

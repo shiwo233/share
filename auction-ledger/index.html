@@ -489,25 +489,63 @@ body{padding-top:98px}
 .ft-foot>span:last-child{border-right:none}
 .ft-foot b{color:var(--mint);font-weight:500}
 /* ===== v8 导航圆形沙盘 logo ===== */
-.nav-orb{position:relative;z-index:2;width:66px;height:66px;border-radius:50%;margin:-13px 9px;flex:none;border:none;cursor:pointer;
-  background:radial-gradient(circle at 35% 28%,#26375a,#0a1120 72%);
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .25s cubic-bezier(.3,1.4,.5,1);animation:orbbreath 3.2s ease-in-out infinite}
-.nav-orb:hover{transform:scale(1.14)}
-.nav-orb::before{content:'';position:absolute;inset:-5px;border-radius:50%;
-  background:conic-gradient(from 0deg,transparent 0 30%,var(--amber) 44%,#fff3d6 50%,var(--amber) 56%,transparent 70% 100%);
-  animation:orbspin 2.6s linear infinite}
-.nav-orb::after{content:'';position:absolute;inset:-5px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#26375a,#0a1120 72%)}
-.nav-orb .halo{position:absolute;inset:-7px;border-radius:50%;border:1.5px solid rgba(251,191,36,.55);
+/* 双半圆导航钮 */
+.orb2{position:relative;z-index:2;width:76px;height:76px;margin:-16px 9px;flex:none}
+.orb2 .ring{position:absolute;inset:-5px;border-radius:50%;
+  background:conic-gradient(from var(--fba,0deg),transparent 0 22%,var(--amber) 34%,#fff3d6 42%,var(--cyan) 56%,#d9f8ff 62%,transparent 76% 100%);
+  animation:flowbd 2.8s linear infinite}
+.orb2 .halo{position:absolute;inset:-7px;border-radius:50%;border:1.5px solid rgba(251,191,36,.5);
   animation:orbhalo 2.2s ease-out infinite;pointer-events:none}
-.nav-orb .halo.h2{animation-delay:1.1s}
+.orb2 .halo.h2{animation-delay:1.1s;border-color:rgba(34,211,238,.5)}
 @keyframes orbspin{to{transform:rotate(360deg)}}
 @keyframes orbhalo{0%{transform:scale(.8);opacity:.95}100%{transform:scale(1.5);opacity:0}}
-@keyframes orbbreath{50%{box-shadow:0 0 34px rgba(251,191,36,.4)}}
-.nav-orb .txt{position:relative;z-index:1;color:var(--amber);font-weight:700;font-size:15px;letter-spacing:.08em;
-  text-shadow:0 0 14px rgba(251,191,36,.8);line-height:1.2;text-align:center;font-family:var(--cn)}
-.nav-orb .txt small{display:block;font-size:7px;font-weight:400;letter-spacing:.18em;color:var(--tx2);text-shadow:none}
-@media(max-width:900px){.nav-orb{width:48px;height:48px;margin:-6px 6px}.nav-orb .txt{font-size:11px}}
+@keyframes orbbreath{50%{box-shadow:0 0 30px rgba(251,191,36,.35)}}
+.orb-in{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;background:#0a1120;
+  transition:transform .25s cubic-bezier(.3,1.4,.5,1);animation:orbbreath 3.2s ease-in-out infinite}
+.orb2:hover .orb-in{transform:scale(1.1)}
+.oh{flex:1;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--cn);font-size:12px;font-weight:700;line-height:1.35;letter-spacing:.04em;transition:.2s;padding:0}
+.oh small{font-size:8px;font-weight:400;letter-spacing:.12em;opacity:.75}
+.oh.ol{background:linear-gradient(155deg,#2c2513,#120e07);color:var(--amber);text-shadow:0 0 10px rgba(251,191,36,.6)}
+.oh.ol:hover{background:linear-gradient(155deg,#3f3519,#181207)}
+.oh.or{background:linear-gradient(205deg,#0e2b34,#071216);color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.6);
+  border-left:1px solid rgba(255,255,255,.09)}
+.oh.or:hover{background:linear-gradient(205deg,#14404f,#0a1a20)}
+@media(max-width:900px){.orb2{width:56px;height:56px;margin:-7px 6px}.oh{font-size:9.5px}.oh small{font-size:6.5px}}
+/* 引导提示 toast */
+.gtoast{position:fixed;top:124px;left:50%;transform:translate(-50%,-14px);z-index:88;opacity:0;pointer-events:none;
+  background:rgba(10,16,29,.97);border:1px solid rgba(34,211,238,.55);border-radius:12px;padding:12px 20px;
+  font-size:13px;box-shadow:0 14px 44px rgba(0,0,0,.65);transition:.35s;max-width:88vw;text-align:center}
+.gtoast.on{opacity:1;transform:translate(-50%,0)}
+.gtoast b{color:var(--cyan)}
+/* 引导时大盘呼吸提示 */
+#board.pguide .tile{animation:tilehint 1.1s ease-in-out infinite}
+@keyframes tilehint{50%{border-color:rgba(34,211,238,.75);box-shadow:0 0 18px rgba(34,211,238,.28)}}
+/* 新手导航 */
+.tour{position:fixed;inset:0;z-index:95;background:rgba(3,6,12,.8);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center}
+.tour.on{display:flex}
+.tour-box{width:min(620px,92vw);background:#0a101d;border:1px solid rgba(34,211,238,.4);border-radius:16px;
+  box-shadow:0 30px 90px rgba(0,0,0,.75);overflow:hidden;animation:sbpop .35s cubic-bezier(.3,1.3,.5,1)}
+.tour-head{padding:16px 22px 0;display:flex;align-items:center;gap:10px}
+.tour-head .tt{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--cyan)}
+.tour-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--tx2);
+  width:26px;height:26px;cursor:pointer}
+.tour-head button:hover{color:var(--red);border-color:var(--red)}
+.tour-body{padding:18px 24px 8px;min-height:170px}
+.tour-body .ti{font-size:26px;margin-bottom:8px}
+.tour-body h3{font-size:17px;margin-bottom:8px;color:var(--tx)}
+.tour-body p{font-size:13px;color:var(--tx2);line-height:1.8}
+.tour-body p b{color:var(--amber)} .tour-body p .cy{color:var(--cyan)}
+.tour-foot{display:flex;align-items:center;gap:14px;padding:12px 22px 18px}
+.tour-dots{display:flex;gap:6px}
+.tour-dots i{width:7px;height:7px;border-radius:50%;background:#2a3a5f;transition:.25s}
+.tour-dots i.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.tour-foot .sp{flex:1}
+.tbtn{font-family:var(--mono);font-size:11.5px;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;
+  border:1px solid var(--line);background:var(--panel2);color:var(--tx2)}
+.tbtn:hover{border-color:var(--cyan);color:var(--cyan)}
+.tbtn.pri{border-color:rgba(34,211,238,.6);background:rgba(34,211,238,.14);color:var(--cyan)}
 @media(min-width:1200px){.pillnav{overflow:visible}}
 
 /* ===== v12 可点标签流动灯条边框 ===== */
@@ -555,7 +593,13 @@ body{padding-top:98px}
   <a data-s="sec-flow">流水<span class="n">02</span></a>
   <a data-s="sec-recs">推荐榜<span class="n">03</span></a>
   <a data-s="sec-gold">金价<span class="n">04</span></a>
-  <button class="nav-orb" id="navSandbox" title="沙盘推演 · 快捷呼出"><i class="halo"></i><i class="halo h2"></i><span class="txt">沙盘<small>SIM</small></span></button>
+  <div class="orb2" title="左：推演系统 · 右：耦合分析">
+    <i class="ring"></i><i class="halo"></i><i class="halo h2"></i>
+    <div class="orb-in">
+      <button class="oh ol" id="navSandbox">推演<small>系统</small></button>
+      <button class="oh or" id="navCouple">耦合<small>分析</small></button>
+    </div>
+  </div>
   <a data-s="sec-analysis">耦合<span class="n">05</span></a>
   <a data-s="sec-sandbox">沙盘<span class="n">06</span></a>
   <a data-s="sec-trades">台账<span class="n">07</span></a>
@@ -603,6 +647,24 @@ body{padding-top:98px}
   </div>
 </div>
 
+
+<!-- ================= 引导提示 ================= -->
+<div class="gtoast" id="gtoast"></div>
+
+<!-- ================= 新手导航 ================= -->
+<div class="tour" id="tour">
+  <div class="tour-box">
+    <div class="tour-head"><span class="tt">SSY 自制冒险岛交易辅助系统 · 新手引导</span><button id="tourX">✕</button></div>
+    <div class="tour-body" id="tourBody"></div>
+    <div class="tour-foot">
+      <div class="tour-dots" id="tourDots"></div>
+      <span class="sp"></span>
+      <button class="tbtn" id="tourSkip">跳过</button>
+      <button class="tbtn" id="tourPrev" style="display:none">上一步</button>
+      <button class="tbtn pri" id="tourNext">下一步</button>
+    </div>
+  </div>
+</div>
 <!-- ================= 台账抽屉 ================= -->
 <div class="ldg-tab" id="ldgTab"><span>台账速览</span><span class="tap-hint">◀ 点击展开</span></div>
 <aside class="ldg" id="ldg">
@@ -970,7 +1032,7 @@ body{padding-top:98px}
 <div id="lightbox" onclick="this.classList.remove('on')"><img id="lbImg" src="" alt=""><div class="lbc" id="lbCap"></div></div>
 
 <footer>
-  <span>SSY 自制冒险岛交易辅助系统 · 漂漂猪 RMT ARBITRAGE WAR ROOM</span>
+  <span>SSY 自制冒险岛交易辅助系统 · 漂漂猪 RMT ARBITRAGE WAR ROOM</span><span style="cursor:pointer;color:var(--cyan)" id="tourOpen">新手引导 ↺</span>
   <span>行情: mxdc.dvg.cn/tools/market/ (server 4) · 金价: /tools/price-trend/ ← gmmsj.com · 商城成本: /cash_list.php?sale=on · 图标: /dbsource/icon/item/{SN}.png · 数据截至 2026-08-16 05:00 · 仅供参考，以游戏内实际成交为准</span>
 </footer>
 
@@ -1671,12 +1733,66 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
 /* ================= v7 沙盘快捷呼出 ================= */
 (function(){
   const modal=$('sbModal'), move=$('sbMove'), home=$('sbHome');
-  function openSb(){ $('sbModalBody').appendChild(move); modal.classList.add('on'); $('navSandbox').style.display='none'; if(window.sbRecalc) sbRecalc(); }
-  function closeSb(){ home.appendChild(move); modal.classList.remove('on'); $('navSandbox').style.display=''; }
+  function openSb(){ $('sbModalBody').appendChild(move); modal.classList.add('on'); document.querySelector('.orb2').style.visibility='hidden'; if(window.sbRecalc) sbRecalc(); }
+  function closeSb(){ home.appendChild(move); modal.classList.remove('on'); document.querySelector('.orb2').style.visibility=''; }
   $('navSandbox').addEventListener('click',e=>{e.stopPropagation();openSb();});
   $('sbModalX').addEventListener('click',closeSb);
   modal.addEventListener('click',e=>{ if(e.target===modal) closeSb(); });
   addEventListener('keydown',e=>{ if(e.key==='Escape') closeSb(); });
+})();
+
+/* ================= v13 引导提示 toast ================= */
+let gtoastTimer=null;
+function showToast(html){
+  const t=$('gtoast'); t.innerHTML=html; t.classList.add('on');
+  clearTimeout(gtoastTimer); gtoastTimer=setTimeout(()=>t.classList.remove('on'),4600);
+}
+/* ================= v13 耦合分析引导 ================= */
+(function(){
+  $('navCouple').addEventListener('click',e=>{
+    e.stopPropagation();
+    showToast('第 1 步 · 在下方大盘里 <b>点选任意一件道具</b>，系统自动为你跳转耦合分析');
+    $('boardClip').classList.add('open'); $('boardToggle').textContent='收起 ▴';
+    $('board').classList.add('pguide');
+    $('sec-board').scrollIntoView({behavior:'smooth'});
+    const once=ev=>{
+      const tile=ev.target.closest('.tile'); if(!tile) return;
+      $('board').classList.remove('pguide');
+      setTimeout(()=>showToast('第 2 步 · 已联动「耦合分析」——看金价 × 物价的背离形态与 <b>操作建议</b>'),700);
+      document.removeEventListener('click',once,true);
+    };
+    document.addEventListener('click',once,true);
+    setTimeout(()=>{ $('board').classList.remove('pguide'); document.removeEventListener('click',once,true); },15000);
+  });
+})();
+/* ================= v13 新手导航 ================= */
+(function(){
+  const STEPS=[
+    {i:'🪙',t:'这是什么',d:'<b>SSY 自制冒险岛交易辅助系统</b>——漂漂猪（server 4）倒货作战室：商城点券进货 → 拍卖行卖金 → 卖金回款，全链路用数据说话。所有行情均<span class="cy">采集自游戏内交易行</span>（mxdc），延迟约 60s，每小时自动复核一次。'},
+    {i:'📊',t:'大盘作战墙',d:'43 种道具实时行情墙。卡片<b>左边框颜色 = 出售频率</b>（绿高频 / 琥珀中频 / 红低频）；<b>点卡片</b>联动金价×物价耦合分析；点卡片右下角 <b>⇄</b> 可把道具加入底部「台账比对」。顶部金条常驻实时金价 <b>0.525 元/万金</b>。'},
+    {i:'🏆',t:'推荐榜与避坑',d:'S/A/B 三级按 <b>税后金/元</b> 排序，生死线是「买金线」<b>19,048 金/元</b>——低于它不如直接买金。每级默认只显示前 4 种，点「展开其余」看全量；<b>避坑名单</b>里的品种别碰（低于买金线 / 渠道关闭 / 巨亏）。'},
+    {i:'🔮',t:'推演 + 耦合双钮',d:'导航正中的圆形按钮分两半：<b>左半「推演系统」</b>呼出数据沙盘——拖金价 / 挂价 / 批量三根滑杆，实时演算单件盈亏、批次盈亏与回本汇率；<span class="cy">右半「耦合分析」</span>会先提示你在大盘选一件道具，然后自动跳到金价×物价联动解读。'},
+    {i:'📒',t:'台账 · 流水 · 终端',d:'<b>左侧整条「台账速览」</b>点开是三轮核算（成本 3,072.9 元 / 净入 4,270 万金 / 综合 13,896 金/元）与常卖组对照；右下角 <b>FLOW TERMINAL</b> 以代码形式滚动播放每一次采集的请求与返回；「采集流水」栏有统计与数据跑马灯。祝倒货顺利。'},
+  ];
+  let cur=0;
+  const tour=$('tour');
+  function render(){
+    const st=STEPS[cur];
+    $('tourBody').innerHTML=`<div class="ti">${st.i}</div><h3>${st.t}</h3><p>${st.d}</p>`;
+    $('tourDots').innerHTML=STEPS.map((_,i)=>`<i class="${i===cur?'on':''}"></i>`).join('');
+    $('tourPrev').style.display=cur>0?'':'none';
+    $('tourNext').textContent=cur===STEPS.length-1?'完成 · 开始探索':'下一步';
+  }
+  function open(){ cur=0; render(); tour.classList.add('on'); }
+  function close(){ tour.classList.remove('on'); try{localStorage.setItem('ssy_tour_v1','1')}catch(e){} }
+  $('tourNext').addEventListener('click',()=>{ if(cur<STEPS.length-1){cur++;render();} else close(); });
+  $('tourPrev').addEventListener('click',()=>{ if(cur>0){cur--;render();} });
+  $('tourSkip').addEventListener('click',close);
+  $('tourX').addEventListener('click',close);
+  tour.addEventListener('click',e=>{ if(e.target===tour) close(); });
+  $('tourOpen').addEventListener('click',open);
+  let seen=null; try{seen=localStorage.getItem('ssy_tour_v1')}catch(e){}
+  if(!seen) setTimeout(open,900);
 })();
 mountOdoAnim();
 </script>
