@@ -211,6 +211,10 @@ footer{max-width:1560px;margin:26px auto 40px;padding:14px 26px;border-top:1px s
 .t-grp.gb2{background:rgba(240,171,252,.12);color:var(--magenta)}
 .t-grp.gv{background:rgba(248,113,113,.14);color:var(--red)}
 .t-yld{font-family:var(--mono);font-size:11px;margin-top:3px;display:flex;justify-content:space-between;align-items:center}
+.t-data{margin-top:4px;display:flex;flex-direction:column;gap:2.5px;border-top:1px dashed var(--line);padding-top:5px}
+.t-row{font-family:var(--mono);font-size:10.5px;display:flex;justify-content:space-between;align-items:center}
+.t-row span{color:var(--tx3);letter-spacing:.04em}
+.t-row b{font-size:12px}
 .t-yld b{font-size:12px}
 .tier-cap{display:flex;align-items:baseline;gap:10px;margin:22px 0 10px}
 .tier-cap h3{font-size:15px}
@@ -1173,7 +1177,7 @@ function tileHTML(it, idx){
   const fq = it.an==null?'fq-u':(it.an>10?'fq-h':(it.an>=3?'fq-m':'fq-l'));
   const fqColor = {mint:'var(--mint)',amber:'var(--amber)',red:'var(--red)',gray:'var(--tx3)'}[nClr]||'var(--tx3)';
   const sparkColor = it.g==='V' ? '#f87171' : (it.dir<0?'#f87171':(warn?'#fbbf24':'#34d399'));
-  return `<div class="tile ${fq}" data-id="${it.id}" data-g="${it.g}" style="animation-delay:${Math.min(idx*24,700)}ms">
+  return `<div class="tile ${fq}" data-id="${it.id}" data-g="${it.g}" data-cost="${it.cost}" style="animation-delay:${Math.min(idx*24,700)}ms">
     <button class="t-cmp${CMP.has(it.id)?' on':''}" data-cmp="${it.id}" title="加入台账比对">⇄</button>
     ${warn?'<div class="t-flag"></div>':''}
     <div class="t-head">
@@ -1184,7 +1188,11 @@ function tileHTML(it, idx){
     </div>
     <div class="t-price mono" data-base="${price||''}">${price?fmt(price):'— —'}</div>
     <div class="t-sub">${chgHtml}<span class="t-n" style="color:${fqColor}">${nTag}</span></div>
-    <div class="t-yld"><span style="color:var(--tx3)">税后到手</span><b class="t-net" style="color:${above?'var(--mint)':'var(--red)'}">${price?fmt(Math.round(price*0.95)):'—'} 金</b></div>
+    <div class="t-data">
+      <div class="t-row"><span>税后到手</span><b class="t-net" style="color:${above?'var(--mint)':'var(--red)'}">${price?fmt(Math.round(price*0.95))+' 金':'—'}</b></div>
+      <div class="t-row"><span>产金 / 100点券</span><b class="t-prod" style="color:${above?'var(--mint)':'var(--red)'}">${price?fmt(Math.round(price*0.95/it.cost))+' 金':'—'}</b></div>
+      <div class="t-row"><span>较盈亏平衡点</span><b class="t-gap" style="color:${above?'var(--mint)':'var(--red)'}">${price?(((price*0.95/it.cost/(10000/(GOLD.rate*0.95))-1)*100)>=0?'+':'')+((price*0.95/it.cost/(10000/(GOLD.rate*0.95))-1)*100).toFixed(1)+'%':'—'}</b></div>
+    </div>
     ${sparkSVG(it.tr,206,26,sparkColor)}
     <div class="t-bar" style="width:${it.an!=null?Math.min(it.an/50*100,100):4}%;${it.an!=null&&it.an<10?'background:var(--red)':(it.an!=null?'background:var(--mint)':'')}"></div>
   </div>`;
@@ -1201,8 +1209,16 @@ function pulseTile(el){
   el.classList.remove('flash-up','flash-dn'); void el.offsetWidth;
   el.classList.add(dev>=0?'flash-up':'flash-dn');
   setTimeout(()=>el.classList.remove('flash-up','flash-dn'), 420);
-  const tile = el.closest('.tile'), net = tile && tile.querySelector('.t-net');
-  if(net) net.textContent = fmt(Math.round(v*0.95)) + ' 金';
+  const tile = el.closest('.tile');
+  if(tile){
+    const cost = parseFloat(tile.dataset.cost)||1;
+    const net = tile.querySelector('.t-net'), prod = tile.querySelector('.t-prod'), gap = tile.querySelector('.t-gap');
+    const be = 10000/(GOLD.rate*0.95);
+    const p = v*0.95/cost;
+    if(net) net.textContent = fmt(Math.round(v*0.95)) + ' 金';
+    if(prod) prod.textContent = fmt(Math.round(p)) + ' 金';
+    if(gap) gap.textContent = (((p/be-1)*100)>=0?'+':'') + ((p/be-1)*100).toFixed(1) + '%';
+  }
   return true;
 }
 function armTile(el){
