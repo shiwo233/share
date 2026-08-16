@@ -329,6 +329,9 @@ body{padding-top:98px}
 .goldcap .gl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;color:var(--red);animation:blink 1.6s infinite}
 .goldcap .gv{font-family:var(--mono);font-size:16.5px;font-weight:700;color:var(--amber);animation:gglow 2.2s ease-in-out infinite;line-height:1}
 .goldcap .gu{font-family:var(--mono);font-size:8.5px;color:var(--tx3);letter-spacing:.08em;margin-left:-4px}
+.gs-dot{width:7px;height:7px;border-radius:50%;background:#5a6b8f;flex:none}
+.gs-dot.live{background:var(--mint);box-shadow:0 0 8px var(--mint);animation:blink 2.4s infinite}
+.gs-dot.stale{background:var(--amber)}
 @keyframes gglow{50%{text-shadow:0 0 14px rgba(251,191,36,.8)}}
 .goldcap .gc{font-family:var(--mono);font-size:10px}
 .goldcap .gr{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;color:var(--tx3)}
@@ -627,6 +630,7 @@ body{padding-top:98px}
     <span class="gu">万金/CNY</span>
     <span class="gc down">▲15.1%</span>
     <span class="gr"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 1 1-4.6 3" stroke="#8b9bb8" stroke-width="1.3"/><path d="M1.2 1.4v3h3" stroke="#8b9bb8" stroke-width="1.3"/></svg><span id="goldCd">60s</span></span>
+    <span class="gs-dot" id="goldSrcDot" title="实盘源状态"></span>
   </div>
   <div class="ticker-track" id="tickerTrack"></div>
 </div>
@@ -716,8 +720,8 @@ body{padding-top:98px}
     <span>已售均价 = 主人台账（本地）</span>
   </div>
   <div class="stats">
-    <div class="stat"><div class="lb">漂漂猪金价 万金/CNY</div><div class="vl" style="color:var(--amber)">1.8182</div><div class="dl down">▲ +15.1% vs 昨日 1.579 · 金贬值未止 · ±3% 警报</div></div>
-    <div class="stat"><div class="lb">盈亏平衡点 金/元</div><div class="vl" data-odo="19048">19,048</div><div class="dl dim">原 15,789 · <span class="warn">门槛 +3,259</span></div></div>
+    <div class="stat"><div class="lb">漂漂猪金价 万金/CNY</div><div class="vl" style="color:var(--amber)" id="statGold">1.8182</div><div class="dl down">▲ +15.1% vs 昨日 1.579 · 金贬值未止 · ±3% 警报</div></div>
+    <div class="stat"><div class="lb">盈亏平衡点 万金/100点券</div><div class="vl" id="statBE">1.9139</div><div class="dl dim">= 金价 ÷ 0.95 税后口径 · 倒货低于此不如直接买金</div></div>
     <div class="stat"><div class="lb">监控品种</div><div class="vl"><span data-odo="43">43</span><small> 种</small></div><div class="dl up">常卖10 · S8 · A8 · B6 · 避坑11</div></div>
     <div class="stat"><div class="lb">买金线上品种</div><div class="vl" data-odo="9">9</div><div class="dl dim">S 级 · 其余冻结补货</div></div>
     <div class="stat"><div class="lb">砸盘预警</div><div class="vl down" data-odo="4">4</div><div class="dl dim">常卖挂单超已售均价 +20%</div></div>
@@ -1645,21 +1649,52 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
   calc();
 })();
 
-/* ================= v6 金价 cap 刷新动效 ================= */
+/* ================= v18 金价 60s 实盘自动刷新 ================= */
 (function(){
+  const PT='https://mxdc.dvg.cn/tools/price-trend/';
+  const PROXIES=[
+    u=>'https://api.cors.lol/?url='+encodeURIComponent(u),
+    u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u),
+    u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u),
+    u=>'https://corsproxy.io/?url='+encodeURIComponent(u)
+  ];
   let cd=60;
   const cdEl=$('goldCd'), cap=$('goldCap');
-  setInterval(()=>{
-    cd--; if(cd<=0){
-      cd=60;
-      cap.classList.remove('gflash'); void cap.offsetWidth; cap.classList.add('gflash');
-      /* 微扰末位，演示刷新 */
-      const v=$('goldCapV'); const base=1/GOLD.rate;
-      v.textContent=(base+(Math.random()*0.002-0.001)).toFixed(4);
-      setTimeout(()=>{v.textContent=base.toFixed(4);},2600);
+  function srcMark(ok){
+    const d=$('goldSrcDot'); if(!d) return;
+    d.className='gs-dot '+(ok?'live':'stale');
+    d.title=ok?('实盘已刷新 · '+new Date().toLocaleTimeString('zh-CN')):'代理暂被限流 · 显示上一快照，下一分钟自动重试';
+  }
+  function applyGold(g){
+    if(!isFinite(g)||g<=0) return;
+    GOLD.rate=1/g;
+    $('goldCapV').textContent=g.toFixed(4);
+    const sg=$('statGold'); if(sg) sg.textContent=g.toFixed(4);
+    const be=$('statBE'); if(be) be.textContent=(g/0.95).toFixed(4);
+    cap.classList.remove('gflash'); void cap.offsetWidth; cap.classList.add('gflash');
+  }
+  async function refreshGold(){
+    for(const w of PROXIES){
+      try{
+        const ac=new AbortController(); const to=setTimeout(()=>ac.abort(),9000);
+        const r=await fetch(w(PT),{cache:'no-store',signal:ac.signal});
+        clearTimeout(to);
+        if(!r.ok) continue;
+        let t=await r.text();
+        try{const j=JSON.parse(t); if(j&&j.contents) t=j.contents;}catch(e){}
+        const m=t.match(/"area_name":"漂漂猪"[\s\S]{0,240}?"yuan_to_wan_gold":([\d.]+)/)
+               ||t.match(/漂漂猪[\s\S]{0,240}?"yuan_to_wan_gold":([\d.]+)/);
+        if(!m) continue;
+        applyGold(parseFloat(m[1]));
+        srcMark(true);
+        return true;
+      }catch(e){}
     }
-    cdEl.textContent=cd+'s';
-  },1000);
+    srcMark(false);
+    return false;
+  }
+  setInterval(()=>{ cd--; if(cd<=0){ cd=60; refreshGold(); } cdEl.textContent=cd+'s'; },1000);
+  setTimeout(refreshGold,4000);
 })();
 /* ================= v6 大盘折叠 ================= */
 (function(){
