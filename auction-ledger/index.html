@@ -782,7 +782,7 @@ body{padding-left:44px}
 <!-- ================= 04 金价 ================= -->
 <section class="sec" id="sec-gold">
   <div class="sec-head"><span class="no">04</span><h2>金价监控</h2> <span class="lagchip"><i></i>数据均采集自游戏内交易行 · 延迟约 60s</span><span class="sub">快照 2026-08-16 10:12（UTC+8）· 每小时自动跟踪</span>
-    <span class="right">UNIT: CNY / 万金</span></div>
+    <span class="right">UNIT: 万金 / CNY</span></div>cfc3bf1 (v20：金价监控+五区服切换万金/元口径，五区报价接入每分钟实盘自刷)
   <div class="srcbar">
     <span class="src-cap">数据来源</span>
     <span>页面 <span class="code">mxdc.dvg.cn/tools/price-trend/</span>（怀旧服游戏币价格走势）</span>
@@ -791,13 +791,13 @@ body{padding-left:44px}
   </div>
   <div class="chart-box" style="display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center">
     <div style="text-align:center;border-right:1px solid var(--line);padding-right:14px">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--tx3);margin-bottom:6px">当前汇率 CNY/万金</div>
-      <div style="font-family:var(--mono);font-size:34px;font-weight:700;color:var(--amber)" class="odo-gold">0.0000</div>
-      <div class="mono down" style="font-size:12px;margin-top:4px">▼ −13.1% vs 0.6333 · 今晨触底 0.525 回升</div>
-      <div class="mono dim" style="font-size:10px;margin-top:6px">盈亏平衡点 <b class="warn" data-odo="19048">19,048</b> 金/元</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--tx3);margin-bottom:6px">当前汇率 万金/CNY</div>
+      <div style="font-family:var(--mono);font-size:34px;font-weight:700;color:var(--amber)" class="odo-gold" id="goldBig">0.0000</div>
+      <div class="mono down" style="font-size:12px;margin-top:4px">vs 昨日 1.5791 · 今晨冲高 1.9048 后回落（金小幅回升）</div>
+      <div class="mono dim" style="font-size:10px;margin-top:6px">盈亏平衡点 <b class="warn" id="goldBE">1.9139</b> 万金/100点券</div>
     </div>
     <div>
-      <div class="chart-cap"><span>漂漂猪 · 小时级汇率（近 50 点）</span><span>最新 08-16 08:41 · 0.55 元/万金 = 1.8182 万金/元</span></div>
+      <div class="chart-cap"><span>漂漂猪 · 小时级汇率（近 50 点 · 万金/元）</span><span id="goldSparkCap">最新 08-16 08:41 · 1.8182 万金/元</span></div>
       <svg id="goldSpark" width="100%" height="96" viewBox="0 0 980 96" preserveAspectRatio="none"></svg>
     </div>
   </div>
@@ -812,7 +812,7 @@ body{padding-left:44px}
   <div class="blk open">
     <button class="hd"><span class="tri">▶</span><span class="tt">五区服报价对照</span><span class="meta">gmmsj.com 快照</span></button>
     <div class="bd"><div class="bd-in"><div class="tbl-wrap"><table>
-      <thead><tr><th>区服</th><th class="num">最新（元/万金）</th><th class="num">较 08-10 涨跌</th><th class="num">在售笔数</th></tr></thead>
+      <thead><tr><th>区服</th><th class="num">最新（万金/元）</th><th class="num">较 08-10 涨跌</th><th class="num">在售笔数</th></tr></thead>
       <tbody id="goldServers"></tbody>
     </table></div></div></div>
   </div>
@@ -1415,7 +1415,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')$('lightbox').classList.remov
 /* ================= 金价大数字 ================= */
 (function(){
   const el = document.querySelector('.odo-gold');
-  const target = GOLD.rate, dur = 1600, t0 = performance.now();
+  const target = 1/GOLD.rate, dur = 1600, t0 = performance.now();
   function tick(now){
     const p = Math.min((now-t0)/dur, 1);
     const e = 1-Math.pow(1-p,3);
@@ -1428,25 +1428,28 @@ addEventListener('keydown',e=>{if(e.key==='Escape')$('lightbox').classList.remov
 /* ================= 金价曲线 ================= */
 (function(){
   const svg = $('goldSpark'), W=980, H=96, P=10;
-  const rs = GOLD_HOURLY, mn=Math.min(...rs), mx=Math.max(...rs);
+  const rs = GOLD_HOURLY.map(v=>+(1/v).toFixed(4)), mn=Math.min(...rs), mx=Math.max(...rs);
   const x = i => P + i*(W-2*P)/(rs.length-1);
   const y = v => H-P - (v-mn)/(mx-mn)*(H-2*P);
   const line = 'M'+rs.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' L');
-  const baseY = y(GOLD.last);
+  const baseY = y(+(1/GOLD.last).toFixed(4));
   svg.innerHTML = `
     <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#fbbf24" stop-opacity=".28"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></linearGradient></defs>
     <line x1="${P}" y1="${baseY}" x2="${W-P}" y2="${baseY}" stroke="#22d3ee" stroke-dasharray="4 4" stroke-opacity=".6" class="fadein"/>
-    <text x="${W-P-4}" y="${baseY-4}" fill="#22d3ee" font-size="9" font-family="JetBrains Mono" text-anchor="end" class="fadein">上次基准 0.6333</text>
+    <text x="${W-P-4}" y="${baseY-4}" fill="#22d3ee" font-size="9" font-family="JetBrains Mono" text-anchor="end" class="fadein">昨日基准 1.5791</text>
     <path d="${line} L${x(rs.length-1)},${H-P} L${P},${H-P} Z" fill="url(#g2)" class="fadein"/>
     <path d="${line}" fill="none" stroke="#fbbf24" stroke-width="1.6" class="draw"/>
     <line id="gsX" class="xhair" x1="0" y1="${P}" x2="0" y2="${H-P}" style="display:none"/>
     <circle id="gsD" class="hovdot" r="3.2" fill="#fbbf24" style="display:none"/>
     <circle cx="${x(rs.length-1)}" cy="${y(rs[rs.length-1])}" r="3" fill="#fbbf24">
       <animate attributeName="r" values="3;4.5;3" dur="1.6s" repeatCount="indefinite"/></circle>`;
-  $('goldServers').innerHTML = SERVERS.map(([n,v,chg,st])=>`<tr>
+  window.renderGoldServers = function(){
+    $('goldServers').innerHTML = SERVERS.map(([n,v,chg,st])=>`<tr>
     <td>${n}${n==='漂漂猪'?' <span class="tag cyan">本服</span>':''}</td>
-    <td class="num mono">${v}</td><td class="num down">${chg}%</td><td class="num dim">${st}</td></tr>`).join('');
+    <td class="num mono">${(1/v).toFixed(4)}</td><td class="num down">${chg}%</td><td class="num dim">${st}</td></tr>`).join('');
+  };
+  renderGoldServers();
   const tip=$('ctip'), xl=svg.querySelector('#gsX'), dt=svg.querySelector('#gsD');
   svg.onmousemove=e=>{
     const r=svg.getBoundingClientRect();
@@ -1457,7 +1460,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')$('lightbox').classList.remov
     const dp=i>0?((rs[i]/rs[i-1]-1)*100):0;
     tip.style.display='block';
     tip.innerHTML=`<div class="tt">T−${rs.length-1-i}h · 金价</div>
-      <div class="row"><span class="dot" style="background:#fbbf24"></span><b>${rs[i]}</b> 元/万金</div>
+      <div class="row"><span class="dot" style="background:#fbbf24"></span><b>${rs[i]}</b> 万金/元</div>
       <div class="row"><span class="dot" style="background:${dp>=0?'#34d399':'#f87171'}"></span>环比 <b class="${dp>=0?'up':'down'}">${dp>=0?'+':''}${dp.toFixed(2)}%</b></div>
       <div class="row"><span class="dot" style="background:#22d3ee"></span>买金线 <b>${fmt(Math.round(10000/rs[i]))}</b></div>`;
     tip.style.left=Math.min(e.clientX+16,innerWidth-200)+'px'; tip.style.top=(e.clientY-14)+'px';
@@ -1672,6 +1675,9 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
     $('goldCapV').textContent=g.toFixed(4);
     const sg=$('statGold'); if(sg) sg.textContent=g.toFixed(4);
     const be=$('statBE'); if(be) be.textContent=(g/0.95).toFixed(4);
+    const gb=$('goldBig'); if(gb) gb.textContent=g.toFixed(4);
+    const ge=$('goldBE'); if(ge) ge.textContent=(g/0.95).toFixed(4);
+    const gc2=$('goldSparkCap'); if(gc2) gc2.textContent='最新 '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})+' · '+g.toFixed(4)+' 万金/元';
     cap.classList.remove('gflash'); void cap.offsetWidth; cap.classList.add('gflash');
   }
   async function refreshGold(){
@@ -1683,10 +1689,13 @@ $('clock').textContent = new Date().toLocaleString('zh-CN',{hour12:false});
         if(!r.ok) continue;
         let t=await r.text();
         try{const j=JSON.parse(t); if(j&&j.contents) t=j.contents;}catch(e){}
-        const m=t.match(/"area_name":"漂漂猪"[\s\S]{0,240}?"yuan_to_wan_gold":([\d.]+)/)
-               ||t.match(/漂漂猪[\s\S]{0,240}?"yuan_to_wan_gold":([\d.]+)/);
-        if(!m) continue;
-        applyGold(parseFloat(m[1]));
+        const re=/"area_name":"(蓝蜗牛|小白兔|漂漂猪|蘑菇仔|绿水灵)"[\s\S]{0,240}?"yuan_to_wan_gold":([\d.]+)/g;
+        let mm; const found={};
+        while((mm=re.exec(t))) found[mm[1]]=parseFloat(mm[2]);
+        if(!found['漂漂猪']) continue;
+        SERVERS.forEach(sv=>{ if(found[sv[0]]) sv[1]=+(1/found[sv[0]]).toFixed(4); });
+        if(window.renderGoldServers) renderGoldServers();
+        applyGold(found['漂漂猪']);
         srcMark(true);
         return true;
       }catch(e){}
