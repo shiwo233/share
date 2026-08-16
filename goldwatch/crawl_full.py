@@ -63,6 +63,39 @@ def crawl_one(sess, iid):
     return {'id': iid, 'low': low, 'med': med, 'chg': chg, 'n_day': n_day,
             'tr7': tr7, 'rate': data.get('rates', {}).get('4')}
 
+def fetch_gold():
+    """price-trend 公开页：最新五区报价 + 近49小时漂漂猪序列（无需 cookie）"""
+    r = requests.get(BASE + '/tools/price-trend/', headers=UA, timeout=30)
+    m = re.search(r'window\.PRICE_TREND_DATA = (\{.*?\});\s*</script>', r.text, re.S)
+    d = json.loads(m.group(1))
+    def q_of(items, name):
+        for it in items:
+            if it['area_name'] == name:
+                return it['quote']
+        return None
+    latest = d['latest']
+    hh = d['history_hour']
+    hourly = []
+    for e in hh:
+        q = q_of(e['items'], '漂漂猪')
+        if q:
+            hourly.append({'t': e['collected_at'], 'rate': q['wan_gold_to_yuan'], 'g': q['yuan_to_wan_gold']})
+    prev_items = hh[-25]['items'] if len(hh) >= 25 else hh[0]['items']
+    prev_map = {it['area_name']: it['quote']['wan_gold_to_yuan'] for it in prev_items}
+    servers = {}
+    for it in latest['items']:
+        servers[it['area_name']] = {'g': it['quote']['yuan_to_wan_gold'],
+                                    'rate': it['quote']['wan_gold_to_yuan'],
+                                    'stock': it['quote'].get('stock', 1)}
+    q0 = q_of(latest['items'], '漂漂猪')
+    asof = latest['collected_at']
+    if asof.endswith('Z'):  # UTC -> +08:00
+        dt = datetime.datetime.fromisoformat(asof.replace('Z', '+00:00')) + datetime.timedelta(hours=8)
+        asof = dt.strftime('%Y-%m-%dT%H:%M:%S+08:00')
+    return {'asof': asof, 'rate': q0['wan_gold_to_yuan'], 'g': q0['yuan_to_wan_gold'],
+            'prev24': prev_map.get('漂漂猪'), 'hourly': hourly[-49:],
+            'servers': servers, 'servers_prev': prev_map}
+
 def main():
     cookie = open(os.path.join(GW, '.cookie')).read().strip()
     src = open(PAGE, encoding='utf-8').read()
@@ -72,6 +105,12 @@ def main():
     sess = requests.Session()
     sess.headers.update({**UA, 'Cookie': cookie})
     out = {'ts': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'), 'items': {}}
+    try:
+        out['gold'] = fetch_gold()
+        json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)  # 金价先落盘
+        log('金价 OK:', out['gold']['asof'], '漂漂猪', out['gold']['g'], '万金/元')
+    except Exception as e:
+        log('金价采集失败（不影响道具采集）:', repr(e))
     try:
         for k, (iid, name) in enumerate(ids):
             try:

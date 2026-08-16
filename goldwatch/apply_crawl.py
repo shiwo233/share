@@ -26,6 +26,40 @@ def main(do_push=False):
     gm = re.search(r'const GOLD = (\{[^}]+\});', src)
     gold = json.loads(gm.group(1))
     rate = gold['rate']
+
+    # ---- 金价块：最新价 + 49小时序列 + 五区报价 + 买金线 ----
+    g = cr.get('gold')
+    if g and g.get('rate'):
+        rate = g['rate']                                # 元/万金
+        last = g.get('prev24') or gold.get('last')
+        chg = round((rate / last - 1) * 100, 1) if last else gold.get('chg')
+        line = round(10000 / (rate * 0.95))             # 买金线 = 税后盈亏平衡 金/元
+        asof = g['asof'][:16].replace('T', ' ')         # 2026-08-16T18:00:00+08:00 -> 2026-08-16 18:00
+        new_gold = {'rate': rate, 'last': last, 'chg': chg, 'line': line, 'asof': asof}
+        src = src[:gm.start(1)] + json.dumps(new_gold, ensure_ascii=False) + src[gm.end(1):]
+        hourly = [pt['rate'] for pt in g.get('hourly', []) if pt.get('rate')]
+        if len(hourly) >= 10:
+            src = re.sub(r'const GOLD_HOURLY = \[[^\]]*\];',
+                         'const GOLD_HOURLY = [' + ', '.join(str(v) for v in hourly) + '];', src)
+        order = ['蓝蜗牛', '小白兔', '漂漂猪', '蘑菇仔', '绿水灵']
+        sv = []
+        for nm in order:
+            s = g['servers'].get(nm)
+            if not s:
+                continue
+            p = g.get('servers_prev', {}).get(nm)
+            schg = round((s['rate'] / p - 1) * 100, 1) if p else 0
+            sv.append([nm, s['rate'], schg, s.get('stock', 1)])
+        if sv:
+            src = re.sub(r'const SERVERS = \[[\s\S]*?\];',
+                         'const SERVERS = ' + json.dumps(sv, ensure_ascii=False) + ';', src)
+        # 金价标题行（静态 HTML）
+        src = re.sub(r'最新 \d{2}-\d{2} \d{2}:\d{2} · [\d.]+ 万金/元',
+                     f'最新 {asof[5:16]} · {g["g"]:.4f} 万金/元', src)
+        # 买金线数值（正文/沙盘/术语表三处）
+        src = re.sub(r'买金线 [\d,]+', f'买金线 {line:,}', src)
+        src = re.sub(r'（当前 [\d,]+）', f'（当前 {line:,}）', src)
+        print(f'金价回写: {asof} 漂漂猪 {g["g"]:.4f} 万金/元 · 买金线 {line:,} · 24h {chg:+.1f}%')
     changed = 0
     for it in items:
         d = cr['items'].get(it['id'])
