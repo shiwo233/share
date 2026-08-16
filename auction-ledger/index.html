@@ -94,6 +94,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:80;
 .tile .t-grp.gb{background:rgba(240,171,252,.12);color:var(--magenta)}
 .tile .t-grp.gp{background:rgba(52,211,153,.12);color:var(--mint)}
 .tile .t-grp.ge{background:rgba(34,211,238,.12);color:var(--cyan)}
+.tile .t-price .t-net{font-size:10.5px;font-weight:400;color:var(--tx3);margin-left:7px;vertical-align:2px}
 .tile .t-price{font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;
   transition:color .12s;border-radius:4px;padding:0 3px;margin-left:-3px}
 .tile .t-price.flash-up{color:var(--mint);background:rgba(52,211,153,.08)}
@@ -1177,8 +1178,10 @@ function tileHTML(it, idx){
   const price = it.low ?? it.med;
   const warn = (it.avg && it.low && it.low>it.avg*1.2);
   const above = it.yld>=GOLD.line;
-  const be0 = 10000/(GOLD.rate*0.95);
-  const dev0 = price ? (price*0.95/it.cost/be0 - 1) : null;
+  const gpy = 10000/GOLD.rate;                 /* 直接买金所得 金/元（rate=元/万金） */
+  const prod0 = price ? price*0.95/it.cost : null;   /* 税后产金 金/100点券(=每元) */
+  const dev0 = prod0!=null ? (prod0/gpy - 1) : null;
+  const diff0 = prod0!=null ? prod0 - gpy : null;    /* 每元倒卖收益 金/元 */
   const dClr = dev0!=null ? devColor(dev0) : 'var(--tx3)';
   const chgHtml = it.chg!=null
     ? `<span class="t-chg ${it.dir>0?'up':(it.dir<0?'down':'dim')}">${it.dir>0?'▲':(it.dir<0?'▼':'—')} ${it.chg>0?'+':''}${it.chg}%</span>`
@@ -1196,12 +1199,11 @@ function tileHTML(it, idx){
       <div class="t-id">SN ${it.id} · server 4 漂漂猪</div></div>
       <span class="t-grp ${gCls}">${gName}</span>
     </div>
-    <div class="t-price mono" data-base="${price||''}">${price?fmt(price):'— —'}</div>
+    <div class="t-price mono" data-base="${price||''}">${price?`<span class="t-pv">${fmt(price)}</span><span class="t-net">税后 ${fmt(Math.round(price*0.95))}</span>`:'— —'}</div>
     <div class="t-sub">${chgHtml}<span class="t-n" style="color:${fqColor}">${nTag}</span></div>
     <div class="t-data">
-      <div class="t-row"><span>税后到手</span><b class="t-net" style="color:${dClr}">${price?fmt(Math.round(price*0.95))+' 金':'—'}</b></div>
-      <div class="t-row"><span>产金 / 100点券</span><b class="t-prod" style="color:${dClr}">${price?fmt(Math.round(price*0.95/it.cost))+' 金':'—'}</b></div>
-      <div class="t-row"><span>较盈亏平衡点</span><b class="t-gap" style="color:${dClr}">${dev0!=null?((dev0*100)>=0?'+':'')+(dev0*100).toFixed(1)+'%':'—'}</b></div>
+      <div class="t-row"><span>产金 / 100点券</span><b class="t-prod" style="color:${dClr}">${prod0!=null?fmt(Math.round(prod0))+' 金':'—'}</b></div>
+      <div class="t-row"><span>每元倒卖收益</span><b class="t-gap" style="color:${dClr}">${diff0!=null?(diff0>=0?'+':'')+fmt(Math.round(diff0))+' 金/元':'—'}</b></div>
     </div>
     ${sparkSVG(it.tr,206,26,sparkColor)}
     <div class="t-bar" style="width:${it.an!=null?Math.min(it.an/50*100,100):4}%;${it.an!=null&&it.an<10?'background:var(--red)':(it.an!=null?'background:var(--mint)':'')}"></div>
@@ -1215,7 +1217,8 @@ function pulseTile(el){
   if(!base) return true;
   const dev = (Math.random()*0.012-0.006);
   const v = Math.round(base*(1+dev));
-  el.textContent = fmt(v);
+  const pv = el.querySelector('.t-pv');
+  if(pv) pv.textContent = fmt(v); else el.textContent = fmt(v);
   el.classList.remove('flash-up','flash-dn'); void el.offsetWidth;
   el.classList.add(dev>=0?'flash-up':'flash-dn');
   setTimeout(()=>el.classList.remove('flash-up','flash-dn'), 420);
@@ -1223,12 +1226,12 @@ function pulseTile(el){
   if(tile){
     const cost = parseFloat(tile.dataset.cost)||1;
     const net = tile.querySelector('.t-net'), prod = tile.querySelector('.t-prod'), gap = tile.querySelector('.t-gap');
-    const be = 10000/(GOLD.rate*0.95);
-    const p = v*0.95/cost;
-    const clr = devColor(p/be-1);
-    if(net){ net.textContent = fmt(Math.round(v*0.95)) + ' 金'; net.style.color = clr; }
+    const gpy = 10000/GOLD.rate;                 /* 直接买金 金/元（rate=元/万金） */
+    const p = v*0.95/cost;                       /* 税后产金 金/100点券 */
+    const clr = devColor(p/gpy-1);
+    if(net) net.textContent = '税后 ' + fmt(Math.round(v*0.95));
     if(prod){ prod.textContent = fmt(Math.round(p)) + ' 金'; prod.style.color = clr; }
-    if(gap){ gap.textContent = (((p/be-1)*100)>=0?'+':'') + ((p/be-1)*100).toFixed(1) + '%'; gap.style.color = clr; }
+    if(gap){ const d = p - gpy; gap.textContent = (d>=0?'+':'') + fmt(Math.round(d)) + ' 金/元'; gap.style.color = clr; }
   }
   return true;
 }
