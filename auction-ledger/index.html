@@ -319,8 +319,9 @@ rect.vbar:hover{fill-opacity:.75}
 
 /* ===== v6 顶置行情条 ===== */
 body{padding-top:98px}
+body{padding-left:44px}
 @media(min-width:1500px){body{padding:98px 286px 0 44px}}
-.ticker{position:fixed;top:0;left:0;right:0;z-index:65;margin-top:0;height:34px}
+.ticker{position:fixed;top:0;left:44px;right:0;z-index:65;margin-top:0;height:34px}
 @media(min-width:1500px){.ticker{right:286px;left:44px}}
 .ticker::before{display:none}
 .ticker .ticker-track{padding-left:272px}
@@ -399,7 +400,7 @@ body{padding-top:98px}
   text-decoration:none;display:block;letter-spacing:.08em}
 .ldg-more:hover{background:rgba(34,211,238,.06)}
 /* ===== 台账比对托盘 ===== */
-.cmp-tray{position:fixed;left:12px;right:12px;bottom:12px;z-index:72;background:rgba(10,16,29,.96);backdrop-filter:blur(12px);
+.cmp-tray{position:fixed;left:52px;right:12px;bottom:12px;z-index:72;background:rgba(10,16,29,.96);backdrop-filter:blur(12px);
   border:1px solid rgba(34,211,238,.3);border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.6);
   transform:translateY(130%);transition:transform .4s cubic-bezier(.5,0,.2,1);max-height:46vh;display:flex;flex-direction:column}
 @media(min-width:1500px){.cmp-tray{right:298px}}
