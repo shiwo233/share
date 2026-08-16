@@ -709,7 +709,7 @@ body{padding-left:44px}
 <section class="sec" id="sec-board">
   <div class="sec-head">
     <span class="no">01</span><h2>重点商品大盘 · 全品种作战墙</h2> <span class="lagchip"><i></i>数据均采集自游戏内交易行 · 延迟约 60s</span>
-    <span class="sub">点券进货 → 拍卖行卖金 → 卖金回款 · 点击卡片联动台账与耦合分析 · 数字跳动为行情脉冲演示（±0.6% 微扰，快照为真实采集）</span>
+    <span class="sub">点券进货 → 拍卖行卖金 → 卖金回款 · 点击卡片联动台账与耦合分析 · 数字跳动按流动性分频演示（高频 10-30s · 中频 5min · 低频静止，快照为真实采集）</span>
     <span class="right" id="clock"></span>
   </div>
   <div class="srcbar">
@@ -1183,16 +1183,44 @@ function tileHTML(it, idx){
       <span class="t-grp ${gCls}">${gName}</span>
     </div>
     <div class="t-price mono" data-base="${price||''}">${price?fmt(price):'— —'}</div>
-    <div class="t-sub">${chgHtml}<span class="t-n" style="color:${fqColor}">量 ${nTxt}·${nTag}</span></div>
-    <div class="t-yld"><span style="color:var(--tx3)">税后金/元</span><b style="color:${above?'var(--mint)':'var(--red)'}">${fmt(it.yld)}</b></div>
+    <div class="t-sub">${chgHtml}<span class="t-n" style="color:${fqColor}">${nTag}</span></div>
+    <div class="t-yld"><span style="color:var(--tx3)">税后到手</span><b class="t-net" style="color:${above?'var(--mint)':'var(--red)'}">${price?fmt(Math.round(price*0.95)):'—'} 金</b></div>
     ${sparkSVG(it.tr,206,26,sparkColor)}
     <div class="t-bar" style="width:${it.an!=null?Math.min(it.an/50*100,100):4}%;${it.an!=null&&it.an<10?'background:var(--red)':(it.an!=null?'background:var(--mint)':'')}"></div>
   </div>`;
 }
+/* ================= 行情脉冲 · 按流动性分频 ================= */
+const PULSE_OVR = {'5050000':5000,'5050001':10000};  /* 洗能力卷轴 5s · 洗1转卷轴 10s */
+function pulseTile(el){
+  if(!el.isConnected) return false;
+  const base = parseInt(el.dataset.base);
+  if(!base) return true;
+  const dev = (Math.random()*0.012-0.006);
+  const v = Math.round(base*(1+dev));
+  el.textContent = fmt(v);
+  el.classList.remove('flash-up','flash-dn'); void el.offsetWidth;
+  el.classList.add(dev>=0?'flash-up':'flash-dn');
+  setTimeout(()=>el.classList.remove('flash-up','flash-dn'), 420);
+  const tile = el.closest('.tile'), net = tile && tile.querySelector('.t-net');
+  if(net) net.textContent = fmt(Math.round(v*0.95)) + ' 金';
+  return true;
+}
+function armTile(el){
+  const tile = el.closest('.tile'); if(!tile) return;
+  const id = tile.dataset.id;
+  const fq = [...tile.classList].find(c=>c.indexOf('fq-')===0);
+  if(fq==='fq-l'||fq==='fq-u') return;  /* 低频/待查 不波动 */
+  const next = ()=> PULSE_OVR[id]!=null ? PULSE_OVR[id]
+                  : (fq==='fq-h' ? 10000+Math.random()*20000   /* 高频 10~30s */
+                                 : 300000);                    /* 中频 5 分钟 */
+  (function tick(){ setTimeout(()=>{ if(pulseTile(el)) tick(); }, next()); })();
+}
+document.querySelectorAll('.t-price[data-base]').forEach(armTile);
 function renderBoard(f){
   const list = ITEMS.map((it,idx)=>({it,idx})).filter(x=>!f||f==='all'||x.it.g===f);
   $('board').innerHTML = list.map(x=>tileHTML(x.it,x.idx)).join('');
   document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>selectItem(t.dataset.id, true)));
+  if(typeof armTile==='function') document.querySelectorAll('.t-price[data-base]').forEach(armTile);
 }
 renderBoard('all');
 document.querySelectorAll('.fbtn[data-f]').forEach(b=>b.addEventListener('click',()=>{
@@ -1200,20 +1228,7 @@ document.querySelectorAll('.fbtn[data-f]').forEach(b=>b.addEventListener('click'
   renderBoard(b.dataset.f);
   if(b.dataset.f!=='all'){ $('boardClip').classList.add('open'); $('boardToggle').textContent='收起 ▴'; }
 }));
-/* ================= 数字跳动 ================= */
-function pulse(){
-  document.querySelectorAll('.t-price[data-base]').forEach(el=>{
-    const base = parseInt(el.dataset.base);
-    if(!base || Math.random()>0.18) return;
-    const dev = (Math.random()*0.012-0.006);
-    const v = Math.round(base*(1+dev));
-    el.textContent = fmt(v);
-    el.classList.remove('flash-up','flash-dn'); void el.offsetWidth;
-    el.classList.add(dev>=0?'flash-up':'flash-dn');
-    setTimeout(()=>el.classList.remove('flash-up','flash-dn'), 420);
-  });
-}
-setInterval(pulse, 1400);
+
 /* ================= 联动选择 ================= */
 function selectItem(id, scroll){
   selId = id;
