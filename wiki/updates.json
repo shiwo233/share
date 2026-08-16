@@ -1,6 +1,13 @@
 {
  "updates": [
   {
+   "v": "v24",
+   "d": "2026-08-16",
+   "t": "金价接入每小时流水线",
+   "detail": "crawl_full.py 开头抓取 price-trend 公开页（无需cookie）：最新五区报价+49小时漂漂猪序列；apply_crawl.py 回写 GOLD(rate/last/chg/line/asof)、GOLD_HOURLY 真实49点、SERVERS 五区（含24h涨跌）、金价标题行、买金线三处数值；顶栏statGold/statBE/goldBE/24h涨跌/沙盘滑杆全部改为从 GOLD 常量前端派生，之后每小时自动生效。当前：漂漂猪 1.8519 万金/元（24h +35.8%），买金线 19,493。时区 Z→+08:00 已修正。",
+   "commit": "efe37cd"
+  },
+  {
    "v": "v23",
    "d": "2026-08-16",
    "t": "成本按商城价格表校准 + 盈亏偏离红绿渐变 + 脉冲加固",
