@@ -226,13 +226,6 @@ footer{max-width:1560px;margin:26px auto 40px;padding:14px 26px;border-top:1px s
 #lightbox.on{display:flex}
 #lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;border:1px solid var(--line)}
 #lightbox .lbc{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:var(--tx2)}
-.nextup{display:block;margin:26px auto 0;max-width:1060px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 20px;text-decoration:none;color:inherit;transition:.25s;position:relative;overflow:hidden}
-.nextup::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta))}
-.nextup:hover{border-color:var(--cyan);transform:translateY(-2px)}
-.nextup .nk{font-family:var(--mono);font-size:10px;letter-spacing:.25em;color:var(--cyan);margin-bottom:6px}
-.nextup h4{font-size:15px;margin-bottom:4px}
-.nextup p{font-size:12px;color:var(--tx2);line-height:1.6}
-.nextup .nm{margin-top:8px;font-size:11px;color:var(--tx3)}
 .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
 .fbtn{font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:var(--panel2);color:var(--tx2);cursor:pointer;transition:.2s}
 .fbtn:hover{border-color:var(--cyan)}
@@ -491,17 +484,24 @@ body{padding-top:98px}
 /* ===== v8 导航圆形沙盘 logo ===== */
 /* 双半圆导航钮 */
 .orb2{position:relative;z-index:2;width:76px;height:76px;margin:-16px 9px;flex:none}
-.orb2 .ring{position:absolute;inset:-5px;border-radius:50%;
-  background:conic-gradient(from var(--fba,0deg),transparent 0 22%,var(--amber) 34%,#fff3d6 42%,var(--cyan) 56%,#d9f8ff 62%,transparent 76% 100%);
-  animation:flowbd 2.8s linear infinite}
-.orb2 .halo{position:absolute;inset:-7px;border-radius:50%;border:1.5px solid rgba(251,191,36,.5);
-  animation:orbhalo 2.2s ease-out infinite;pointer-events:none}
-.orb2 .halo.h2{animation-delay:1.1s;border-color:rgba(34,211,238,.5)}
-@keyframes orbspin{to{transform:rotate(360deg)}}
-@keyframes orbhalo{0%{transform:scale(.8);opacity:.95}100%{transform:scale(1.5);opacity:0}}
-@keyframes orbbreath{50%{box-shadow:0 0 30px rgba(251,191,36,.35)}}
+.orb2 .ring{position:absolute;inset:-1.5px;border-radius:50%;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--fba,0deg),rgba(251,191,36,.95),rgba(255,243,214,.72) 25%,rgba(34,211,238,.95) 50%,rgba(217,248,255,.72) 75%,rgba(251,191,36,.95));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:flowbd 9s linear infinite;opacity:.9}
+.orb2 .ripple{position:absolute;inset:-2px;border-radius:50%;pointer-events:none;
+  border:1px solid rgba(251,191,36,.55);opacity:0;animation:oripple 3.9s cubic-bezier(.16,.6,.32,1) infinite}
+.orb2 .ripple.r2{border-color:rgba(34,211,238,.5);animation-delay:1.3s}
+.orb2 .ripple.r3{border-color:rgba(255,255,255,.3);animation-delay:2.6s}
+@keyframes oripple{0%{transform:scale(1);opacity:0}9%{opacity:.85}100%{transform:scale(2.12);opacity:0}}
+.orb2 .sheen{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:3}
+.orb2 .sheen::before{content:'';position:absolute;top:-60%;left:-85%;width:55%;height:220%;transform:rotate(24deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  animation:osheen 4.8s ease-in-out infinite}
+@keyframes osheen{0%,52%{left:-85%}92%,100%{left:135%}}
+@keyframes orbglow{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 10px 30px rgba(0,0,0,.55)}50%{box-shadow:0 0 26px 2px rgba(34,211,238,.16),0 10px 30px rgba(0,0,0,.55)}}
 .orb-in{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;background:#0a1120;
-  transition:transform .25s cubic-bezier(.3,1.4,.5,1);animation:orbbreath 3.2s ease-in-out infinite}
+  transition:transform .25s cubic-bezier(.3,1.4,.5,1);animation:orbglow 4.2s ease-in-out infinite}
 .orb2:hover .orb-in{transform:scale(1.1)}
 .oh{flex:1;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-family:var(--cn);font-size:12px;font-weight:700;line-height:1.35;letter-spacing:.04em;transition:.2s;padding:0}
@@ -522,30 +522,42 @@ body{padding-top:98px}
 #board.pguide .tile{animation:tilehint 1.1s ease-in-out infinite}
 @keyframes tilehint{50%{border-color:rgba(34,211,238,.75);box-shadow:0 0 18px rgba(34,211,238,.28)}}
 /* 新手导航 */
-.tour{position:fixed;inset:0;z-index:95;background:rgba(3,6,12,.8);backdrop-filter:blur(8px);
-  display:none;align-items:center;justify-content:center}
-.tour.on{display:flex}
-.tour-box{width:min(620px,92vw);background:#0a101d;border:1px solid rgba(34,211,238,.4);border-radius:16px;
-  box-shadow:0 30px 90px rgba(0,0,0,.75);overflow:hidden;animation:sbpop .35s cubic-bezier(.3,1.3,.5,1)}
-.tour-head{padding:16px 22px 0;display:flex;align-items:center;gap:10px}
-.tour-head .tt{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--cyan)}
-.tour-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--tx2);
-  width:26px;height:26px;cursor:pointer}
-.tour-head button:hover{color:var(--red);border-color:var(--red)}
-.tour-body{padding:18px 24px 8px;min-height:170px}
-.tour-body .ti{font-size:26px;margin-bottom:8px}
-.tour-body h3{font-size:17px;margin-bottom:8px;color:var(--tx)}
-.tour-body p{font-size:13px;color:var(--tx2);line-height:1.8}
-.tour-body p b{color:var(--amber)} .tour-body p .cy{color:var(--cyan)}
-.tour-foot{display:flex;align-items:center;gap:14px;padding:12px 22px 18px}
+.tour-tip{position:fixed;z-index:96;width:min(360px,88vw);display:none;background:#0c1424f8;backdrop-filter:blur(10px);
+  border:1px solid rgba(34,211,238,.45);border-radius:14px;box-shadow:0 22px 60px rgba(0,0,0,.65),0 0 0 1px rgba(34,211,238,.08);
+  animation:ttpop .3s cubic-bezier(.3,1.35,.5,1)}
+.tour-tip.on{display:block}
+@keyframes ttpop{from{transform:translateY(8px) scale(.96);opacity:0}}
+.tour-tip .arr{position:absolute;width:14px;height:14px;background:#0c1424;transform:rotate(45deg);
+  border:1px solid rgba(34,211,238,.45)}
+.tour-tip.a-up .arr{top:-7.5px;left:var(--ax,32px);border-right:none;border-bottom:none}
+.tour-tip.a-down .arr{bottom:-7.5px;left:var(--ax,32px);border-left:none;border-top:none}
+.tour-tip.a-right .arr{left:-7.5px;top:var(--ay,40px);border-right:none;border-top:none}
+.tour-tip.a-left .arr{right:-7.5px;top:var(--ay,40px);border-left:none;border-bottom:none}
+.tt-head{padding:13px 16px 0;display:flex;align-items:center;gap:10px}
+.tt-head .tt{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--cyan)}
+.tt-head .tt b{color:var(--amber);letter-spacing:.1em}
+.tt-head button{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--tx2);
+  width:24px;height:24px;cursor:pointer;font-size:11px}
+.tt-head button:hover{color:var(--red);border-color:var(--red)}
+.tt-body{padding:10px 16px 4px;min-height:96px}
+.tt-body h3{font-size:15.5px;margin-bottom:6px;color:var(--tx)}
+.tt-body h3 .ti{margin-right:6px}
+.tt-body p{font-size:12.5px;color:var(--tx2);line-height:1.75}
+.tt-body p b{color:var(--amber)} .tt-body p .cy{color:var(--cyan)}
+.tt-foot{display:flex;align-items:center;gap:12px;padding:10px 16px 14px}
 .tour-dots{display:flex;gap:6px}
 .tour-dots i{width:7px;height:7px;border-radius:50%;background:#2a3a5f;transition:.25s}
 .tour-dots i.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-.tour-foot .sp{flex:1}
-.tbtn{font-family:var(--mono);font-size:11.5px;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;
+.tt-foot .sp{flex:1}
+.tbtn{font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;cursor:pointer;transition:.2s;white-space:nowrap;
   border:1px solid var(--line);background:var(--panel2);color:var(--tx2)}
 .tbtn:hover{border-color:var(--cyan);color:var(--cyan)}
 .tbtn.pri{border-color:rgba(34,211,238,.6);background:rgba(34,211,238,.14);color:var(--cyan)}
+.tour-hl{border-radius:10px;
+  outline:2px solid rgba(34,211,238,.85);outline-offset:5px;
+  animation:thlpulse 1.7s ease-in-out infinite}
+.orb2.tour-hl{border-radius:50%}
+@keyframes thlpulse{50%{outline-color:rgba(251,191,36,.9);outline-offset:8px}}
 @media(min-width:1200px){.pillnav{overflow:visible}}
 
 /* ===== v12 可点标签流动灯条边框 ===== */
@@ -594,7 +606,7 @@ body{padding-top:98px}
   <a data-s="sec-recs">推荐榜<span class="n">03</span></a>
   <a data-s="sec-gold">金价<span class="n">04</span></a>
   <div class="orb2" title="左：推演系统 · 右：耦合分析">
-    <i class="ring"></i><i class="halo"></i><i class="halo h2"></i>
+    <i class="ring"></i><i class="ripple"></i><i class="ripple r2"></i><i class="ripple r3"></i><i class="sheen"></i>
     <div class="orb-in">
       <button class="oh ol" id="navSandbox">推演<small>系统</small></button>
       <button class="oh or" id="navCouple">耦合<small>分析</small></button>
@@ -652,17 +664,16 @@ body{padding-top:98px}
 <div class="gtoast" id="gtoast"></div>
 
 <!-- ================= 新手导航 ================= -->
-<div class="tour" id="tour">
-  <div class="tour-box">
-    <div class="tour-head"><span class="tt">SSY 自制冒险岛交易辅助系统 · 新手引导</span><button id="tourX">✕</button></div>
-    <div class="tour-body" id="tourBody"></div>
-    <div class="tour-foot">
-      <div class="tour-dots" id="tourDots"></div>
-      <span class="sp"></span>
-      <button class="tbtn" id="tourSkip">跳过</button>
-      <button class="tbtn" id="tourPrev" style="display:none">上一步</button>
-      <button class="tbtn pri" id="tourNext">下一步</button>
-    </div>
+<div class="tour-tip" id="tourTip">
+  <i class="arr"></i>
+  <div class="tt-head"><span class="tt">新手引导 · <b id="tourStepNo">1 / 5</b></span><button id="tourX">✕</button></div>
+  <div class="tt-body" id="tourBody"></div>
+  <div class="tt-foot">
+    <div class="tour-dots" id="tourDots"></div>
+    <span class="sp"></span>
+    <button class="tbtn" id="tourSkip">跳过</button>
+    <button class="tbtn" id="tourPrev" style="display:none">上一步</button>
+    <button class="tbtn pri" id="tourNext">下一步</button>
   </div>
 </div>
 <!-- ================= 台账抽屉 ================= -->
@@ -1022,12 +1033,6 @@ body{padding-top:98px}
   </div>
 </section>
 
-<a class="nextup" href="../xian-in-my-eyes/">
-  <div class="nk">NEXT UP · 下一篇推荐</div>
-  <h4>我眼中的西安 · 一座城与一个文明的千年往来</h4>
-  <p>古籍书页式城市随笔：从长安的两个名字写起，经山河剧本、盛世退场，到硬科技翻身的未结账本。</p>
-  <div class="nm">🏯 城市随笔 · 2026-08-02 · 浏览全部议题 →</div>
-</a>
 
 <div id="lightbox" onclick="this.classList.remove('on')"><img id="lbImg" src="" alt=""><div class="lbc" id="lbCap"></div></div>
 
@@ -1765,32 +1770,67 @@ function showToast(html){
     setTimeout(()=>{ $('board').classList.remove('pguide'); document.removeEventListener('click',once,true); },15000);
   });
 })();
-/* ================= v13 新手导航 ================= */
+/* ================= v15 新手导航 · 锚点指引 ================= */
 (function(){
   const STEPS=[
-    {i:'🪙',t:'这是什么',d:'<b>SSY 自制冒险岛交易辅助系统</b>——漂漂猪（server 4）倒货作战室：商城点券进货 → 拍卖行卖金 → 卖金回款，全链路用数据说话。所有行情均<span class="cy">采集自游戏内交易行</span>（mxdc），延迟约 60s，每小时自动复核一次。'},
-    {i:'📊',t:'大盘作战墙',d:'43 种道具实时行情墙。卡片<b>左边框颜色 = 出售频率</b>（绿高频 / 琥珀中频 / 红低频）；<b>点卡片</b>联动金价×物价耦合分析；点卡片右下角 <b>⇄</b> 可把道具加入底部「台账比对」。顶部金条常驻实时金价 <b>0.525 元/万金</b>。'},
-    {i:'🏆',t:'推荐榜与避坑',d:'S/A/B 三级按 <b>税后金/元</b> 排序，生死线是「买金线」<b>19,048 金/元</b>——低于它不如直接买金。每级默认只显示前 4 种，点「展开其余」看全量；<b>避坑名单</b>里的品种别碰（低于买金线 / 渠道关闭 / 巨亏）。'},
-    {i:'🔮',t:'推演 + 耦合双钮',d:'导航正中的圆形按钮分两半：<b>左半「推演系统」</b>呼出数据沙盘——拖金价 / 挂价 / 批量三根滑杆，实时演算单件盈亏、批次盈亏与回本汇率；<span class="cy">右半「耦合分析」</span>会先提示你在大盘选一件道具，然后自动跳到金价×物价联动解读。'},
-    {i:'📒',t:'台账 · 流水 · 终端',d:'<b>左侧整条「台账速览」</b>点开是三轮核算（成本 3,072.9 元 / 净入 4,270 万金 / 综合 13,896 金/元）与常卖组对照；右下角 <b>FLOW TERMINAL</b> 以代码形式滚动播放每一次采集的请求与返回；「采集流水」栏有统计与数据跑马灯。祝倒货顺利。'},
+    {sel:'.brand',at:'below',i:'🪙',t:'这是什么',d:'<b>SSY 自制冒险岛交易辅助系统</b>——漂漂猪（server 4）倒货作战室：商城点券进货 → 拍卖行卖金 → 卖金回款，全链路用数据说话。行情均<span class="cy">采集自游戏内交易行</span>（mxdc），延迟约 60s，每小时自动复核。'},
+    {sel:'#sec-board .sec-head',at:'below',i:'📊',t:'大盘作战墙',d:'43 种道具实时行情墙。卡片<b>左边框颜色 = 出售频率</b>（绿高频 / 琥珀中频 / 红低频）；<b>点卡片</b>联动耦合分析；点右下角 <b>⇄</b> 加入底部「台账比对」。顶部金条常驻实时金价 <b>0.525 元/万金</b>。'},
+    {sel:'#sec-recs .sec-head',at:'below',i:'🏆',t:'推荐榜与避坑',d:'S/A/B 三级按 <b>税后金/元</b> 排序，生死线是「买金线」<b>19,048 金/元</b>——低于它不如直接买金。每级默认显示前 4 种，点「展开其余」看全量；<b>避坑名单</b>里的品种别碰。'},
+    {sel:'.orb2',at:'below',i:'🔮',t:'推演 + 耦合双钮',d:'导航正中的圆形按钮分两半：<b>左半「推演系统」</b>呼出数据沙盘——拖金价 / 挂价 / 批量滑杆实时演算盈亏；<span class="cy">右半「耦合分析」</span>会先提示你在大盘选一件道具，再自动跳转联动解读。'},
+    {sel:'#ldgTab',at:'right',i:'📒',t:'台账 · 流水 · 终端',d:'<b>左侧整条「台账速览」</b>点开是三轮核算与常卖组对照；右下角 <b>FLOW TERMINAL</b> 以代码形式滚动每一次采集的请求与返回；「采集流水」栏有统计与数据跑马灯。祝倒货顺利。'},
   ];
-  let cur=0;
-  const tour=$('tour');
+  let cur=0,shown=false;
+  const tip=$('tourTip');
   function render(){
     const st=STEPS[cur];
-    $('tourBody').innerHTML=`<div class="ti">${st.i}</div><h3>${st.t}</h3><p>${st.d}</p>`;
+    $('tourBody').innerHTML=`<h3><span class="ti">${st.i}</span>${st.t}</h3><p>${st.d}</p>`;
+    $('tourStepNo').textContent=(cur+1)+' / '+STEPS.length;
     $('tourDots').innerHTML=STEPS.map((_,i)=>`<i class="${i===cur?'on':''}"></i>`).join('');
     $('tourPrev').style.display=cur>0?'':'none';
     $('tourNext').textContent=cur===STEPS.length-1?'完成 · 开始探索':'下一步';
   }
-  function open(){ cur=0; render(); tour.classList.add('on'); }
-  function close(){ tour.classList.remove('on'); try{localStorage.setItem('ssy_tour_v1','1')}catch(e){} }
-  $('tourNext').addEventListener('click',()=>{ if(cur<STEPS.length-1){cur++;render();} else close(); });
-  $('tourPrev').addEventListener('click',()=>{ if(cur>0){cur--;render();} });
+  function clearHl(){ document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl')); }
+  function place(){
+    const st=STEPS[cur];
+    clearHl();
+    const el=st.sel&&document.querySelector(st.sel);
+    if(!el) return;
+    el.classList.add('tour-hl');
+    if(cur>0) el.scrollIntoView({block:st.at==='right'?'center':'nearest',behavior:'smooth'});
+    setTimeout(()=>{ if(shown) position(el,st.at); },cur>0?420:60);
+  }
+  function position(el,at){
+    const r=el.getBoundingClientRect();
+    tip.style.visibility='hidden'; tip.classList.add('on');
+    const tw=tip.offsetWidth,th=tip.offsetHeight;
+    const vw=innerWidth,vh=innerHeight,gap=16;
+    let left,top,cls;
+    if(at==='below'){ cls='a-up'; left=r.left+r.width/2-tw/2; top=r.bottom+gap; }
+    else if(at==='above'){ cls='a-down'; left=r.left+r.width/2-tw/2; top=r.top-th-gap; }
+    else if(at==='right'){ cls='a-right'; left=r.right+gap; top=r.top+r.height/2-th/2; }
+    else { cls='a-left'; left=r.left-tw-gap; top=r.top+r.height/2-th/2; }
+    left=Math.max(10,Math.min(left,vw-tw-10));
+    top=Math.max(10,Math.min(top,vh-th-10));
+    tip.className='tour-tip on '+cls;
+    // arrow follows target center
+    if(cls==='a-up'||cls==='a-down'){
+      const ax=Math.max(14,Math.min(r.left+r.width/2-left-7,tw-28));
+      tip.style.setProperty('--ax',ax+'px');
+    }else{
+      const ay=Math.max(14,Math.min(r.top+r.height/2-top-7,th-28));
+      tip.style.setProperty('--ay',ay+'px');
+    }
+    tip.style.left=left+'px'; tip.style.top=top+'px';
+    tip.style.visibility='';
+  }
+  function open(){ cur=0; shown=true; render(); place(); }
+  function close(){ shown=false; tip.classList.remove('on'); clearHl(); try{localStorage.setItem('ssy_tour_v1','1')}catch(e){} }
+  $('tourNext').addEventListener('click',()=>{ if(cur<STEPS.length-1){cur++;render();place();} else close(); });
+  $('tourPrev').addEventListener('click',()=>{ if(cur>0){cur--;render();place();} });
   $('tourSkip').addEventListener('click',close);
   $('tourX').addEventListener('click',close);
-  tour.addEventListener('click',e=>{ if(e.target===tour) close(); });
   $('tourOpen').addEventListener('click',open);
+  window.addEventListener('resize',()=>{ if(shown){const st=STEPS[cur];const el=document.querySelector(st.sel); if(el) position(el,st.at);} });
   let seen=null; try{seen=localStorage.getItem('ssy_tour_v1')}catch(e){}
   if(!seen) setTimeout(open,900);
 })();
