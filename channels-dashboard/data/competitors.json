@@ -1,0 +1,265 @@
+{
+ "updated": "2026-10-12",
+ "accounts": [
+  {
+   "id": "absen_official",
+   "company": "艾比森",
+   "name": "艾比森官方号",
+   "role": "官方账号",
+   "tag": "官方口径：新品发布 / 案例 / 展会",
+   "link": "https://weixin.qq.com/sph/AeM8gmzqaE",
+   "assumed": true
+  },
+  {
+   "id": "absen_ceo",
+   "company": "艾比森",
+   "name": "丁彦辉 · 董事长",
+   "role": "CEO个人号",
+   "tag": "企业家IP：战略观点 / 行业思考 / 个人人格化内容",
+   "link": "https://weixin.qq.com/sph/AhpLD75GJ9",
+   "assumed": true
+  },
+  {
+   "id": "absen_tech",
+   "company": "艾比森",
+   "name": "技术总监号",
+   "role": "技术IP号",
+   "tag": "技术背书：产品解读 / COB工艺科普 / 专业人设",
+   "link": "https://weixin.qq.com/sph/AX5RjO7bPC",
+   "assumed": true
+  },
+  {
+   "id": "leyard_official",
+   "company": "利亚德",
+   "name": "利亚德官方号",
+   "role": "官方账号",
+   "tag": "官方口径：大项目护航 / 新品 / 文旅 / AI硬件",
+   "link": "https://weixin.qq.com/sph/ArFFqGy4Mw",
+   "assumed": true
+  },
+  {
+   "id": "industry",
+   "company": "行业号",
+   "name": "行业观察号",
+   "role": "行业补充",
+   "tag": "行业风向标：展会 / 技术趋势 / 价格与供需",
+   "link": "https://weixin.qq.com/sph/AKlUFxxFei",
+   "assumed": true
+  }
+ ],
+ "strategy": [
+  {
+   "company": "艾比森",
+   "color": "#f59e0b",
+   "position": "至真LED显示 · 出口导向的专业显示品牌",
+   "directions": [
+    {
+     "name": "COB大单品矩阵",
+     "desc": "2026全线押注COB面板化：CL V3（9层HTB超黑封装、30000:1对比度、获ISE最佳产品奖）、SA1.5COB舞台租赁、AW Pro户外灯箱，覆盖高端专业/舞台/户外三条赛道"
+    },
+    {
+     "name": "三账号IP矩阵打法",
+     "desc": "官号做品牌口径 + 董事长丁彦辉个人号做企业家IP + 技术总监号做技术背书，是行业内少见的「三角人格化」内容结构"
+    },
+    {
+     "name": "绿色低碳叙事",
+     "desc": "A25系列「日均能耗低于1度/㎡+10年质保」，绑定户外广告绿色转型政策话语"
+    },
+    {
+     "name": "出海与高质量市场",
+     "desc": "产品覆盖140+国家，业绩预告明确受益北美/欧洲高质量区域布局深化"
+    },
+    {
+     "name": "新场景卡位",
+     "desc": "LED虚拟拍摄、AI数据中心、体育赛事显示列为重点新兴品类"
+    }
+   ]
+  },
+  {
+   "company": "利亚德",
+   "color": "#38bdf8",
+   "position": "显示+AI双主业 · 跨界破圈最激进的头部玩家",
+   "directions": [
+    {
+     "name": "「AI视界」总叙事",
+     "desc": "2026战略主题「拥抱AI，领创视效，实现第二增长曲线」；InfoComm以AI贯穿技术-产品-场景-生态，不只卖屏，卖AI能力体系"
+    },
+    {
+     "name": "Micro LED量产叙事",
+     "desc": "TWH(Hi-Micro)系列InfoComm首发：Micro全倒装无衬底芯片<30μm、黑区占比99%+、P0.7运行2小时屏温<38℃，主打「未来科技已量产」；Micro LED新签订单约17亿"
+    },
+    {
+     "name": "C端跨界破圈",
+     "desc": "AR眼镜（125种语言翻译、49g）+ AI吧唧情感陪伴硬件；首次跨界演艺主办美依礼芽演唱会并推LYaiDol周边——从B端厂牌转向消费者心智"
+    },
+    {
+     "name": "文旅第二曲线",
+     "desc": "2026年4月成立励丰文旅集团（北京+广州双总部），从视觉冲击转向沉浸式互动体验+城市更新"
+    },
+    {
+     "name": "国家级项目背书",
+     "desc": "春晚显示（约2.18亿订单口径）、中网2000㎡大屏、全国少数民族文艺会演开闭幕式、北京亦庄GT赛——持续用国家盛典/顶级赛事做信任状"
+    },
+    {
+     "name": "瘦身提效",
+     "desc": "人员5000+→4000+、渠道人员200→50，从规模优先转向利润导向；海外Planar+Leyard双品牌、沙特工厂本地化"
+    }
+   ]
+  }
+ ],
+ "intel": [
+  {
+   "date": "2026-10-09",
+   "company": "艾比森",
+   "tag": "业绩",
+   "big": true,
+   "title": "前三季业绩预告：净利2.45–2.65亿元，同比+32%~43%",
+   "detail": "受益大单品战略、毛利率提升、北美/欧洲高质量区域布局深化、AI数字化提效。行业价格战中交出高质量增长答卷。",
+   "source": "钛媒体/证券之星",
+   "url": "https://www.tmtpost.com/nictation/8163129.html"
+  },
+  {
+   "date": "2026-10-09",
+   "company": "艾比森",
+   "tag": "扩张",
+   "big": false,
+   "title": "公告竞拍取得土地使用权",
+   "detail": "10月9日发布竞拍取得土地使用权公告，产能/园区扩张信号（用途未披露）。",
+   "source": "东方财富公告",
+   "url": "https://data.eastmoney.com/stockdata/300389.html"
+  },
+  {
+   "date": "2026-10-06",
+   "company": "利亚德",
+   "tag": "项目",
+   "big": false,
+   "title": "护航北京亦庄GT世界挑战赛",
+   "detail": "体育赛事显示持续落子，保持「顶级赛事服务商」心智。",
+   "source": "利亚德官网",
+   "url": "https://www.leyard.com/"
+  },
+  {
+   "date": "2026-09-30",
+   "company": "利亚德",
+   "tag": "项目",
+   "big": true,
+   "title": "护航2026第七届全国少数民族文艺会演开闭幕式",
+   "detail": "国家级盛典项目再加一，延续「国家盛典御用屏」叙事。",
+   "source": "利亚德官网",
+   "url": "https://www.leyard.com/"
+  },
+  {
+   "date": "2026-09-29",
+   "company": "利亚德",
+   "tag": "项目",
+   "big": false,
+   "title": "13年相守中网：2000㎡大屏点亮中网金秋盛宴",
+   "detail": "长期绑定中国网球公开赛，体育营销长线资产。",
+   "source": "利亚德官网",
+   "url": "https://www.leyard.com/"
+  },
+  {
+   "date": "2026-08-21",
+   "company": "利亚德",
+   "tag": "品牌",
+   "big": false,
+   "title": "31周年：从「破冰」到「领跑」主题传播",
+   "detail": "以Micro LED落地成果（TWH系列）为周年叙事核心，强调技术量产化而非概念。",
+   "source": "投影时代",
+   "url": "http://www.pjtime.com/2026/8/302765582576.shtml"
+  },
+  {
+   "date": "2026-04-27",
+   "company": "利亚德",
+   "tag": "业绩",
+   "big": true,
+   "title": "业绩说明会：Micro LED新签订单约17亿元，2026聚焦欧美+降本增效",
+   "detail": "2025扭亏为盈（归母3.0–3.8亿口径）；渠道人员200余人精简至50人；董事长李军承诺「千亿市值以内不减持」。",
+   "source": "新浪证券/21世纪经济报道",
+   "url": "https://www.sohu.com/a/1015559347_122014422"
+  },
+  {
+   "date": "2026-04-15",
+   "company": "利亚德",
+   "tag": "新品",
+   "big": true,
+   "title": "InfoComm China 2026：TWH(Hi-Micro)系列全球首发",
+   "detail": "主题「AI视界 探索未来」；Micro全倒装无衬底芯片（最短边<30μm）、黑区占比99%+、P0.7屏温<38℃；同步展出Sphere透声球幕、OptiTrack动捕（切入具身智能数据采集）。",
+   "source": "行家talk/新浪财经",
+   "url": "https://finance.sina.com.cn/cj/2026-04-17/doc-inhuvere0947639.shtml"
+  },
+  {
+   "date": "2026-04-01",
+   "company": "利亚德",
+   "tag": "组织",
+   "big": true,
+   "title": "励丰文旅集团正式成立，北京+广州双总部",
+   "detail": "文旅夜游升级为集团级第二曲线，聚焦夜间经济、数字展陈、文娱演艺、IP运营四大领域，文旅业务稳定10亿+规模。",
+   "source": "DoNews",
+   "url": "https://www.donews.com/news/detail/4/6517334.html"
+  },
+  {
+   "date": "2026-03-19",
+   "company": "艾比森",
+   "tag": "发布会",
+   "big": true,
+   "title": "2026春季发布会：公布ProAV产品路线图",
+   "detail": "KLCOB V2/NX/X136 V2三大系列升级 + CL V3/K/AW Pro/ALT四大新系列；ALT「一屏双用」开创显示+装饰新品类；全球伙伴现场签约。",
+   "source": "经济观察网/LEDinside",
+   "url": "http://m.eeo.com.cn/2026/0320/813275.shtml"
+  },
+  {
+   "date": "2026-03-05",
+   "company": "利亚德",
+   "tag": "展会",
+   "big": false,
+   "title": "ISLE 2026：15款新品，AI吧唧+AR眼镜C端首秀",
+   "detail": "「拥抱AI，领创视效」；AI吧唧（成长型大模型情感陪伴）与AR眼镜（125种语言翻译、96%准确率、49g）首次面向消费者场景亮相。",
+   "source": "DAV数字音视工程网",
+   "url": "http://m.dav01.com/article/2026/03/a6282879.html"
+  },
+  {
+   "date": "2026-02-27",
+   "company": "艾比森",
+   "tag": "技术",
+   "big": true,
+   "title": "公布2026 COB面板化布局：ISE全球首发三款COB旗舰",
+   "detail": "CL V3获ISE 2026「最佳产品奖」；SA1.5COB攻舞台租赁、AW Pro攻户外街景广告；明确LED虚拟拍摄、AI数据中心、体育显示为新战场。技术创新中心总监肖洲将出席行家说峰会讲COB面板化标准。",
+   "source": "行家talk/新浪财经",
+   "url": "https://finance.sina.com.cn/cj/2026-02-27/doc-inhphcxe6643256.shtml"
+  },
+  {
+   "date": "2026-02-06",
+   "company": "利亚德",
+   "tag": "战略",
+   "big": false,
+   "title": "2026年会定调：「AI驱动、深耕显示、布局全球、科技赋能文旅」",
+   "detail": "李军宣布2025营收利润双增长；2026加强数字化与AI应用，加大产品研发、国际业务、战略新兴产业投入。",
+   "source": "界面新闻",
+   "url": "https://m.jiemian.com/article/14004126.html"
+  }
+ ],
+ "implications": [
+  {
+   "title": "企业家IP矩阵是艾比森的差异化武器",
+   "desc": "官号+CEO+技术总监三角结构，把「品牌信任」拆成品格、观点、专业三层。洲明可考虑对应的高管IP布局，或强化现有官号的人格化表达。"
+  },
+  {
+   "title": "利亚德在大步抢占「AI+显示」话语权",
+   "desc": "所有展会、发布会、财报话术全部统一为AI叙事，并落到AR眼镜、AI吧唧等可感知的C端产品。洲明内容中AI场景化表达需要加码，避免在新叙事中失声。"
+  },
+  {
+   "title": "国家级/顶级项目仍是双方最强信任状",
+   "desc": "利亚德密集输出中网、文艺会演、春晚类项目。洲明的赛事/地标案例内容化节奏应对标提升——大项目不发视频号等于白做一半。"
+  },
+  {
+   "title": "COB/Micro LED技术叙事白热化",
+   "desc": "艾比森CL V3（30000:1）vs 利亚德TWH（<30μm芯片）都在抢「技术定义权」。技术总监类人设内容（工艺拆解、参数科普）正在成为B端决策影响点。"
+  },
+  {
+   "title": "利亚德跨界C端，短期不看直接竞争但看品牌心智",
+   "desc": "演唱会主办、AI硬件周边是品牌年轻化动作，与洲明主业不冲突，但会抬升行业内容的天花板与受众期待。"
+  }
+ ],
+ "note": "视频号为封闭生态，友商视频数据（播放量/互动/留存）无公开接口，需在微信内访问。本页情报基于公开新闻与官网信息整理；账号标注按提供链接的顺序假设，如有出入可更正。后续可随时转发友商视频链接或截图给我，会逐条入库分析。"
+}
