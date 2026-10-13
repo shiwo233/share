@@ -4,56 +4,50 @@
   {
    "id": "absen_official",
    "company": "艾比森",
-   "name": "艾比森官方号",
+   "name": "艾比森",
    "role": "官方账号",
    "tag": "官方口径：新品发布 / 案例 / 展会",
-   "link": "https://weixin.qq.com/sph/AeM8gmzqaE",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/AKlUFxxFei"
   },
   {
    "id": "absen_ceo",
    "company": "艾比森",
-   "name": "丁彦辉 · 董事长",
+   "name": "丁彦辉-艾比森",
    "role": "CEO个人号",
    "tag": "企业家IP：战略观点 / 行业思考 / 个人人格化内容",
-   "link": "https://weixin.qq.com/sph/AhpLD75GJ9",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/AX5RjO7bPC"
   },
   {
    "id": "absen_tech",
    "company": "艾比森",
-   "name": "技术总监号",
+   "name": "艾比森Jayson",
    "role": "技术IP号",
    "tag": "技术背书：产品解读 / COB工艺科普 / 专业人设",
-   "link": "https://weixin.qq.com/sph/AX5RjO7bPC",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/AhpLD75GJ9"
   },
   {
    "id": "leyard_official",
    "company": "利亚德",
-   "name": "利亚德官方号",
+   "name": "利亚德集团",
    "role": "官方账号",
    "tag": "官方口径：大项目护航 / 新品 / 文旅 / AI硬件",
-   "link": "https://weixin.qq.com/sph/ArFFqGy4Mw",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/ArFFqGy4Mw"
   },
   {
    "id": "industry",
    "company": "行业号",
-   "name": "行业观察号",
+   "name": "行家说Display",
    "role": "行业补充",
    "tag": "行业风向标：展会 / 技术趋势 / 价格与供需",
-   "link": "https://weixin.qq.com/sph/AKlUFxxFei",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/AeM8gmzqaE"
   },
   {
    "id": "hik_official",
    "company": "海康威视",
-   "name": "海康威视官方号",
+   "name": "海康威视",
    "role": "官方账号",
    "tag": "官方口径：AI大模型 / 智能物联 / 商显与行业方案",
-   "link": "https://weixin.qq.com/sph/AqvXntzeX7",
-   "assumed": true
+   "link": "https://weixin.qq.com/sph/AqvXntzeX7"
   }
  ],
  "strategy": [
@@ -341,5 +335,5 @@
    "desc": "海康不把LED当屏卖，而是当AIoT入口打包卖，且明确不打价格战。与其拼单价，洲明更应在内容中强化「专业显示品牌」心智——这是生态型玩家讲不深的故事。"
   }
  ],
- "note": "视频号为封闭生态，友商视频数据（播放量/互动/留存）无公开接口，需在微信内访问。本页情报基于公开新闻与官网信息整理；账号标注按提供链接的顺序假设（海康为官号），如有出入可更正。后续可随时转发友商视频链接或截图给我，会逐条入库分析。"
+ "note": "视频号为封闭生态，友商视频播放量不公开；本页视频互动数据（赞/转/藏/评）由分享链接逐条解析，公司级情报来自公开新闻与官网。账号名称已从链接解析确认。后续把友商视频链接发给我即可逐条入库做对比。"
 }
